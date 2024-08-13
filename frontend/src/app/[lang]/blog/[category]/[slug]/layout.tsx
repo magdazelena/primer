@@ -1,6 +1,7 @@
 import ArticleSelect from "@/app/[lang]/components/ArticleSelect";
 import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
 import { ArticleBase } from "@/types/article";
+import { Category } from "@/types/category";
 
 async function fetchSideMenuData(filter: string) {
   try {
@@ -34,17 +35,6 @@ async function fetchSideMenuData(filter: string) {
   } catch (error) {
     console.error(error);
   }
-}
-
-interface Category {
-  id: number;
-  attributes: {
-    name: string;
-    slug: string;
-    articles: {
-      data: Array<{}>;
-    };
-  };
 }
 
 interface Data {

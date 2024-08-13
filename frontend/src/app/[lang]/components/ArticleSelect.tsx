@@ -1,16 +1,6 @@
 import Link from "next/link";
 import { ArticleBase } from "@/types/article";
-
-interface Category {
-  id: number;
-  attributes: {
-    name: string;
-    slug: string;
-    articles: {
-      data: Array<{}>;
-    };
-  };
-}
+import { Category } from "@/types/category";
 
 function selectedFilter(current: string, selected: string) {
   return current === selected
