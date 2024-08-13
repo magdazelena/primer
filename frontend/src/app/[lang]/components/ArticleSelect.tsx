@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArticleBase } from "@/types/article";
 
 interface Category {
   id: number;
@@ -8,14 +9,6 @@ interface Category {
     articles: {
       data: Array<{}>;
     };
-  };
-}
-
-interface Article {
-  id: number;
-  attributes: {
-    title: string;
-    slug: string;
   };
 }
 
@@ -31,13 +24,12 @@ export default function ArticleSelect({
   params,
 }: {
   categories: Category[];
-  articles: Article[];
+  articles: ArticleBase[];
   params: {
     slug: string;
     category: string;
   };
 }) {
-
   return (
     <div className="p-4 rounded-lg dark:bg-gray-900 min-h-[365px] relative">
       <h4 className="text-xl font-semibold">Browse By Category</h4>
@@ -66,7 +58,7 @@ export default function ArticleSelect({
         <div className="space-y-2">
           <h4 className="text-lg font-semibold">Other Posts You May Like</h4>
           <ul className="ml-4 space-y-1 list-disc">
-            {articles.map((article: Article) => {
+            {articles.map((article: ArticleBase) => {
               return (
                 <li>
                   <Link
