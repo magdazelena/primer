@@ -888,26 +888,36 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   info: {
     singularName: 'category';
     pluralName: 'categories';
-    displayName: 'Category';
+    displayName: 'Article category';
     description: 'Organize your content into categories';
   };
   options: {
     draftAndPublish: false;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    name: Attribute.String;
+    name: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     slug: Attribute.UID<'api::category.category', 'name'>;
     articles: Attribute.Relation<
       'api::category.category',
       'oneToMany',
       'api::article.article'
     >;
-    description: Attribute.Text;
-    products: Attribute.Relation<
-      'api::category.category',
-      'manyToMany',
-      'api::product.product'
-    >;
+    description: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -922,6 +932,12 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::category.category',
+      'oneToMany',
+      'api::category.category'
+    >;
+    locale: Attribute.String;
   };
 }
 
@@ -1162,11 +1178,6 @@ export interface ApiProductProduct extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    categories: Attribute.Relation<
-      'api::product.product',
-      'manyToMany',
-      'api::category.category'
-    >;
     total_cost: Attribute.Integer &
       Attribute.Required &
       Attribute.Private &
@@ -1190,6 +1201,18 @@ export interface ApiProductProduct extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    productCategory: Attribute.Relation<
+      'api::product.product',
+      'manyToOne',
+      'api::product-category.product-category'
+    >;
+    image: Attribute.Media<'images'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1209,6 +1232,71 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'api::product.product',
       'oneToMany',
       'api::product.product'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiProductCategoryProductCategory
+  extends Schema.CollectionType {
+  collectionName: 'product_categories';
+  info: {
+    singularName: 'product-category';
+    pluralName: 'product-categories';
+    displayName: 'Product category';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Attribute.UID &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    description: Attribute.Blocks &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    products: Attribute.Relation<
+      'api::product-category.product-category',
+      'oneToMany',
+      'api::product.product'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::product-category.product-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::product-category.product-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::product-category.product-category',
+      'oneToMany',
+      'api::product-category.product-category'
     >;
     locale: Attribute.String;
   };
@@ -1239,6 +1327,7 @@ declare module '@strapi/types' {
       'api::lead-form-submission.lead-form-submission': ApiLeadFormSubmissionLeadFormSubmission;
       'api::page.page': ApiPagePage;
       'api::product.product': ApiProductProduct;
+      'api::product-category.product-category': ApiProductCategoryProductCategory;
     }
   }
 }

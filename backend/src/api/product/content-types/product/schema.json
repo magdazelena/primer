@@ -57,12 +57,6 @@
       "type": "uid",
       "required": true
     },
-    "categories": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::category.category",
-      "inversedBy": "products"
-    },
     "total_cost": {
       "pluginOptions": {
         "i18n": {
@@ -91,6 +85,25 @@
       },
       "type": "integer",
       "required": true
+    },
+    "productCategory": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product-category.product-category",
+      "inversedBy": "products"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
     }
   }
 }
