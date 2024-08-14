@@ -1,23 +1,5 @@
 import Link from "next/link";
-
-interface ProductCategory {
-  id: number;
-  attributes: {
-    name: string;
-    slug: string;
-    products: {
-      data: Array<{}>;
-    };
-  };
-}
-
-interface Product {
-  id: number;
-  attributes: {
-    name: string;
-    PID: string;
-  };
-}
+import { ProductCategory, Product } from "@/types/product";
 
 function selectedFilter(current: string, selected: string) {
   return current === selected

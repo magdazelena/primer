@@ -1,33 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getStrapiMedia, formatDate } from "../utils/api-helpers";
-
-interface Product {
-  id: number;
-  attributes: {
-    name: string;
-    description: string[];
-    PID: string;
-    createdAt: string;
-    updatedAt: string;
-    publishedAt: string;
-    image: {
-      data: {
-        attributes: {
-          url: string;
-        };
-      };
-    };
-    productCategory: {
-      data: {
-        attributes: {
-          name: string;
-          slug: string;
-        };
-      };
-    };
-  };
-}
+import { Product } from "@/types/product";
+import { RichTextElement, RichTextModule } from "@/types/richtext";
 
 export default function ProductList({
   data: products,
@@ -40,7 +15,6 @@ export default function ProductList({
     <section className="container p-6 mx-auto space-y-6 sm:space-y-12">
       <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {products.map((product) => {
-          console.dir(product);
           const imageUrl = getStrapiMedia(
             product.attributes.image.data?.attributes.url
           );
@@ -72,7 +46,16 @@ export default function ProductList({
                     {formatDate(product.attributes.publishedAt)}
                   </span>
                 </div>
-                <p className="py-4">description</p>
+                {product.attributes.description.map((module: RichTextModule) =>
+                  module.children.map((element: RichTextElement) => {
+                    return (
+                      <p className="py-4" key={element.type}>
+                        {" "}
+                        {element.text}
+                      </p>
+                    );
+                  })
+                )}
               </div>
             </Link>
           );

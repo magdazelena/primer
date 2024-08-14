@@ -1,5 +1,6 @@
 import ProductSelect from "@/app/[lang]/components/ProductSelect";
 import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
+import { Product, ProductCategory } from "@/types/product";
 
 async function fetchSideMenuData(filter: string) {
   try {
@@ -33,25 +34,6 @@ async function fetchSideMenuData(filter: string) {
   } catch (error) {
     console.error(error);
   }
-}
-
-interface ProductCategory {
-  id: number;
-  attributes: {
-    name: string;
-    slug: string;
-    products: {
-      data: Array<{}>;
-    };
-  };
-}
-
-interface Product {
-  id: number;
-  attributes: {
-    name: string;
-    PID: string;
-  };
 }
 
 interface Data {
