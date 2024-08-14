@@ -43,5 +43,16 @@ interface ArticleFull {
     };
   };
 }
+interface Category {
+  id: number;
+  attributes: {
+    name: string;
+    slug: string;
+    articles: {
+      data: Array<{}>;
+    };
+  };
+}
+
 type Article = ArticleBase & ArticleFull;
-export { ArticleBase, Article };
+export { ArticleBase, Article, Category };

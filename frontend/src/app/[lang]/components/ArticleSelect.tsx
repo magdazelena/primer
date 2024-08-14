@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { ArticleBase } from "@/types/article";
-import { Category } from "@/types/category";
+import { ArticleBase, Category } from "@/types/article";
 
 function selectedFilter(current: string, selected: string) {
   return current === selected
