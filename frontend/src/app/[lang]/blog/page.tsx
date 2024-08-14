@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import { fetchAPI } from "../utils/fetch-api";
 
 import Loader from "../components/Loader";
-import Blog from "../views/blog-list";
+import Blog from "../views/article-list";
 import PageHeader from "../components/PageHeader";
 
 interface Meta {
@@ -44,7 +44,7 @@ export default function Profile() {
       if (start === 0) {
         setData(responseData.data);
       } else {
-        setData((prevData: any[] ) => [...prevData, ...responseData.data]);
+        setData((prevData: any[]) => [...prevData, ...responseData.data]);
       }
 
       setMeta(responseData.meta);

@@ -90,65 +90,6 @@ export interface MetaMetadata extends Schema.Component {
   };
 }
 
-export interface LinksSocialLink extends Schema.Component {
-  collectionName: 'components_links_social_links';
-  info: {
-    displayName: 'Social Link';
-    description: '';
-  };
-  attributes: {
-    url: Attribute.String & Attribute.Required;
-    newTab: Attribute.Boolean & Attribute.DefaultTo<false>;
-    text: Attribute.String & Attribute.Required;
-    social: Attribute.Enumeration<['YOUTUBE', 'TWITTER', 'DISCORD', 'WEBSITE']>;
-  };
-}
-
-export interface LinksLink extends Schema.Component {
-  collectionName: 'components_links_links';
-  info: {
-    name: 'Link';
-    displayName: 'Link';
-    icon: 'link';
-    description: '';
-  };
-  attributes: {
-    url: Attribute.String & Attribute.Required;
-    newTab: Attribute.Boolean & Attribute.DefaultTo<false>;
-    text: Attribute.String & Attribute.Required;
-  };
-}
-
-export interface LinksButton extends Schema.Component {
-  collectionName: 'components_links_simple_buttons';
-  info: {
-    name: 'Button';
-    displayName: 'Button';
-    icon: 'fingerprint';
-    description: '';
-  };
-  attributes: {
-    text: Attribute.String;
-    type: Attribute.Enumeration<['primary', 'secondary']>;
-  };
-}
-
-export interface LinksButtonLink extends Schema.Component {
-  collectionName: 'components_links_buttons';
-  info: {
-    name: 'Button-link';
-    displayName: 'Button link';
-    icon: 'fingerprint';
-    description: '';
-  };
-  attributes: {
-    url: Attribute.String;
-    newTab: Attribute.Boolean & Attribute.DefaultTo<false>;
-    text: Attribute.String;
-    type: Attribute.Enumeration<['primary', 'secondary']>;
-  };
-}
-
 export interface SectionsTestimonialsGroup extends Schema.Component {
   collectionName: 'components_slices_testimonials_groups';
   info: {
@@ -235,43 +176,6 @@ export interface SectionsHeading extends Schema.Component {
   };
 }
 
-export interface SectionsFeatures extends Schema.Component {
-  collectionName: 'components_layout_features';
-  info: {
-    displayName: 'Features';
-    description: '';
-  };
-  attributes: {
-    heading: Attribute.String;
-    description: Attribute.Text;
-    feature: Attribute.Component<'elements.feature', true>;
-  };
-}
-
-export interface SectionsFeatureRowsGroup extends Schema.Component {
-  collectionName: 'components_slices_feature_rows_groups';
-  info: {
-    name: 'FeatureRowsGroup';
-    displayName: 'Feaures row group';
-    icon: 'bars';
-  };
-  attributes: {
-    features: Attribute.Component<'elements.feature-row', true>;
-  };
-}
-
-export interface SectionsFeatureColumnsGroup extends Schema.Component {
-  collectionName: 'components_slices_feature_columns_groups';
-  info: {
-    name: 'FeatureColumnsGroup';
-    displayName: 'Feature columns group';
-    icon: 'star-of-life';
-  };
-  attributes: {
-    features: Attribute.Component<'elements.feature-column', true>;
-  };
-}
-
 export interface SectionsBottomActions extends Schema.Component {
   collectionName: 'components_slices_bottom_actions';
   info: {
@@ -287,50 +191,62 @@ export interface SectionsBottomActions extends Schema.Component {
   };
 }
 
-export interface LayoutNavbar extends Schema.Component {
-  collectionName: 'components_layout_navbars';
+export interface LinksSocialLink extends Schema.Component {
+  collectionName: 'components_links_social_links';
   info: {
-    name: 'Navbar';
-    displayName: 'Navbar';
-    icon: 'map-signs';
+    displayName: 'Social Link';
     description: '';
   };
   attributes: {
-    links: Attribute.Component<'links.link', true>;
-    button: Attribute.Component<'links.button-link'>;
-    navbarLogo: Attribute.Component<'layout.logo'>;
+    url: Attribute.String & Attribute.Required;
+    newTab: Attribute.Boolean & Attribute.DefaultTo<false>;
+    text: Attribute.String & Attribute.Required;
+    social: Attribute.Enumeration<['YOUTUBE', 'TWITTER', 'DISCORD', 'WEBSITE']>;
   };
 }
 
-export interface LayoutLogo extends Schema.Component {
-  collectionName: 'components_layout_logos';
+export interface LinksLink extends Schema.Component {
+  collectionName: 'components_links_links';
   info: {
-    displayName: 'Logo';
+    name: 'Link';
+    displayName: 'Link';
+    icon: 'link';
     description: '';
   };
   attributes: {
-    logoImg: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
-      Attribute.Required;
-    logoText: Attribute.String;
+    url: Attribute.String & Attribute.Required;
+    newTab: Attribute.Boolean & Attribute.DefaultTo<false>;
+    text: Attribute.String & Attribute.Required;
   };
 }
 
-export interface LayoutFooter extends Schema.Component {
-  collectionName: 'components_layout_footers';
+export interface LinksButton extends Schema.Component {
+  collectionName: 'components_links_simple_buttons';
   info: {
-    displayName: 'Footer';
+    name: 'Button';
+    displayName: 'Button';
+    icon: 'fingerprint';
     description: '';
   };
   attributes: {
-    footerLogo: Attribute.Component<'layout.logo'>;
-    menuLinks: Attribute.Component<'links.link', true>;
-    legalLinks: Attribute.Component<'links.link', true>;
-    socialLinks: Attribute.Component<'links.social-link', true>;
-    categories: Attribute.Relation<
-      'layout.footer',
-      'oneToMany',
-      'api::category.category'
-    >;
+    text: Attribute.String;
+    type: Attribute.Enumeration<['primary', 'secondary']>;
+  };
+}
+
+export interface LinksButtonLink extends Schema.Component {
+  collectionName: 'components_links_buttons';
+  info: {
+    name: 'Button-link';
+    displayName: 'Button link';
+    icon: 'fingerprint';
+    description: '';
+  };
+  attributes: {
+    url: Attribute.String;
+    newTab: Attribute.Boolean & Attribute.DefaultTo<false>;
+    text: Attribute.String;
+    type: Attribute.Enumeration<['primary', 'secondary']>;
   };
 }
 
@@ -393,50 +309,50 @@ export interface ElementsFooterSection extends Schema.Component {
   };
 }
 
-export interface ElementsFeature extends Schema.Component {
-  collectionName: 'components_elements_features';
+export interface LayoutNavbar extends Schema.Component {
+  collectionName: 'components_layout_navbars';
   info: {
-    displayName: 'Feature';
-  };
-  attributes: {
-    title: Attribute.String;
-    description: Attribute.Text;
-    media: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    showLink: Attribute.Boolean & Attribute.DefaultTo<false>;
-    newTab: Attribute.Boolean & Attribute.DefaultTo<false>;
-    url: Attribute.String;
-    text: Attribute.String;
-  };
-}
-
-export interface ElementsFeatureRow extends Schema.Component {
-  collectionName: 'components_slices_feature_rows';
-  info: {
-    name: 'FeatureRow';
-    displayName: 'Feature row';
-    icon: 'arrows-alt-h';
+    name: 'Navbar';
+    displayName: 'Navbar';
+    icon: 'map-signs';
     description: '';
   };
   attributes: {
-    title: Attribute.String & Attribute.Required;
-    description: Attribute.Text;
-    media: Attribute.Media<'images' | 'videos'> & Attribute.Required;
-    link: Attribute.Component<'links.link'>;
+    links: Attribute.Component<'links.link', true>;
+    button: Attribute.Component<'links.button-link'>;
+    navbarLogo: Attribute.Component<'layout.logo'>;
   };
 }
 
-export interface ElementsFeatureColumn extends Schema.Component {
-  collectionName: 'components_slices_feature_columns';
+export interface LayoutLogo extends Schema.Component {
+  collectionName: 'components_layout_logos';
   info: {
-    name: 'FeatureColumn';
-    displayName: 'Feature column';
-    icon: 'align-center';
+    displayName: 'Logo';
     description: '';
   };
   attributes: {
-    title: Attribute.String & Attribute.Required;
-    description: Attribute.Text;
-    icon: Attribute.Media<'images'> & Attribute.Required;
+    logoImg: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.Required;
+    logoText: Attribute.String;
+  };
+}
+
+export interface LayoutFooter extends Schema.Component {
+  collectionName: 'components_layout_footers';
+  info: {
+    displayName: 'Footer';
+    description: '';
+  };
+  attributes: {
+    footerLogo: Attribute.Component<'layout.logo'>;
+    menuLinks: Attribute.Component<'links.link', true>;
+    legalLinks: Attribute.Component<'links.link', true>;
+    socialLinks: Attribute.Component<'links.social-link', true>;
+    categories: Attribute.Relation<
+      'layout.footer',
+      'oneToMany',
+      'api::category.category'
+    >;
   };
 }
 
@@ -450,30 +366,24 @@ declare module '@strapi/types' {
       'shared.quote': SharedQuote;
       'shared.media': SharedMedia;
       'meta.metadata': MetaMetadata;
-      'links.social-link': LinksSocialLink;
-      'links.link': LinksLink;
-      'links.button': LinksButton;
-      'links.button-link': LinksButtonLink;
       'sections.testimonials-group': SectionsTestimonialsGroup;
       'sections.rich-text': SectionsRichText;
       'sections.lead-form': SectionsLeadForm;
       'sections.large-video': SectionsLargeVideo;
       'sections.hero': SectionsHero;
       'sections.heading': SectionsHeading;
-      'sections.features': SectionsFeatures;
-      'sections.feature-rows-group': SectionsFeatureRowsGroup;
-      'sections.feature-columns-group': SectionsFeatureColumnsGroup;
       'sections.bottom-actions': SectionsBottomActions;
-      'layout.navbar': LayoutNavbar;
-      'layout.logo': LayoutLogo;
-      'layout.footer': LayoutFooter;
+      'links.social-link': LinksSocialLink;
+      'links.link': LinksLink;
+      'links.button': LinksButton;
+      'links.button-link': LinksButtonLink;
       'elements.testimonial': ElementsTestimonial;
       'elements.notification-banner': ElementsNotificationBanner;
       'elements.logos': ElementsLogos;
       'elements.footer-section': ElementsFooterSection;
-      'elements.feature': ElementsFeature;
-      'elements.feature-row': ElementsFeatureRow;
-      'elements.feature-column': ElementsFeatureColumn;
+      'layout.navbar': LayoutNavbar;
+      'layout.logo': LayoutLogo;
+      'layout.footer': LayoutFooter;
     }
   }
 }

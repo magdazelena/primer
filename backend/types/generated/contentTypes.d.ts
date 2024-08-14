@@ -1078,13 +1078,10 @@ export interface ApiPagePage extends Schema.CollectionType {
       [
         'sections.hero',
         'sections.bottom-actions',
-        'sections.feature-columns-group',
-        'sections.feature-rows-group',
         'sections.testimonials-group',
         'sections.large-video',
         'sections.rich-text',
         'sections.lead-form',
-        'sections.features',
         'sections.heading'
       ]
     > &
