@@ -1168,22 +1168,14 @@ export interface ApiProductProduct extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    PID: Attribute.UID &
+    slug: Attribute.UID &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    total_cost: Attribute.Integer &
-      Attribute.Required &
-      Attribute.Private &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    wholesale_price: Attribute.Integer &
+    totalCost: Attribute.Integer &
       Attribute.Required &
       Attribute.Private &
       Attribute.SetPluginOptions<{
@@ -1191,7 +1183,15 @@ export interface ApiProductProduct extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    retail_price: Attribute.Integer &
+    wholesalePrice: Attribute.Integer &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    retailPrice: Attribute.Integer &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1203,11 +1203,18 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'manyToOne',
       'api::product-category.product-category'
     >;
-    image: Attribute.Media<'images'> &
+    coverImage: Attribute.Media<'images'> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
+        };
+      }>;
+    seo: Attribute.Component<'shared.seo'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
         };
       }>;
     createdAt: Attribute.DateTime;

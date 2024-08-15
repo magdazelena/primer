@@ -1,14 +1,14 @@
 import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
-import Post from "@/app/[lang]/views/post";
 import type { Metadata } from "next";
+import ProductView from "@/app/[lang]/views/product";
 
-async function getPostBySlug(slug: string) {
+async function getProductBySlug(slug: string) {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
   const path = `/products`;
   const urlParamsObject = {
     filters: { slug },
     populate: {
-      image: { fields: ["url"] },
+      coverImage: { fields: ["url"] },
       productCategory: { fields: ["name"] },
     },
   };
@@ -43,15 +43,15 @@ export async function generateMetadata({
   };
 }
 
-export default async function PostRoute({
+export default async function ProductRoute({
   params,
 }: {
   params: { slug: string };
 }) {
   const { slug } = params;
-  const data = await getPostBySlug(slug);
+  const data = await getProductBySlug(slug);
   if (data.data.length === 0) return <h2>no post found</h2>;
-  return <Post data={data.data[0]} />;
+  return <ProductView data={data.data[0]} />;
 }
 
 export async function generateStaticParams() {

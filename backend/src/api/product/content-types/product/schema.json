@@ -48,7 +48,7 @@
         }
       }
     },
-    "PID": {
+    "slug": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -57,7 +57,7 @@
       "type": "uid",
       "required": true
     },
-    "total_cost": {
+    "totalCost": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -67,7 +67,7 @@
       "required": true,
       "private": true
     },
-    "wholesale_price": {
+    "wholesalePrice": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -77,7 +77,7 @@
       "required": true,
       "private": true
     },
-    "retail_price": {
+    "retailPrice": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -92,7 +92,7 @@
       "target": "api::product-category.product-category",
       "inversedBy": "products"
     },
-    "image": {
+    "coverImage": {
       "type": "media",
       "multiple": false,
       "required": true,
@@ -104,6 +104,17 @@
           "localized": false
         }
       }
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "shared.seo",
+      "required": true
     }
   }
 }

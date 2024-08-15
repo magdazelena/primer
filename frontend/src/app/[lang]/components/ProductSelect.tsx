@@ -53,9 +53,10 @@ export default function ProductSelect({
                 <li>
                   <Link
                     rel="noopener noreferrer"
-                    href={`/products/${params.productCategory}/${product.attributes.PID}`}
+                    href={`/products/${params.productCategory}/${product.attributes.slug}`}
                     className={`${
-                      params.PID === product.attributes.PID && "text-violet-400"
+                      params.PID === product.attributes.slug &&
+                      "text-violet-400"
                     }  hover:underline hover:text-violet-400 transition-colors duration-200`}
                   >
                     {product.attributes.name}

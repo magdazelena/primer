@@ -5,11 +5,14 @@ interface Product {
   attributes: {
     name: string;
     description: RichTextModule[];
-    PID: string;
+    slug: string;
     createdAt: string;
     updatedAt: string;
     publishedAt: string;
-    image: {
+    retailPrice: number;
+    wholesalePrice: number;
+    totalCost: number;
+    coverImage: {
       data: {
         attributes: {
           url: string;

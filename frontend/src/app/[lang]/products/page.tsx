@@ -27,7 +27,7 @@ export default function Profile() {
       const urlParamsObject = {
         sort: { createdAt: "desc" },
         populate: {
-          image: { fields: ["url"] },
+          coverImage: { fields: ["url"] },
           productCategory: { populate: "*" },
         },
         pagination: {

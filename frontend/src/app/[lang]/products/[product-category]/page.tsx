@@ -14,7 +14,7 @@ async function fetchPostsByCategory(filter: string) {
         },
       },
       populate: {
-        image: { fields: ["url"] },
+        coverImage: { fields: ["url"] },
         productCategory: {
           populate: "*",
         },

@@ -15,15 +15,16 @@ export default function ProductList({
     <section className="container p-6 mx-auto space-y-6 sm:space-y-12">
       <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {products.map((product) => {
+          console.log(product);
           const imageUrl = getStrapiMedia(
-            product.attributes.image.data?.attributes.url
+            product.attributes.coverImage.data?.attributes.url
           );
 
           const category = product.attributes.productCategory.data?.attributes;
 
           return (
             <Link
-              href={`/products/${category?.slug}/${product.attributes.PID}`}
+              href={`/products/${category?.slug}/${product.attributes.slug}`}
               key={product.id}
               className="max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-900 lg:w-[300px] xl:min-w-[375px] rounded-2xl overflow-hidden shadow-lg"
             >
