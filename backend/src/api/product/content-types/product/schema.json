@@ -55,7 +55,8 @@
         }
       },
       "type": "uid",
-      "required": true
+      "required": true,
+      "targetField": "name"
     },
     "totalCost": {
       "pluginOptions": {
