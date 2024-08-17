@@ -9,8 +9,6 @@
     "description": ""
   },
   "options": {
-    "increments": true,
-    "timestamps": true,
     "draftAndPublish": false
   },
   "pluginOptions": {
@@ -27,7 +25,8 @@
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true
     },
     "favicon": {
       "type": "media",

@@ -48,6 +48,10 @@ interface Category {
   attributes: {
     name: string;
     slug: string;
+    children?: {
+      data: Category[];
+    };
+    parent: { data: Category[] };
     articles: {
       data: Array<{}>;
     };

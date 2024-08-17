@@ -191,6 +191,18 @@ export interface LinksSocialLink extends Schema.Component {
   };
 }
 
+export interface LinksMenuItem extends Schema.Component {
+  collectionName: 'components_links_menu_items';
+  info: {
+    displayName: 'Menu item';
+    icon: 'layer';
+    description: '';
+  };
+  attributes: {
+    Link: Attribute.Component<'links.link'> & Attribute.Required;
+  };
+}
+
 export interface LinksLink extends Schema.Component {
   collectionName: 'components_links_links';
   info: {
@@ -259,7 +271,7 @@ export interface LayoutNavbar extends Schema.Component {
     description: '';
   };
   attributes: {
-    links: Attribute.Component<'links.link', true>;
+    menuItems: Attribute.Component<'links.link', true>;
     button: Attribute.Component<'links.button-link'>;
     navbarLogo: Attribute.Component<'layout.logo'>;
   };
@@ -373,6 +385,7 @@ declare module '@strapi/types' {
       'sections.heading': SectionsHeading;
       'sections.bottom-actions': SectionsBottomActions;
       'links.social-link': LinksSocialLink;
+      'links.menu-item': LinksMenuItem;
       'links.link': LinksLink;
       'links.button': LinksButton;
       'links.button-link': LinksButtonLink;

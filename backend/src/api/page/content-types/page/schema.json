@@ -75,7 +75,8 @@
           "localized": true
         }
       },
-      "component": "shared.seo"
+      "component": "shared.seo",
+      "required": true
     }
   }
 }

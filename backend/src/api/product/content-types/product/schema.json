@@ -86,12 +86,6 @@
       "type": "integer",
       "required": true
     },
-    "productCategory": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::product-category.product-category",
-      "inversedBy": "products"
-    },
     "coverImage": {
       "type": "media",
       "multiple": false,
@@ -115,6 +109,12 @@
       },
       "component": "shared.seo",
       "required": true
+    },
+    "productCategory": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product-category.product-category",
+      "inversedBy": "products"
     }
   }
 }

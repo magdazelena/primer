@@ -31,6 +31,12 @@ interface ProductCategory {
     name: string;
     slug: string;
     products: { data: Product[] };
+    children?: {
+      data: ProductCategory[];
+    };
+    parent: {
+      data: ProductCategory[];
+    };
   };
 }
 

@@ -1,67 +1,21 @@
 "use client";
 import Logo from "./Logo";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
-
-interface NavLink {
-  id: number;
-  url: string;
-  newTab: boolean;
-  text: string;
-}
-
-interface MobileNavLink extends NavLink {
-  closeMenu: () => void;
-}
-
-function NavLink({ url, text }: NavLink) {
-  const path = usePathname();
-
-  return (
-    <li className="flex">
-      <Link
-        href={url}
-        className={`flex items-center mx-4 -mb-1 border-b-2 dark:border-transparent ${
-          path === url && "dark:text-violet-400 dark:border-violet-400"
-        }}`}
-      >
-        {text}
-      </Link>
-    </li>
-  );
-}
-
-function MobileNavLink({ url, text, closeMenu }: MobileNavLink) {
-  const path = usePathname();
-  const handleClick = () => {
-    closeMenu();
-  };
-  return (
-    <a className="flex">
-      <Link
-        href={url}
-        onClick={handleClick}
-        className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-100 hover:bg-gray-900 ${
-          path === url && "dark:text-violet-400 dark:border-violet-400"
-        }}`}
-      >
-        {text}
-      </Link>
-    </a>
-  );
-}
+import CategoriesMenu from "./CategoriesMenu";
+import { NavLink, MobileNavLink } from "./NavLink";
 
 export default function Navbar({
   links,
   logoUrl,
   logoText,
+  categories,
 }: {
   links: Array<NavLink>;
   logoUrl: string | null;
   logoText: string | null;
+  categories: { productCategories: Array<any>; blogCategories: Array<any> };
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const closeMenu = () => {
@@ -76,9 +30,19 @@ export default function Navbar({
 
         <div className="items-center flex-shrink-0 hidden lg:flex">
           <ul className="items-stretch hidden space-x-3 lg:flex">
-            {links.map((item: NavLink) => (
-              <NavLink key={item.id} {...item} />
-            ))}
+            {links.map((item: NavLink) => {
+              if (item.url === "/products") {
+                return (
+                  <CategoriesMenu
+                    key={item.id}
+                    title={item.text}
+                    categories={categories.productCategories}
+                    basePath={item.url}
+                  />
+                );
+              }
+              return <NavLink key={item.id} {...item} />;
+            })}
           </ul>
         </div>
 

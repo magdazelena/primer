@@ -8,7 +8,7 @@
   },
   "options": {},
   "attributes": {
-    "links": {
+    "menuItems": {
       "type": "component",
       "repeatable": true,
       "component": "links.link"
