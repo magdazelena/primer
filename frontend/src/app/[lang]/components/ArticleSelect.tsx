@@ -54,9 +54,8 @@ export default function ArticleSelect({
                     rel="noopener noreferrer"
                     href={`/blog/${params.category}/${article.attributes.slug}`}
                     className={`${
-                      params.slug === article.attributes.slug &&
-                      "text-secondary-400"
-                    }  hover:underline hover:text-secondary-400 transition-colors duration-200`}
+                      params.slug === article.attributes.slug && "link-active"
+                    }  `}
                   >
                     {article.attributes.title}
                   </Link>

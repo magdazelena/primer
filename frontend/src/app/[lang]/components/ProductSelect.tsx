@@ -55,8 +55,8 @@ export default function ProductSelect({
                     rel="noopener noreferrer"
                     href={`/products/${params.productCategory}/${product.attributes.slug}`}
                     className={`${
-                      params.PID === product.attributes.slug && "text-accent"
-                    }  hover:underline hover:text-accent/50 transition-colors duration-200`}
+                      params.PID === product.attributes.slug && "link-active"
+                    }  `}
                   >
                     {product.attributes.name}
                   </Link>

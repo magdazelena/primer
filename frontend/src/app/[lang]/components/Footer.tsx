@@ -41,9 +41,7 @@ function FooterLink({ url, text }: FooterLink) {
 function CategoryLink({ attributes }: CategoryLink) {
   return (
     <li className="flex">
-      <Link href={`/blog/${attributes.slug}`} className="hover:text-secondary">
-        {attributes.name}
-      </Link>
+      <Link href={`/blog/${attributes.slug}`}>{attributes.name}</Link>
     </li>
   );
 }
@@ -117,11 +115,7 @@ export default function Footer({
             </span>
             <ul className="flex">
               {legalLinks.map((link: FooterLink) => (
-                <Link
-                  href={link.url}
-                  className="text-secondary hover:text-accent mr-2"
-                  key={link.id}
-                >
+                <Link href={link.url} key={link.id}>
                   {link.text}
                 </Link>
               ))}

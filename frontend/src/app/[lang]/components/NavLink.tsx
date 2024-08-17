@@ -20,7 +20,7 @@ export function NavLink({ url, text }: NavLink) {
         <Link
           href={url}
           className={`flex items-center mx-4 mb-2 border-b-2 border-transparent  ${
-            path.includes(url) && "text-accent border-accent"
+            path.includes(url) && "link-active"
           }}`}
         >
           {text}
@@ -40,8 +40,8 @@ export function MobileNavLink({ url, text, closeMenu }: MobileNavLink) {
       <Link
         href={url}
         onClick={handleClick}
-        className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-secondary hover:bg-accent ${
-          path === url && "text-secondary border-accent"
+        className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7  ${
+          path === url && "link-active"
         }}`}
       >
         {text}

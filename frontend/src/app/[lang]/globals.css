@@ -13,6 +13,26 @@
 }
 @import "react-slideshow-image/dist/styles.css";
 
+/**
+Generic styles
+**/
+a {
+  @apply text-accent;
+}
+a:hover {
+  @apply text-accent/50 underline;
+}
+a:active,
+a:visited {
+  @apply text-accent2;
+}
+a.link-active {
+  @apply text-accent;
+  &:hover {
+    @apply underline hover:text-accent/50 transition-colors duration-200;
+  }
+}
+
 /******************************************* 
   Rich Text Styles
 *******************************************/
@@ -48,7 +68,14 @@
 }
 
 .rich-text a {
-  @apply text-secondary underline;
+  @apply text-accent;
+}
+.rich-text a:hover {
+  @apply text-accent/50 underline;
+}
+.rich-text a:active,
+.rich-text a:visited {
+  @apply text-accent2;
 }
 
 /* Typographic replacements */
