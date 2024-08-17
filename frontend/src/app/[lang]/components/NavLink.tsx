@@ -14,18 +14,17 @@ export interface MobileNavLink extends NavLink {
 
 export function NavLink({ url, text }: NavLink) {
   const path = usePathname();
+  console.log(path, url, path.endsWith(url));
   return (
     <li className="flex">
-      <button>
-        <Link
-          href={url}
-          className={`flex items-center mx-4 mb-2 border-b-2 border-transparent  ${
-            path.includes(url) && "link-active"
-          }}`}
-        >
-          {text}
-        </Link>
-      </button>
+      <Link
+        href={url}
+        className={`flex items-center mx-4 mb-2 text-secondary border-b-2 border-transparent  ${
+          path.endsWith(url) && "link-active"
+        }`}
+      >
+        {text}
+      </Link>
     </li>
   );
 }

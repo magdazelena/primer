@@ -28,9 +28,6 @@ a:visited {
 }
 a.link-active {
   @apply text-accent;
-  &:hover {
-    @apply underline hover:text-accent/50 transition-colors duration-200;
-  }
 }
 
 /******************************************* 
