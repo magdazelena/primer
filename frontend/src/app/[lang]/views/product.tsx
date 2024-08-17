@@ -9,7 +9,7 @@ export default function ProductView({ data }: { data: Product }) {
   const imageUrl = getStrapiMedia(coverImage.data?.attributes.url);
 
   return (
-    <article className="space-y-8 dark:bg-black dark:text-gray-50">
+    <article className="space-y-8 text-secondary">
       {imageUrl && (
         <Image
           src={imageUrl}
@@ -21,12 +21,12 @@ export default function ProductView({ data }: { data: Product }) {
       )}
       <div className="space-y-6">
         <h1 className="leading-tight text-5xl font-bold ">{name}</h1>
-        <div className="flex flex-col items-start justify-between w-full md:flex-row md:items-center dark:text-gray-400">
+        <div className="flex flex-col items-start justify-between w-full md:flex-row md:items-center text-secondary">
           <div className="flex items-center md:space-x-2">LAla</div>
         </div>
       </div>
 
-      <div className="dark:text-gray-100">
+      <div className="text-secondary">
         {description.map((module: RichTextModule) =>
           module.children.map((element: RichTextElement) => {
             return (

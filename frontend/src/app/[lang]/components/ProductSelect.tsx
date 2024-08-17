@@ -3,8 +3,8 @@ import { ProductCategory, Product } from "@/types/product";
 
 function selectedFilter(current: string, selected: string) {
   return current === selected
-    ? "px-3 py-1 rounded-lg hover:underline dark:bg-violet-700 dark:text-gray-100"
-    : "px-3 py-1 rounded-lg hover:underline dark:bg-violet-400 dark:text-gray-900";
+    ? "px-3 py-1 rounded-lg hover:underline bg-accent text-primary"
+    : "px-3 py-1 rounded-lg hover:underline bg-accent/50 text-secondary";
 }
 
 export default function ProductSelect({
@@ -20,11 +20,11 @@ export default function ProductSelect({
   };
 }) {
   return (
-    <div className="p-4 rounded-lg dark:bg-gray-900 min-h-[365px] relative">
+    <div className="p-4 rounded-lg  min-h-[365px] relative">
       <h4 className="text-xl font-semibold">Browse By ProductCategory</h4>
 
       <div>
-        <div className="flex flex-wrap py-6 space-x-2 dark:border-gray-400">
+        <div className="flex flex-wrap py-6 space-x-2 border-accent">
           {categories.map((productCategory: ProductCategory) => {
             if (productCategory.attributes.products.data.length === 0)
               return null;
@@ -55,9 +55,8 @@ export default function ProductSelect({
                     rel="noopener noreferrer"
                     href={`/products/${params.productCategory}/${product.attributes.slug}`}
                     className={`${
-                      params.PID === product.attributes.slug &&
-                      "text-violet-400"
-                    }  hover:underline hover:text-violet-400 transition-colors duration-200`}
+                      params.PID === product.attributes.slug && "text-accent"
+                    }  hover:underline hover:text-accent/50 transition-colors duration-200`}
                   >
                     {product.attributes.name}
                   </Link>

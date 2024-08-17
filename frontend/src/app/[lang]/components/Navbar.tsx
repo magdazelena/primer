@@ -22,10 +22,12 @@ export default function Navbar({
     setMobileMenuOpen(false);
   };
   return (
-    <div className="p-4 dark:bg-black dark:text-gray-100">
+    <div className="p-4 text-secondary">
       <div className="container flex justify-between h-16 mx-auto px-0 sm:px-6">
         <Logo src={logoUrl}>
-          {logoText && <h2 className="text-2xl font-bold">{logoText}</h2>}
+          {logoText && (
+            <h2 className="text-2xl font-bold text-secondary">{logoText}</h2>
+          )}
         </Logo>
 
         <div className="items-center flex-shrink-0 hidden lg:flex">
@@ -52,9 +54,9 @@ export default function Navbar({
           open={mobileMenuOpen}
           onClose={setMobileMenuOpen}
         >
-          <div className="fixed inset-0 z-40 bg-gray-600 bg-opacity-75" />{" "}
+          <div className="fixed inset-0 z-40 bg-accent2 bg-opacity-75" />{" "}
           {/* Overlay */}
-          <Dialog.Panel className="fixed inset-y-0 rtl:left-0 ltr:right-0 z-50 w-full overflow-y-auto bg-gray-800 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-inset sm:ring-white/10">
+          <Dialog.Panel className="fixed inset-y-0 rtl:left-0 ltr:right-0 z-50 w-full overflow-y-auto bg-accent2 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-inset sm:ring-white/10">
             <div className="flex items-center justify-between">
               <a href="#" className="-m-1.5 p-1.5">
                 <span className="sr-only">Strapi</span>
@@ -70,7 +72,7 @@ export default function Navbar({
               </button>
             </div>
             <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-gray-700">
+              <div className="-my-6 divide-y divide-accent2">
                 <div className="space-y-2 py-6">
                   {links.map((item) => (
                     <MobileNavLink
@@ -88,7 +90,7 @@ export default function Navbar({
           className="p-4 lg:hidden"
           onClick={() => setMobileMenuOpen(true)}
         >
-          <Bars3Icon className="h-7 w-7 text-gray-100" aria-hidden="true" />
+          <Bars3Icon className="h-7 w-7 text-accent2" aria-hidden="true" />
         </button>
       </div>
     </div>

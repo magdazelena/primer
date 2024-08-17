@@ -1,5 +1,4 @@
 import { Category } from "@/types/article";
-import Link from "next/link";
 import { ProductCategory } from "@/types/product";
 import { NavLink } from "./NavLink";
 import React from "react";

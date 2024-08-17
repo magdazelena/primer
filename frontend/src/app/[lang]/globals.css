@@ -1,11 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "react-slideshow-image/dist/styles.css";
 
-body {
-  @apply dark:bg-black;
+@layer base {
+  :root {
+    --color-primary: 241, 250, 238;
+    --color-secondary: 29, 53, 87;
+    --color-accent: 230, 57, 70;
+    --color-accent2: 168, 218, 220;
+    --color-accent3: 69, 123, 157;
+  }
 }
+@import "react-slideshow-image/dist/styles.css";
 
 /******************************************* 
   Rich Text Styles
@@ -13,36 +19,36 @@ body {
 
 /* Headers */
 .rich-text h1 {
-  @apply text-4xl font-bold mb-4 text-violet-400;
+  @apply text-4xl font-bold mb-4 text-secondary;
 }
 
 .rich-text h2 {
-  @apply text-3xl font-bold mb-4 text-violet-400;
+  @apply text-3xl font-bold mb-4 text-secondary;
 }
 
 .rich-text h3 {
-  @apply text-2xl font-bold mb-4 text-violet-400;
+  @apply text-2xl font-bold mb-4 text-secondary;
 }
 
 .rich-text h4 {
-  @apply text-xl font-bold mb-4 text-violet-400;
+  @apply text-xl font-bold mb-4 text-secondary;
 }
 
 .rich-text h5 {
-  @apply text-lg font-bold mb-4 text-violet-400;
+  @apply text-lg font-bold mb-4 text-secondary;
 }
 
 .rich-text h6 {
-  @apply text-base font-bold mb-4 text-violet-200;
+  @apply text-base font-bold mb-4 text-secondary;
 }
 
 /* Horizontal rules */
 .rich-text hr {
-  @apply border-gray-300 my-8;
+  @apply border-accent2 my-8;
 }
 
 .rich-text a {
-  @apply text-violet-400 underline;
+  @apply text-secondary underline;
 }
 
 /* Typographic replacements */
@@ -65,7 +71,7 @@ body {
 
 /* Blockquotes */
 .rich-text blockquote {
-  @apply border-l-4 border-gray-400 pl-4 py-2 mb-4;
+  @apply border-l-4 border-accent2 pl-4 py-2 mb-4;
 }
 
 /* Lists */
@@ -91,24 +97,24 @@ body {
 
 /* Code blocks */
 .rich-text pre {
-  @apply font-mono bg-gray-900 text-gray-100 rounded p-4  my-6;
+  @apply font-mono bg-accent2 text-accent2 rounded p-4  my-6;
 }
 
 .rich-text code {
-  @apply font-mono bg-gray-900 text-gray-100 rounded px-2 py-1;
+  @apply font-mono bg-accent2 text-accent2 rounded px-2 py-1;
 }
 
 /* Tables */
 .rich-text table {
-  @apply w-full border-collapse border-gray-300 my-6;
+  @apply w-full border-collapse border-accent2 my-6;
 }
 
 .rich-text th {
-  @apply bg-gray-900 text-left py-2 px-4 font-semibold border-b border-gray-300;
+  @apply bg-accent2 text-left py-2 px-4 font-semibold border-b border-accent2;
 }
 
 .rich-text td {
-  @apply py-2 px-4 border-b border-gray-300;
+  @apply py-2 px-4 border-b border-accent2;
 }
 
 /* Images */

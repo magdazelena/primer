@@ -19,8 +19,8 @@ export function NavLink({ url, text }: NavLink) {
       <button>
         <Link
           href={url}
-          className={`flex items-center mx-4 mb-2 border-b-2 dark:border-transparent  ${
-            path.includes(url) && "dark:text-violet-400 dark:border-violet-400"
+          className={`flex items-center mx-4 mb-2 border-b-2 border-transparent  ${
+            path.includes(url) && "text-accent border-accent"
           }}`}
         >
           {text}
@@ -40,8 +40,8 @@ export function MobileNavLink({ url, text, closeMenu }: MobileNavLink) {
       <Link
         href={url}
         onClick={handleClick}
-        className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-100 hover:bg-gray-900 ${
-          path === url && "dark:text-violet-400 dark:border-violet-400"
+        className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-secondary hover:bg-accent ${
+          path === url && "text-secondary border-accent"
         }}`}
       >
         {text}
