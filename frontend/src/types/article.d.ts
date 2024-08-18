@@ -51,7 +51,7 @@ interface Category {
     children?: {
       data: Category[];
     };
-    parent: { data: Category[] };
+    topLevel: boolean;
     articles: {
       data: Array<{}>;
     };

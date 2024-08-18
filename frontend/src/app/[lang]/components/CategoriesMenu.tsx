@@ -2,9 +2,9 @@ import { Category } from "@/types/article";
 import { ProductCategory } from "@/types/product";
 import { NavLink } from "./NavLink";
 import React from "react";
-import { usePathname } from "next/navigation";
 
 type MenuCategory = Category | ProductCategory;
+
 interface CategoriesMenuProps {
   categories: MenuCategory[];
   basePath: string;
@@ -18,40 +18,39 @@ const CategoriesMenu = ({
 }: CategoriesMenuProps) => {
   // Recursive function to render the menu and its nested children
   const renderMenu = (category: MenuCategory) => {
-    const path = usePathname();
     const url = `${basePath}/${category.attributes.slug}`;
     const hasChildren =
       category.attributes.children &&
       category.attributes.children.data.length > 0;
+
     return (
-      <div
-        key={category.id}
-        className={`dropdown-content absolute hidden ${
-          hasChildren ? "dropdown" : ""
-        }`}
-      >
+      <div key={category.id} className="dropdown">
+        {/* Parent category link */}
         <NavLink url={url} text={category.attributes.name} />
 
-        {/* Nested dropdown for child categories */}
-        {hasChildren &&
-          category.attributes.children?.data.map(
-            (childCategory: MenuCategory) => renderMenu(childCategory)
-          )}
+        {/* Child categories dropdown */}
+        {hasChildren && (
+          <div className="dropdown-content hidden ">
+            {category.attributes.children?.data.map(
+              (childCategory: MenuCategory) => renderMenu(childCategory)
+            )}
+          </div>
+        )}
       </div>
     );
   };
 
   return (
-    <div className="dropdown inline-block relative">
+    <div className="dropdown relative">
+      {/* Top-level NavLink for the main menu item */}
       <NavLink url={basePath} text={title} />
-      {categories.map((category: MenuCategory) => {
-        if (
-          category.attributes.parent &&
-          category.attributes.parent.data.length === 0
-        )
-          return renderMenu(category);
-        return null;
-      })}
+      {/* Dropdown content for the top-level categories */}
+      <div className="dropdown-content hidden ">
+        {categories?.map((category: MenuCategory) => {
+          if (category.attributes.topLevel) return renderMenu(category);
+          return null;
+        })}
+      </div>
     </div>
   );
 };

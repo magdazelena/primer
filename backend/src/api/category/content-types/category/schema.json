@@ -42,15 +42,19 @@
         }
       }
     },
-    "parent": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::category.category"
-    },
     "children": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::category.category"
+    },
+    "topLevel": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "boolean",
+      "default": false
     }
   }
 }

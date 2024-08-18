@@ -8,11 +8,6 @@
   },
   "options": {},
   "attributes": {
-    "menuItems": {
-      "type": "component",
-      "repeatable": true,
-      "component": "links.link"
-    },
     "button": {
       "type": "component",
       "repeatable": false,
@@ -22,6 +17,12 @@
       "type": "component",
       "repeatable": false,
       "component": "layout.logo"
+    },
+    "menuItems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "links.link",
+      "required": true
     }
   }
 }

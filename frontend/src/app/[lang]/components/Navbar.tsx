@@ -43,6 +43,16 @@ export default function Navbar({
                   />
                 );
               }
+              if (item.url === "/blog") {
+                return (
+                  <CategoriesMenu
+                    key={item.id}
+                    title={item.text}
+                    categories={categories.blogCategories}
+                    basePath={item.url}
+                  />
+                );
+              }
               return <NavLink key={item.id} {...item} />;
             })}
           </ul>

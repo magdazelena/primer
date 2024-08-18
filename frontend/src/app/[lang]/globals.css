@@ -166,6 +166,20 @@ a.link-active {
 /****
 Dropdowns
 ****/
+/* Hide dropdown content by default */
+.dropdown-content {
+  width: 100%;
+  position: absolute;
+  top: 100%; /* Positioned below the parent */
+  left: 0;
+}
+
+/* Show the dropdown content when the parent is hovered */
 .dropdown:hover > .dropdown-content {
-  display: block;
+  display: flex;
+}
+/* Position nested dropdown content to the right of its parent */
+.dropdown-content .dropdown {
+  position: relative;
+  margin-right: 10px;
 }

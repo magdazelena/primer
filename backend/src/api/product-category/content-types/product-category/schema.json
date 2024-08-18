@@ -47,15 +47,19 @@
       "target": "api::product.product",
       "mappedBy": "productCategory"
     },
-    "parent": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::product-category.product-category"
-    },
     "children": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::product-category.product-category"
+    },
+    "topLevel": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "boolean",
+      "default": false
     }
   }
 }

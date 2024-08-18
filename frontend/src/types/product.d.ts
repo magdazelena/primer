@@ -34,9 +34,7 @@ interface ProductCategory {
     children?: {
       data: ProductCategory[];
     };
-    parent: {
-      data: ProductCategory[];
-    };
+    topLevel: boolean;
   };
 }
 

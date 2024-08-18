@@ -76,6 +76,20 @@ export interface SharedMedia extends Schema.Component {
   };
 }
 
+export interface MetaMetadata extends Schema.Component {
+  collectionName: 'components_meta_metadata';
+  info: {
+    name: 'Metadata';
+    displayName: 'Metadata';
+    icon: 'robot';
+    description: '';
+  };
+  attributes: {
+    metaTitle: Attribute.String & Attribute.Required;
+    metaDescription: Attribute.Text & Attribute.Required;
+  };
+}
+
 export interface LinksSocialLink extends Schema.Component {
   collectionName: 'components_links_social_links';
   info: {
@@ -87,18 +101,6 @@ export interface LinksSocialLink extends Schema.Component {
     newTab: Attribute.Boolean & Attribute.DefaultTo<false>;
     text: Attribute.String & Attribute.Required;
     social: Attribute.Enumeration<['YOUTUBE', 'TWITTER', 'DISCORD', 'WEBSITE']>;
-  };
-}
-
-export interface LinksMenuItem extends Schema.Component {
-  collectionName: 'components_links_menu_items';
-  info: {
-    displayName: 'Menu item';
-    icon: 'layer';
-    description: '';
-  };
-  attributes: {
-    Link: Attribute.Component<'links.link'> & Attribute.Required;
   };
 }
 
@@ -248,20 +250,6 @@ export interface SectionsBottomActions extends Schema.Component {
   };
 }
 
-export interface MetaMetadata extends Schema.Component {
-  collectionName: 'components_meta_metadata';
-  info: {
-    name: 'Metadata';
-    displayName: 'Metadata';
-    icon: 'robot';
-    description: '';
-  };
-  attributes: {
-    metaTitle: Attribute.String & Attribute.Required;
-    metaDescription: Attribute.Text & Attribute.Required;
-  };
-}
-
 export interface LayoutNavbar extends Schema.Component {
   collectionName: 'components_layout_navbars';
   info: {
@@ -271,9 +259,9 @@ export interface LayoutNavbar extends Schema.Component {
     description: '';
   };
   attributes: {
-    menuItems: Attribute.Component<'links.link', true>;
     button: Attribute.Component<'links.button-link'>;
     navbarLogo: Attribute.Component<'layout.logo'>;
+    menuItems: Attribute.Component<'links.link', true> & Attribute.Required;
   };
 }
 
@@ -377,8 +365,8 @@ declare module '@strapi/types' {
       'shared.rich-text': SharedRichText;
       'shared.quote': SharedQuote;
       'shared.media': SharedMedia;
+      'meta.metadata': MetaMetadata;
       'links.social-link': LinksSocialLink;
-      'links.menu-item': LinksMenuItem;
       'links.link': LinksLink;
       'links.button': LinksButton;
       'links.button-link': LinksButtonLink;
@@ -389,7 +377,6 @@ declare module '@strapi/types' {
       'sections.hero': SectionsHero;
       'sections.heading': SectionsHeading;
       'sections.bottom-actions': SectionsBottomActions;
-      'meta.metadata': MetaMetadata;
       'layout.navbar': LayoutNavbar;
       'layout.logo': LayoutLogo;
       'layout.footer': LayoutFooter;

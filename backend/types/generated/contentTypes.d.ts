@@ -957,16 +957,18 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    parent: Attribute.Relation<
-      'api::category.category',
-      'oneToOne',
-      'api::category.category'
-    >;
     children: Attribute.Relation<
       'api::category.category',
       'oneToMany',
       'api::category.category'
     >;
+    topLevel: Attribute.Boolean &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1332,16 +1334,18 @@ export interface ApiProductCategoryProductCategory
       'oneToMany',
       'api::product.product'
     >;
-    parent: Attribute.Relation<
-      'api::product-category.product-category',
-      'oneToMany',
-      'api::product-category.product-category'
-    >;
     children: Attribute.Relation<
       'api::product-category.product-category',
       'oneToMany',
       'api::product-category.product-category'
     >;
+    topLevel: Attribute.Boolean &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

@@ -8,6 +8,7 @@ import Banner from "./components/Banner";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import { FALLBACK_SEO } from "@/app/[lang]/utils/constants";
+import qs from "qs";
 
 async function getGlobal(lang: string): Promise<any> {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
@@ -43,9 +44,15 @@ async function getCategories(lang: string): Promise<any> {
     throw new Error("The Strapi API Token environment variable is not set.");
   const options = { headers: { Authorization: `Bearer ${token}` } };
   const params = {
-    populate: ["parent", "children"],
+    populate: {
+      children: {
+        populate: ["children"],
+      },
+    },
     locale: lang,
   };
+  const queryString = qs.stringify(params);
+  console.log(queryString);
   // Fetch product categories from Strapi
   const productCategoriesRes = await fetchAPI(
     `/product-categories`,
