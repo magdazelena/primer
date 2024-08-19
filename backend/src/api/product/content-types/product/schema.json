@@ -111,7 +111,7 @@
       "component": "shared.seo",
       "required": true
     },
-    "productCategory": {
+    "category": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::product-category.product-category",

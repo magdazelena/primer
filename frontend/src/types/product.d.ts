@@ -19,7 +19,7 @@ interface Product {
         };
       };
     };
-    productCategory: {
+    category: {
       data: ProductCategory;
     };
   };

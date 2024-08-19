@@ -19,7 +19,7 @@ export default function ProductList({
             product.attributes.coverImage.data?.attributes.url
           );
 
-          const category = product.attributes.productCategory.data?.attributes;
+          const category = product.attributes.category.data?.attributes;
 
           return (
             <Link

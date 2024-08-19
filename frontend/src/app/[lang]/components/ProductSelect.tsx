@@ -15,7 +15,7 @@ export default function ProductSelect({
   categories: ProductCategory[];
   products: Product[];
   params: {
-    PID: string;
+    slug: string;
     productCategory: string;
   };
 }) {
@@ -55,7 +55,7 @@ export default function ProductSelect({
                     rel="noopener noreferrer"
                     href={`/products/${params.productCategory}/${product.attributes.slug}`}
                     className={`${
-                      params.PID === product.attributes.slug && "link-active"
+                      params.slug === product.attributes.slug && "link-active"
                     }  `}
                   >
                     {product.attributes.name}

@@ -18,7 +18,7 @@ async function fetchSideMenuData(filter: string) {
       filter
         ? {
             filters: {
-              productCategory: {
+              category: {
                 name: filter,
               },
             },
@@ -47,7 +47,7 @@ export default async function LayoutRoute({
 }: {
   children: React.ReactNode;
   params: {
-    PID: string;
+    slug: string;
     productCategory: string;
   };
 }) {

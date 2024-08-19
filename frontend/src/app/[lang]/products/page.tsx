@@ -14,7 +14,7 @@ interface Meta {
   };
 }
 
-export default function Profile() {
+export default function Products() {
   const [meta, setMeta] = useState<Meta | undefined>();
   const [data, setData] = useState<any>([]);
   const [isLoading, setLoading] = useState(true);
@@ -28,7 +28,7 @@ export default function Profile() {
         sort: { createdAt: "desc" },
         populate: {
           coverImage: { fields: ["url"] },
-          productCategory: { populate: "*" },
+          category: { populate: "*" },
         },
         pagination: {
           start: start,

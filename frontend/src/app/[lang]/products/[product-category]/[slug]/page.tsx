@@ -9,7 +9,7 @@ async function getProductBySlug(slug: string) {
     filters: { slug },
     populate: {
       coverImage: { fields: ["url"] },
-      productCategory: { fields: ["name"] },
+      category: { fields: ["name", "slug"] },
     },
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
@@ -61,7 +61,7 @@ export async function generateStaticParams() {
   const productResponse = await fetchAPI(
     path,
     {
-      populate: ["productCategory"],
+      populate: ["category"],
     },
     options
   );
@@ -69,14 +69,14 @@ export async function generateStaticParams() {
   return productResponse.data.map(
     (product: {
       attributes: {
-        name: string;
-        productCategory: {
+        slug: string;
+        category: {
           slug: string;
         };
       };
     }) => ({
-      slug: product.attributes.name,
-      productCategory: product.attributes.name,
+      slug: product.attributes.slug,
+      productCategory: product.attributes.category.slug,
     })
   );
 }

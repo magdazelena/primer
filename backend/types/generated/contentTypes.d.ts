@@ -1263,7 +1263,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    productCategory: Attribute.Relation<
+    category: Attribute.Relation<
       'api::product.product',
       'manyToOne',
       'api::product-category.product-category'
@@ -1323,17 +1323,6 @@ export interface ApiProductCategoryProductCategory
           localized: true;
         };
       }>;
-    description: Attribute.Blocks &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    products: Attribute.Relation<
-      'api::product-category.product-category',
-      'oneToMany',
-      'api::product.product'
-    >;
     children: Attribute.Relation<
       'api::product-category.product-category',
       'oneToMany',
@@ -1346,6 +1335,17 @@ export interface ApiProductCategoryProductCategory
         };
       }> &
       Attribute.DefaultTo<false>;
+    products: Attribute.Relation<
+      'api::product-category.product-category',
+      'oneToMany',
+      'api::product.product'
+    >;
+    description: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
