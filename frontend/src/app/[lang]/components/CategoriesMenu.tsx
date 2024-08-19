@@ -24,7 +24,10 @@ const CategoriesMenu = ({
       category.attributes.children.data.length > 0;
 
     return (
-      <div key={category.id} className="dropdown">
+      <div
+        key={category.id}
+        className={`dropdown ${hasChildren ? "has-children" : ""}`}
+      >
         {/* Parent category link */}
         <NavLink url={url} text={category.attributes.name} />
 

@@ -166,14 +166,29 @@ a.link-active {
 /****
 Dropdowns
 ****/
+.dropdown.has-children {
+  display: flex;
+  align-items: baseline;
+  &:after {
+    content: "\27BA";
+    display: inline-block;
+  }
+  a {
+    margin: 5px;
+  }
+}
 /* Hide dropdown content by default */
 .dropdown-content {
   width: 100%;
+  min-width: fit-content;
   position: absolute;
   top: 100%; /* Positioned below the parent */
-  left: 0;
+  right: 0;
+  justify-content: flex-end;
 }
-
+.dropdown-content a {
+  text-wrap: nowrap;
+}
 /* Show the dropdown content when the parent is hovered */
 .dropdown:hover > .dropdown-content {
   display: flex;
@@ -181,5 +196,4 @@ Dropdowns
 /* Position nested dropdown content to the right of its parent */
 .dropdown-content .dropdown {
   position: relative;
-  margin-right: 10px;
 }
