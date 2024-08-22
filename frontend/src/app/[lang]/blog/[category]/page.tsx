@@ -1,35 +1,6 @@
 import PageHeader from "@/app/[lang]/components/PageHeader";
-import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
 import BlogList from "@/app/[lang]/views/article-list";
-
-async function fetchPostsByCategory(filter: string) {
-  try {
-    const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-    const path = `/articles`;
-    const urlParamsObject = {
-      sort: { createdAt: "desc" },
-      filters: {
-        category: {
-          slug: filter,
-        },
-      },
-      populate: {
-        cover: { fields: ["url"] },
-        category: {
-          populate: "*",
-        },
-        authorsBio: {
-          populate: "*",
-        },
-      },
-    };
-    const options = { headers: { Authorization: `Bearer ${token}` } };
-    const responseData = await fetchAPI(path, urlParamsObject, options);
-    return responseData;
-  } catch (error) {
-    console.error(error);
-  }
-}
+import { fetchPostsByCategory } from "@/app/[lang]/utils/categories-fetch";
 
 export default async function CategoryRoute({
   params,
@@ -37,17 +8,21 @@ export default async function CategoryRoute({
   params: { category: string };
 }) {
   const filter = params.category;
-  const { data } = await fetchPostsByCategory(filter);
+  const data = await fetchPostsByCategory("/articles", "/categories", filter);
 
   //TODO: CREATE A COMPONENT FOR THIS
-  if (data.length === 0) return <div>Not Posts In this category</div>;
+  if (!data || data.posts.data.length === 0)
+    return <div>Not Posts In this category</div>;
 
-  const { name, description } = data[0]?.attributes.category.data.attributes;
+  const { category, posts } = data;
 
   return (
     <div>
-      <PageHeader heading={name} text={description} />
-      <BlogList data={data} />
+      <PageHeader
+        heading={category.attributes.name}
+        text={category.attributes.description}
+      />
+      <BlogList data={posts.data} />
     </div>
   );
 }
