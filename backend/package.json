@@ -7,7 +7,8 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "export": "strapi export --no-encrypt --file seed-data && mv seed-data.tar.gz ../"
   },
   "devDependencies": {},
   "dependencies": {

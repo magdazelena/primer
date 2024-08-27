@@ -1317,7 +1317,7 @@ export interface ApiProductCategoryProductCategory
           localized: true;
         };
       }>;
-    slug: Attribute.UID &
+    slug: Attribute.UID<'api::product-category.product-category', 'name'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
