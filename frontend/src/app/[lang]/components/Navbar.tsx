@@ -3,8 +3,8 @@ import Logo from "./Logo";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
-import CategoriesMenu from "./CategoriesMenu";
 import { NavLink, MobileNavLink } from "./NavLink";
+import CategoriesMenu from "./CategoriesMenu";
 
 export default function Navbar({
   links,

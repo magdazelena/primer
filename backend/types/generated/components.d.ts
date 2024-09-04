@@ -215,7 +215,7 @@ export interface LinksLink extends Schema.Component {
   };
   attributes: {
     url: Attribute.String & Attribute.Required;
-    newTab: Attribute.Boolean & Attribute.DefaultTo<false>;
+    newtab: Attribute.Boolean & Attribute.DefaultTo<false>;
     text: Attribute.String & Attribute.Required;
   };
 }

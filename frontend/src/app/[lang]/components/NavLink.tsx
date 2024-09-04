@@ -1,10 +1,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export interface NavLink {
-  id?: number;
+export interface NavLink extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   url: string;
-  newTab?: boolean;
   text: string;
 }
 
@@ -12,19 +10,18 @@ export interface MobileNavLink extends NavLink {
   closeMenu: () => void;
 }
 
-export function NavLink({ url, text }: NavLink) {
+export function NavLink({ url, text, ...props }: NavLink) {
   const path = usePathname();
   return (
-    <li className="flex">
-      <Link
-        href={url}
-        className={`flex items-center mx-4 mb-2 text-secondary border-b-2 border-transparent  ${
-          path.endsWith(url) && "link-active"
-        }`}
-      >
-        {text}
-      </Link>
-    </li>
+    <Link
+      {...props}
+      href={url}
+      className={`flex items-center mx-4 mb-2 text-secondary border-b-2 border-transparent  ${
+        path.endsWith(url) && "link-active"
+      }`}
+    >
+      {text}
+    </Link>
   );
 }
 
