@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import { FALLBACK_SEO } from "@/app/[lang]/utils/constants";
 import qs from "qs";
+import Body from "./components/Body";
 
 async function getGlobal(lang: string): Promise<any> {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
@@ -113,7 +114,7 @@ export default async function RootLayout({
 
   return (
     <html lang={params.lang}>
-      <body>
+      <Body>
         <Navbar
           links={navbar.menuItems}
           categories={categories}
@@ -133,7 +134,7 @@ export default async function RootLayout({
           legalLinks={footer.legalLinks}
           socialLinks={footer.socialLinks}
         />
-      </body>
+      </Body>
     </html>
   );
 }

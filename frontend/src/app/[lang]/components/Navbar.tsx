@@ -5,6 +5,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { NavLink, MobileNavLink } from "./NavLink";
 import CategoriesMenu from "./CategoriesMenu";
+import { useScrollDirection } from "../../../hooks/useScrollDirection";
 
 export default function Navbar({
   links,
@@ -19,11 +20,12 @@ export default function Navbar({
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState("");
+  const scrollDir = useScrollDirection();
   const closeMenu = () => {
     setMobileMenuOpen(false);
   };
   return (
-    <div className="p-4 text-secondary">
+    <div className={`p-4 text-secondary fixed top-0 left-0 w-full nav `}>
       <div className="container flex justify-between h-16 mx-auto px-0 sm:px-6">
         <Logo src={logoUrl}>
           {logoText && (

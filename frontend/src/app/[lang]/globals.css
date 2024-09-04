@@ -12,7 +12,9 @@
   }
 }
 @import "react-slideshow-image/dist/styles.css";
-
+body {
+  background-color: bisque;
+}
 /**
 Generic styles
 **/
@@ -166,31 +168,75 @@ a.link-active {
 /****
 Dropdowns
 ****/
+.nav {
+  background-color: white;
+  z-index: 2000;
+  height: 6rem;
+  transition: top 1s;
+}
+.nav-open,
+.nav-closed {
+  position: relative;
+  transition: top 1s;
+}
+.nav-open {
+  top: 6rem;
+  & > .nav {
+    top: 0rem;
+  }
+}
+.nav-closed {
+  top: 0rem;
+  & > .nav {
+    top: -6rem;
+  }
+}
+
+.dropdown {
+  position: relative;
+  li {
+    align-items: baseline;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+}
 .dropdown.has-children {
   display: flex;
   align-items: baseline;
+
   &:after {
     content: "\27BA";
     display: inline-block;
   }
+
+  &.active:after {
+    transform: rotate(90deg);
+  }
   a {
-    margin: 5px;
+    margin: 0;
+    margin-right: 5px;
   }
 }
 /* Hide dropdown content by default */
 .dropdown-content {
   width: 100%;
-  min-width: fit-content;
+  min-width: 100vw;
   position: absolute;
   top: 100%; /* Positioned below the parent */
   right: 0;
   justify-content: flex-end;
+  align-items: baseline;
+  padding: 5px;
+  background-color: aliceblue;
+  border: 1px solid navy;
+  border-radius: 6px;
+  margin-right: -5px;
 }
 .dropdown-content a {
   text-wrap: nowrap;
 }
 /* Show the dropdown content when the parent is hovered */
-.dropdown:hover > .dropdown-content {
+.dropdown.active > .dropdown-content {
   display: flex;
 }
 /* Position nested dropdown content to the right of its parent */
