@@ -18,6 +18,7 @@ export default function Navbar({
   categories: { productCategories: Array<any>; blogCategories: Array<any> };
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeMenu, setActiveMenu] = useState("");
   const closeMenu = () => {
     setMobileMenuOpen(false);
   };
@@ -40,6 +41,8 @@ export default function Navbar({
                     title={item.text}
                     categories={categories.productCategories}
                     basePath={item.url}
+                    activeMenu={activeMenu}
+                    onSetActiveMenu={setActiveMenu}
                   />
                 );
               }
@@ -50,6 +53,8 @@ export default function Navbar({
                     title={item.text}
                     categories={categories.blogCategories}
                     basePath={item.url}
+                    activeMenu={activeMenu}
+                    onSetActiveMenu={setActiveMenu}
                   />
                 );
               }
