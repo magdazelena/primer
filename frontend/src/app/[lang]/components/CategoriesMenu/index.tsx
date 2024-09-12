@@ -13,6 +13,7 @@ interface CategoriesMenuProps {
   title: string;
   activeMenu: string;
   onSetActiveMenu: (menuId: string) => void;
+  onMobileClose?: () => void;
 }
 
 const CategoriesMenu = ({
@@ -21,6 +22,7 @@ const CategoriesMenu = ({
   title,
   activeMenu,
   onSetActiveMenu,
+  onMobileClose,
 }: CategoriesMenuProps) => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [activePath, setActivePath] = useState<string[]>([]);
@@ -57,6 +59,7 @@ const CategoriesMenu = ({
         onLinkClick={() => {
           resetMenu();
           onSetActiveMenu("");
+          if (onMobileClose) onMobileClose();
         }}
       >
         {category.attributes.children?.data.map((childCategory: MenuCategory) =>
@@ -87,6 +90,7 @@ const CategoriesMenu = ({
           } else {
             setMenuOpen(false);
             onSetActiveMenu(""); // Close the menu if it's already open
+            if (onMobileClose) onMobileClose();
           }
         }}
       />
