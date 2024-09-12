@@ -9,6 +9,7 @@
     --color-accent: 230, 57, 70;
     --color-accent2: 168, 218, 220;
     --color-accent3: 69, 123, 157;
+    --menu-height: 6rem;
   }
 }
 @import "react-slideshow-image/dist/styles.css";
@@ -171,7 +172,7 @@ Dropdowns
 .nav {
   background-color: white;
   z-index: 2000;
-  height: 6rem;
+  height: var(--menu-height);
   transition: top 1s;
 }
 .nav-open,
@@ -180,7 +181,7 @@ Dropdowns
   transition: top 1s;
 }
 .nav-open {
-  top: 6rem;
+  top: var(--menu-height);
   & > .nav {
     top: 0rem;
   }
@@ -188,7 +189,7 @@ Dropdowns
 .nav-closed {
   top: 0rem;
   & > .nav {
-    top: -6rem;
+    top: calc(var(--menu-height) * -1);
   }
 }
 
@@ -198,6 +199,14 @@ Dropdowns
     align-items: baseline;
     padding: 5px;
     box-sizing: border-box;
+  }
+  .dropdown-content {
+    &.active {
+      display: flex;
+      .dropdown:not(:last-child) {
+        margin-right: var(--menu-height);
+      }
+    }
   }
 }
 .dropdown.has-children {
@@ -222,24 +231,18 @@ Dropdowns
   width: 100%;
   min-width: 100vw;
   position: absolute;
-  top: 100%; /* Positioned below the parent */
-  right: 0;
+  top: 100%;
+  right: -100%;
   justify-content: flex-end;
   align-items: baseline;
-  padding: 5px;
-  background-color: aliceblue;
-  border: 1px solid navy;
-  border-radius: 6px;
-  margin-right: -5px;
+  padding: 5px var(--menu-height);
+  background-color: white;
+  &.top-level {
+    top: var(--menu-height);
+    position: fixed;
+    right: 0;
+  }
 }
 .dropdown-content a {
-  text-wrap: nowrap;
-}
-/* Show the dropdown content when the parent is hovered */
-.dropdown.active > .dropdown-content {
-  display: flex;
-}
-/* Position nested dropdown content to the right of its parent */
-.dropdown-content .dropdown {
-  position: relative;
+  white-space: nowrap;
 }

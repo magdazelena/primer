@@ -36,7 +36,11 @@ export function CategoryDropdown({
           onLinkClick();
         }} // Prevent parent toggle when clicking link
       />
-      {children && <div className={`dropdown-content hidden`}>{children}</div>}
+      {children && (
+        <div className={`dropdown-content ${isActive ? "active" : "hidden"}`}>
+          {children}
+        </div>
+      )}
     </div>
   );
 }

@@ -90,7 +90,11 @@ const CategoriesMenu = ({
           }
         }}
       />
-      <div className={`dropdown-content ${menuOpen ? "active" : "hidden"}`}>
+      <div
+        className={`dropdown-content top-level ${
+          menuOpen ? "active" : "hidden"
+        } `}
+      >
         {categories?.map((category: MenuCategory) => {
           if (category.attributes.topLevel)
             return renderMenu(category, [basePath]);
