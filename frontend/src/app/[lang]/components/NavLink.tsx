@@ -31,7 +31,7 @@ export function MobileNavLink({ url, text, closeMenu }: MobileNavLink) {
     closeMenu();
   };
   return (
-    <a className="flex">
+    <span className="flex">
       <Link
         href={url}
         onClick={handleClick}
@@ -41,6 +41,6 @@ export function MobileNavLink({ url, text, closeMenu }: MobileNavLink) {
       >
         {text}
       </Link>
-    </a>
+    </span>
   );
 }
