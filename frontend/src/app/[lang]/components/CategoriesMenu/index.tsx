@@ -96,7 +96,7 @@ const CategoriesMenu = ({
   };
 
   return (
-    <div className="dropdown relative">
+    <div className="dropdown relative space-y-2">
       <div className="flex">
         <NavLink
           url={basePath}
@@ -104,13 +104,16 @@ const CategoriesMenu = ({
           onTouchEnd={closeSubmenu}
           onClick={toggleSubmenu}
         />
-        <span className="ml-2" onClick={toggleSubmenu}>
+        <span
+          className={`ml-2 ${menuOpen ? "hidden" : ""}`}
+          onClick={toggleSubmenu}
+        >
           +
         </span>
       </div>
 
       <div
-        className={`dropdown-content top-level ${
+        className={`dropdown-content space-y-2 pl-5 top-level ${
           menuOpen ? "active" : "hidden"
         } `}
       >

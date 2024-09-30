@@ -23,12 +23,16 @@ export function CategoryDropdown({
 }) {
   return (
     <div
-      className={`dropdown ${children?.length ? "has-children" : ""} ${
-        isActive ? "active" : ""
-      }`}
+      className={`dropdown space-y-2 ${
+        children?.length ? "has-children" : ""
+      } ${isActive ? "active" : ""}`}
       onClick={onToggle}
     >
-      <div className="flex">
+      <div
+        className={`flex transition-all ${
+          isActive ? "border-b-2 border-accent" : "border-b-0"
+        }`}
+      >
         <NavLink
           url={url}
           text={category.attributes.name}
@@ -38,14 +42,21 @@ export function CategoryDropdown({
           }} // Prevent parent toggle when clicking link
         />
         {children?.length ? (
-          <span className="ml-2" onClick={onToggle}>
+          <span
+            className={`ml-2 ${isActive ? "hidden" : ""}`}
+            onClick={onToggle}
+          >
             +
           </span>
         ) : null}
       </div>
 
       {children && (
-        <div className={`dropdown-content ${isActive ? "active" : "hidden"}`}>
+        <div
+          className={`dropdown-content space-y-2 pl-5 ${
+            isActive ? "active" : "hidden"
+          }`}
+        >
           {children}
         </div>
       )}

@@ -219,8 +219,6 @@ Dropdowns
 }
 
 .dropdown-content {
-  width: 100%;
-  min-width: 100vw;
   position: relative;
   background-color: white;
 }
