@@ -1,13 +1,13 @@
 "use client";
 import { Category } from "@/types/article";
 import { ProductCategory } from "@/types/product";
-import { NavLink } from "../NavLink";
+import { NavLink } from "@/app/[lang]/components/NavLink";
 import React, { useState, useEffect } from "react";
-import { CategoryDropdown } from "./CategoryDropdown";
+import DropdownContent from "./DropdownContent";
 
 type MenuCategory = Category | ProductCategory;
 
-interface CategoriesMenuProps {
+interface DropdownProps {
   categories: MenuCategory[];
   basePath: string;
   title: string;
@@ -16,14 +16,14 @@ interface CategoriesMenuProps {
   onMobileClose?: () => void;
 }
 
-const CategoriesMenu = ({
+const Dropdown = ({
   categories,
   basePath,
   title,
   activeMenu,
   onSetActiveMenu,
   onMobileClose,
-}: CategoriesMenuProps) => {
+}: DropdownProps) => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [activePath, setActivePath] = useState<string[]>([]);
 
@@ -48,7 +48,7 @@ const CategoriesMenu = ({
     };
 
     return (
-      <CategoryDropdown
+      <DropdownContent
         key={category.id}
         url={url}
         category={category}
@@ -65,7 +65,7 @@ const CategoriesMenu = ({
         {category.attributes.children?.data.map((childCategory: MenuCategory) =>
           renderMenu(childCategory, newPath)
         )}
-      </CategoryDropdown>
+      </DropdownContent>
     );
   };
 
@@ -127,4 +127,4 @@ const CategoriesMenu = ({
   );
 };
 
-export default CategoriesMenu;
+export default Dropdown;

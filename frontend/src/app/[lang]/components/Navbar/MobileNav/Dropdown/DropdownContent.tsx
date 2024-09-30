@@ -1,12 +1,12 @@
 "use client";
 import { Category } from "@/types/article";
 import { ProductCategory } from "@/types/product";
-import { NavLink } from "../NavLink";
+import { NavLink } from "@/app/[lang]/components/NavLink";
 import React from "react";
 
 type MenuCategory = Category | ProductCategory;
 
-export function CategoryDropdown({
+const DropdownContent = ({
   url,
   category,
   children,
@@ -20,7 +20,7 @@ export function CategoryDropdown({
   isActive: boolean;
   onToggle: (e: React.MouseEvent) => void;
   onLinkClick: () => void;
-}) {
+}) => {
   return (
     <div
       className={`dropdown space-y-2 ${
@@ -62,4 +62,5 @@ export function CategoryDropdown({
       )}
     </div>
   );
-}
+};
+export default DropdownContent;

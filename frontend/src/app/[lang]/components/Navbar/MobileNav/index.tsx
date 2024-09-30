@@ -1,16 +1,16 @@
 "use client";
 import { Fragment, useState } from "react";
-import { NavLink } from "../NavLink";
-import CategoriesMenu from "../CategoriesMenu";
+import Dropdown from "./Dropdown";
+import { NavLink } from "@/app/[lang]/components/NavLink";
 import HamburgerIcon from "./HamburgerIcon";
 
-export default function MobileNav({
+const MobileNav = ({
   links,
   categories,
 }: {
   links: Array<NavLink>;
   categories: { productCategories: Array<any>; blogCategories: Array<any> };
-}) {
+}) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState("");
 
@@ -34,7 +34,7 @@ export default function MobileNav({
             {links.map((item: NavLink) => {
               if (item.url === "/products") {
                 return (
-                  <CategoriesMenu
+                  <Dropdown
                     key={item.id}
                     title={item.text}
                     categories={categories.productCategories}
@@ -47,7 +47,7 @@ export default function MobileNav({
               }
               if (item.url === "/blog") {
                 return (
-                  <CategoriesMenu
+                  <Dropdown
                     key={item.id}
                     title={item.text}
                     categories={categories.blogCategories}
@@ -71,4 +71,5 @@ export default function MobileNav({
       </div>
     </Fragment>
   );
-}
+};
+export { MobileNav };
