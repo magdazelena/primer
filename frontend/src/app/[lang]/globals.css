@@ -297,3 +297,14 @@ Dropdowns
 .dropdown-content a {
   white-space: nowrap;
 }
+
+.top-level {
+  justify-content: space-around;
+  flex-wrap: wrap;
+  & > li {
+    flex-basis: 20%;
+    & > a {
+      font-weight: bold;
+    }
+  }
+}

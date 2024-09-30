@@ -1,7 +1,5 @@
 "use client";
-import { useState } from "react";
 import { NavLink } from "@/app/[lang]/components/NavLink";
-
 import DesktopDropdown from "./DesktopDropdown";
 
 const DesktopNav = ({
@@ -9,26 +7,29 @@ const DesktopNav = ({
   categories,
 }: {
   links: Array<NavLink>;
-
   categories: { productCategories: Array<any>; blogCategories: Array<any> };
 }) => {
-  const [activeMenu, setActiveMenu] = useState("");
-
+  const renderProductTopLevelCategories = () => {
+    return categories.productCategories.map((category: any) => {
+      if (category.attributes.topLevel) {
+        return (
+          <DesktopDropdown
+            key={category.id}
+            title={category.attributes.name}
+            categories={category.attributes.children?.data || []}
+            basePath={category.attributes.slug}
+          />
+        );
+      }
+      return null;
+    });
+  };
   return (
     <div className="items-center hidden lg:flex">
       <ul className="items-stretch hidden space-x-3 lg:flex">
         {links.map((item: NavLink) => {
           if (item.url === "/products") {
-            return (
-              <DesktopDropdown
-                key={item.id}
-                title={item.text}
-                categories={categories.productCategories}
-                basePath={item.url}
-                activeMenu={activeMenu}
-                onSetActiveMenu={setActiveMenu}
-              />
-            );
+            return renderProductTopLevelCategories();
           }
           if (item.url === "/blog") {
             return (
@@ -37,8 +38,6 @@ const DesktopNav = ({
                 title={item.text}
                 categories={categories.blogCategories}
                 basePath={item.url}
-                activeMenu={activeMenu}
-                onSetActiveMenu={setActiveMenu}
               />
             );
           }
