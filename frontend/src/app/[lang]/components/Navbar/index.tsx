@@ -1,6 +1,6 @@
 import Logo from "../Logo";
 import { NavLink } from "../NavLink";
-import { DesktopMenu } from "./DesktopMenu";
+import { DesktopNav } from "./DesktopNav";
 import MobileNav from "./MobileNav";
 
 export default function Navbar({
@@ -23,7 +23,7 @@ export default function Navbar({
           )}
         </Logo>
 
-        <DesktopMenu links={links} categories={categories} />
+        <DesktopNav links={links} categories={categories} />
         <MobileNav links={links} categories={categories} />
       </div>
     </div>

@@ -1,9 +1,10 @@
 "use client";
 import { useState } from "react";
-import CategoriesMenu from "../CategoriesMenu";
-import { NavLink } from "../NavLink";
+import { NavLink } from "@/app/[lang]/components/NavLink";
 
-const DesktopMenu = ({
+import DesktopDropdown from "./DesktopDropdown";
+
+const DesktopNav = ({
   links,
   categories,
 }: {
@@ -12,13 +13,14 @@ const DesktopMenu = ({
   categories: { productCategories: Array<any>; blogCategories: Array<any> };
 }) => {
   const [activeMenu, setActiveMenu] = useState("");
+
   return (
-    <div className="items-center flex-shrink-0 hidden lg:flex">
+    <div className="items-center hidden lg:flex">
       <ul className="items-stretch hidden space-x-3 lg:flex">
         {links.map((item: NavLink) => {
           if (item.url === "/products") {
             return (
-              <CategoriesMenu
+              <DesktopDropdown
                 key={item.id}
                 title={item.text}
                 categories={categories.productCategories}
@@ -30,7 +32,7 @@ const DesktopMenu = ({
           }
           if (item.url === "/blog") {
             return (
-              <CategoriesMenu
+              <DesktopDropdown
                 key={item.id}
                 title={item.text}
                 categories={categories.blogCategories}
@@ -47,4 +49,4 @@ const DesktopMenu = ({
   );
 };
 
-export { DesktopMenu };
+export { DesktopNav };

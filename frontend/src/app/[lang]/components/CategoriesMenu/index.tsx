@@ -2,7 +2,7 @@
 import { Category } from "@/types/article";
 import { ProductCategory } from "@/types/product";
 import { NavLink } from "../NavLink";
-import React, { useState, useEffect, MouseEventHandler } from "react";
+import React, { useState, useEffect } from "react";
 import { CategoryDropdown } from "./CategoryDropdown";
 
 type MenuCategory = Category | ProductCategory;

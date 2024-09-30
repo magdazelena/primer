@@ -1,9 +1,8 @@
 "use client";
-import { Bars3Icon } from "@heroicons/react/24/outline";
 import { Fragment, useState } from "react";
 import { NavLink } from "../NavLink";
 import CategoriesMenu from "../CategoriesMenu";
-import HamburgerIcon from "../HamburgerIcon";
+import HamburgerIcon from "./HamburgerIcon";
 
 export default function MobileNav({
   links,
