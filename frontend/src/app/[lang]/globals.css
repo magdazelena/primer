@@ -173,7 +173,7 @@ Dropdowns
 .nav {
   background-color: white;
   z-index: 200;
-  height: var(--menu-height);
+  min-height: var(--menu-height);
   transition: top 1s;
 }
 .nav-open,
@@ -202,7 +202,7 @@ Dropdowns
 .mobile-nav-open {
   display: block;
   & > div {
-    top: 0%;
+    top: var(--menu-height);
   }
 }
 .mobile-nav-closed {
@@ -231,14 +231,6 @@ Dropdowns
   display: flex;
   align-items: baseline;
 
-  &:after {
-    content: "\27BA";
-    display: inline-block;
-  }
-
-  &.active:after {
-    transform: rotate(90deg);
-  }
   a {
     margin: 0;
     margin-right: 5px;
@@ -248,18 +240,11 @@ Dropdowns
 .dropdown-content {
   width: 100%;
   min-width: 100vw;
-  position: absolute;
-  top: 100%;
-  right: -100%;
+  position: relative;
   justify-content: flex-end;
   align-items: baseline;
-  padding: 5px var(--menu-height);
+  padding: 5px;
   background-color: white;
-  &.top-level {
-    top: var(--menu-height);
-    position: fixed;
-    right: 0;
-  }
 }
 .dropdown-content a {
   white-space: nowrap;

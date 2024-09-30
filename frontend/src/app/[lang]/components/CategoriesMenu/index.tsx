@@ -2,7 +2,7 @@
 import { Category } from "@/types/article";
 import { ProductCategory } from "@/types/product";
 import { NavLink } from "../NavLink";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, MouseEventHandler } from "react";
 import { CategoryDropdown } from "./CategoryDropdown";
 
 type MenuCategory = Category | ProductCategory;
@@ -77,23 +77,36 @@ const CategoriesMenu = ({
     }
   }, [activeMenu]);
 
+  const closeSubmenu = () => {
+    setMenuOpen(false);
+    onSetActiveMenu(""); // Close the menu if it's already open
+    if (onMobileClose) onMobileClose();
+  };
+
+  const toggleSubmenu = (
+    e: React.MouseEvent<HTMLSpanElement | HTMLAnchorElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    if (!menuOpen || activeMenu !== basePath) {
+      setActivePath([basePath]);
+      onSetActiveMenu(basePath); // Set this menu as active
+    } else {
+      closeSubmenu();
+    }
+  };
+
   return (
     <div className="dropdown relative">
-      <NavLink
-        url={basePath}
-        text={title}
-        onClick={(e) => {
-          e.preventDefault();
-          if (!menuOpen || activeMenu !== basePath) {
-            setActivePath([basePath]);
-            onSetActiveMenu(basePath); // Set this menu as active
-          } else {
-            setMenuOpen(false);
-            onSetActiveMenu(""); // Close the menu if it's already open
-            if (onMobileClose) onMobileClose();
-          }
-        }}
-      />
+      <div className="flex">
+        <NavLink
+          url={basePath}
+          text={title}
+          onTouchEnd={closeSubmenu}
+          onClick={toggleSubmenu}
+        />
+        <span onClick={toggleSubmenu}>+</span>
+      </div>
+
       <div
         className={`dropdown-content top-level ${
           menuOpen ? "active" : "hidden"
