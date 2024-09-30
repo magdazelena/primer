@@ -3,6 +3,7 @@ import { Bars3Icon } from "@heroicons/react/24/outline";
 import { Fragment, useState } from "react";
 import { NavLink } from "../NavLink";
 import CategoriesMenu from "../CategoriesMenu";
+import HamburgerIcon from "../HamburgerIcon";
 
 export default function MobileNav({
   links,
@@ -17,11 +18,10 @@ export default function MobileNav({
   return (
     <Fragment>
       <button
-        className="p-4 lg:hidden"
+        className="lg:hidden"
         onClick={() => setMobileMenuOpen((open) => !open)}
       >
-        <span className="sr-only">Open/close menu</span>
-        <Bars3Icon className="h-7 w-7 text-secondary" aria-hidden="true" />
+        <HamburgerIcon isOpen={mobileMenuOpen} />
       </button>
       <div
         className={`lg:hidden fixed left-0 ${
