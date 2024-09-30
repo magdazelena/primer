@@ -17,7 +17,8 @@ const DesktopNav = ({
             key={category.id}
             title={category.attributes.name}
             categories={category.attributes.children?.data || []}
-            basePath={category.attributes.slug}
+            url={`/products/${category.attributes.slug}`}
+            basePath="/products"
           />
         );
       }

@@ -6,19 +6,22 @@ interface DesktopDropdownProps {
   title: string;
   categories: Array<Category | ProductCategory>;
   basePath: string;
+  url?: string;
 }
 
 const DesktopDropdown = ({
   title,
   categories,
   basePath,
+  url,
 }: DesktopDropdownProps) => {
   const renderMenu = (category: Category | ProductCategory) => {
+    const url = `${basePath}/${category.attributes.slug}`;
     return (
       <li key={category.id} className="relative group">
         <NavLink
           text={category.attributes.name}
-          url={`${basePath}/${category.attributes.slug}`}
+          url={url}
           className="block px-4 py-2 hover:bg-gray-100"
         />
         {category.attributes.children?.data.length ? (
@@ -36,7 +39,7 @@ const DesktopDropdown = ({
   return (
     <li className="relative group">
       <NavLink
-        url={basePath}
+        url={url || basePath}
         text={title}
         className="block px-4 py-2 hover:bg-gray-200"
       />
