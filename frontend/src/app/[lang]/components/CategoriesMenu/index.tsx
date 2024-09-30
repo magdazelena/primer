@@ -104,7 +104,9 @@ const CategoriesMenu = ({
           onTouchEnd={closeSubmenu}
           onClick={toggleSubmenu}
         />
-        <span onClick={toggleSubmenu}>+</span>
+        <span className="ml-2" onClick={toggleSubmenu}>
+          +
+        </span>
       </div>
 
       <div

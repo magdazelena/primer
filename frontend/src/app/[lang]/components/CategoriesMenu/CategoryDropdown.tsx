@@ -28,14 +28,22 @@ export function CategoryDropdown({
       }`}
       onClick={onToggle}
     >
-      <NavLink
-        url={url}
-        text={category.attributes.name}
-        onClick={(e) => {
-          e.stopPropagation();
-          onLinkClick();
-        }} // Prevent parent toggle when clicking link
-      />
+      <div className="flex">
+        <NavLink
+          url={url}
+          text={category.attributes.name}
+          onClick={(e) => {
+            e.stopPropagation();
+            onLinkClick();
+          }} // Prevent parent toggle when clicking link
+        />
+        {children?.length ? (
+          <span className="ml-2" onClick={onToggle}>
+            +
+          </span>
+        ) : null}
+      </div>
+
       {children && (
         <div className={`dropdown-content ${isActive ? "active" : "hidden"}`}>
           {children}
