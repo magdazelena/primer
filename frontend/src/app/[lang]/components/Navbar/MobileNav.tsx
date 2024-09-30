@@ -29,7 +29,7 @@ export default function MobileNav({
         }`}
       >
         <div
-          className={`fixed  w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-inset sm:ring-white/10 border-t-2 border-b-2 border-secondary text-lg `}
+          className={`fixed  w-full  overflow-y-auto bg-white px-6 py-6 sm:ring-1 sm:ring-inset sm:ring-white/10 border-t-2 border-b-2 border-secondary text-lg `}
         >
           <div className="space-y-2 ">
             {links.map((item: NavLink) => {
