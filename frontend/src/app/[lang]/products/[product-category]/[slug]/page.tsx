@@ -9,6 +9,7 @@ async function getProductBySlug(slug: string) {
     filters: { slug },
     populate: {
       coverImage: { fields: ["url"] },
+      media: "*",
       category: { fields: ["name", "slug"] },
     },
   };

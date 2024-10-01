@@ -1,3 +1,4 @@
+import { Image } from "./image";
 import { RichTextModule } from "./richtext";
 
 interface Product {
@@ -12,6 +13,11 @@ interface Product {
     retailPrice: number;
     wholesalePrice: number;
     totalCost: number;
+    media: {
+      data: Image[];
+    }
+
+    ,
     coverImage: {
       data: {
         attributes: {
