@@ -10,15 +10,6 @@ export default function ProductView({ data }: { data: Product }) {
   const imageUrl = getStrapiMedia(coverImage.data?.attributes.url);
   return (
     <article className="space-y-8 text-secondary">
-      {imageUrl && (
-        <Image
-          src={imageUrl}
-          alt="article cover image"
-          width={400}
-          height={400}
-          className="w-full h-96 object-cover rounded-lg"
-        />
-      )}
       {media && <ImageSlider images={media.data} />}
       <div className="space-y-6">
         <h1 className="leading-tight text-5xl font-bold ">{name}</h1>

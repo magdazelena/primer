@@ -8,10 +8,12 @@ import { NextJsImage } from "@/app/[lang]/components/Image";
 import { Image } from "@/types/image";
 import { getStrapiURL } from "@/app/[lang]/utils/api-helpers";
 import { Icons } from "./Icons";
+import useDeviceSize from "@/hooks/useDeviceSize";
 
 const ImageSlider = ({ images }: { images: Image[] }) => {
   const [open, setOpen] = React.useState(false);
   const [index, setIndex] = React.useState(0);
+  const [width] = useDeviceSize();
 
   const toggleOpen = (state: boolean) => () => setOpen(state);
 
@@ -26,7 +28,7 @@ const ImageSlider = ({ images }: { images: Image[] }) => {
     };
   });
   return (
-    <div className="w-full max-w-3xl m-auto">
+    <div className="w-full lg:max-w-3xl m-auto">
       <Lightbox
         index={index}
         slides={slides}
@@ -51,7 +53,7 @@ const ImageSlider = ({ images }: { images: Image[] }) => {
           style: {
             width: "100%",
             maxWidth: "900px",
-            aspectRatio: "3 / 2",
+            aspectRatio: `${width > 760 ? "3 / 2" : " 2/3"}`,
             margin: "0 auto",
           },
         }}
