@@ -2,12 +2,12 @@ import { formatDate, getStrapiMedia } from "@/app/[lang]/utils/api-helpers";
 import Image from "next/image";
 import { Product } from "@/types/product";
 import { RichTextElement, RichTextModule } from "@/types/richtext";
+import { ImageSlider } from "../components/ImageSlider";
 
 export default function ProductView({ data }: { data: Product }) {
-  const { name, description, publishedAt, coverImage, retailPrice } =
+  const { name, description, publishedAt, coverImage, media, retailPrice } =
     data.attributes;
   const imageUrl = getStrapiMedia(coverImage.data?.attributes.url);
-
   return (
     <article className="space-y-8 text-secondary">
       {imageUrl && (
@@ -19,6 +19,7 @@ export default function ProductView({ data }: { data: Product }) {
           className="w-full h-96 object-cover rounded-lg"
         />
       )}
+      {media && <ImageSlider images={media.data} />}
       <div className="space-y-6">
         <h1 className="leading-tight text-5xl font-bold ">{name}</h1>
         <div className="flex flex-col items-start justify-between w-full md:flex-row md:items-center text-secondary">

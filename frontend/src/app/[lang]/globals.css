@@ -12,6 +12,7 @@
     --menu-height: 6rem;
   }
 }
+@import "yet-another-react-lightbox/styles.css";
 
 /**
 Generic styles

@@ -1,36 +1,62 @@
 "use client";
-import { Fade } from "react-slideshow-image";
-import { getStrapiMedia } from "../utils/api-helpers";
-import Image from "next/image";
+import * as React from "react";
+import Lightbox, { SlideImage } from "yet-another-react-lightbox";
+import Inline from "yet-another-react-lightbox/plugins/inline";
+import { NextJsImage } from "./Image";
+import { Image } from "@/types/image";
+import { getStrapiURL } from "../utils/api-helpers";
 
-interface Image {
-  id: number;
-  attributes: {
-    alternativeText: string | null;
-    caption: string | null;
-    url: string;
-  };
-}
+const ImageSlider = ({ images }: { images: Image[] }) => {
+  const [open, setOpen] = React.useState(false);
+  const [index, setIndex] = React.useState(0);
 
-interface SlidShowProps {
-  files: {
-    data: Image[];
-  };
-}
+  const toggleOpen = (state: boolean) => () => setOpen(state);
 
-export default function Slideshow({ data }: { data: SlidShowProps }) {
+  const updateIndex = ({ index: current }: { index: number }) =>
+    setIndex(current);
+  const slides = images.map((image: Image): SlideImage => {
+    return {
+      src: getStrapiURL(image.attributes.url),
+      height: image.attributes.height,
+      width: image.attributes.width,
+      alt: image.attributes.alternativeText || "alternative text missing",
+    };
+  });
   return (
-    <div className="slide-container">
-      <Fade>
-        {data.files.data.map((fadeImage: Image, index) => {
-          const imageUrl = getStrapiMedia(fadeImage.attributes.url);
-          return (
-            <div key={index}>
-              {imageUrl && <Image className="w-full h-96 object-cover rounded-lg" height={400} width={600} alt="alt text" src={imageUrl} />}
-            </div>
-          );
-        })}
-      </Fade>
+    <div className="w-full max-w-3xl m-auto">
+      <Lightbox
+        index={index}
+        slides={slides}
+        render={{ slide: NextJsImage }}
+        plugins={[Inline]}
+        on={{
+          view: updateIndex,
+          click: toggleOpen(true),
+        }}
+        carousel={{
+          padding: 0,
+          spacing: 0,
+          imageFit: "cover",
+        }}
+        inline={{
+          style: {
+            width: "100%",
+            maxWidth: "900px",
+            aspectRatio: "3 / 2",
+            margin: "0 auto",
+          },
+        }}
+      />
+
+      <Lightbox
+        open={open}
+        close={toggleOpen(false)}
+        index={index}
+        slides={slides}
+        render={{ slide: NextJsImage }}
+      />
     </div>
   );
-}
+};
+
+export { ImageSlider };
