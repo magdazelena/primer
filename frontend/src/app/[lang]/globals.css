@@ -12,10 +12,7 @@
     --menu-height: 6rem;
   }
 }
-@import "react-slideshow-image/dist/styles.css";
-body {
-  background-color: bisque;
-}
+
 /**
 Generic styles
 **/
