@@ -2,9 +2,12 @@
 import * as React from "react";
 import Lightbox, { SlideImage } from "yet-another-react-lightbox";
 import Inline from "yet-another-react-lightbox/plugins/inline";
-import { NextJsImage } from "./Image";
+
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import { NextJsImage } from "@/app/[lang]/components/Image";
 import { Image } from "@/types/image";
-import { getStrapiURL } from "../utils/api-helpers";
+import { getStrapiURL } from "@/app/[lang]/utils/api-helpers";
+import { Icons } from "./Icons";
 
 const ImageSlider = ({ images }: { images: Image[] }) => {
   const [open, setOpen] = React.useState(false);
@@ -27,16 +30,22 @@ const ImageSlider = ({ images }: { images: Image[] }) => {
       <Lightbox
         index={index}
         slides={slides}
-        render={{ slide: NextJsImage }}
-        plugins={[Inline]}
+        render={{
+          slide: NextJsImage,
+          iconPrev: () => <Icons.Prev />,
+          iconClose: () => <Icons.Close />,
+          iconNext: () => <Icons.Next />,
+        }}
+        plugins={[Inline, Thumbnails]}
         on={{
           view: updateIndex,
           click: toggleOpen(true),
         }}
         carousel={{
+          preload: 3,
           padding: 0,
           spacing: 0,
-          imageFit: "cover",
+          imageFit: "contain",
         }}
         inline={{
           style: {
@@ -46,6 +55,13 @@ const ImageSlider = ({ images }: { images: Image[] }) => {
             margin: "0 auto",
           },
         }}
+        thumbnails={{
+          position: "bottom",
+          height: 50,
+          padding: 2,
+          gap: 2,
+          border: 0,
+        }}
       />
 
       <Lightbox
@@ -53,7 +69,12 @@ const ImageSlider = ({ images }: { images: Image[] }) => {
         close={toggleOpen(false)}
         index={index}
         slides={slides}
-        render={{ slide: NextJsImage }}
+        render={{
+          slide: NextJsImage,
+          iconPrev: () => <Icons.Prev />,
+          iconClose: () => <Icons.Close />,
+          iconNext: () => <Icons.Next />,
+        }}
       />
     </div>
   );

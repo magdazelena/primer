@@ -9,11 +9,12 @@
     --color-accent: 170, 57, 70;
     --color-accent2: 168, 218, 220;
     --color-accent3: 69, 123, 157;
+    --color-background: #ffffff;
     --menu-height: 6rem;
   }
 }
 @import "yet-another-react-lightbox/styles.css";
-
+@import "yet-another-react-lightbox/plugins/thumbnails.css";
 /**
 Generic styles
 **/
@@ -169,7 +170,7 @@ Dropdowns
 ****/
 
 .nav {
-  background-color: white;
+  background-color: var(--color-background);
   z-index: 200;
   min-height: var(--menu-height);
   transition: top 1s;
@@ -305,4 +306,28 @@ Dropdowns
       font-weight: bold;
     }
   }
+}
+/** image slider **/
+.yarl__container {
+  background-color: var(--color-background);
+}
+.yarl__thumbnails_container {
+  padding: 5px;
+  background-color: var(--color-background);
+  justify-content: center;
+}
+.yarl__thumbnails_bottom .yarl__thumbnails_vignette {
+  display: none;
+}
+.yarl__button {
+  filter: none;
+  &:hover {
+    filter: var(
+      --yarl__button_filter,
+      drop-shadow(2px 2px 2px rgba(var(--color-secondary), 0.5))
+    );
+  }
+}
+.slider-icon {
+  fill: rgb(var(--color-secondary));
 }
