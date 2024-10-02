@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { getStrapiMedia, formatDate } from "../utils/api-helpers";
 import { Product } from "@/types/product";
-import { RichTextElement, RichTextModule } from "@/types/richtext";
 
 export default function ProductList({
   data: products,
@@ -36,26 +35,17 @@ export default function ProductList({
                   src={imageUrl}
                 />
               )}
-              <div className="p-6 space-y-2 relative">
+              <div className="p-6 space-y-2 relative text-secondary">
                 <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">
                   {product.attributes.name}
                 </h3>
 
                 <div className="flex justify-between items-center">
-                  <span className="text-xs text-accent">
-                    {formatDate(product.attributes.publishedAt)}
-                  </span>
+                  <h4 className="font-bold">
+                    {product.attributes.retailPrice.toFixed(2)}
+                  </h4>
                 </div>
-                {product.attributes.description.map((module: RichTextModule) =>
-                  module.children.map((element: RichTextElement) => {
-                    return (
-                      <p className="py-4" key={element.type}>
-                        {" "}
-                        {element.text}
-                      </p>
-                    );
-                  })
-                )}
+                <p>{product.attributes.shortDescription}</p>
               </div>
             </Link>
           );
