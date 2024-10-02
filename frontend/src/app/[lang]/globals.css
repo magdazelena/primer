@@ -37,114 +37,119 @@ a.link-active {
 *******************************************/
 
 /* Headers */
-h1 {
+.rich-text h1 {
   @apply text-4xl font-bold mb-4 text-secondary;
 }
 
-h2 {
+.rich-text h2 {
   @apply text-3xl font-bold mb-4 text-secondary;
 }
 
-h3 {
+.rich-text h3 {
   @apply text-2xl font-bold mb-4 text-secondary;
 }
 
-h4 {
+.rich-text h4 {
   @apply text-xl font-bold mb-4 text-secondary;
 }
 
-h5 {
+.rich-text h5 {
   @apply text-lg font-bold mb-4 text-secondary;
 }
 
-h6 {
+.rich-text h6 {
   @apply text-base font-bold mb-4 text-secondary;
 }
 
 /* Horizontal rules */
-hr {
+.rich-text hr {
   @apply border-accent2 my-8;
 }
 
-a {
+.rich-text a {
   @apply text-accent;
 }
-a:hover {
+.rich-text a:hover {
   @apply text-accent/50 underline;
 }
-a:active,
-a:visited {
+.rich-text a:active,
+.rich-text a:visited {
   @apply text-accent2;
 }
 
 /* Typographic replacements */
-p {
+.rich-text p {
   @apply mb-4;
 }
 
 /* Emphasis */
-strong {
+.rich-text strong {
   @apply font-bold;
 }
 
-em {
+.rich-text em {
   @apply italic;
 }
 
-del {
+.rich-text del {
   @apply line-through;
 }
 
 /* Blockquotes */
-blockquote {
+.rich-text blockquote {
   @apply border-l-4 border-accent2 pl-4 py-2 mb-4;
 }
 
 /* Lists */
-ul {
+.rich-text ul {
   @apply list-disc pl-4 mb-4;
 }
 
-ol {
+.rich-text ol {
   @apply list-decimal pl-4 mb-4;
 }
 
-li {
+.rich-text li {
   @apply mb-2;
 }
 
-li > ul {
+.rich-text li > ul {
   @apply list-disc pl-4 mb-2;
 }
 
-li > ol {
+.rich-text li > ol {
   @apply list-decimal pl-4 mb-2;
 }
 
 /* Code blocks */
-pre {
+.rich-text pre {
   @apply font-mono bg-accent2 text-accent2 rounded p-4  my-6;
 }
 
-code {
+.rich-text code {
   @apply font-mono bg-accent2 text-accent2 rounded px-2 py-1;
 }
 
 /* Tables */
-table {
+.rich-text table {
   @apply w-full border-collapse border-accent2 my-6;
 }
 
-th {
+.rich-text th {
   @apply bg-accent2 text-left py-2 px-4 font-semibold border-b border-accent2;
 }
 
-td {
+.rich-text td {
   @apply py-2 px-4 border-b border-accent2;
 }
 
+/* Images */
+.rich-text img {
+  @apply w-full object-cover rounded-xl my-6;
+}
+
 /* Custom containers */
-.warning {
+.rich-text .warning {
   @apply bg-yellow-100 border-yellow-500 text-yellow-700 px-4 py-2 rounded-lg mb-4;
 }
 

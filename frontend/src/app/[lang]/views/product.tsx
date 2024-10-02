@@ -18,9 +18,9 @@ export default function ProductView({ data }: { data: Product }) {
           <div>{shortDescription}</div>
         </div>
       </div>
-      <div className="text-secondary col-span-12">
+      <div className="text-secondary col-span-12 rich-text">
         <hr />
-        <div className="lg:px-10">
+        <div className="lg:px-10 ">
           <BlocksRenderer content={description} />
         </div>
 
