@@ -1,34 +1,27 @@
-import { formatDate, getStrapiMedia } from "@/app/[lang]/utils/api-helpers";
-import Image from "next/image";
 import { Product } from "@/types/product";
 import { RichTextElement, RichTextModule } from "@/types/richtext";
 import { ImageSlider } from "../components/ImageSlider";
+import { RichTextJSON } from "../components/RichTextJSON";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function ProductView({ data }: { data: Product }) {
-  const { name, description, publishedAt, coverImage, media, retailPrice } =
+  const { name, description, media, retailPrice, shortDescription } =
     data.attributes;
-  const imageUrl = getStrapiMedia(coverImage.data?.attributes.url);
   return (
-    <article className="space-y-8 text-secondary">
-      {media && <ImageSlider images={media.data} />}
-      <div className="space-y-6">
-        <h1 className="leading-tight text-5xl font-bold ">{name}</h1>
-        <div className="flex flex-col items-start justify-between w-full md:flex-row md:items-center text-secondary">
-          <div className="flex items-center md:space-x-2">LAla</div>
-        </div>
+    <article className="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-4 text-secondary">
+      <div className="space-y-6 col-span-2">
+        {media && <ImageSlider images={media.data} />}
       </div>
 
-      <div className="text-secondary">
-        {description.map((module: RichTextModule) =>
-          module.children.map((element: RichTextElement) => {
-            return (
-              <p className="py-4" key={element.type}>
-                {" "}
-                {element.text}
-              </p>
-            );
-          })
-        )}
+      <div className="space-y-6 ">
+        <h1 className="leading-tight text-5xl font-bold ">{name}</h1>
+        <div className="text-secondary">
+          <div className="">{retailPrice.toFixed(2)}</div>
+          <div>{shortDescription}</div>
+        </div>
+      </div>
+      <div className="text-secondary col-span-12">
+        <BlocksRenderer content={description} />
       </div>
     </article>
   );

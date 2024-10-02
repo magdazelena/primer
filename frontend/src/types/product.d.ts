@@ -1,3 +1,4 @@
+import { BlocksContent } from "@strapi/blocks-react-renderer";
 import { Image } from "./image";
 import { RichTextModule } from "./richtext";
 
@@ -5,7 +6,8 @@ interface Product {
   id: number;
   attributes: {
     name: string;
-    description: RichTextModule[];
+    description: BlocksContent;
+    shortDescription: string;
     slug: string;
     createdAt: string;
     updatedAt: string;
