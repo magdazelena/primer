@@ -1,7 +1,5 @@
 import { Product } from "@/types/product";
-import { RichTextElement, RichTextModule } from "@/types/richtext";
 import { ImageSlider } from "../components/ImageSlider";
-import { RichTextJSON } from "../components/RichTextJSON";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function ProductView({ data }: { data: Product }) {
