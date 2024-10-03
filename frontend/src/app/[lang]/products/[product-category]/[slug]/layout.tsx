@@ -12,18 +12,21 @@ async function fetchSideMenuData(filter: string) {
       { populate: "*" },
       options
     );
-
+    const filters = filter
+      ? {
+          filters: {
+            category: {
+              name: filter,
+            },
+          },
+        }
+      : {};
     const productsResponse = await fetchAPI(
       "/products",
-      filter
-        ? {
-            filters: {
-              category: {
-                name: filter,
-              },
-            },
-          }
-        : {},
+      {
+        populate: { coverImage: { fields: ["url"] } },
+        ...filters,
+      },
       options
     );
 

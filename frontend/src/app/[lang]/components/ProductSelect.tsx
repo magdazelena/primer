@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ProductCategory, Product } from "@/types/product";
+import { ProductThumbnail } from "./ProductThumbnail";
 
 function selectedFilter(current: string, selected: string) {
   return current === selected
@@ -47,23 +48,11 @@ export default function ProductSelect({
 
         <div className="space-y-2">
           <h4 className="text-lg font-semibold">Other Posts You May Like</h4>
-          <ul className="ml-4 space-y-1 list-disc">
-            {products.map((product: Product) => {
-              return (
-                <li>
-                  <Link
-                    rel="noopener noreferrer"
-                    href={`/products/${params.productCategory}/${product.attributes.slug}`}
-                    className={`${
-                      params.slug === product.attributes.slug && "link-active"
-                    }  `}
-                  >
-                    {product.attributes.name}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+          <div className="space-y-1 flex justify-start">
+            {products.map((product: Product) => (
+              <ProductThumbnail product={product} />
+            ))}
+          </div>
         </div>
       </div>
     </div>
