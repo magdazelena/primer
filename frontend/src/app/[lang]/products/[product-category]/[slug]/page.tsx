@@ -62,22 +62,25 @@ export async function generateStaticParams() {
   const productResponse = await fetchAPI(
     path,
     {
-      populate: ["category"],
+      populate: { category: { fields: ["slug"] } },
     },
     options
   );
-
   return productResponse.data.map(
     (product: {
       attributes: {
         slug: string;
         category: {
-          slug: string;
+          data: {
+            attributes: {
+              slug: string;
+            };
+          };
         };
       };
     }) => ({
       slug: product.attributes.slug,
-      productCategory: product.attributes.category.slug,
+      productCategory: product.attributes.category.data.attributes.slug,
     })
   );
 }

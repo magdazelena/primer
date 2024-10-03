@@ -24,12 +24,14 @@ async function fetchSideMenuData(filter: string) {
     const productsResponse = await fetchAPI(
       "/products",
       {
-        populate: { coverImage: { fields: ["url"] } },
+        populate: {
+          coverImage: { fields: ["url"] },
+          category: { fields: ["slug"] },
+        },
         ...filters,
       },
       options
     );
-
     return {
       products: productsResponse.data,
       categories: categoriesResponse.data,
@@ -51,10 +53,10 @@ export default async function LayoutRoute({
   children: React.ReactNode;
   params: {
     slug: string;
-    productCategory: string;
+    ["product-category"]: string;
   };
 }) {
-  const { productCategory } = params;
+  const productCategory = params["product-category"];
   const { categories, products } = (await fetchSideMenuData(
     productCategory
   )) as Data;
@@ -80,22 +82,34 @@ export async function generateStaticParams() {
   const productResponse = await fetchAPI(
     path,
     {
-      populate: ["productCategory"],
+      populate: { category: { fields: ["slug"] } },
     },
     options
   );
 
-  return productResponse.data.map(
+  const staticParams = productResponse.data.map(
     (product: {
       attributes: {
         slug: string;
-        productCategory: {
-          slug: string;
+        category: {
+          data: {
+            attributes: {
+              slug: string;
+            };
+          };
         };
       };
     }) => ({
       slug: product.attributes.slug,
-      productCategory: product.attributes.slug,
+      productCategory: product.attributes.category.data.attributes.slug,
     })
   );
+  return staticParams;
+}
+export async function getStaticPaths() {
+  const paths = await generateStaticParams(); // Use your generateStaticParams here
+  return {
+    paths,
+    fallback: false, // Ensure correct behavior if a route is missing
+  };
 }
