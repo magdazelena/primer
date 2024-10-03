@@ -43,7 +43,7 @@ export default function Post({ data }: { data: Article }) {
         </div>
       </div>
 
-      <div className="text-secondary">
+      <div className="text-secondary max-w-[1000px]">
         <p>{description}</p>
 
         {data.attributes.blocks &&
