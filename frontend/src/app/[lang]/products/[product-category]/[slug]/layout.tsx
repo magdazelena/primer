@@ -1,7 +1,6 @@
 import ProductSelect from "@/app/[lang]/components/ProductSelect";
 import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
 import { Product, ProductCategory } from "@/types/product";
-
 async function fetchSideMenuData(filter: string) {
   try {
     const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
@@ -16,7 +15,7 @@ async function fetchSideMenuData(filter: string) {
       ? {
           filters: {
             category: {
-              name: filter,
+              slug: filter,
             },
           },
         }
@@ -60,6 +59,9 @@ export default async function LayoutRoute({
   const { categories, products } = (await fetchSideMenuData(
     productCategory
   )) as Data;
+  const filteredProducts = products.filter((product) => {
+    return product.attributes.slug.trim() !== params.slug.trim();
+  });
 
   return (
     <section className="container p-8 mx-auto space-y-6 sm:space-y-12">
@@ -67,7 +69,7 @@ export default async function LayoutRoute({
         {children}
         <ProductSelect
           categories={categories}
-          products={products}
+          products={filteredProducts}
           params={params}
         />
       </div>

@@ -1,6 +1,7 @@
 import { ProductCategory, Product } from "@/types/product";
 import { ProductThumbnail } from "./ProductThumbnail";
 import { ProductCategoryThumbnail } from "./ProductCategoryThumbnail";
+import { findParentCategory } from "../utils/find-parent-category";
 
 export default function ProductSelect({
   categories,
@@ -14,6 +15,10 @@ export default function ProductSelect({
     ["product-category"]: string;
   };
 }) {
+  const parentCategory = findParentCategory(
+    categories,
+    params["product-category"]
+  );
   return (
     <div className="p-4 rounded-lg  min-h-[365px] relative">
       <h4 className="text-xl font-semibold">Browse By ProductCategory</h4>
@@ -33,8 +38,12 @@ export default function ProductSelect({
             );
           })}
           <ProductCategoryThumbnail
-            categoryName="All products"
-            categorySlug=""
+            categoryName={`${
+              parentCategory ? parentCategory.attributes.name : "All products"
+            }`}
+            categorySlug={`${
+              parentCategory ? parentCategory.attributes.slug : ""
+            }`}
             selected="filter"
           />
         </div>
