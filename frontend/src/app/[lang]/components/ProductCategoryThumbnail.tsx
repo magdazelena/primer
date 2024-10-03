@@ -11,13 +11,16 @@ const ProductCategoryThumbnail = ({
 }) => {
   function selectedFilter(current: string, selected: string) {
     return current === selected
-      ? "px-3 py-1 rounded-lg hover:underline bg-accent text-primary"
-      : "px-3 py-1 rounded-lg hover:underline bg-accent/50 text-secondary";
+      ? "bg-accent hover:bg-accent/50 text-primary"
+      : "bg-accent/50 hover:bg-accent hover:text-primary text-secondary";
   }
   return (
     <Link
       href={`/products/${categorySlug}`}
-      className={selectedFilter(categorySlug, selected)}
+      className={`rounded-lg min-w-20 h-20 lg:h-36 lg:w-36 flex hover:no-underline justify-center items-center ${selectedFilter(
+        categorySlug,
+        selected
+      )}`}
     >
       {categoryName}
     </Link>
