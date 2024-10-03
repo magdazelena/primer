@@ -17,7 +17,7 @@ const ProductCategoryThumbnail = ({
   return (
     <Link
       href={`/products/${categorySlug}`}
-      className={`rounded-lg min-w-20 h-20 lg:h-36 lg:w-36 flex hover:no-underline justify-center items-center ${selectedFilter(
+      className={`flex p-3 m-3 text-center rounded-lg w-20 h-20 lg:h-36 lg:w-36 hover:no-underline justify-center items-center ${selectedFilter(
         categorySlug,
         selected
       )}`}
