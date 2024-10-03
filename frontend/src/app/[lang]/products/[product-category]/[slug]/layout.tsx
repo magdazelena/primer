@@ -1,7 +1,6 @@
 import ProductSelect from "@/app/[lang]/components/ProductSelect";
 import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
 import { Product, ProductCategory } from "@/types/product";
-
 async function fetchSideMenuData(filter: string) {
   try {
     const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
@@ -12,21 +11,26 @@ async function fetchSideMenuData(filter: string) {
       { populate: "*" },
       options
     );
-
+    const filters = filter
+      ? {
+          filters: {
+            category: {
+              slug: filter,
+            },
+          },
+        }
+      : {};
     const productsResponse = await fetchAPI(
       "/products",
-      filter
-        ? {
-            filters: {
-              category: {
-                name: filter,
-              },
-            },
-          }
-        : {},
+      {
+        populate: {
+          coverImage: { fields: ["url"] },
+          category: { fields: ["slug"] },
+        },
+        ...filters,
+      },
       options
     );
-
     return {
       products: productsResponse.data,
       categories: categoriesResponse.data,
@@ -48,25 +52,26 @@ export default async function LayoutRoute({
   children: React.ReactNode;
   params: {
     slug: string;
-    productCategory: string;
+    ["product-category"]: string;
   };
 }) {
-  const { productCategory } = params;
+  const productCategory = params["product-category"];
   const { categories, products } = (await fetchSideMenuData(
     productCategory
   )) as Data;
+  const filteredProducts = products.filter((product) => {
+    return product.attributes.slug.trim() !== params.slug.trim();
+  });
 
   return (
     <section className="container p-8 mx-auto space-y-6 sm:space-y-12">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 lg:gap-4">
-        <div className="col-span-2">{children}</div>
-        <aside>
-          <ProductSelect
-            categories={categories}
-            products={products}
-            params={params}
-          />
-        </aside>
+      <div>
+        {children}
+        <ProductSelect
+          categories={categories}
+          products={filteredProducts}
+          params={params}
+        />
       </div>
     </section>
   );
@@ -79,22 +84,34 @@ export async function generateStaticParams() {
   const productResponse = await fetchAPI(
     path,
     {
-      populate: ["productCategory"],
+      populate: { category: { fields: ["slug"] } },
     },
     options
   );
 
-  return productResponse.data.map(
+  const staticParams = productResponse.data.map(
     (product: {
       attributes: {
         slug: string;
-        productCategory: {
-          slug: string;
+        category: {
+          data: {
+            attributes: {
+              slug: string;
+            };
+          };
         };
       };
     }) => ({
       slug: product.attributes.slug,
-      productCategory: product.attributes.slug,
+      productCategory: product.attributes.category.data.attributes.slug,
     })
   );
+  return staticParams;
+}
+export async function getStaticPaths() {
+  const paths = await generateStaticParams(); // Use your generateStaticParams here
+  return {
+    paths,
+    fallback: false, // Ensure correct behavior if a route is missing
+  };
 }

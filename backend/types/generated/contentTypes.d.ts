@@ -1268,6 +1268,12 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'manyToOne',
       'api::product-category.product-category'
     >;
+    shortDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

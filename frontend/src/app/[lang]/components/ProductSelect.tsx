@@ -1,11 +1,7 @@
-import Link from "next/link";
 import { ProductCategory, Product } from "@/types/product";
-
-function selectedFilter(current: string, selected: string) {
-  return current === selected
-    ? "px-3 py-1 rounded-lg hover:underline bg-accent text-primary"
-    : "px-3 py-1 rounded-lg hover:underline bg-accent/50 text-secondary";
-}
+import { ProductThumbnail } from "./ProductThumbnail";
+import { ProductCategoryThumbnail } from "./ProductCategoryThumbnail";
+import { findParentCategory } from "../utils/find-parent-category";
 
 export default function ProductSelect({
   categories,
@@ -16,12 +12,18 @@ export default function ProductSelect({
   products: Product[];
   params: {
     slug: string;
-    productCategory: string;
+    ["product-category"]: string;
   };
 }) {
+  const parentCategory = findParentCategory(
+    categories,
+    params["product-category"]
+  );
   return (
     <div className="p-4 rounded-lg  min-h-[365px] relative">
-      <h4 className="text-xl font-semibold">Browse By ProductCategory</h4>
+      <h4 className="text-xl font-semibold">
+        See products in other categories
+      </h4>
 
       <div>
         <div className="flex flex-wrap py-6 space-x-2 border-accent">
@@ -29,42 +31,35 @@ export default function ProductSelect({
             if (productCategory.attributes.products.data.length === 0)
               return null;
             return (
-              <Link
-                href={`/products/${productCategory.attributes.slug}`}
-                className={selectedFilter(
-                  productCategory.attributes.slug,
-                  params.productCategory
-                )}
-              >
-                #{productCategory.attributes.name}
-              </Link>
+              <ProductCategoryThumbnail
+                key={productCategory.id}
+                categoryName={productCategory.attributes.name}
+                categorySlug={productCategory.attributes.slug}
+                selected={params["product-category"]}
+              />
             );
           })}
-          <Link href={"/products"} className={selectedFilter("", "filter")}>
-            #all
-          </Link>
+          <ProductCategoryThumbnail
+            categoryName={`${
+              parentCategory ? parentCategory.attributes.name : "All products"
+            }`}
+            categorySlug={`${
+              parentCategory ? parentCategory.attributes.slug : ""
+            }`}
+            selected="filter"
+          />
         </div>
 
-        <div className="space-y-2">
-          <h4 className="text-lg font-semibold">Other Posts You May Like</h4>
-          <ul className="ml-4 space-y-1 list-disc">
-            {products.map((product: Product) => {
-              return (
-                <li>
-                  <Link
-                    rel="noopener noreferrer"
-                    href={`/products/${params.productCategory}/${product.attributes.slug}`}
-                    className={`${
-                      params.slug === product.attributes.slug && "link-active"
-                    }  `}
-                  >
-                    {product.attributes.name}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+        {products.length > 0 && (
+          <div className="space-y-2">
+            <h4 className="text-lg font-semibold">Other Posts You May Like</h4>
+            <div className="space-y-1 flex justify-start">
+              {products.map((product: Product) => (
+                <ProductThumbnail key={product.id} product={product} />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
