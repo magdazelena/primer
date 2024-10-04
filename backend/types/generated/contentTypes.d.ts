@@ -961,6 +961,7 @@ export interface ApiCreatorCreator extends Schema.CollectionType {
     singularName: 'creator';
     pluralName: 'creators';
     displayName: 'Creator';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1014,6 +1015,13 @@ export interface ApiCreatorCreator extends Schema.CollectionType {
       'oneToMany',
       'api::product.product'
     >;
+    seo: Attribute.Component<'shared.seo'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
