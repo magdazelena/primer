@@ -1,11 +1,7 @@
 import Link from "next/link";
 import { ArticleBase, Category } from "@/types/article";
-
-function selectedFilter(current: string, selected: string) {
-  return current === selected
-    ? "px-3 py-1 rounded-lg hover:underline bg-accent text-primary"
-    : "px-3 py-1 rounded-lg hover:underline bg-accent/50 text-secondary";
-}
+import { CategoryThumbnail } from "./CategoryThumbnail";
+import { findParentCategory } from "../utils/find-parent-category";
 
 export default function ArticleSelect({
   categories,
@@ -19,6 +15,7 @@ export default function ArticleSelect({
     category: string;
   };
 }) {
+  const parentCategory = findParentCategory(categories, params["category"]);
   return (
     <div className="p-4 min-h-[365px] relative">
       <h4 className="text-xl font-semibold">Browse By Category</h4>
@@ -28,20 +25,25 @@ export default function ArticleSelect({
           {categories.map((category: Category) => {
             if (category.attributes.articles.data.length === 0) return null;
             return (
-              <Link
-                href={`/blog/${category.attributes.slug}`}
-                className={selectedFilter(
-                  category.attributes.slug,
-                  params.category
-                )}
-              >
-                #{category.attributes.name}
-              </Link>
+              <CategoryThumbnail
+                key={category.id}
+                categoryName={category.attributes.name}
+                categorySlug={category.attributes.slug}
+                selected={params["category"]}
+                basePath="/blog"
+              />
             );
           })}
-          <Link href={"/blog"} className={selectedFilter("", "filter")}>
-            #all
-          </Link>
+          <CategoryThumbnail
+            categoryName={`${
+              parentCategory ? parentCategory.attributes.name : "All posts"
+            }`}
+            categorySlug={`${
+              parentCategory ? parentCategory.attributes.slug : ""
+            }`}
+            selected="filter"
+            basePath="/blog"
+          />
         </div>
 
         <div className="space-y-2">
