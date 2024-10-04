@@ -86,6 +86,16 @@
       },
       "component": "shared.seo",
       "required": true
+    },
+    "lead": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text",
+      "required": true,
+      "maxLength": 300
     }
   }
 }

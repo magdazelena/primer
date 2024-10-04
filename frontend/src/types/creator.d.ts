@@ -15,6 +15,7 @@ interface Creator {
         },
         bio: BlocksContent,
         slug: string;
+        lead: string;
     }
 }
 
