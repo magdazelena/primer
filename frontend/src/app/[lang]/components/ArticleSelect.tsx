@@ -1,7 +1,7 @@
-import Link from "next/link";
-import { ArticleBase, Category } from "@/types/article";
+import { Article, Category } from "@/types/article";
 import { CategoryThumbnail } from "./CategoryThumbnail";
 import { findParentCategory } from "../utils/find-parent-category";
+import { ArticleThumbnail } from "./ArticleThumbnail";
 
 export default function ArticleSelect({
   categories,
@@ -9,7 +9,7 @@ export default function ArticleSelect({
   params,
 }: {
   categories: Category[];
-  articles: ArticleBase[];
+  articles: Article[];
   params: {
     slug: string;
     category: string;
@@ -17,11 +17,11 @@ export default function ArticleSelect({
 }) {
   const parentCategory = findParentCategory(categories, params["category"]);
   return (
-    <div className="p-4 min-h-[365px] relative">
+    <div className="col-span-12 p-4 min-h-[365px] relative">
       <h4 className="text-xl font-semibold">Browse By Category</h4>
 
       <div>
-        <div className="flex flex-wrap py-6 space-x-2 border-gray-400">
+        <div className="flex flex-wrap py-6">
           {categories.map((category: Category) => {
             if (category.attributes.articles.data.length === 0) return null;
             return (
@@ -48,23 +48,11 @@ export default function ArticleSelect({
 
         <div className="space-y-2">
           <h4 className="text-lg font-semibold">Other Posts You May Like</h4>
-          <ul className="ml-4 space-y-1 list-disc">
-            {articles.map((article: ArticleBase) => {
-              return (
-                <li>
-                  <Link
-                    rel="noopener noreferrer"
-                    href={`/blog/${params.category}/${article.attributes.slug}`}
-                    className={`${
-                      params.slug === article.attributes.slug && "link-active"
-                    }  `}
-                  >
-                    {article.attributes.title}
-                  </Link>
-                </li>
-              );
+          <div className="flex flex-wrap">
+            {articles.map((article: Article) => {
+              return <ArticleThumbnail key={article.id} article={article} />;
             })}
-          </ul>
+          </div>
         </div>
       </div>
     </div>

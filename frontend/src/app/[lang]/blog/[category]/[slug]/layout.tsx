@@ -1,6 +1,6 @@
 import ArticleSelect from "@/app/[lang]/components/ArticleSelect";
 import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
-import { ArticleBase, Category } from "@/types/article";
+import { Article, ArticleBase, Category } from "@/types/article";
 
 async function fetchSideMenuData(filter: string) {
   try {
@@ -12,18 +12,34 @@ async function fetchSideMenuData(filter: string) {
       { populate: "*" },
       options
     );
-
+    const selectedFilter = filter
+      ? {
+          filters: {
+            category: {
+              slug: filter,
+            },
+          },
+        }
+      : {};
     const articlesResponse = await fetchAPI(
       "/articles",
-      filter
-        ? {
-            filters: {
-              category: {
-                slug: filter,
+      {
+        populate: {
+          cover: { fields: ["url"] },
+          category: { fields: ["slug"] },
+          authorsBio: {
+            populate: {
+              avatar: {
+                fields: ["name", "alternativeText", "caption", "url"],
+              },
+              name: {
+                populate: true,
               },
             },
-          }
-        : {},
+          },
+        },
+        ...selectedFilter,
+      },
       options
     );
 
@@ -37,7 +53,7 @@ async function fetchSideMenuData(filter: string) {
 }
 
 interface Data {
-  articles: ArticleBase[];
+  articles: Article[];
   categories: Category[];
 }
 
