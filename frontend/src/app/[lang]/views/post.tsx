@@ -24,6 +24,8 @@ export default function Post({ data }: { data: Article }) {
         />
       )}
       <div className="space-y-6">
+        <p className="text-lg italic">{description}</p>
+        <hr />
         <h1 className="leading-tight text-5xl font-bold ">{title}</h1>
         <div className="flex flex-col items-start justify-between w-full md:flex-row md:items-center text-accent2">
           <div className="flex items-center md:space-x-2">
@@ -44,8 +46,6 @@ export default function Post({ data }: { data: Article }) {
       </div>
 
       <div className="text-secondary max-w-[1000px]">
-        <p>{description}</p>
-
         {data.attributes.blocks &&
           data.attributes.blocks.map((section: any, index: number) =>
             componentResolver(section, index)
