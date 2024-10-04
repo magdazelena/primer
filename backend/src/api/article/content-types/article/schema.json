@@ -50,17 +50,17 @@
         "sections.rich-text"
       ]
     },
-    "authorsBio": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::author.author",
-      "inversedBy": "articles"
-    },
     "seo": {
       "type": "component",
       "repeatable": false,
       "component": "shared.seo",
       "required": true
+    },
+    "creator": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::creator.creator",
+      "inversedBy": "articles"
     }
   }
 }

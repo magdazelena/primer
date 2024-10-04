@@ -29,7 +29,7 @@ export default function Profile() {
         populate: {
           cover: { fields: ["url"] },
           category: { populate: "*" },
-          authorsBio: {
+          creator: {
             populate: "*",
           },
         },

@@ -9,9 +9,9 @@ const ArticleThumbnail = ({ article }: { article: Article }) => {
   );
 
   const category = article.attributes.category.data?.attributes;
-  const authorsBio = article.attributes.authorsBio.data?.attributes;
+  const creator = article.attributes.creator.data?.attributes;
 
-  const avatarUrl = getStrapiMedia(authorsBio?.avatar.data.attributes.url);
+  const avatarUrl = getStrapiMedia(creator?.avatar.data.attributes.url);
 
   return (
     <Link
@@ -48,8 +48,8 @@ const ArticleThumbnail = ({ article }: { article: Article }) => {
           <span className="text-xs text-accent">
             {formatDate(article.attributes.publishedAt)}
           </span>
-          {authorsBio && (
-            <span className="text-xs text-accent">{authorsBio.name}</span>
+          {creator && (
+            <span className="text-xs text-accent">{creator.name}</span>
           )}
         </div>
         <p className="py-4">{article.attributes.description}</p>

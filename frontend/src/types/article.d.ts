@@ -27,7 +27,7 @@ interface ArticleFull {
         };
       };
     };
-    authorsBio: {
+    creator: {
       data: {
         attributes: {
           name: string;

@@ -4,12 +4,11 @@ import componentResolver from "../utils/component-resolver";
 import { Article } from "@/types/article";
 
 export default function Post({ data }: { data: Article }) {
-  const { title, description, publishedAt, cover, authorsBio } =
-    data.attributes;
-  const author = authorsBio.data?.attributes;
+  const { title, description, publishedAt, cover, creator } = data.attributes;
+  const author = creator.data?.attributes;
   const imageUrl = getStrapiMedia(cover.data?.attributes.url);
   const authorImgUrl = getStrapiMedia(
-    authorsBio.data?.attributes.avatar.data.attributes.url
+    creator.data?.attributes.avatar.data.attributes.url
   );
 
   return (

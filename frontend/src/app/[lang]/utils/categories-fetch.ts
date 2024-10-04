@@ -60,7 +60,7 @@ export async function fetchPostsByCategory(
         category: {
           populate: "*",
         },
-        authorsBio: {
+        creator: {
           populate: "*",
         },
       },
