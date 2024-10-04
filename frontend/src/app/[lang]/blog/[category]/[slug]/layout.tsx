@@ -19,7 +19,7 @@ async function fetchSideMenuData(filter: string) {
         ? {
             filters: {
               category: {
-                name: filter,
+                slug: filter,
               },
             },
           }
@@ -53,7 +53,6 @@ export default async function LayoutRoute({
 }) {
   const { category } = params;
   const { categories, articles } = (await fetchSideMenuData(category)) as Data;
-
   return (
     <section className="container p-8 mx-auto space-y-6 sm:space-y-12">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-2 lg:gap-4">
