@@ -1,11 +1,7 @@
-import Link from "next/link";
-import { ArticleBase, Category } from "@/types/article";
-
-function selectedFilter(current: string, selected: string) {
-  return current === selected
-    ? "px-3 py-1 rounded-lg hover:underline bg-accent text-primary"
-    : "px-3 py-1 rounded-lg hover:underline bg-accent/50 text-secondary";
-}
+import { Article, Category } from "@/types/article";
+import { CategoryThumbnail } from "./CategoryThumbnail";
+import { findParentCategory } from "../utils/find-parent-category";
+import { ArticleThumbnail } from "./ArticleThumbnail";
 
 export default function ArticleSelect({
   categories,
@@ -13,56 +9,50 @@ export default function ArticleSelect({
   params,
 }: {
   categories: Category[];
-  articles: ArticleBase[];
+  articles: Article[];
   params: {
     slug: string;
     category: string;
   };
 }) {
+  const parentCategory = findParentCategory(categories, params["category"]);
   return (
-    <div className="p-4 rounded-lg bg-gray-900 min-h-[365px] relative">
+    <div className="col-span-12 p-4 min-h-[365px] relative">
       <h4 className="text-xl font-semibold">Browse By Category</h4>
 
       <div>
-        <div className="flex flex-wrap py-6 space-x-2 border-gray-400">
+        <div className="flex flex-wrap py-6">
           {categories.map((category: Category) => {
             if (category.attributes.articles.data.length === 0) return null;
             return (
-              <Link
-                href={`/blog/${category.attributes.slug}`}
-                className={selectedFilter(
-                  category.attributes.slug,
-                  params.category
-                )}
-              >
-                #{category.attributes.name}
-              </Link>
+              <CategoryThumbnail
+                key={category.id}
+                categoryName={category.attributes.name}
+                categorySlug={category.attributes.slug}
+                selected={params["category"]}
+                basePath="/blog"
+              />
             );
           })}
-          <Link href={"/blog"} className={selectedFilter("", "filter")}>
-            #all
-          </Link>
+          <CategoryThumbnail
+            categoryName={`${
+              parentCategory ? parentCategory.attributes.name : "All posts"
+            }`}
+            categorySlug={`${
+              parentCategory ? parentCategory.attributes.slug : ""
+            }`}
+            selected="filter"
+            basePath="/blog"
+          />
         </div>
 
         <div className="space-y-2">
           <h4 className="text-lg font-semibold">Other Posts You May Like</h4>
-          <ul className="ml-4 space-y-1 list-disc">
-            {articles.map((article: ArticleBase) => {
-              return (
-                <li>
-                  <Link
-                    rel="noopener noreferrer"
-                    href={`/blog/${params.category}/${article.attributes.slug}`}
-                    className={`${
-                      params.slug === article.attributes.slug && "link-active"
-                    }  `}
-                  >
-                    {article.attributes.title}
-                  </Link>
-                </li>
-              );
+          <div className="flex flex-wrap">
+            {articles.map((article: Article) => {
+              return <ArticleThumbnail key={article.id} article={article} />;
             })}
-          </ul>
+          </div>
         </div>
       </div>
     </div>

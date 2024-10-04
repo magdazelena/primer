@@ -856,9 +856,9 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       [
         'shared.media',
         'shared.quote',
-        'shared.rich-text',
         'shared.slider',
-        'shared.video-embed'
+        'shared.video-embed',
+        'sections.rich-text'
       ]
     >;
     authorsBio: Attribute.Relation<

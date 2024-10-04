@@ -1,13 +1,15 @@
 import Link from "next/link";
 
-const ProductCategoryThumbnail = ({
+const CategoryThumbnail = ({
   categoryName,
   categorySlug,
   selected,
+  basePath,
 }: {
   categoryName: string;
   categorySlug: string;
   selected: string;
+  basePath: string;
 }) => {
   function selectedFilter(current: string, selected: string) {
     return current === selected
@@ -16,8 +18,8 @@ const ProductCategoryThumbnail = ({
   }
   return (
     <Link
-      href={`/products/${categorySlug}`}
-      className={`flex p-3 m-3 text-center rounded-lg w-20 h-20 lg:h-36 lg:w-36 hover:no-underline justify-center items-center ${selectedFilter(
+      href={`${basePath}/${categorySlug}`}
+      className={`flex p-3 m-3 text-center rounded-lg w-full min-h-20 lg:h-36 lg:w-36 hover:no-underline justify-center items-center transition-all duration-300 ${selectedFilter(
         categorySlug,
         selected
       )}`}
@@ -26,4 +28,4 @@ const ProductCategoryThumbnail = ({
     </Link>
   );
 };
-export { ProductCategoryThumbnail };
+export { CategoryThumbnail };

@@ -1,6 +1,6 @@
 import { ProductCategory, Product } from "@/types/product";
 import { ProductThumbnail } from "./ProductThumbnail";
-import { ProductCategoryThumbnail } from "./ProductCategoryThumbnail";
+import { CategoryThumbnail } from "./CategoryThumbnail";
 import { findParentCategory } from "../utils/find-parent-category";
 
 export default function ProductSelect({
@@ -31,15 +31,16 @@ export default function ProductSelect({
             if (productCategory.attributes.products.data.length === 0)
               return null;
             return (
-              <ProductCategoryThumbnail
+              <CategoryThumbnail
                 key={productCategory.id}
                 categoryName={productCategory.attributes.name}
                 categorySlug={productCategory.attributes.slug}
                 selected={params["product-category"]}
+                basePath="/products"
               />
             );
           })}
-          <ProductCategoryThumbnail
+          <CategoryThumbnail
             categoryName={`${
               parentCategory ? parentCategory.attributes.name : "All products"
             }`}
@@ -47,6 +48,7 @@ export default function ProductSelect({
               parentCategory ? parentCategory.attributes.slug : ""
             }`}
             selected="filter"
+            basePath="/products"
           />
         </div>
 

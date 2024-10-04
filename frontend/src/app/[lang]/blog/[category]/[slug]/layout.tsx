@@ -1,6 +1,6 @@
 import ArticleSelect from "@/app/[lang]/components/ArticleSelect";
 import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
-import { ArticleBase, Category } from "@/types/article";
+import { Article, ArticleBase, Category } from "@/types/article";
 
 async function fetchSideMenuData(filter: string) {
   try {
@@ -12,18 +12,34 @@ async function fetchSideMenuData(filter: string) {
       { populate: "*" },
       options
     );
-
+    const selectedFilter = filter
+      ? {
+          filters: {
+            category: {
+              slug: filter,
+            },
+          },
+        }
+      : {};
     const articlesResponse = await fetchAPI(
       "/articles",
-      filter
-        ? {
-            filters: {
-              category: {
-                name: filter,
+      {
+        populate: {
+          cover: { fields: ["url"] },
+          category: { fields: ["slug"] },
+          authorsBio: {
+            populate: {
+              avatar: {
+                fields: ["name", "alternativeText", "caption", "url"],
+              },
+              name: {
+                populate: true,
               },
             },
-          }
-        : {},
+          },
+        },
+        ...selectedFilter,
+      },
       options
     );
 
@@ -37,7 +53,7 @@ async function fetchSideMenuData(filter: string) {
 }
 
 interface Data {
-  articles: ArticleBase[];
+  articles: Article[];
   categories: Category[];
 }
 
@@ -53,18 +69,16 @@ export default async function LayoutRoute({
 }) {
   const { category } = params;
   const { categories, articles } = (await fetchSideMenuData(category)) as Data;
-
   return (
     <section className="container p-8 mx-auto space-y-6 sm:space-y-12">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-2 lg:gap-4">
-        <div className="col-span-2">{children}</div>
-        <aside>
-          <ArticleSelect
-            categories={categories}
-            articles={articles}
-            params={params}
-          />
-        </aside>
+        <div className="col-span-12">{children}</div>
+
+        <ArticleSelect
+          categories={categories}
+          articles={articles}
+          params={params}
+        />
       </div>
     </section>
   );
