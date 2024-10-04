@@ -1,5 +1,7 @@
-import { Article } from "../../../../types/article";
-import { Product } from "../../../../types/product";
+import { Article } from "@/types/article";
+import { Product } from "@/types/product";
+import { ArticleCarousel } from "../../components/ArticleCarousel";
+import { ProductCarousel } from "../../components/ProductCarousel";
 import { fetchAPI } from "../../utils/fetch-api";
 
 async function fetchCreationsData(filter: string) {
@@ -21,6 +23,17 @@ async function fetchCreationsData(filter: string) {
       {
         populate: {
           cover: { fields: ["url"] },
+          category: { fields: ["slug"] },
+          creator: {
+            populate: {
+              avatar: {
+                fields: ["name", "alternativeText", "caption", "url"],
+              },
+              name: {
+                populate: true,
+              },
+            },
+          },
         },
         pagination: {
           limit: 4,
@@ -74,6 +87,8 @@ export default async function LayoutRoute({
   return (
     <section className="container p-8 mx-auto space-y-6 sm:space-y-12">
       <div>{children}</div>
+      {articles.length > 0 && <ArticleCarousel articles={articles} />}
+      {products.length > 0 && <ProductCarousel products={products} />}
     </section>
   );
 }

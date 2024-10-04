@@ -2,6 +2,7 @@ import { Article, Category } from "@/types/article";
 import { CategoryThumbnail } from "./CategoryThumbnail";
 import { findParentCategory } from "../utils/find-parent-category";
 import { ArticleThumbnail } from "./ArticleThumbnail";
+import { ArticleCarousel } from "./ArticleCarousel";
 
 export default function ArticleSelect({
   categories,
@@ -46,14 +47,7 @@ export default function ArticleSelect({
           />
         </div>
 
-        <div className="space-y-2">
-          <h4 className="text-lg font-semibold">Other Posts You May Like</h4>
-          <div className="flex flex-wrap">
-            {articles.map((article: Article) => {
-              return <ArticleThumbnail key={article.id} article={article} />;
-            })}
-          </div>
-        </div>
+        {articles.length > 0 && <ArticleCarousel articles={articles} />}
       </div>
     </div>
   );

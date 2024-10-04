@@ -2,6 +2,7 @@ import { ProductCategory, Product } from "@/types/product";
 import { ProductThumbnail } from "./ProductThumbnail";
 import { CategoryThumbnail } from "./CategoryThumbnail";
 import { findParentCategory } from "../utils/find-parent-category";
+import { ProductCarousel } from "./ProductCarousel";
 
 export default function ProductSelect({
   categories,
@@ -52,16 +53,7 @@ export default function ProductSelect({
           />
         </div>
 
-        {products.length > 0 && (
-          <div className="space-y-2">
-            <h4 className="text-lg font-semibold">Other Posts You May Like</h4>
-            <div className="space-y-1 flex justify-start">
-              {products.map((product: Product) => (
-                <ProductThumbnail key={product.id} product={product} />
-              ))}
-            </div>
-          </div>
-        )}
+        {products.length > 0 && <ProductCarousel products={products} />}
       </div>
     </div>
   );
