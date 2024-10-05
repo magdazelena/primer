@@ -11,6 +11,22 @@ async function getProductBySlug(slug: string) {
       coverImage: { fields: ["url"] },
       media: "*",
       category: { fields: ["name", "slug"] },
+      creator: {
+        populate: {
+          avatar: {
+            fields: ["name", "alternativeText", "caption", "url"],
+          },
+          name: {
+            populate: true,
+          },
+          slug: {
+            populate: true,
+          },
+          lead: {
+            populate: true,
+          },
+        },
+      },
     },
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };

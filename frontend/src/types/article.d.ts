@@ -1,3 +1,5 @@
+import { Creator } from "./creator";
+
 interface ArticleBase {
   id: number;
   attributes: {
@@ -27,19 +29,8 @@ interface ArticleFull {
         };
       };
     };
-    authorsBio: {
-      data: {
-        attributes: {
-          name: string;
-          avatar: {
-            data: {
-              attributes: {
-                url: string;
-              };
-            };
-          };
-        };
-      };
+    creator: {
+      data: Creator;
     };
   };
 }

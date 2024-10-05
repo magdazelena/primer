@@ -1,6 +1,7 @@
 import { BlocksContent } from "@strapi/blocks-react-renderer";
 import { Image } from "./image";
 import { RichTextModule } from "./richtext";
+import { Creator } from "./creator";
 
 interface Product {
   id: number;
@@ -15,6 +16,9 @@ interface Product {
     retailPrice: number;
     wholesalePrice: number;
     totalCost: number;
+    creator?: {
+      data: Creator
+    };
     media: {
       data: Image[];
     }

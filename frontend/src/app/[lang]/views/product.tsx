@@ -1,12 +1,13 @@
 import { Product } from "@/types/product";
 import { ImageSlider } from "../components/ImageSlider";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { CreatorThumbnail } from "../components/CreatorThumbnail";
 
 export default function ProductView({ data }: { data: Product }) {
-  const { name, description, media, retailPrice, shortDescription } =
+  const { name, description, media, retailPrice, shortDescription, creator } =
     data.attributes;
   return (
-    <article className="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-4 text-secondary">
+    <article className="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-4 text-secondary pb-10">
       <div className="space-y-6 col-span-12 lg:col-span-2">
         {media && <ImageSlider images={media.data} />}
       </div>
@@ -23,8 +24,9 @@ export default function ProductView({ data }: { data: Product }) {
         <div className="lg:px-10 ">
           <BlocksRenderer content={description} />
         </div>
-
-        <hr />
+      </div>
+      <div className="col-span-12">
+        {creator?.data && <CreatorThumbnail creator={creator.data} />}
       </div>
     </article>
   );

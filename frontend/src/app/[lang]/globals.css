@@ -31,6 +31,13 @@ a:visited {
 a.link-active {
   @apply text-accent;
 }
+hr {
+  margin: 2rem 0;
+  height: 2px;
+  background-color: rgb(var(--color-secondary));
+  border-top-width: unset;
+  border: 0;
+}
 
 /******************************************* 
   Rich Text Styles
@@ -59,11 +66,6 @@ a.link-active {
 
 .rich-text h6 {
   @apply text-base font-bold mb-4 text-secondary;
-}
-
-/* Horizontal rules */
-.rich-text hr {
-  @apply border-accent2 my-8;
 }
 
 .rich-text a {

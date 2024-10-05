@@ -27,7 +27,7 @@ async function fetchSideMenuData(filter: string) {
         populate: {
           cover: { fields: ["url"] },
           category: { fields: ["slug"] },
-          authorsBio: {
+          creator: {
             populate: {
               avatar: {
                 fields: ["name", "alternativeText", "caption", "url"],

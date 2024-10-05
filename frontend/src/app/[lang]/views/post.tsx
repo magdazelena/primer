@@ -2,14 +2,14 @@ import { formatDate, getStrapiMedia } from "@/app/[lang]/utils/api-helpers";
 import Image from "next/image";
 import componentResolver from "../utils/component-resolver";
 import { Article } from "@/types/article";
+import { CreatorThumbnail } from "../components/CreatorThumbnail";
 
 export default function Post({ data }: { data: Article }) {
-  const { title, description, publishedAt, cover, authorsBio } =
-    data.attributes;
-  const author = authorsBio.data?.attributes;
+  const { title, description, publishedAt, cover, creator } = data.attributes;
+  const author = creator.data?.attributes;
   const imageUrl = getStrapiMedia(cover.data?.attributes.url);
   const authorImgUrl = getStrapiMedia(
-    authorsBio.data?.attributes.avatar.data.attributes.url
+    creator.data?.attributes.avatar.data.attributes.url
   );
 
   return (
@@ -45,11 +45,14 @@ export default function Post({ data }: { data: Article }) {
         </div>
       </div>
 
-      <div className="text-secondary max-w-[1000px]">
+      <div className="text-secondary max-w-[1000px] pb-5">
         {data.attributes.blocks &&
           data.attributes.blocks.map((section: any, index: number) =>
             componentResolver(section, index)
           )}
+      </div>
+      <div className="col-span-12">
+        {creator?.data && <CreatorThumbnail creator={creator.data} />}
       </div>
     </article>
   );

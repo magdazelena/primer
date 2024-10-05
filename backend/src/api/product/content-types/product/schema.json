@@ -124,6 +124,12 @@
         }
       },
       "type": "text"
+    },
+    "creator": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::creator.creator",
+      "inversedBy": "products"
     }
   }
 }
