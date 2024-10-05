@@ -5,6 +5,7 @@ import { fetchAPI } from "../utils/fetch-api";
 import Loader from "../components/Loader";
 import PageHeader from "../components/PageHeader";
 import { Creator } from "../../../types/creator";
+import { CreatorThumbnailListItem } from "../components/CreatorThumbnailItem";
 
 interface Meta {
   pagination: {
@@ -67,9 +68,9 @@ export default function Creators() {
     <div>
       <PageHeader heading="Creators" text="Meet our creators" />
       <section className="container p-6 mx-auto space-y-6 sm:space-y-12">
-        <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid justify-center gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {data.map((creator: Creator) => (
-            <p key={creator.id}>{creator.attributes.name}</p>
+            <CreatorThumbnailListItem key={creator.id} creator={creator} />
           ))}
         </div>
         {meta!.pagination.start + meta!.pagination.limit <
