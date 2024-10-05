@@ -7,14 +7,18 @@ const CreatorView = ({ creator }: { creator: Creator }) => {
   const { avatar, name, bio, lead, email } = creator.attributes;
   const imageUrl = getStrapiMedia(avatar.data?.attributes.url);
   return (
-    <article className="grid grid-cols-3 lg:gap-5 text-secondary">
+    <article className="grid grid-cols-3 lg:gap-20 text-secondary">
       <div className="col-span-12 lg:col-span-2 ">
         <h1 className="leading-tight text-5xl font-bold ">{name}</h1>
         <p className="text-lg italic py-5">{lead}</p>
         <hr className="mb-5 h-[2px] bg-secondary" />
         <div className="text-secondary max-w-[1000px] rich-text">
           <BlocksRenderer content={bio} />
-          Write to me: <a href={`mailto:${email}`}>{email}</a>
+          {email && (
+            <>
+              Write to me: <a href={`mailto:${email}`}>{email}</a>
+            </>
+          )}
         </div>
       </div>
       <div className="col-span-12 lg:col-span-1 ">
