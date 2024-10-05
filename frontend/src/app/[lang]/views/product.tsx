@@ -24,13 +24,10 @@ export default function ProductView({ data }: { data: Product }) {
         <div className="lg:px-10 ">
           <BlocksRenderer content={description} />
         </div>
-
-        <hr />
       </div>
       <div className="col-span-12">
         {creator?.data && <CreatorThumbnail creator={creator.data} />}
       </div>
-      <hr className="col-span-12" />
     </article>
   );
 }
