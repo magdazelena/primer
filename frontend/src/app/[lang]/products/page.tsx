@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import { fetchAPI } from "@/utils/fetch-api";
 
 import Loader from "@/components/Loader";
-import List from "../views/product-list";
+import List from "./views/product-list";
 import PageHeader from "@/components/PageHeader";
 
 interface Meta {

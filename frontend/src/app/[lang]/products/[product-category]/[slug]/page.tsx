@@ -1,6 +1,6 @@
 import { fetchAPI } from "@/utils/fetch-api";
 import type { Metadata } from "next";
-import ProductView from "@/app/[lang]/views/product";
+import ProductView from "../../views/product";
 
 async function getProductBySlug(slug: string) {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
