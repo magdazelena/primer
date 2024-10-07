@@ -6,7 +6,7 @@ import Inline from "yet-another-react-lightbox/plugins/inline";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import { NextJsImage } from "@/components/Image";
 import { Image } from "@/types/image";
-import { getStrapiURL } from "@/app/[lang]/utils/api-helpers";
+import { getStrapiURL } from "@/utils/api-helpers";
 import { Icons } from "./Icons";
 import useDeviceSize from "@/hooks/useDeviceSize";
 
