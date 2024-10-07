@@ -5,7 +5,7 @@ import { fetchAPI } from "@/utils/fetch-api";
 import Loader from "@/components/Loader";
 import PageHeader from "@/components/PageHeader";
 import { Creator } from "@/types/creator";
-import { CreatorThumbnailListItem } from "@/components/CreatorThumbnailItem";
+import { CreatorThumbnailListItem } from "./components/CreatorThumbnailItem";
 
 interface Meta {
   pagination: {

@@ -1,5 +1,5 @@
 import { ProductCategory, Product } from "@/types/product";
-import { CategoryThumbnail } from "@/components/CategoryThumbnail";
+import { CategoryThumbnail } from "@/app/[lang]/creators/components/CategoryThumbnail";
 import { findParentCategory } from "@/utils/find-parent-category";
 import { ProductCarousel } from "./ProductCarousel";
 

@@ -2,7 +2,7 @@ import { formatDate, getStrapiMedia } from "@/utils/api-helpers";
 import Image from "next/image";
 import componentResolver from "@/utils/component-resolver";
 import { Article } from "@/types/article";
-import { CreatorThumbnail } from "@/components/CreatorThumbnail";
+import { CreatorThumbnail } from "@/app/[lang]/creators/components/CreatorThumbnail";
 
 export default function Post({ data }: { data: Article }) {
   const { title, description, publishedAt, cover, creator } = data.attributes;
