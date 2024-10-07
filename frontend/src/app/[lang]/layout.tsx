@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { getStrapiMedia, getStrapiURL } from "./utils/api-helpers";
-import { fetchAPI } from "./utils/fetch-api";
+import { getStrapiMedia, getStrapiURL } from "@/utils/api-helpers";
+import { fetchAPI } from "@/utils/fetch-api";
 
 import { i18n } from "../../../i18n-config";
-import Banner from "./components/Banner";
-import Footer from "./components/Footer";
-import { FALLBACK_SEO } from "@/app/[lang]/utils/constants";
+import Banner from "@/components/Banner";
+import Footer from "@/components/Footer";
+import { FALLBACK_SEO } from "@/utils/constants";
 import qs from "qs";
-import Body from "./components/Body";
-import Navbar from "./components/Navbar";
+import Body from "@/components/Body";
+import Navbar from "@/components/Navbar";
 
 async function getGlobal(lang: string): Promise<any> {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;

@@ -1,8 +1,8 @@
 import { Article } from "@/types/article";
 import { Product } from "@/types/product";
-import { ArticleCarousel } from "../../components/ArticleCarousel";
-import { ProductCarousel } from "../../components/ProductCarousel";
-import { fetchAPI } from "../../utils/fetch-api";
+import { ArticleCarousel } from "@/app/[lang]/blog/components/ArticleCarousel";
+import { ProductCarousel } from "@/app/[lang]/products/components/ProductCarousel";
+import { fetchAPI } from "@/utils/fetch-api";
 
 async function fetchCreationsData(filter: string) {
   try {

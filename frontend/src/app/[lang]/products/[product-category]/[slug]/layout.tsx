@@ -1,7 +1,7 @@
-import ProductSelect from "@/app/[lang]/components/ProductSelect";
-import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
+import ProductSelect from "../../components/ProductSelect";
+import { fetchAPI } from "@/utils/fetch-api";
 import { Product, ProductCategory } from "@/types/product";
-import { findParentCategory } from "../../../utils/find-parent-category";
+import { findParentCategory } from "@/utils/find-parent-category";
 async function fetchSideMenuData(filter: string) {
   try {
     const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;

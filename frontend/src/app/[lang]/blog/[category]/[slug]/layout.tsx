@@ -1,6 +1,6 @@
-import ArticleSelect from "@/app/[lang]/components/ArticleSelect";
-import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
-import { Article, ArticleBase, Category } from "@/types/article";
+import ArticleSelect from "../../components/ArticleSelect";
+import { fetchAPI } from "@/utils/fetch-api";
+import { Article, Category } from "@/types/article";
 
 async function fetchSideMenuData(filter: string) {
   try {

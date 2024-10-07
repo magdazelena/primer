@@ -80,17 +80,6 @@ Description: Access to public content.
 Token duration: Unlimited
 Token type: Custom
 
-In Permissions lets give the following access.
-
-| Content         |   Permissions    |
-| --------------- | :--------------: |
-| Article         | find and findOne |
-| Author          | find and findOne |
-| Category        | find and findOne |
-| Global          |       find       |
-| Page            | find and findOne |
-| Product-feature | find and findOne |
-
 ![permissions](https://user-images.githubusercontent.com/6153188/231865625-a3634d89-0f40-4a6d-a356-8f654abd88b9.gif)
 
 Once you have your token add it to your `NEXT_PUBLIC_STRAPI_API_TOKEN` variable name in the `.env` file.
@@ -149,6 +138,10 @@ You can find the setting inside the `package.json` file inside the root folder.
 
 Go to the root folder and install the package, `yarn`
 You can start both apps by running `yarn dev`.
+
+## More docs:
+
+- Frontend [docs](./docs/frontend.md)
 
 ---
 

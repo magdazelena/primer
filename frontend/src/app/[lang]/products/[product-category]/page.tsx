@@ -1,6 +1,6 @@
-import PageHeader from "@/app/[lang]/components/PageHeader";
-import List from "@/app/[lang]/views/product-list";
-import { fetchPostsByCategory } from "@/app/[lang]/utils/categories-fetch";
+import PageHeader from "@/components/PageHeader";
+import List from "../views/product-list";
+import { fetchPostsByCategory } from "@//utils/categories-fetch";
 
 export default async function ProductCategoryRoute({
   params,
