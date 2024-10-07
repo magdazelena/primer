@@ -1,6 +1,6 @@
 import LangRedirect from "../../components/LangRedirect";
-import componentResolver from "./utils/component-resolver";
-import { getPageBySlug } from "@/app/[lang]/utils/get-page-by-slug";
+import componentResolver from "@/utils/component-resolver";
+import { getPageBySlug } from "@/utils/get-page-by-slug";
 
 export default async function RootRoute({
   params,
