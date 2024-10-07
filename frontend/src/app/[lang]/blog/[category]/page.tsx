@@ -1,6 +1,6 @@
 import PageHeader from "@/components/PageHeader";
-import BlogList from "@/app/[lang]/views/article-list";
-import { fetchPostsByCategory } from "@/app/[lang]/utils/categories-fetch";
+import BlogList from "../views/article-list";
+import { fetchPostsByCategory } from "@/utils/categories-fetch";
 
 export default async function CategoryRoute({
   params,

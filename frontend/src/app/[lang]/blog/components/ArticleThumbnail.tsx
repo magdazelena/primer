@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getStrapiMedia, formatDate } from "../app/[lang]/utils/api-helpers";
+import { getStrapiMedia, formatDate } from "@/utils/api-helpers";
 import { Article } from "@/types/article";
 
 const ArticleThumbnail = ({ article }: { article: Article }) => {

@@ -1,4 +1,4 @@
-import ArticleSelect from "@/components/ArticleSelect";
+import ArticleSelect from "../../components/ArticleSelect";
 import { fetchAPI } from "@/utils/fetch-api";
 import { Article, Category } from "@/types/article";
 

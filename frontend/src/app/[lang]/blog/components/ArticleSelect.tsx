@@ -1,8 +1,7 @@
 import { Article, Category } from "@/types/article";
-import { CategoryThumbnail } from "./CategoryThumbnail";
-import { findParentCategory } from "../app/[lang]/utils/find-parent-category";
-import { ArticleThumbnail } from "./ArticleThumbnail";
-import { ArticleCarousel } from "../app/[lang]/blog/components/ArticleCarousel";
+import { CategoryThumbnail } from "@/components/CategoryThumbnail";
+import { findParentCategory } from "@/utils/find-parent-category";
+import { ArticleCarousel } from "./ArticleCarousel";
 
 export default function ArticleSelect({
   categories,
