@@ -1421,6 +1421,11 @@ export interface ApiProductCategoryProductCategory
           localized: true;
         };
       }>;
+    parent: Attribute.Relation<
+      'api::product-category.product-category',
+      'oneToOne',
+      'api::product-category.product-category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

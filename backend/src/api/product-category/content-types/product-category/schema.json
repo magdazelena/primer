@@ -61,6 +61,11 @@
         }
       },
       "type": "text"
+    },
+    "parent": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product-category.product-category"
     }
   }
 }

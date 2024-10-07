@@ -1,6 +1,7 @@
 import ProductSelect from "@/app/[lang]/components/ProductSelect";
 import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
 import { Product, ProductCategory } from "@/types/product";
+import { findParentCategory } from "../../../utils/find-parent-category";
 async function fetchSideMenuData(filter: string) {
   try {
     const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
@@ -14,9 +15,29 @@ async function fetchSideMenuData(filter: string) {
     const filters = filter
       ? {
           filters: {
-            category: {
-              slug: filter,
-            },
+            $or: [
+              {
+                category: {
+                  slug: filter, // Products directly in the filtered category
+                },
+              },
+              {
+                category: {
+                  parent: {
+                    slug: filter, // Products in categories whose parent matches the filter
+                  },
+                },
+              },
+              {
+                category: {
+                  parent: {
+                    parent: {
+                      slug: filter, // Products in categories whose grandparent matches the filter
+                    },
+                  },
+                },
+              },
+            ],
           },
         }
       : {};
@@ -25,7 +46,20 @@ async function fetchSideMenuData(filter: string) {
       {
         populate: {
           coverImage: { fields: ["url"] },
-          category: { fields: ["slug"] },
+          category: {
+            populate: {
+              parent: {
+                populate: {
+                  parent: {
+                    fields: ["slug"],
+                  },
+                },
+                fields: ["slug"],
+              }, // Fetch the parent category's slug
+              children: { fields: ["slug"] }, // Fetch children categories' slug if needed
+            },
+            fields: ["slug"],
+          },
         },
         ...filters,
       },
@@ -62,6 +96,26 @@ export default async function LayoutRoute({
   const filteredProducts = products.filter((product) => {
     return product.attributes.slug.trim() !== params.slug.trim();
   });
+  if (filteredProducts.length === 0) {
+    const parentCategory = findParentCategory(categories, productCategory);
+    if (parentCategory) {
+      const { products: otherProducts } = (await fetchSideMenuData(
+        parentCategory.attributes.slug
+      )) as Data;
+      return (
+        <section className="container p-8 mx-auto space-y-6 sm:space-y-12">
+          <div>
+            {children}
+            <ProductSelect
+              categories={categories}
+              products={otherProducts}
+              params={params}
+            />
+          </div>
+        </section>
+      );
+    }
+  }
 
   return (
     <section className="container p-8 mx-auto space-y-6 sm:space-y-12">
