@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getStrapiMedia } from "../utils/api-helpers";
+import { getStrapiMedia } from "../app/[lang]/utils/api-helpers";
 
 interface Testimonial {
   text: string;

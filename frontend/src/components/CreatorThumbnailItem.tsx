@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Creator } from "../../../types/creator";
-import { getStrapiMedia } from "../utils/api-helpers";
+import { Creator } from "../types/creator";
+import { getStrapiMedia } from "../app/[lang]/utils/api-helpers";
 
 const CreatorThumbnailListItem = ({ creator }: { creator: Creator }) => {
   const { avatar, name, slug } = creator.attributes;

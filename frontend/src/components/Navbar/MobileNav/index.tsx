@@ -1,7 +1,7 @@
 "use client";
 import { Fragment, useState } from "react";
 import Dropdown from "./Dropdown";
-import { NavLink } from "@/app/[lang]/components/NavLink";
+import { NavLink } from "@/components/NavLink";
 import HamburgerIcon from "./HamburgerIcon";
 
 const MobileNav = ({

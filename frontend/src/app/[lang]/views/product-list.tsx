@@ -1,5 +1,5 @@
 import { Product } from "@/types/product";
-import { ProductThumbnail } from "../components/ProductThumbnail";
+import { ProductThumbnail } from "../../../components/ProductThumbnail";
 
 export default function ProductList({
   data: products,

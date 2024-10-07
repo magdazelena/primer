@@ -1,7 +1,7 @@
 import { ProductCategory, Product } from "@/types/product";
 import { ProductThumbnail } from "./ProductThumbnail";
 import { CategoryThumbnail } from "./CategoryThumbnail";
-import { findParentCategory } from "../utils/find-parent-category";
+import { findParentCategory } from "../app/[lang]/utils/find-parent-category";
 import { ProductCarousel } from "./ProductCarousel";
 
 export default function ProductSelect({

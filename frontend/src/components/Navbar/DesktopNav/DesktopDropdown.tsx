@@ -1,6 +1,6 @@
 import { Category } from "@/types/article";
 import { ProductCategory } from "@/types/product";
-import { NavLink } from "@/app/[lang]/components/NavLink";
+import { NavLink } from "@/components/NavLink";
 
 interface DesktopDropdownProps {
   title: string;

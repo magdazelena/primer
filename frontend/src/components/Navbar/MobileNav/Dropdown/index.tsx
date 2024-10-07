@@ -1,7 +1,7 @@
 "use client";
 import { Category } from "@/types/article";
 import { ProductCategory } from "@/types/product";
-import { NavLink } from "@/app/[lang]/components/NavLink";
+import { NavLink } from "@/components/NavLink";
 import React, { useState, useEffect } from "react";
 import DropdownContent from "./DropdownContent";
 

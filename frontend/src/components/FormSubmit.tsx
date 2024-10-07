@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { getStrapiURL } from "../utils/api-helpers";
+import { getStrapiURL } from "../app/[lang]/utils/api-helpers";
 
 export default function FormSubmit({
   placeholder,

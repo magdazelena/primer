@@ -1,6 +1,6 @@
 import { Article, Category } from "@/types/article";
 import { CategoryThumbnail } from "./CategoryThumbnail";
-import { findParentCategory } from "../utils/find-parent-category";
+import { findParentCategory } from "../app/[lang]/utils/find-parent-category";
 import { ArticleThumbnail } from "./ArticleThumbnail";
 import { ArticleCarousel } from "./ArticleCarousel";
 

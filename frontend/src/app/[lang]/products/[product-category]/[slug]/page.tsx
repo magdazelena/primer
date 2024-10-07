@@ -1,4 +1,4 @@
-import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
+import { fetchAPI } from "@/utils/fetch-api";
 import type { Metadata } from "next";
 import ProductView from "@/app/[lang]/views/product";
 

@@ -1,5 +1,5 @@
 import { Creator } from "@/types/creator";
-import { getStrapiMedia } from "../utils/api-helpers";
+import { getStrapiMedia } from "@/utils/api-helpers";
 import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 

@@ -1,7 +1,7 @@
 import { Product } from "@/types/product";
-import { ImageSlider } from "../components/ImageSlider";
+import { ImageSlider } from "../../../components/ImageSlider";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import { CreatorThumbnail } from "../components/CreatorThumbnail";
+import { CreatorThumbnail } from "../../../components/CreatorThumbnail";
 
 export default function ProductView({ data }: { data: Product }) {
   const { name, description, media, retailPrice, shortDescription, creator } =

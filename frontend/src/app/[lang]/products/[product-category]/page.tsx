@@ -1,4 +1,4 @@
-import PageHeader from "@/app/[lang]/components/PageHeader";
+import PageHeader from "@/components/PageHeader";
 import List from "@/app/[lang]/views/product-list";
 import { fetchPostsByCategory } from "@/app/[lang]/utils/categories-fetch";
 
