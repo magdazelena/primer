@@ -1,6 +1,6 @@
 import { fetchAPI } from "@/utils/fetch-api";
 import type { Metadata } from "next";
-import { CreatorView } from "../../views/creator";
+import { CreatorView } from "../views/creator";
 
 async function getCreatorBySlug(slug: string) {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
