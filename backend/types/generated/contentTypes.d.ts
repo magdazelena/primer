@@ -1196,7 +1196,8 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.large-video',
         'sections.rich-text',
         'sections.lead-form',
-        'sections.heading'
+        'sections.heading',
+        'sections.card-group'
       ]
     > &
       Attribute.SetPluginOptions<{
