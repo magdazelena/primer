@@ -87,20 +87,6 @@ export interface SharedMedia extends Schema.Component {
   };
 }
 
-export interface MetaMetadata extends Schema.Component {
-  collectionName: 'components_meta_metadata';
-  info: {
-    name: 'Metadata';
-    displayName: 'Metadata';
-    icon: 'robot';
-    description: '';
-  };
-  attributes: {
-    metaTitle: Attribute.String & Attribute.Required;
-    metaDescription: Attribute.Text & Attribute.Required;
-  };
-}
-
 export interface SectionsTestimonialsGroup extends Schema.Component {
   collectionName: 'components_slices_testimonials_groups';
   info: {
@@ -174,6 +160,8 @@ export interface SectionsHero extends Schema.Component {
     description: Attribute.String & Attribute.Required;
     picture: Attribute.Media<'images'> & Attribute.Required;
     buttons: Attribute.Component<'links.button-link', true>;
+    colorCode: Attribute.String;
+    fullImage: Attribute.Boolean & Attribute.DefaultTo<false>;
   };
 }
 
@@ -213,6 +201,20 @@ export interface SectionsBottomActions extends Schema.Component {
     title: Attribute.String;
     buttons: Attribute.Component<'links.button-link', true>;
     description: Attribute.Text;
+  };
+}
+
+export interface MetaMetadata extends Schema.Component {
+  collectionName: 'components_meta_metadata';
+  info: {
+    name: 'Metadata';
+    displayName: 'Metadata';
+    icon: 'robot';
+    description: '';
+  };
+  attributes: {
+    metaTitle: Attribute.String & Attribute.Required;
+    metaDescription: Attribute.Text & Attribute.Required;
   };
 }
 
@@ -404,7 +406,6 @@ declare module '@strapi/types' {
       'shared.rich-text': SharedRichText;
       'shared.quote': SharedQuote;
       'shared.media': SharedMedia;
-      'meta.metadata': MetaMetadata;
       'sections.testimonials-group': SectionsTestimonialsGroup;
       'sections.rich-text': SectionsRichText;
       'sections.lead-form': SectionsLeadForm;
@@ -413,6 +414,7 @@ declare module '@strapi/types' {
       'sections.heading': SectionsHeading;
       'sections.card-group': SectionsCardGroup;
       'sections.bottom-actions': SectionsBottomActions;
+      'meta.metadata': MetaMetadata;
       'links.social-link': LinksSocialLink;
       'links.link': LinksLink;
       'links.button': LinksButton;

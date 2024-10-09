@@ -28,6 +28,13 @@
       "type": "component",
       "repeatable": true,
       "component": "links.button-link"
+    },
+    "colorCode": {
+      "type": "string"
+    },
+    "fullImage": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
