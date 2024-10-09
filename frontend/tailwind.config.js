@@ -11,6 +11,10 @@ module.exports = {
       accent2: "rgba(var(--color-accent2), <alpha-value>)",
       accent3: "rgba(var(--color-accent3), <alpha-value>)",
     },
+    fontFamily: {
+      display: ['"Playfair Display"'],
+      body: ["Roboto"],
+    },
   },
   plugins: [],
 };

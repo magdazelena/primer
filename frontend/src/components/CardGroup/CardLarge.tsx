@@ -16,7 +16,7 @@ const CardLarge = ({ data }: { data: Card }) => {
         className="aspect-[3/2] object-cover"
       />
       <div className="pt-5">
-        <h3 className="font-bold text-2xl">{title}</h3>
+        <h3 className="font-bold text-2xl font-display">{title}</h3>
         {lead && <p className="py-2">{lead}</p>}
         <p>
           <Link href={link.url}>{link.text}</Link>

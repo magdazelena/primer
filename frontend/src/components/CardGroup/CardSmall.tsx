@@ -16,7 +16,7 @@ const CardSmall = ({ data }: { data: Card }) => {
         className="mb-3 aspect-square object-cover"
       />
 
-      <Link href={link.url} className="text-xl">
+      <Link href={link.url} className="text-xl font-display">
         {title}
       </Link>
     </div>

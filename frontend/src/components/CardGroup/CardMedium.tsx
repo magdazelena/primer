@@ -17,7 +17,7 @@ const CardMedium = ({ data }: { data: Card }) => {
       />
 
       <div className="pt-5">
-        <h3 className="font-bold text-xl">{title}</h3>
+        <h3 className="font-bold text-xl font-display">{title}</h3>
         <p>
           <Link href={link.url}>{link.text}</Link>
         </p>
