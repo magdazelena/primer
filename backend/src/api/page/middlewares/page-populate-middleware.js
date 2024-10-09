@@ -33,6 +33,9 @@ const populate = {
           coverImage: {
             fields: ["url", "alternativeText", "caption", "width", "height"],
           },
+          link: {
+            populate: true,
+          },
         },
       },
       plans: {
