@@ -25,7 +25,7 @@ export default function CardGroup({ data }: CardGroup) {
   return (
     <div className="w-full text-center p-10">
       {title && <h2 className="font-bold text-2xl">{title}</h2>}
-      <div className="flex justify-evenly pt-10">
+      <div className="flex justify-evenly pt-10 flex-wrap">
         {cards.map((card) => {
           const extendedCard = {
             __component: `elements.card-${type}`,

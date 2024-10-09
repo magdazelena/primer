@@ -7,7 +7,7 @@ const CardSmall = ({ data }: { data: Card }) => {
   const { title, link, coverImage } = data;
   const imgUrl = getStrapiMedia(coverImage.data.attributes.url);
   return (
-    <div>
+    <div className="pb-10">
       <Image
         src={imgUrl || ""}
         alt={coverImage.data.attributes.alternativeText || "card cover image"}
