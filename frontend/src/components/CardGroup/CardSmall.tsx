@@ -3,20 +3,22 @@ import Image from "next/image";
 import { Card } from ".";
 import { getStrapiMedia } from "@/utils/api-helpers";
 
-const CardSmall = ({ data }: { data: Partial<Card> }) => {
+const CardSmall = ({ data }: { data: Card }) => {
   const { title, link, coverImage } = data;
-  const imgUrl = getStrapiMedia(coverImage?.data.attributes.url || "");
+  const imgUrl = getStrapiMedia(coverImage.data.attributes.url);
   return (
     <div>
       <Image
         src={imgUrl || ""}
-        alt={coverImage?.data.attributes.alternativeText || "card cover image"}
+        alt={coverImage.data.attributes.alternativeText || "card cover image"}
         width={300}
         height={300}
+        className="mb-3 aspect-square object-cover"
       />
-      <h3>
-        <Link href={link?.url || ""}>{title}</Link>
-      </h3>
+
+      <Link href={link.url} className="text-xl font-bold">
+        {title}
+      </Link>
     </div>
   );
 };
