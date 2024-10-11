@@ -19,7 +19,7 @@ export default function Navbar({
       <div className="container flex justify-between h-16 mx-auto px-0 sm:px-6">
         <Logo src={logoUrl}>
           {logoText && (
-            <h2 className="text-2xl font-bold text-dark">{logoText}</h2>
+            <h2 className="text-2xl text-dark font-display">{logoText}</h2>
           )}
         </Logo>
 
