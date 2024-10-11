@@ -17,7 +17,7 @@ export function NavLink({ url, text, closeMenu, ...props }: NavLink) {
       {...props}
       href={url}
       onClick={handleClick}
-      className={`flex items-center text-secondary ${
+      className={`flex items-center text-dark ${
         path.endsWith(url) && "link-active"
       }`}
     >

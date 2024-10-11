@@ -26,7 +26,7 @@ export default function ProductSelect({
       </h4>
 
       <div>
-        <div className="flex flex-wrap py-6 space-x-2 border-accent">
+        <div className="flex flex-wrap py-6 space-x-2 border-accentDark">
           {categories.map((productCategory: ProductCategory) => {
             if (productCategory.attributes.products.data.length === 0)
               return null;

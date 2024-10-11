@@ -45,11 +45,11 @@ const ArticleThumbnail = ({ article }: { article: Article }) => {
         </h3>
 
         <div className="flex justify-between items-center">
-          <span className="text-xs text-accent">
+          <span className="text-xs text-accentDark">
             {formatDate(article.attributes.publishedAt)}
           </span>
           {creator && (
-            <span className="text-xs text-accent">{creator.name}</span>
+            <span className="text-xs text-accentDark">{creator.name}</span>
           )}
         </div>
         <p className="py-4">{article.attributes.description}</p>

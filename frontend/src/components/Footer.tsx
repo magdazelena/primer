@@ -28,8 +28,8 @@ function FooterLink({ url, text }: FooterLink) {
     <li className="flex">
       <Link
         href={url}
-        className={`hover:text-secondary ${
-          path === url && "text-secondary border-accent"
+        className={`hover:text-dark ${
+          path === url && "text-dark border-accentDark"
         }}`}
       >
         {text}
@@ -77,15 +77,13 @@ export default function Footer({
   socialLinks: Array<FooterLink>;
 }) {
   return (
-    <footer className="py-6 text-secondary">
-      <div className="container px-6 mx-auto space-y-6 divide-y divide-secondary md:space-y-12 divide-opacity-50">
+    <footer className="py-6 text-dark">
+      <div className="container px-6 mx-auto space-y-6 divide-y divide-dark md:space-y-12 divide-opacity-50">
         <div className="grid grid-cols-12">
           <div className="pb-6 col-span-full md:pb-0 md:col-span-6">
             <Logo src={logoUrl}>
               {logoText && (
-                <h2 className="text-2xl font-bold text-secondary">
-                  {logoText}
-                </h2>
+                <h2 className="text-2xl font-bold text-dark">{logoText}</h2>
               )}
             </Logo>
           </div>
@@ -130,7 +128,7 @@ export default function Footer({
                   href={link.url}
                   title={link.text}
                   target={link.newTab ? "_blank" : "_self"}
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-accent text-secondary"
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-accentDark text-dark"
                 >
                   <RenderSocialIcon social={link.social} />
                 </a>

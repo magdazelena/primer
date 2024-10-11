@@ -26,7 +26,7 @@ const DesktopNav = ({
     });
   };
   return (
-    <div className="items-center hidden lg:flex">
+    <div className="items-center hidden lg:flex ">
       <ul className="items-stretch hidden space-x-3 lg:flex">
         {links.map((item: NavLink) => {
           if (item.url === "/products") {

@@ -25,7 +25,7 @@ const ProductThumbnail = ({ product }: { product: Product }) => {
           src={imageUrl}
         />
       )}
-      <div className="p-6 space-y-2 relative text-secondary">
+      <div className="p-6 space-y-2 relative text-dark">
         <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">
           {product.attributes.name}
         </h3>

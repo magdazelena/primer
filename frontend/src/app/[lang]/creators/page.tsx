@@ -78,7 +78,7 @@ export default function Creators() {
           <div className="flex justify-center">
             <button
               type="button"
-              className="px-6 py-3 text-sm rounded-lg hover:underline bg-accent text-primary"
+              className="px-6 py-3 text-sm rounded-lg hover:underline bg-accentDark text-light"
               onClick={loadMorePosts}
             >
               Load more creators...

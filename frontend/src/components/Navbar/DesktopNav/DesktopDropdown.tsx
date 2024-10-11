@@ -44,8 +44,8 @@ const DesktopDropdown = ({
         className="block px-4 py-2 hover:bg-gray-200"
       />
       {categories.length > 0 && (
-        <ul className="fixed left-0 p-5 w-full hidden group-hover:flex top-level bg-white shadow-lg">
-          <span className="block h-[2px] w-full bg-secondary mb-5"></span>
+        <ul className="fixed left-0 p-5 w-full hidden group-hover:flex top-level bg-light shadow-lg">
+          <span className="block h-[2px] w-full bg-dark mb-5"></span>
           {categories.map((category: Category | ProductCategory) =>
             renderMenu(category)
           )}

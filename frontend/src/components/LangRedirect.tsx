@@ -5,14 +5,14 @@ import HighlightedText from "./HighlightedText";
 
 export default function LangRedirect() {
   return (
-    <section className="bg-secondary text-primary">
+    <section className="bg-dark text-light">
       <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
         <div className="flex flex-col justify-center p-6 text-center rounded-lg lg:max-w-md xl:max-w-lg lg:text-left">
           <HighlightedText
             text="There is no content available in your language."
             tag="h1"
             className="text-5xl font-bold leading-none sm:text-4xl mb-8"
-            color="text-secondary/50"
+            color="text-dark/50"
           />
 
           <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">

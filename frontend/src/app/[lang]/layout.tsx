@@ -122,7 +122,7 @@ export default async function RootLayout({
           logoText={navbar.navbarLogo.logoText}
         />
 
-        <main className="text-secondary min-h-screen">{children}</main>
+        <main className="text-dark min-h-screen">{children}</main>
 
         <Banner data={notificationBanner} />
 

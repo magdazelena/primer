@@ -40,7 +40,7 @@ export default function Hero({ data }: HeroProps) {
 
   return (
     <section
-      className={`${data.fullImage ? "text-primary" : "text-secondary"}`}
+      className={`${data.fullImage ? "text-light" : "text-dark"}`}
       style={{
         backgroundColor: data.colorCode,
         backgroundImage: data.fullImage ? "url(" + imgUrl + ")" : "",
@@ -54,14 +54,14 @@ export default function Hero({ data }: HeroProps) {
             text={data.title}
             tag="h1"
             className="text-5xl font-bold leading-none sm:text-6xl mb-8"
-            color="text-secondary"
+            color="text-dark"
           />
 
           <HighlightedText
             text={data.description}
             tag="p"
             className="tmt-6 mb-8 text-lg sm:mb-12"
-            color="text-secondary"
+            color="text-dark"
           />
           <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
             {data.buttons.map((button: Button, index: number) => (
