@@ -2,15 +2,11 @@
   "name": "primer",
   "private": true,
   "scripts": {
-    "frontend": "yarn dev --prefix ../frontend/",
-    "backend": "yarn dev --prefix ../backend/",
-    "clear": "cd frontend && rm -rf .next && rm -rf cache",
-    "setup:frontend": "cd apps/frontend && yarn",
-    "setup:backend": "cd apps/backend && yarn",
-    "setup": "yarn install && yarn setup:frontend && yarn setup:backend",
-    "dev": "yarn clear && concurrently \"cd frontend && yarn dev\" \"cd backend && yarn develop\"",
-    "seed": "cd backend && yarn strapi import -f ../seed-data.tar.gz",
-    "export": "cd backend && yarn strapi export --no-encrypt -f ../seed-data",
+    "frontend": "nx dev frontend",
+    "backend": "nx dev backend",
+    "clear": "nx clear frontend",
+    "setup": "yarn install",
+    "dev": "yarn clear && concurrently \"yarn frontend\" \"yarn backend\"",
     "repo:upstream": "git fetch upstream && git merge upstream/main"
   },
   "dependencies": {

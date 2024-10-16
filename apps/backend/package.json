@@ -4,11 +4,12 @@
   "version": "0.1.0",
   "description": "A Strapi application",
   "scripts": {
-    "develop": "strapi develop",
+    "dev": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "export": "strapi export --no-encrypt --file seed-data && mv seed-data.tar.gz ../"
+    "export": "strapi export --no-encrypt --file seed-data",
+    "import": "strapi import -f seed-data.tar.gz"
   },
   "devDependencies": {},
   "dependencies": {

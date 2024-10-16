@@ -6,6 +6,7 @@
     "targets": {
       "build": {
         "executor": "@nx/next:build",
+        "cache": true,
         "options": {
           "outputPath": "dist/apps/frontend"
         },
@@ -15,6 +16,9 @@
             "sourceMap": false
           }
         }
+      },
+      "dev": {
+        "cache": false
       },
       "serve": {
         "executor": "@nx/next:server",

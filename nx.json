@@ -3,18 +3,15 @@
   "defaultBase": "main",
 
   "targetDefaults": {
-    "setup:frontend": {
-      "cache": true
-    },
-    "setup:backend": {
-      "cache": true
-    },
     "setup": {
       "cache": true
     },
-    "build": {
+    "seed": {
+      "cache": true
+    },
+    "export": {
       "cache": true,
-      "outputs": ["{projectRoot}/dist"]
+      "outputs": ["{projectRoot}/seed-data.tar.gz"]
     }
   }
 }

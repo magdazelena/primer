@@ -6,7 +6,8 @@
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "clear": "rm -rf .next && rm -rf cache"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "latest",
