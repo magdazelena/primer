@@ -1,7 +1,7 @@
 version: 2
 
 updates:
-  - package-ecosystem: "yarn"
+  - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
@@ -9,7 +9,7 @@ updates:
     labels:
       - "npm dependencies"
       - "root"
-  - package-ecosystem: "yarn"
+  - package-ecosystem: "npm"
     directory: "/apps/frontend"
     schedule:
       interval: "weekly"
@@ -17,7 +17,7 @@ updates:
     labels:
       - "npm dependencies"
       - "frontend"
-  - package-ecosystem: "yarn"
+  - package-ecosystem: "npm"
     directory: "/apps/backend"
     schedule:
       interval: "weekly"
