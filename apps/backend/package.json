@@ -1,0 +1,39 @@
+{
+  "name": "primer-template",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
+  "scripts": {
+    "dev": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi",
+    "export": "strapi export --no-encrypt --file seed-data",
+    "seed": "strapi import -f ./seed-data.tar.gz"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@strapi/plugin-cloud": "latest",
+    "@strapi/plugin-i18n": "latest",
+    "@strapi/plugin-seo": "latest",
+    "@strapi/plugin-users-permissions": "latest",
+    "@strapi/strapi": "latest",
+    "better-sqlite3": "latest",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.27.0",
+    "strapi-plugin-slugify": "latest",
+    "styled-components": "^6.1.13"
+  },
+  "author": {
+    "name": "magdazelena"
+  },
+  "strapi": {
+    "uuid": "0f95dc7c-202b-4ab2-a874-3799d23b1640"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}

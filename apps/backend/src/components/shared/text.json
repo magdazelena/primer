@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_shared_texts",
+  "info": {
+    "displayName": "text",
+    "icon": "feather"
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "blocks"
+    }
+  }
+}

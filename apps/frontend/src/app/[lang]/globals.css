@@ -1,0 +1,339 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-dark: 0, 21, 36;
+    --color-light: 255, 248, 237;
+    --color-accentBright: 255, 125, 0;
+    --color-accentDark: 21, 97, 109;
+    --menu-height: 6rem;
+  }
+  @font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+  }
+  @font-face {
+    font-family: "Playfair Display";
+    font-style: normal;
+    font-weight: 100;
+    font-display: swap;
+    src: url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+  }
+}
+
+@import "yet-another-react-lightbox/styles.css";
+@import "yet-another-react-lightbox/plugins/thumbnails.css";
+/**
+Generic styles
+**/
+a {
+  @apply text-accentDark;
+}
+a:hover {
+  @apply text-accentDark/50 underline;
+}
+a:active,
+a:visited {
+  @apply text-accentDark;
+}
+a.link-active {
+  @apply text-accentDark;
+}
+hr {
+  margin: 2rem 0;
+  height: 2px;
+  background-color: rgb(var(--color-dark));
+  border-top-width: unset;
+  border: 0;
+}
+
+/******************************************* 
+  Rich Text Styles
+*******************************************/
+
+/* Headers */
+.rich-text h1 {
+  @apply text-4xl font-bold mb-4 text-dark;
+}
+
+.rich-text h2 {
+  @apply text-3xl font-bold mb-4 text-dark;
+}
+
+.rich-text h3 {
+  @apply text-2xl font-bold mb-4 text-dark;
+}
+
+.rich-text h4 {
+  @apply text-xl font-bold mb-4 text-dark;
+}
+
+.rich-text h5 {
+  @apply text-lg font-bold mb-4 text-dark;
+}
+
+.rich-text h6 {
+  @apply text-base font-bold mb-4 text-dark;
+}
+
+.rich-text a {
+  @apply text-accentDark;
+}
+.rich-text a:hover {
+  @apply text-accentDark/50 underline;
+}
+.rich-text a:active,
+.rich-text a:visited {
+  @apply text-accentDark;
+}
+
+/* Typographic replacements */
+.rich-text p {
+  @apply mb-4;
+}
+
+/* Emphasis */
+.rich-text strong {
+  @apply font-bold;
+}
+
+.rich-text em {
+  @apply italic;
+}
+
+.rich-text del {
+  @apply line-through;
+}
+
+/* Blockquotes */
+.rich-text blockquote {
+  @apply border-l-4 border-accentDark pl-4 py-2 mb-4;
+}
+
+/* Lists */
+.rich-text ul {
+  @apply list-disc pl-4 mb-4;
+}
+
+.rich-text ol {
+  @apply list-decimal pl-4 mb-4;
+}
+
+.rich-text li {
+  @apply mb-2;
+}
+
+.rich-text li > ul {
+  @apply list-disc pl-4 mb-2;
+}
+
+.rich-text li > ol {
+  @apply list-decimal pl-4 mb-2;
+}
+
+/* Tables */
+.rich-text table {
+  @apply w-full border-collapse border-accentDark my-6;
+}
+
+.rich-text th {
+  @apply bg-accentDark text-left py-2 px-4 font-semibold border-b border-accentDark;
+}
+
+.rich-text td {
+  @apply py-2 px-4 border-b border-accentDark;
+}
+
+/* Images */
+.rich-text img {
+  @apply w-full object-cover rounded-xl my-6;
+}
+
+/* Custom containers */
+.rich-text .warning {
+  @apply bg-yellow-100 border-yellow-500 text-yellow-700 px-4 py-2 rounded-lg mb-4;
+}
+
+/******************************************* 
+  React Slideshow Styles
+*******************************************/
+
+.react-slideshow-container [aria-label="Previous Slide"] {
+  margin-left: 1rem;
+}
+
+.react-slideshow-container [aria-label="Next Slide"] {
+  margin-right: 1rem;
+}
+
+/****
+Dropdowns
+****/
+
+.nav {
+  background-color: var(--color-light);
+  z-index: 200;
+  min-height: var(--menu-height);
+  transition: top 1s;
+}
+.nav-open,
+.nav-closed {
+  position: relative;
+  transition: top 1s;
+}
+.nav-open {
+  top: var(--menu-height);
+  & > .nav {
+    top: 0rem;
+  }
+}
+.nav-closed {
+  top: 0rem;
+  & > .nav {
+    top: calc(var(--menu-height) * -1);
+  }
+}
+.mobile-nav-open,
+.mobile-nav-closed {
+  & > div {
+    transition: top 1s;
+  }
+}
+.mobile-nav-open {
+  display: block;
+  & > div {
+    top: var(--menu-height);
+  }
+}
+.mobile-nav-closed {
+  display: hidden;
+  & > div {
+    top: -100%;
+  }
+}
+
+#menu-icon {
+  width: 40px;
+  height: 45px;
+  position: relative;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+}
+
+#menu-icon span {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background-color: rgb(var(--color-dark));
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: 0.25s ease-in-out;
+  -moz-transition: 0.25s ease-in-out;
+  -o-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+}
+
+#menu-icon span:nth-child(1) {
+  top: 10px;
+}
+
+#menu-icon span:nth-child(2),
+#menu-icon span:nth-child(3) {
+  top: 20px;
+}
+
+#menu-icon span:nth-child(4) {
+  top: 30px;
+}
+
+#menu-icon.open span:nth-child(1) {
+  top: 20px;
+  width: 0%;
+  left: 50%;
+}
+
+#menu-icon.open span:nth-child(2) {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+#menu-icon.open span:nth-child(3) {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+#menu-icon.open span:nth-child(4) {
+  top: 20px;
+  width: 0%;
+  left: 50%;
+}
+
+.dropdown-content {
+  &.active {
+    display: block;
+  }
+}
+
+.dropdown-content {
+  position: relative;
+  background-color: white;
+}
+.dropdown-content a {
+  white-space: nowrap;
+}
+
+.top-level {
+  justify-content: space-around;
+  flex-wrap: wrap;
+  & > li {
+    flex-basis: 20%;
+    & > a {
+      font-weight: bold;
+    }
+  }
+}
+/** image slider **/
+.yarl__container {
+  background-color: var(--color-light);
+}
+.yarl__thumbnails_container {
+  padding: 5px;
+  background-color: var(--color-light);
+  justify-content: center;
+}
+.yarl__thumbnails_bottom .yarl__thumbnails_vignette {
+  display: none;
+}
+.yarl__button {
+  filter: none;
+  &:hover {
+    filter: var(
+      --yarl__button_filter,
+      drop-shadow(2px 2px 2px rgba(var(--color-dark), 0.5))
+    );
+  }
+}
+.slider-icon {
+  fill: rgb(var(--color-dark));
+}

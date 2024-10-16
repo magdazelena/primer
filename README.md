@@ -1,13 +1,15 @@
 # Strapi Starter Next 14, Tailwind, Typescript and Strapi
 
+This is a monorepo supported by NX.
+
 ## Getting Started
 
-1. Clone the repository locally:
+1. Clone the repository locally.
 
 2. Run `setup` command to setup frontend and backend dependencies:
 
 ```bash
-  yarn setup
+  nx setup
 ```
 
 3. Next, navigate to your `/backend` directory and set up your `.env` file. You can use the `.env.example` file as reference:
@@ -25,8 +27,8 @@ TRANSFER_TOKEN_SALT=tobemodified
 4. Start your project by running the following command:
 
 ```bash
-  yarn build
-  yarn develop
+  nx build
+  nx dev
 ```
 
 You will be prompted to create your first admin user.
@@ -41,14 +43,18 @@ We are going to use our DEITS feature which will alow to easily import data into
 
 You can learn more about it in our documentation [here](https://docs.strapi.io/dev-docs/data-management).
 
-In the root of our project we have our `seed-data.tar.gz` file. We will use it to seed our data.
+In the backend directory we have our `seed-data.tar.gz` file. We will use it to seed our data.
 
-1. Open up your terminal and make sure you are still in you `backend` folder.
-
-2. Run the following command to seed your data:
+1. If in the `backend` folder, run the following command to seed your data:
 
 ```bash
-  yarn strapi import -f ../seed-data.tar.gz
+  nx seed
+```
+
+2. If in the `root` folder, run:
+
+```bash
+  nx seed backend
 ```
 
 ![after-import](https://user-images.githubusercontent.com/6153188/231865491-05cb5818-a0d0-49ce-807e-a879f7e3070c.gif)
@@ -107,7 +113,7 @@ In Permissions lets give the following access.
 
 Add your token to your `NEXT_PUBLIC_STRAPI_FORM_SUBMISSION_TOKEN` variable name in the `.env` file.
 
-Once your environment variables are set you can start your frontend application by running `yarn dev`.
+Once your environment variables are set you can start your frontend application by running `nx dev`.
 
 You should now see your Next JS frontend.
 
@@ -122,22 +128,36 @@ You can find the setting inside the `package.json` file inside the root folder.
 ```json
 {
   "scripts": {
-    "frontend": "yarn dev --prefix ../frontend/",
-    "backend": "yarn dev --prefix ../backend/",
-    "clear": "cd frontend && rm -rf .next && rm -rf cache",
-    "setup:frontend": "cd frontend && yarn",
-    "setup:backend": "cd backend && yarn",
-    "setup": "yarn install && yarn setup:frontend && yarn setup:backend",
-    "dev": "yarn clear && concurrently \"cd frontend && yarn dev\" \"cd backend && yarn develop\""
+    "frontend": "nx dev frontend",
+    "backend": "nx dev backend",
+    "clear": "nx clear frontend",
+    "setup": "yarn install",
+    "dev": "yarn clear && concurrently \"yarn frontend\" \"yarn backend\""
   },
   "dependencies": {
-    "concurrently": "^7.6.0"
+    "concurrently": "latest"
   }
 }
 ```
 
 Go to the root folder and install the package, `yarn`
-You can start both apps by running `yarn dev`.
+You can start both apps by running `nx dev`.
+
+## Installing dependencies from root into projects
+
+If you want to install external package, use:
+
+```bash
+  yarn add <package> --cwd <project name>
+```
+
+for example:
+
+```bash
+  yarn add react-router-dom --cwd frontend
+```
+
+If your dependency is being **shared** by the projects, make sure to install it into the `root` directly!
 
 ## More docs:
 

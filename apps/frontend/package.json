@@ -1,0 +1,35 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "NODE_OPTIONS='--inspect' next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "clear": "rm -rf .next && rm -rf cache"
+  },
+  "dependencies": {
+    "@formatjs/intl-localematcher": "latest",
+    "@heroicons/react": "latest",
+    "@strapi/blocks-react-renderer": "latest",
+    "@types/negotiator": "latest",
+    "@types/node": "latest",
+    "@types/qs": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "classnames": "latest",
+    "negotiator": "latest",
+    "next": "latest",
+    "qs": "latest",
+    "react-icons": "latest",
+    "remark-gfm": "latest",
+    "typescript": "latest",
+    "yet-another-react-lightbox": "latest"
+  },
+  "devDependencies": {
+    "autoprefixer": "latest",
+    "postcss": "latest",
+    "tailwindcss": "latest"
+  }
+}
