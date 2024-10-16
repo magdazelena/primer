@@ -1,0 +1,19 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "defaultBase": "main",
+  "targetDefaults": {
+    "setup:frontend": {
+      "cache": true
+    },
+    "setup:backend": {
+      "cache": true
+    },
+    "setup": {
+      "cache": true
+    },
+    "build": {
+      "cache": true,
+      "outputs": ["{projectRoot}/dist"]
+    }
+  }
+}

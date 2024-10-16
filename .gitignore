@@ -5,3 +5,7 @@ readme-images
 **/.yarn
 apps/frontend/next.config.js
 .nx
+
+
+.nx/cache
+.nx/workspace-data
