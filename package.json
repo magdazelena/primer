@@ -1,5 +1,6 @@
-{"name": "primer",
-"private": true,
+{
+  "name": "primer",
+  "private": true,
   "scripts": {
     "frontend": "yarn dev --prefix ../frontend/",
     "backend": "yarn dev --prefix ../backend/",
@@ -17,9 +18,11 @@
     "npm-check-updates": "^16.14.15"
   },
   "devDependencies": {
+    "@nx/next": "^20.0.1",
     "nx": "20.0.1"
   },
   "nx": {},
-  "workspaces": ["docs/*", "apps/*"]
-  
+  "workspaces": [
+    "apps/*"
+  ]
 }
