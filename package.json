@@ -6,8 +6,7 @@
     "backend": "nx dev backend",
     "clear": "nx clear frontend",
     "setup": "yarn install",
-    "dev": "yarn clear && concurrently \"yarn frontend\" \"yarn backend\"",
-    "repo:upstream": "git fetch upstream && git merge upstream/main"
+    "dev": "yarn clear && concurrently \"yarn frontend\" \"yarn backend\""
   },
   "dependencies": {
     "concurrently": "latest",

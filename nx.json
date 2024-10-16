@@ -5,13 +5,6 @@
   "targetDefaults": {
     "setup": {
       "cache": true
-    },
-    "seed": {
-      "cache": true
-    },
-    "export": {
-      "cache": true,
-      "outputs": ["{projectRoot}/seed-data.tar.gz"]
     }
   }
 }
