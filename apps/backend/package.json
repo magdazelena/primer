@@ -9,7 +9,7 @@
     "build": "strapi build",
     "strapi": "strapi",
     "export": "strapi export --no-encrypt --file seed-data",
-    "import": "strapi import -f seed-data.tar.gz"
+    "seed": "strapi import -f ./seed-data.tar.gz"
   },
   "devDependencies": {},
   "dependencies": {
@@ -19,9 +19,11 @@
     "@strapi/plugin-users-permissions": "latest",
     "@strapi/strapi": "latest",
     "better-sqlite3": "latest",
-    "react-router-dom": "latest",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.27.0",
     "strapi-plugin-slugify": "latest",
-    "styled-components": "latest"
+    "styled-components": "^6.1.13"
   },
   "author": {
     "name": "magdazelena"

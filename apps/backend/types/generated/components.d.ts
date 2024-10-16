@@ -1,28 +1,28 @@
-import type { Schema, Attribute } from '@strapi/strapi';
+import type { Struct, Schema } from '@strapi/strapi';
 
-export interface SharedVideoEmbed extends Schema.Component {
+export interface SharedVideoEmbed extends Struct.ComponentSchema {
   collectionName: 'components_sections_video_embeds';
   info: {
     displayName: 'Video Embed';
     description: '';
   };
   attributes: {
-    url: Attribute.String & Attribute.Required;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
-export interface SharedText extends Schema.Component {
+export interface SharedText extends Struct.ComponentSchema {
   collectionName: 'components_shared_texts';
   info: {
     displayName: 'text';
     icon: 'feather';
   };
   attributes: {
-    content: Attribute.Blocks;
+    content: Schema.Attribute.Blocks;
   };
 }
 
-export interface SharedSlider extends Schema.Component {
+export interface SharedSlider extends Struct.ComponentSchema {
   collectionName: 'components_shared_sliders';
   info: {
     displayName: 'Slider';
@@ -30,11 +30,11 @@ export interface SharedSlider extends Schema.Component {
     description: '';
   };
   attributes: {
-    files: Attribute.Media<'images', true>;
+    files: Schema.Attribute.Media<'images', true>;
   };
 }
 
-export interface SharedSeo extends Schema.Component {
+export interface SharedSeo extends Struct.ComponentSchema {
   collectionName: 'components_shared_seos';
   info: {
     name: 'Seo';
@@ -43,13 +43,13 @@ export interface SharedSeo extends Schema.Component {
     description: '';
   };
   attributes: {
-    metaTitle: Attribute.String & Attribute.Required;
-    metaDescription: Attribute.Text & Attribute.Required;
-    shareImage: Attribute.Media<'images'>;
+    metaTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    metaDescription: Schema.Attribute.Text & Schema.Attribute.Required;
+    shareImage: Schema.Attribute.Media<'images'>;
   };
 }
 
-export interface SharedRichText extends Schema.Component {
+export interface SharedRichText extends Struct.ComponentSchema {
   collectionName: 'components_shared_rich_texts';
   info: {
     displayName: 'Rich text';
@@ -57,11 +57,11 @@ export interface SharedRichText extends Schema.Component {
     description: '';
   };
   attributes: {
-    content: Attribute.Blocks;
+    content: Schema.Attribute.Blocks;
   };
 }
 
-export interface SharedQuote extends Schema.Component {
+export interface SharedQuote extends Struct.ComponentSchema {
   collectionName: 'components_shared_quotes';
   info: {
     displayName: 'Quote';
@@ -69,13 +69,13 @@ export interface SharedQuote extends Schema.Component {
     description: '';
   };
   attributes: {
-    title: Attribute.String;
-    body: Attribute.Text & Attribute.Required;
-    author: Attribute.String;
+    title: Schema.Attribute.String;
+    body: Schema.Attribute.Text & Schema.Attribute.Required;
+    author: Schema.Attribute.String;
   };
 }
 
-export interface SharedMedia extends Schema.Component {
+export interface SharedMedia extends Struct.ComponentSchema {
   collectionName: 'components_shared_media';
   info: {
     displayName: 'Media';
@@ -83,11 +83,11 @@ export interface SharedMedia extends Schema.Component {
     description: '';
   };
   attributes: {
-    file: Attribute.Media<'images'>;
+    file: Schema.Attribute.Media<'images'>;
   };
 }
 
-export interface SectionsTestimonialsGroup extends Schema.Component {
+export interface SectionsTestimonialsGroup extends Struct.ComponentSchema {
   collectionName: 'components_slices_testimonials_groups';
   info: {
     name: 'TestimonialsGroup';
@@ -96,13 +96,13 @@ export interface SectionsTestimonialsGroup extends Schema.Component {
     description: '';
   };
   attributes: {
-    title: Attribute.String;
-    description: Attribute.Text;
-    testimonials: Attribute.Component<'elements.testimonial', true>;
+    title: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
+    testimonials: Schema.Attribute.Component<'elements.testimonial', true>;
   };
 }
 
-export interface SectionsRichText extends Schema.Component {
+export interface SectionsRichText extends Struct.ComponentSchema {
   collectionName: 'components_sections_rich_texts';
   info: {
     name: 'RichText';
@@ -111,11 +111,11 @@ export interface SectionsRichText extends Schema.Component {
     description: '';
   };
   attributes: {
-    content: Attribute.Blocks;
+    content: Schema.Attribute.Blocks;
   };
 }
 
-export interface SectionsLeadForm extends Schema.Component {
+export interface SectionsLeadForm extends Struct.ComponentSchema {
   collectionName: 'components_sections_lead_forms';
   info: {
     name: 'Lead form';
@@ -124,15 +124,15 @@ export interface SectionsLeadForm extends Schema.Component {
     description: '';
   };
   attributes: {
-    title: Attribute.String;
-    emailPlaceholder: Attribute.String;
-    submitButton: Attribute.Component<'links.button'>;
-    location: Attribute.String;
-    description: Attribute.Text;
+    title: Schema.Attribute.String;
+    emailPlaceholder: Schema.Attribute.String;
+    submitButton: Schema.Attribute.Component<'links.button', false>;
+    location: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
   };
 }
 
-export interface SectionsLargeVideo extends Schema.Component {
+export interface SectionsLargeVideo extends Struct.ComponentSchema {
   collectionName: 'components_slices_large_videos';
   info: {
     name: 'LargeVideo';
@@ -140,14 +140,14 @@ export interface SectionsLargeVideo extends Schema.Component {
     icon: 'play-circle';
   };
   attributes: {
-    title: Attribute.String;
-    description: Attribute.String;
-    video: Attribute.Media<'videos'> & Attribute.Required;
-    poster: Attribute.Media<'images'>;
+    title: Schema.Attribute.String;
+    description: Schema.Attribute.String;
+    video: Schema.Attribute.Media<'videos'> & Schema.Attribute.Required;
+    poster: Schema.Attribute.Media<'images'>;
   };
 }
 
-export interface SectionsHero extends Schema.Component {
+export interface SectionsHero extends Struct.ComponentSchema {
   collectionName: 'components_slices_heroes';
   info: {
     name: 'Hero';
@@ -156,40 +156,40 @@ export interface SectionsHero extends Schema.Component {
     description: '';
   };
   attributes: {
-    title: Attribute.String & Attribute.Required;
-    description: Attribute.String & Attribute.Required;
-    picture: Attribute.Media<'images'> & Attribute.Required;
-    buttons: Attribute.Component<'links.button-link', true>;
-    colorCode: Attribute.String;
-    fullImage: Attribute.Boolean & Attribute.DefaultTo<false>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    description: Schema.Attribute.String & Schema.Attribute.Required;
+    picture: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    buttons: Schema.Attribute.Component<'links.button-link', true>;
+    colorCode: Schema.Attribute.String;
+    fullImage: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
   };
 }
 
-export interface SectionsHeading extends Schema.Component {
+export interface SectionsHeading extends Struct.ComponentSchema {
   collectionName: 'components_sections_headings';
   info: {
     displayName: 'Heading';
   };
   attributes: {
-    heading: Attribute.String & Attribute.Required;
-    description: Attribute.String;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    description: Schema.Attribute.String;
   };
 }
 
-export interface SectionsCardGroup extends Schema.Component {
+export interface SectionsCardGroup extends Struct.ComponentSchema {
   collectionName: 'components_sections_card_groups';
   info: {
     displayName: 'Card group';
   };
   attributes: {
-    title: Attribute.String;
-    type: Attribute.Enumeration<['large', 'medium', 'small']> &
-      Attribute.DefaultTo<'medium'>;
-    cards: Attribute.Component<'elements.card', true>;
+    title: Schema.Attribute.String;
+    type: Schema.Attribute.Enumeration<['large', 'medium', 'small']> &
+      Schema.Attribute.DefaultTo<'medium'>;
+    cards: Schema.Attribute.Component<'elements.card', true>;
   };
 }
 
-export interface SectionsBottomActions extends Schema.Component {
+export interface SectionsBottomActions extends Struct.ComponentSchema {
   collectionName: 'components_slices_bottom_actions';
   info: {
     name: 'BottomActions';
@@ -198,13 +198,13 @@ export interface SectionsBottomActions extends Schema.Component {
     description: '';
   };
   attributes: {
-    title: Attribute.String;
-    buttons: Attribute.Component<'links.button-link', true>;
-    description: Attribute.Text;
+    title: Schema.Attribute.String;
+    buttons: Schema.Attribute.Component<'links.button-link', true>;
+    description: Schema.Attribute.Text;
   };
 }
 
-export interface MetaMetadata extends Schema.Component {
+export interface MetaMetadata extends Struct.ComponentSchema {
   collectionName: 'components_meta_metadata';
   info: {
     name: 'Metadata';
@@ -213,26 +213,28 @@ export interface MetaMetadata extends Schema.Component {
     description: '';
   };
   attributes: {
-    metaTitle: Attribute.String & Attribute.Required;
-    metaDescription: Attribute.Text & Attribute.Required;
+    metaTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    metaDescription: Schema.Attribute.Text & Schema.Attribute.Required;
   };
 }
 
-export interface LinksSocialLink extends Schema.Component {
+export interface LinksSocialLink extends Struct.ComponentSchema {
   collectionName: 'components_links_social_links';
   info: {
     displayName: 'Social Link';
     description: '';
   };
   attributes: {
-    url: Attribute.String & Attribute.Required;
-    newTab: Attribute.Boolean & Attribute.DefaultTo<false>;
-    text: Attribute.String & Attribute.Required;
-    social: Attribute.Enumeration<['YOUTUBE', 'TWITTER', 'DISCORD', 'WEBSITE']>;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
+    newTab: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    text: Schema.Attribute.String & Schema.Attribute.Required;
+    social: Schema.Attribute.Enumeration<
+      ['YOUTUBE', 'TWITTER', 'DISCORD', 'WEBSITE']
+    >;
   };
 }
 
-export interface LinksLink extends Schema.Component {
+export interface LinksLink extends Struct.ComponentSchema {
   collectionName: 'components_links_links';
   info: {
     name: 'Link';
@@ -241,13 +243,13 @@ export interface LinksLink extends Schema.Component {
     description: '';
   };
   attributes: {
-    url: Attribute.String & Attribute.Required;
-    newtab: Attribute.Boolean & Attribute.DefaultTo<false>;
-    text: Attribute.String & Attribute.Required;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
+    newtab: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    text: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
-export interface LinksButton extends Schema.Component {
+export interface LinksButton extends Struct.ComponentSchema {
   collectionName: 'components_links_simple_buttons';
   info: {
     name: 'Button';
@@ -256,12 +258,12 @@ export interface LinksButton extends Schema.Component {
     description: '';
   };
   attributes: {
-    text: Attribute.String;
-    type: Attribute.Enumeration<['primary', 'secondary']>;
+    text: Schema.Attribute.String;
+    type: Schema.Attribute.Enumeration<['primary', 'secondary']>;
   };
 }
 
-export interface LinksButtonLink extends Schema.Component {
+export interface LinksButtonLink extends Struct.ComponentSchema {
   collectionName: 'components_links_buttons';
   info: {
     name: 'Button-link';
@@ -270,61 +272,14 @@ export interface LinksButtonLink extends Schema.Component {
     description: '';
   };
   attributes: {
-    url: Attribute.String;
-    newTab: Attribute.Boolean & Attribute.DefaultTo<false>;
-    text: Attribute.String;
-    type: Attribute.Enumeration<['primary', 'secondary']>;
+    url: Schema.Attribute.String;
+    newTab: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    text: Schema.Attribute.String;
+    type: Schema.Attribute.Enumeration<['primary', 'secondary']>;
   };
 }
 
-export interface LayoutNavbar extends Schema.Component {
-  collectionName: 'components_layout_navbars';
-  info: {
-    name: 'Navbar';
-    displayName: 'Navbar';
-    icon: 'map-signs';
-    description: '';
-  };
-  attributes: {
-    button: Attribute.Component<'links.button-link'>;
-    navbarLogo: Attribute.Component<'layout.logo'>;
-    menuItems: Attribute.Component<'links.link', true> & Attribute.Required;
-  };
-}
-
-export interface LayoutLogo extends Schema.Component {
-  collectionName: 'components_layout_logos';
-  info: {
-    displayName: 'Logo';
-    description: '';
-  };
-  attributes: {
-    logoImg: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
-      Attribute.Required;
-    logoText: Attribute.String;
-  };
-}
-
-export interface LayoutFooter extends Schema.Component {
-  collectionName: 'components_layout_footers';
-  info: {
-    displayName: 'Footer';
-    description: '';
-  };
-  attributes: {
-    footerLogo: Attribute.Component<'layout.logo'>;
-    menuLinks: Attribute.Component<'links.link', true>;
-    legalLinks: Attribute.Component<'links.link', true>;
-    socialLinks: Attribute.Component<'links.social-link', true>;
-    categories: Attribute.Relation<
-      'layout.footer',
-      'oneToMany',
-      'api::category.category'
-    >;
-  };
-}
-
-export interface ElementsTestimonial extends Schema.Component {
+export interface ElementsTestimonial extends Struct.ComponentSchema {
   collectionName: 'components_slices_testimonials';
   info: {
     name: 'Testimonial';
@@ -333,13 +288,13 @@ export interface ElementsTestimonial extends Schema.Component {
     description: '';
   };
   attributes: {
-    picture: Attribute.Media<'images'> & Attribute.Required;
-    text: Attribute.Text & Attribute.Required;
-    authorName: Attribute.String & Attribute.Required;
+    picture: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    text: Schema.Attribute.Text & Schema.Attribute.Required;
+    authorName: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
-export interface ElementsNotificationBanner extends Schema.Component {
+export interface ElementsNotificationBanner extends Struct.ComponentSchema {
   collectionName: 'components_elements_notification_banners';
   info: {
     name: 'NotificationBanner';
@@ -348,16 +303,16 @@ export interface ElementsNotificationBanner extends Schema.Component {
     description: '';
   };
   attributes: {
-    type: Attribute.Enumeration<['alert', 'info', 'warning']> &
-      Attribute.Required;
-    heading: Attribute.String & Attribute.Required;
-    text: Attribute.Text & Attribute.Required;
-    show: Attribute.Boolean & Attribute.DefaultTo<false>;
-    link: Attribute.Component<'links.link'>;
+    type: Schema.Attribute.Enumeration<['alert', 'info', 'warning']> &
+      Schema.Attribute.Required;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    text: Schema.Attribute.Text & Schema.Attribute.Required;
+    show: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    link: Schema.Attribute.Component<'links.link', false>;
   };
 }
 
-export interface ElementsLogos extends Schema.Component {
+export interface ElementsLogos extends Struct.ComponentSchema {
   collectionName: 'components_elements_logos';
   info: {
     name: 'logos';
@@ -365,12 +320,12 @@ export interface ElementsLogos extends Schema.Component {
     icon: 'apple-alt';
   };
   attributes: {
-    title: Attribute.String;
-    logo: Attribute.Media<'images'>;
+    title: Schema.Attribute.String;
+    logo: Schema.Attribute.Media<'images'>;
   };
 }
 
-export interface ElementsFooterSection extends Schema.Component {
+export interface ElementsFooterSection extends Struct.ComponentSchema {
   collectionName: 'components_links_footer_sections';
   info: {
     name: 'FooterSection';
@@ -378,27 +333,75 @@ export interface ElementsFooterSection extends Schema.Component {
     icon: 'chevron-circle-down';
   };
   attributes: {
-    title: Attribute.String;
-    links: Attribute.Component<'links.link', true>;
+    title: Schema.Attribute.String;
+    links: Schema.Attribute.Component<'links.link', true>;
   };
 }
 
-export interface ElementsCard extends Schema.Component {
+export interface ElementsCard extends Struct.ComponentSchema {
   collectionName: 'components_elements_cards';
   info: {
     displayName: 'Card';
   };
   attributes: {
-    title: Attribute.String;
-    lead: Attribute.Text;
-    link: Attribute.Component<'links.link'> & Attribute.Required;
-    coverImage: Attribute.Media<'images'> & Attribute.Required;
+    title: Schema.Attribute.String;
+    lead: Schema.Attribute.Text;
+    link: Schema.Attribute.Component<'links.link', false> &
+      Schema.Attribute.Required;
+    coverImage: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
   };
 }
 
-declare module '@strapi/types' {
-  export module Shared {
-    export interface Components {
+export interface LayoutNavbar extends Struct.ComponentSchema {
+  collectionName: 'components_layout_navbars';
+  info: {
+    name: 'Navbar';
+    displayName: 'Navbar';
+    icon: 'map-signs';
+    description: '';
+  };
+  attributes: {
+    button: Schema.Attribute.Component<'links.button-link', false>;
+    navbarLogo: Schema.Attribute.Component<'layout.logo', false>;
+    menuItems: Schema.Attribute.Component<'links.link', true> &
+      Schema.Attribute.Required;
+  };
+}
+
+export interface LayoutLogo extends Struct.ComponentSchema {
+  collectionName: 'components_layout_logos';
+  info: {
+    displayName: 'Logo';
+    description: '';
+  };
+  attributes: {
+    logoImg: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Schema.Attribute.Required;
+    logoText: Schema.Attribute.String;
+  };
+}
+
+export interface LayoutFooter extends Struct.ComponentSchema {
+  collectionName: 'components_layout_footers';
+  info: {
+    displayName: 'Footer';
+    description: '';
+  };
+  attributes: {
+    footerLogo: Schema.Attribute.Component<'layout.logo', false>;
+    menuLinks: Schema.Attribute.Component<'links.link', true>;
+    legalLinks: Schema.Attribute.Component<'links.link', true>;
+    socialLinks: Schema.Attribute.Component<'links.social-link', true>;
+    categories: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::category.category'
+    >;
+  };
+}
+
+declare module '@strapi/strapi' {
+  export module Public {
+    export interface ComponentSchemas {
       'shared.video-embed': SharedVideoEmbed;
       'shared.text': SharedText;
       'shared.slider': SharedSlider;
@@ -419,14 +422,14 @@ declare module '@strapi/types' {
       'links.link': LinksLink;
       'links.button': LinksButton;
       'links.button-link': LinksButtonLink;
-      'layout.navbar': LayoutNavbar;
-      'layout.logo': LayoutLogo;
-      'layout.footer': LayoutFooter;
       'elements.testimonial': ElementsTestimonial;
       'elements.notification-banner': ElementsNotificationBanner;
       'elements.logos': ElementsLogos;
       'elements.footer-section': ElementsFooterSection;
       'elements.card': ElementsCard;
+      'layout.navbar': LayoutNavbar;
+      'layout.logo': LayoutLogo;
+      'layout.footer': LayoutFooter;
     }
   }
 }
