@@ -1,0 +1,27 @@
+version: 2
+
+updates:
+  - package-ecosystem: "yarn"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    target-branch: "main"
+    labels:
+      - "npm dependencies"
+      - "root"
+  - package-ecosystem: "yarn"
+    directory: "/apps/frontend"
+    schedule:
+      interval: "weekly"
+    target-branch: "main"
+    labels:
+      - "npm dependencies"
+      - "frontend"
+  - package-ecosystem: "yarn"
+    directory: "/apps/backend"
+    schedule:
+      interval: "weekly"
+    target-branch: "main"
+    labels:
+      - "npm dependencies"
+      - "backend"
