@@ -28,6 +28,16 @@ const populate = {
           },
         },
       },
+      cards: {
+        populate: {
+          coverImage: {
+            fields: ["url", "alternativeText", "caption", "width", "height"],
+          },
+          link: {
+            populate: true,
+          },
+        },
+      },
       plans: {
         populate: ["product_features"],
       },
@@ -39,7 +49,7 @@ const populate = {
   seo: {
     fields: ["metaTitle", "metaDescription"],
     populate: { shareImage: true },
-  }
+  },
 };
 
 module.exports = (config, { strapi }) => {

@@ -160,6 +160,8 @@ export interface SectionsHero extends Schema.Component {
     description: Attribute.String & Attribute.Required;
     picture: Attribute.Media<'images'> & Attribute.Required;
     buttons: Attribute.Component<'links.button-link', true>;
+    colorCode: Attribute.String;
+    fullImage: Attribute.Boolean & Attribute.DefaultTo<false>;
   };
 }
 
@@ -171,6 +173,19 @@ export interface SectionsHeading extends Schema.Component {
   attributes: {
     heading: Attribute.String & Attribute.Required;
     description: Attribute.String;
+  };
+}
+
+export interface SectionsCardGroup extends Schema.Component {
+  collectionName: 'components_sections_card_groups';
+  info: {
+    displayName: 'Card group';
+  };
+  attributes: {
+    title: Attribute.String;
+    type: Attribute.Enumeration<['large', 'medium', 'small']> &
+      Attribute.DefaultTo<'medium'>;
+    cards: Attribute.Component<'elements.card', true>;
   };
 }
 
@@ -368,6 +383,19 @@ export interface ElementsFooterSection extends Schema.Component {
   };
 }
 
+export interface ElementsCard extends Schema.Component {
+  collectionName: 'components_elements_cards';
+  info: {
+    displayName: 'Card';
+  };
+  attributes: {
+    title: Attribute.String;
+    lead: Attribute.Text;
+    link: Attribute.Component<'links.link'> & Attribute.Required;
+    coverImage: Attribute.Media<'images'> & Attribute.Required;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -384,6 +412,7 @@ declare module '@strapi/types' {
       'sections.large-video': SectionsLargeVideo;
       'sections.hero': SectionsHero;
       'sections.heading': SectionsHeading;
+      'sections.card-group': SectionsCardGroup;
       'sections.bottom-actions': SectionsBottomActions;
       'meta.metadata': MetaMetadata;
       'links.social-link': LinksSocialLink;
@@ -397,6 +426,7 @@ declare module '@strapi/types' {
       'elements.notification-banner': ElementsNotificationBanner;
       'elements.logos': ElementsLogos;
       'elements.footer-section': ElementsFooterSection;
+      'elements.card': ElementsCard;
     }
   }
 }

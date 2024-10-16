@@ -30,7 +30,7 @@ const DropdownContent = ({
     >
       <div
         className={`flex transition-all ${
-          isActive ? "border-b-2 border-accent" : "border-b-0"
+          isActive ? "border-b-2 border-accentDark" : "border-b-0"
         }`}
       >
         <NavLink

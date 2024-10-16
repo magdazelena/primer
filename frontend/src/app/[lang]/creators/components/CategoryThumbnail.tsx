@@ -13,8 +13,8 @@ const CategoryThumbnail = ({
 }) => {
   function selectedFilter(current: string, selected: string) {
     return current === selected
-      ? "bg-accent hover:bg-accent/50 text-primary"
-      : "bg-accent/50 hover:bg-accent hover:text-primary text-secondary";
+      ? "bg-accentDark hover:bg-accentDark/50 text-light"
+      : "bg-accentDark/50 hover:bg-accentDark hover:text-light text-dark";
   }
   return (
     <Link

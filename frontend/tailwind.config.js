@@ -5,11 +5,14 @@ module.exports = {
   theme: {
     colors: {
       ...colors,
-      primary: "rgba(var(--color-primary), <alpha-value>)",
-      secondary: "rgba(var(--color-secondary), <alpha-value>)",
-      accent: "rgba(var(--color-accent), <alpha-value>)",
-      accent2: "rgba(var(--color-accent2), <alpha-value>)",
-      accent3: "rgba(var(--color-accent3), <alpha-value>)",
+      dark: "rgba(var(--color-dark), <alpha-value>)",
+      light: "rgba(var(--color-light), <alpha-value>)",
+      accentDark: "rgba(var(--color-accentDark), <alpha-value>)",
+      accentBright: "rgba(var(--color-accentBright), <alpha-value>)",
+    },
+    fontFamily: {
+      display: ['"Playfair Display"'],
+      body: ["Roboto"],
     },
   },
   plugins: [],

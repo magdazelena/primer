@@ -40,7 +40,7 @@ export default function Banner({ data }: BannerProps) {
           colors(type)
         )}
       >
-        <p className="text-sm leading-6 text-white">
+        <p className="text-sm leading-6 text-light">
           <a href={link.url} target={link.newTab ? "_blank" : "_self"}>
             <strong className="font-semibold">{heading}</strong> {text}&nbsp;
             <span aria-hidden="true">&rarr;</span>

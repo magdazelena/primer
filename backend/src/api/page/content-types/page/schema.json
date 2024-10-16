@@ -34,7 +34,8 @@
         "sections.large-video",
         "sections.rich-text",
         "sections.lead-form",
-        "sections.heading"
+        "sections.heading",
+        "sections.card-group"
       ],
       "pluginOptions": {
         "i18n": {

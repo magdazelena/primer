@@ -4,37 +4,50 @@
 
 @layer base {
   :root {
-    --color-primary: 241, 250, 238;
-    --color-secondary: 29, 53, 87;
-    --color-accent: 170, 57, 70;
-    --color-accent2: 168, 218, 220;
-    --color-accent3: 69, 123, 157;
-    --color-background: #ffffff;
+    --color-dark: 0, 21, 36;
+    --color-light: 255, 248, 237;
+    --color-accentBright: 255, 125, 0;
+    --color-accentDark: 21, 97, 109;
     --menu-height: 6rem;
   }
+  @font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+  }
+  @font-face {
+    font-family: "Playfair Display";
+    font-style: normal;
+    font-weight: 100;
+    font-display: swap;
+    src: url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+  }
 }
+
 @import "yet-another-react-lightbox/styles.css";
 @import "yet-another-react-lightbox/plugins/thumbnails.css";
 /**
 Generic styles
 **/
 a {
-  @apply text-accent;
+  @apply text-accentDark;
 }
 a:hover {
-  @apply text-accent/50 underline;
+  @apply text-accentDark/50 underline;
 }
 a:active,
 a:visited {
-  @apply text-accent2;
+  @apply text-accentDark;
 }
 a.link-active {
-  @apply text-accent;
+  @apply text-accentDark;
 }
 hr {
   margin: 2rem 0;
   height: 2px;
-  background-color: rgb(var(--color-secondary));
+  background-color: rgb(var(--color-dark));
   border-top-width: unset;
   border: 0;
 }
@@ -45,38 +58,38 @@ hr {
 
 /* Headers */
 .rich-text h1 {
-  @apply text-4xl font-bold mb-4 text-secondary;
+  @apply text-4xl font-bold mb-4 text-dark;
 }
 
 .rich-text h2 {
-  @apply text-3xl font-bold mb-4 text-secondary;
+  @apply text-3xl font-bold mb-4 text-dark;
 }
 
 .rich-text h3 {
-  @apply text-2xl font-bold mb-4 text-secondary;
+  @apply text-2xl font-bold mb-4 text-dark;
 }
 
 .rich-text h4 {
-  @apply text-xl font-bold mb-4 text-secondary;
+  @apply text-xl font-bold mb-4 text-dark;
 }
 
 .rich-text h5 {
-  @apply text-lg font-bold mb-4 text-secondary;
+  @apply text-lg font-bold mb-4 text-dark;
 }
 
 .rich-text h6 {
-  @apply text-base font-bold mb-4 text-secondary;
+  @apply text-base font-bold mb-4 text-dark;
 }
 
 .rich-text a {
-  @apply text-accent;
+  @apply text-accentDark;
 }
 .rich-text a:hover {
-  @apply text-accent/50 underline;
+  @apply text-accentDark/50 underline;
 }
 .rich-text a:active,
 .rich-text a:visited {
-  @apply text-accent2;
+  @apply text-accentDark;
 }
 
 /* Typographic replacements */
@@ -99,7 +112,7 @@ hr {
 
 /* Blockquotes */
 .rich-text blockquote {
-  @apply border-l-4 border-accent2 pl-4 py-2 mb-4;
+  @apply border-l-4 border-accentDark pl-4 py-2 mb-4;
 }
 
 /* Lists */
@@ -123,26 +136,17 @@ hr {
   @apply list-decimal pl-4 mb-2;
 }
 
-/* Code blocks */
-.rich-text pre {
-  @apply font-mono bg-accent2 text-accent2 rounded p-4  my-6;
-}
-
-.rich-text code {
-  @apply font-mono bg-accent2 text-accent2 rounded px-2 py-1;
-}
-
 /* Tables */
 .rich-text table {
-  @apply w-full border-collapse border-accent2 my-6;
+  @apply w-full border-collapse border-accentDark my-6;
 }
 
 .rich-text th {
-  @apply bg-accent2 text-left py-2 px-4 font-semibold border-b border-accent2;
+  @apply bg-accentDark text-left py-2 px-4 font-semibold border-b border-accentDark;
 }
 
 .rich-text td {
-  @apply py-2 px-4 border-b border-accent2;
+  @apply py-2 px-4 border-b border-accentDark;
 }
 
 /* Images */
@@ -172,7 +176,7 @@ Dropdowns
 ****/
 
 .nav {
-  background-color: var(--color-background);
+  background-color: var(--color-light);
   z-index: 200;
   min-height: var(--menu-height);
   transition: top 1s;
@@ -232,7 +236,7 @@ Dropdowns
   position: absolute;
   height: 3px;
   width: 100%;
-  background-color: rgb(var(--color-secondary));
+  background-color: rgb(var(--color-dark));
   border-radius: 9px;
   opacity: 1;
   left: 0;
@@ -311,11 +315,11 @@ Dropdowns
 }
 /** image slider **/
 .yarl__container {
-  background-color: var(--color-background);
+  background-color: var(--color-light);
 }
 .yarl__thumbnails_container {
   padding: 5px;
-  background-color: var(--color-background);
+  background-color: var(--color-light);
   justify-content: center;
 }
 .yarl__thumbnails_bottom .yarl__thumbnails_vignette {
@@ -326,10 +330,10 @@ Dropdowns
   &:hover {
     filter: var(
       --yarl__button_filter,
-      drop-shadow(2px 2px 2px rgba(var(--color-secondary), 0.5))
+      drop-shadow(2px 2px 2px rgba(var(--color-dark), 0.5))
     );
   }
 }
 .slider-icon {
-  fill: rgb(var(--color-secondary));
+  fill: rgb(var(--color-dark));
 }
