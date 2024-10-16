@@ -14,8 +14,10 @@
     "repo:upstream": "git fetch upstream && git merge upstream/main"
   },
   "dependencies": {
-    "concurrently": "^8.2.2",
-    "npm-check-updates": "^16.14.15"
+    "concurrently": "latest",
+    "npm-check-updates": "latest",
+    "react": "latest",
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@nx/next": "^20.0.1",
