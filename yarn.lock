@@ -4837,13 +4837,13 @@
     yup "0.32.9"
 
 "@strapi/plugin-users-permissions@latest":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@strapi/plugin-users-permissions/-/plugin-users-permissions-5.1.0.tgz#8ba35d06b2a5d836818a26747c0890dbef378b82"
-  integrity sha512-ZSBY0xNKoPKPcRxyAaWILYiH+2eJGzuAtuRT3NbcyK/tQfrSLKbtPVWVgPSN2yEJZ2YDqAKSgHGqrQUgfinn4w==
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@strapi/plugin-users-permissions/-/plugin-users-permissions-5.1.1.tgz#3da663e57b0a92f542f8234f570c9203f97b0e27"
+  integrity sha512-2OBmAFOA8IGj3SAd00rfzvYiwppWR8Z7EmYxtnOInWKm4Xifyezh55FWp3NFLCddsX7UK3NK03yoGgB4MjT+9Q==
   dependencies:
     "@strapi/design-system" "2.0.0-rc.11"
     "@strapi/icons" "2.0.0-rc.11"
-    "@strapi/utils" "5.1.0"
+    "@strapi/utils" "5.1.1"
     bcryptjs "2.4.3"
     formik "2.4.5"
     grant-koa "5.4.8"
@@ -5220,6 +5220,22 @@
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@strapi/utils/-/utils-5.1.0.tgz#527702956effcd14489e0f572d5270412cc45ff8"
   integrity sha512-dPb4JmEsNVYA4vtNq4QtDL7NAQa0DrsdZQOWGrLM62iLbaclBPzpSgsxxzv4RCTD3z07sfrLVeffjjt7VbyXog==
+  dependencies:
+    "@sindresorhus/slugify" "1.1.0"
+    date-fns "2.30.0"
+    execa "5.1.1"
+    http-errors "2.0.0"
+    lodash "4.17.21"
+    node-machine-id "1.1.12"
+    p-map "4.0.0"
+    preferred-pm "3.1.2"
+    yup "0.32.9"
+    zod "^3.22.4"
+
+"@strapi/utils@5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@strapi/utils/-/utils-5.1.1.tgz#cc9ca6f67dde7eafd0c9baffb631bf71bcbb4ab8"
+  integrity sha512-w12aOwWZnIbueVVMUc6iq5+Ybc0Ili35tOmJKcl0lH3FkmQRSCqeeEapnswyn/QJ0w8cMGoUCFlRdnalc3p+vw==
   dependencies:
     "@sindresorhus/slugify" "1.1.0"
     date-fns "2.30.0"
