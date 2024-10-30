@@ -4704,9 +4704,9 @@
     sift "16.0.1"
 
 "@strapi/plugin-cloud@latest":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@strapi/plugin-cloud/-/plugin-cloud-5.1.0.tgz#a054abbe638d825743dedb5c3dbca32982889a71"
-  integrity sha512-bTS771AMs/oICdABxVdo4LTmUDEllGiZa18TwpyYQnkuMQR/v5bq910PI00Incwoel0EYArdKu2YAJIYsM9DEA==
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@strapi/plugin-cloud/-/plugin-cloud-5.1.1.tgz#c6de10dca8382355b322f20582164a7093a3d767"
+  integrity sha512-HKpqRxZgY7Za7m3ZhbMov2dqeQp9MJHq5p07KVXQB5cr5j4P8q6AbEWlgn0jK/7ktTlTccx29ocBLmN80wvI4Q==
   dependencies:
     "@strapi/design-system" "2.0.0-rc.11"
     "@strapi/icons" "2.0.0-rc.11"
