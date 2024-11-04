@@ -4895,14 +4895,13 @@
     yup "0.32.9"
 
 "@strapi/plugin-seo@latest":
-  version "2.0.1-rc.1"
-  resolved "https://registry.yarnpkg.com/@strapi/plugin-seo/-/plugin-seo-2.0.1-rc.1.tgz#859dc562ba3d2df92f809eded9b38073cc8bd311"
-  integrity sha512-/kts8s+G1X6ITGkgbcurIDcuwMSQgRELmI6/fQ20fjt5cBwFTn7NPsdBZH/WAnYNBcdZXV8Ct93yJw1R3jRJyQ==
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@strapi/plugin-seo/-/plugin-seo-2.0.2.tgz#af3365bfe2e3169f92c2ad4d201adffea1093526"
+  integrity sha512-htQMr1VdbPxgcxrnRHxv/BT8EMA7s3LWkGrUSQ9V+g9TO3sQCLh18VKfevOHes99kohPMS8zjXl6zhzdipCmvw==
   dependencies:
     "@strapi/design-system" "^2.0.0-rc.10"
     "@strapi/icons" "^2.0.0-rc.10"
     date-fns "^4.1.0"
-    eslint-plugin-react-hooks "^4.3.0"
     lodash "^4.17.21"
     prettier "^3.3.3"
     react "^18.0.0"
@@ -9069,11 +9068,6 @@ escape-string-regexp@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-5.0.0.tgz#4683126b500b61762f2dbebace1806e8be31b1c8"
   integrity sha512-/veY75JbMK4j1yjvuUxuVsiS/hr/4iHs9FTT6cgTexxdE0Ly/glccBAkloH/DofkjRbZU3bnoj38mOmhkZ0lHw==
-
-eslint-plugin-react-hooks@^4.3.0:
-  version "4.6.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.6.2.tgz#c829eb06c0e6f484b3fbb85a97e57784f328c596"
-  integrity sha512-QzliNJq4GinDBcD8gPB5v0wh6g8q3SUi6EFF0x8N/BL9PoVs0atuGc47ozMRyOWAKdwaZ5OnbOEa3WR+dSGKuQ==
 
 eslint-scope@5.1.1:
   version "5.1.1"
