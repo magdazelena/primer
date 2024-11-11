@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@nx/next": "^20.0.6",
-    "nx": "20.0.3"
+    "nx": "20.0.12"
   },
   "nx": {},
   "workspaces": [
