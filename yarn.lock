@@ -13180,9 +13180,9 @@ npm-bundled@^1.1.1:
     npm-normalize-package-bin "^1.0.1"
 
 npm-check-updates@latest:
-  version "17.1.9"
-  resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-17.1.9.tgz#6380b8d2d320a8e6f24de1d466063f6f71e97dc0"
-  integrity sha512-Gfv5S8NNJKTilM1gesFNYka6bUaBs5LnVyPjApXPQphHijrlLFDMw1uSmwYMZbvJSkLZSOx03e8CHcG0Td5SMA==
+  version "17.1.11"
+  resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-17.1.11.tgz#f6d48ca6a9adc0df990f6cd11de3bcd1e48e5c54"
+  integrity sha512-TR2RuGIH7P3Qrb0jfdC/nT7JWqXPKjDlxuNQt3kx4oNVf1Pn5SBRB7KLypgYZhruivJthgTtfkkyK4mz342VjA==
 
 npm-normalize-package-bin@^1.0.1:
   version "1.0.1"
