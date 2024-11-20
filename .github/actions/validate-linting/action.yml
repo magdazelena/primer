@@ -19,7 +19,7 @@ runs:
       shell: bash
       run: |
         echo "//npm.pkg.github.com/:_authToken=${{ inputs.github-token }}" > ./.npmrc
-        npm ci
+        yarn install --frozen-lockfile
 
     - name: Run eslint
       shell: bash
