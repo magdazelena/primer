@@ -1,0 +1,20 @@
+name: Validate linting
+description: "Runs eslint and validates linting"
+
+runs:
+  using: composite
+  steps:
+    - name: Install node.js
+      uses: ./.github/actions/node-version
+      with:
+        github-token: ${{ inputs.github-token }}
+
+    - name: Install dependencies
+      shell: bash
+      run: |
+        echo "//npm.pkg.github.com/:_authToken=${{ inputs.github-token }}" > ./.npmrc
+        npm ci
+
+    - name: Run eslint
+      shell: bash
+      run: npx eslint --max-warnings=0
