@@ -12,8 +12,7 @@ runs:
     - name: Install node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '20'
-      with:
+        node-version: "20"
         github-token: ${{ inputs.github-token }}
 
     - name: Install dependencies
