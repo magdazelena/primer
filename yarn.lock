@@ -4595,7 +4595,7 @@
     prop-types "^15.8.1"
     react-remove-scroll "^2.5.9"
 
-"@strapi/design-system@2.0.0-rc.11", "@strapi/design-system@^2.0.0-rc.10":
+"@strapi/design-system@2.0.0-rc.11":
   version "2.0.0-rc.11"
   resolved "https://registry.yarnpkg.com/@strapi/design-system/-/design-system-2.0.0-rc.11.tgz#28b77c0c22690d5f2e9d395cac7545a124b27429"
   integrity sha512-myHSOqRsWpXsM9jp9Jx/d8cj/K4MNs+LzAqAwE4+Sd9MuKnIfnOhe6J9hAT29TtimMerymScjOE8b1uyYy3l7w==
@@ -4623,7 +4623,7 @@
     "@uiw/react-codemirror" "4.22.2"
     react-remove-scroll "2.5.10"
 
-"@strapi/design-system@2.0.0-rc.12":
+"@strapi/design-system@2.0.0-rc.12", "@strapi/design-system@^2.0.0-rc.10":
   version "2.0.0-rc.12"
   resolved "https://registry.yarnpkg.com/@strapi/design-system/-/design-system-2.0.0-rc.12.tgz#2fa82985f36c889ad909eada7a585f66f794fef4"
   integrity sha512-xtetrMqYi4CPzKCPbx9I3RYBwWAEBTDF3rrknEmKGqpLt+0OV+nRmNA5H3425NrWDcWp01MIEMJxB5EURGCq+A==
@@ -4748,12 +4748,12 @@
   resolved "https://registry.yarnpkg.com/@strapi/icons/-/icons-1.19.0.tgz#efa6b553a7de437171512e3549859faa141a145f"
   integrity sha512-jcS7n3Ps+73fYGadxdaD6owazoDJKN1fHSG9dp8RX4RqkP6BfoHOX5j3aodVLmDX57Ksg6gy5JXf9xEml7nMpQ==
 
-"@strapi/icons@2.0.0-rc.11", "@strapi/icons@^2.0.0-rc.10":
+"@strapi/icons@2.0.0-rc.11":
   version "2.0.0-rc.11"
   resolved "https://registry.yarnpkg.com/@strapi/icons/-/icons-2.0.0-rc.11.tgz#c81f2c8c32651a02637788943d406f484fce8769"
   integrity sha512-Uu3WHKJDjcJCPDengy3uyillKhd/16A/L3EdezaYdBsHK9bgpPiPKubi6VJJAGQXUD+ysr+RUG5uD23jTDfN6A==
 
-"@strapi/icons@2.0.0-rc.12":
+"@strapi/icons@2.0.0-rc.12", "@strapi/icons@^2.0.0-rc.10":
   version "2.0.0-rc.12"
   resolved "https://registry.yarnpkg.com/@strapi/icons/-/icons-2.0.0-rc.12.tgz#a8d268bbf3d628b466b102877a5355113024bac6"
   integrity sha512-Qt5WQ9fjS1Xh7F8Elrlf3ACJGwCjogZ7xFHl/xZNUgAueZb7OYsVL6Aclr/xAJe8cJP5ohpB0c6FI3JoyjcnHQ==
@@ -4934,14 +4934,13 @@
     yup "0.32.9"
 
 "@strapi/plugin-seo@latest":
-  version "2.0.1-rc.1"
-  resolved "https://registry.yarnpkg.com/@strapi/plugin-seo/-/plugin-seo-2.0.1-rc.1.tgz#859dc562ba3d2df92f809eded9b38073cc8bd311"
-  integrity sha512-/kts8s+G1X6ITGkgbcurIDcuwMSQgRELmI6/fQ20fjt5cBwFTn7NPsdBZH/WAnYNBcdZXV8Ct93yJw1R3jRJyQ==
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@strapi/plugin-seo/-/plugin-seo-2.0.4.tgz#32e831fc51a45f8f5bc5727af3c276164695047c"
+  integrity sha512-YEZktiFCBfOSkcQ5hqHeIUn4EqSN9z3O7uuH+UKT5zT0RiB104IDVzoDPGIXIfkfuOUIjHt+hBxLtbRt7bGD1Q==
   dependencies:
     "@strapi/design-system" "^2.0.0-rc.10"
     "@strapi/icons" "^2.0.0-rc.10"
     date-fns "^4.1.0"
-    eslint-plugin-react-hooks "^4.3.0"
     lodash "^4.17.21"
     prettier "^3.3.3"
     react "^18.0.0"
@@ -9246,11 +9245,6 @@ escape-string-regexp@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-4.0.0.tgz#14ba83a5d373e3d311e5afca29cf5bfad965bf34"
   integrity sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==
-
-eslint-plugin-react-hooks@^4.3.0:
-  version "4.6.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.6.2.tgz#c829eb06c0e6f484b3fbb85a97e57784f328c596"
-  integrity sha512-QzliNJq4GinDBcD8gPB5v0wh6g8q3SUi6EFF0x8N/BL9PoVs0atuGc47ozMRyOWAKdwaZ5OnbOEa3WR+dSGKuQ==
 
 eslint-scope@5.1.1:
   version "5.1.1"
