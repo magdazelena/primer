@@ -7,8 +7,15 @@ inputs:
     required: true
 
 runs:
-  using: node20
+  using: composite
   steps:
+    - name: Install node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'
+      with:
+        github-token: ${{ inputs.github-token }}
+
     - name: Install dependencies
       shell: bash
       run: |
