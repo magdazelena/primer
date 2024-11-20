@@ -1,6 +1,11 @@
 name: Validate linting
 description: "Runs eslint and validates linting"
 
+inputs:
+  github-token:
+    description: "GitHub Token for API access"
+    required: true
+
 runs:
   using: composite
   steps:
