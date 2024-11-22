@@ -15,7 +15,7 @@
     "react-dom": "latest"
   },
   "devDependencies": {
-    "@nx/next": "^20.0.6",
+    "@nx/next": "20.1.2",
     "nx": "20.1.2"
   },
   "nx": {},

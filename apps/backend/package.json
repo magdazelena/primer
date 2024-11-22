@@ -21,7 +21,7 @@
     "better-sqlite3": "latest",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-router-dom": "^6.27.0",
+    "react-router-dom": "^7.0.0",
     "strapi-plugin-slugify": "latest",
     "styled-components": "^6.1.13"
   },
