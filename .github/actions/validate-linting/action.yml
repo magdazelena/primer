@@ -16,6 +16,7 @@ runs:
         token: ${{ inputs.github-token }}
 
     - name: Enable Corepack
+      shell: bash
       run: corepack enable
 
     - name: Setup Yarn Berry
