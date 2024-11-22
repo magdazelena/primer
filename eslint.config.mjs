@@ -1,12 +1,12 @@
 // eslint.config.mjs (root config)
-import { defineConfig } from 'eslint-define-config'; // Optional, if you want a more structured approach
+import { defineConfig } from 'eslint-define-config';
 
 export default defineConfig({
     root: true,
     ignores: ["**/.cache", "**/build", "**/node_modules/**/*"],
     extends: [
-        'eslint:recommended',  // or any other base configuration
-        'plugin:@typescript-eslint/recommended', // if using TypeScript
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended',
     ],
     overrides: [
         {

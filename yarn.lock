@@ -13243,6 +13243,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-define-config@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "eslint-define-config@npm:2.1.0"
+  checksum: 10c0/034bd6bfbfec2db6c720a51815de6b072efeef7afbf99d90c23a1871f9cd741bb77f9d34e0bc2465262298c6110c5c45b704714d8575c6567fd2df963fb792ea
+  languageName: node
+  linkType: hard
+
 "eslint-scope@npm:5.1.1":
   version: 5.1.1
   resolution: "eslint-scope@npm:5.1.1"
@@ -20897,6 +20904,7 @@ __metadata:
   dependencies:
     "@nx/next": "npm:20.1.2"
     eslint: "npm:^9.15.0"
+    eslint-define-config: "npm:^2.1.0"
     npm-check-updates: "npm:latest"
     nx: "npm:20.1.2"
     react: "npm:latest"
