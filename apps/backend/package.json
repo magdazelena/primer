@@ -12,14 +12,13 @@
     "seed": "strapi import -f ./seed-data.tar.gz"
   },
   "dependencies": {
-    "@strapi/plugin-i18n": "4.25.13",
     "@strapi/plugin-seo": "^2.0.4",
     "@strapi/plugin-users-permissions": "^5.4.1",
     "@strapi/strapi": "^5.4.1",
     "better-sqlite3": "^11.5.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^7.0.0",
+    "react-router-dom": "6.28.0",
     "strapi-plugin-slugify": "^2.3.8",
     "styled-components": "^6.1.13"
   },
