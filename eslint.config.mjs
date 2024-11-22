@@ -2,7 +2,7 @@
 import { defineConfig } from 'eslint-define-config';
 
 export default defineConfig({
-    ignorePatterns: ["**/.cache", "**/build", "**/node_modules/**/*"],
+    ignores: ["**/.cache", "**/build", "**/node_modules/**/*"],
 
     parser: '@typescript-eslint/parser',
     extends: [
