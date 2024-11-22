@@ -3,13 +3,13 @@ import { defineConfig } from 'eslint-define-config';
 
 export default defineConfig({
     ignores: ["**/.cache", "**/build", "**/node_modules/**/*"],
-    extends: [
-        'eslint:recommended',
-        'plugin:@typescript-eslint/recommended',
-    ],
     overrides: [
         {
             files: ['apps/**/*.{js,ts}'],
+            extends: [
+                'eslint:recommended',
+                'plugin:@typescript-eslint/recommended',
+            ],
             rules: {
                 indent: ["error", 2, {
                     SwitchCase: 1,
@@ -21,8 +21,8 @@ export default defineConfig({
                 semi: ["error", "always"],
             },
         },
-
     ],
+
 });
 
 
