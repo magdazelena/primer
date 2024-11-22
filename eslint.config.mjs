@@ -2,7 +2,6 @@
 import { defineConfig } from 'eslint-define-config';
 
 export default defineConfig({
-    root: true,
     ignores: ["**/.cache", "**/build", "**/node_modules/**/*"],
     extends: [
         'eslint:recommended',
