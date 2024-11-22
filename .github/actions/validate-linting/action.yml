@@ -15,6 +15,7 @@ runs:
         node-version: 20
         token: ${{ inputs.github-token }}
     - name: Install Yarn
+      shell: bash
       run: |
         corepack enable
         corepack prepare yarn@4.5.2 --activate
