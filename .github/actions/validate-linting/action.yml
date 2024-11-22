@@ -14,7 +14,8 @@ runs:
       with:
         node-version: 20
         token: ${{ inputs.github-token }}
-         - name: Enable Corepack
+
+    - name: Enable Corepack
       run: corepack enable
 
     - name: Setup Yarn Berry
@@ -28,7 +29,7 @@ runs:
         echo "//npm.pkg.github.com/:_authToken=${{ inputs.github-token }}" > ./.npmrc
         yarn cache clean
         yarn install --frozen-lockfile --network-concurrency 1
-        
+
     - name: Cache Yarn
       uses: actions/cache@v3
       with:
