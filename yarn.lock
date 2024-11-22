@@ -2766,7 +2766,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/intl-localematcher@npm:0.5.8, @formatjs/intl-localematcher@npm:latest":
+"@formatjs/intl-localematcher@npm:0.5.8, @formatjs/intl-localematcher@npm:^0.5.8":
   version: 0.5.8
   resolution: "@formatjs/intl-localematcher@npm:0.5.8"
   dependencies:
@@ -2842,7 +2842,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@heroicons/react@npm:latest":
+"@heroicons/react@npm:^2.2.0":
   version: 2.2.0
   resolution: "@heroicons/react@npm:2.2.0"
   peerDependencies:
@@ -3922,7 +3922,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/next@npm:20.1.2":
+"@nx/next@npm:^20.1.2":
   version: 20.1.2
   resolution: "@nx/next@npm:20.1.2"
   dependencies:
@@ -6413,7 +6413,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/blocks-react-renderer@npm:latest":
+"@strapi/blocks-react-renderer@npm:^1.0.1":
   version: 1.0.1
   resolution: "@strapi/blocks-react-renderer@npm:1.0.1"
   peerDependencies:
@@ -7158,23 +7158,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/plugin-cloud@npm:latest":
-  version: 5.4.1
-  resolution: "@strapi/plugin-cloud@npm:5.4.1"
-  dependencies:
-    "@strapi/design-system": "npm:2.0.0-rc.12"
-    "@strapi/icons": "npm:2.0.0-rc.12"
-    react-intl: "npm:6.6.2"
-  peerDependencies:
-    "@strapi/strapi": ^5.0.0
-    react: ^17.0.0 || ^18.0.0
-    react-dom: ^17.0.0 || ^18.0.0
-    react-router-dom: ^6.0.0
-    styled-components: ^6.0.0
-  checksum: 10c0/6aefde86efb161aeaa0dcfb15fef7dde9110890971237b0ed0e14dc411f1d4ed4d6dba7ed95615f53e330d9de9ac1fb33e41121943f6bbdec251bdd5eb968c45
-  languageName: node
-  linkType: hard
-
 "@strapi/plugin-content-manager@npm:4.25.17":
   version: 4.25.17
   resolution: "@strapi/plugin-content-manager@npm:4.25.17"
@@ -7246,7 +7229,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/plugin-i18n@npm:latest":
+"@strapi/plugin-i18n@npm:4.25.13":
   version: 4.25.13
   resolution: "@strapi/plugin-i18n@npm:4.25.13"
   dependencies:
@@ -7275,7 +7258,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/plugin-seo@npm:latest":
+"@strapi/plugin-seo@npm:^2.0.4":
   version: 2.0.4
   resolution: "@strapi/plugin-seo@npm:2.0.4"
   dependencies:
@@ -7336,7 +7319,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/plugin-users-permissions@npm:latest":
+"@strapi/plugin-users-permissions@npm:^5.4.1":
   version: 5.4.1
   resolution: "@strapi/plugin-users-permissions@npm:5.4.1"
   dependencies:
@@ -7519,7 +7502,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/strapi@npm:latest":
+"@strapi/strapi@npm:^5.4.1":
   version: 5.4.1
   resolution: "@strapi/strapi@npm:5.4.1"
   dependencies:
@@ -8740,7 +8723,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/negotiator@npm:latest":
+"@types/negotiator@npm:^0.6.3":
   version: 0.6.3
   resolution: "@types/negotiator@npm:0.6.3"
   checksum: 10c0/d182002d9d7d3248139008e29857dddbc98bd7ada1fddbb33c96fce2f62821698a1ac62e90a92ea004c594abc6865e143f50146e21123a0aeb0641c2bf832aa3
@@ -8756,7 +8739,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:latest":
+"@types/node@npm:*, @types/node@npm:^22.9.1":
   version: 22.9.1
   resolution: "@types/node@npm:22.9.1"
   dependencies:
@@ -8804,7 +8787,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/qs@npm:*, @types/qs@npm:latest":
+"@types/qs@npm:*, @types/qs@npm:^6.9.17":
   version: 6.9.17
   resolution: "@types/qs@npm:6.9.17"
   checksum: 10c0/a183fa0b3464267f8f421e2d66d960815080e8aab12b9aadab60479ba84183b1cdba8f4eff3c06f76675a8e42fe6a3b1313ea76c74f2885c3e25d32499c17d1b
@@ -8818,7 +8801,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^18.0.0, @types/react-dom@npm:latest":
+"@types/react-dom@npm:^18.0.0, @types/react-dom@npm:^18.3.1":
   version: 18.3.1
   resolution: "@types/react-dom@npm:18.3.1"
   dependencies:
@@ -8836,7 +8819,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:16 || 17 || 18, @types/react@npm:latest":
+"@types/react@npm:*, @types/react@npm:16 || 17 || 18, @types/react@npm:^18.3.12":
   version: 18.3.12
   resolution: "@types/react@npm:18.3.12"
   dependencies:
@@ -9855,7 +9838,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"autoprefixer@npm:^10.4.9, autoprefixer@npm:latest":
+"autoprefixer@npm:^10.4.20, autoprefixer@npm:^10.4.9":
   version: 10.4.20
   resolution: "autoprefixer@npm:10.4.20"
   dependencies:
@@ -10106,7 +10089,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"better-sqlite3@npm:latest":
+"better-sqlite3@npm:^11.5.0":
   version: 11.5.0
   resolution: "better-sqlite3@npm:11.5.0"
   dependencies:
@@ -10800,7 +10783,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"classnames@npm:latest":
+"classnames@npm:^2.5.1":
   version: 2.5.1
   resolution: "classnames@npm:2.5.1"
   checksum: 10c0/afff4f77e62cea2d79c39962980bf316bacb0d7c49e13a21adaadb9221e1c6b9d3cdb829d8bb1b23c406f4e740507f37e1dcf506f7e3b7113d17c5bab787aa69
@@ -14181,25 +14164,27 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "frontend@workspace:apps/frontend"
   dependencies:
-    "@formatjs/intl-localematcher": "npm:latest"
-    "@heroicons/react": "npm:latest"
-    "@strapi/blocks-react-renderer": "npm:latest"
-    "@types/negotiator": "npm:latest"
-    "@types/node": "npm:latest"
-    "@types/qs": "npm:latest"
-    "@types/react": "npm:latest"
-    "@types/react-dom": "npm:latest"
-    autoprefixer: "npm:latest"
-    classnames: "npm:latest"
-    negotiator: "npm:latest"
-    next: "npm:latest"
-    postcss: "npm:latest"
-    qs: "npm:latest"
-    react-icons: "npm:latest"
-    remark-gfm: "npm:latest"
-    tailwindcss: "npm:latest"
-    typescript: "npm:latest"
-    yet-another-react-lightbox: "npm:latest"
+    "@formatjs/intl-localematcher": "npm:^0.5.8"
+    "@heroicons/react": "npm:^2.2.0"
+    "@strapi/blocks-react-renderer": "npm:^1.0.1"
+    "@types/negotiator": "npm:^0.6.3"
+    "@types/node": "npm:^22.9.1"
+    "@types/qs": "npm:^6.9.17"
+    "@types/react": "npm:^18.3.12"
+    "@types/react-dom": "npm:^18.3.1"
+    autoprefixer: "npm:^10.4.20"
+    classnames: "npm:^2.5.1"
+    negotiator: "npm:^1.0.0"
+    next: "npm:^15.0.3"
+    postcss: "npm:^8.4.49"
+    qs: "npm:^6.13.1"
+    react: "npm:^18.3.1"
+    react-dom: "npm:^18.3.1"
+    react-icons: "npm:^5.3.0"
+    remark-gfm: "npm:^4.0.0"
+    tailwindcss: "npm:^3.4.15"
+    typescript: "npm:^5.6.3"
+    yet-another-react-lightbox: "npm:^3.21.7"
   languageName: unknown
   linkType: soft
 
@@ -17779,12 +17764,12 @@ __metadata:
   linkType: hard
 
 "match-sorter@npm:^6.0.2":
-  version: 6.4.0
-  resolution: "match-sorter@npm:6.4.0"
+  version: 6.3.4
+  resolution: "match-sorter@npm:6.3.4"
   dependencies:
     "@babel/runtime": "npm:^7.23.8"
     remove-accents: "npm:0.5.0"
-  checksum: 10c0/2b8ea3933416d16570888e4ca44c67d7deeccb0a378852e14ee6eebcf52e9a1df3ca1279cbf3f5bcae02edab28304c3bd1199d1782ff2a148448bfc0b314242e
+  checksum: 10c0/35d2a6b6df003c677d9ec87ecd4683657638f5bce856f43f9cf90b03e357ed2f09813ebbac759defa7e7438706936dd34dc2bfe1a18771f7d2541f14d639b4ad
   languageName: node
   linkType: hard
 
@@ -17971,11 +17956,11 @@ __metadata:
   linkType: hard
 
 "memfs@npm:^3.4.1, memfs@npm:^3.4.12":
-  version: 3.6.0
-  resolution: "memfs@npm:3.6.0"
+  version: 3.5.3
+  resolution: "memfs@npm:3.5.3"
   dependencies:
     fs-monkey: "npm:^1.0.4"
-  checksum: 10c0/af567f9038bbb5bbacf100b35d5839e90a89f882d191d8a1c7002faeb224c6cfcebd0e97c0150e9af8be95ec7b5b75a52af56fcd109d0bc18807c1f4e004f053
+  checksum: 10c0/038fc81bce17ea92dde15aaa68fa0fdaf4960c721ce3ffc7c2cb87a259333f5159784ea48b3b72bf9e054254d9d0d0d5209d0fdc3d07d08653a09933b168fbd7
   languageName: node
   linkType: hard
 
@@ -18876,7 +18861,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"negotiator@npm:latest":
+"negotiator@npm:^1.0.0":
   version: 1.0.0
   resolution: "negotiator@npm:1.0.0"
   checksum: 10c0/4c559dd52669ea48e1914f9d634227c561221dd54734070791f999c52ed0ff36e437b2e07d5c1f6e32909fc625fe46491c16e4a8f0572567d4dd15c3a4fda04b
@@ -18890,7 +18875,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:latest":
+"next@npm:^15.0.3":
   version: 15.0.3
   resolution: "next@npm:15.0.3"
   dependencies:
@@ -19209,7 +19194,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-check-updates@npm:latest":
+"npm-check-updates@npm:^17.1.11":
   version: 17.1.11
   resolution: "npm-check-updates@npm:17.1.11"
   bin:
@@ -19279,7 +19264,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nx@npm:20.1.2":
+"nx@npm:20.1.2, nx@npm:^20.1.2":
   version: 20.1.2
   resolution: "nx@npm:20.1.2"
   dependencies:
@@ -20739,7 +20724,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.3.11, postcss@npm:^8.4.24, postcss@npm:^8.4.32, postcss@npm:^8.4.33, postcss@npm:^8.4.35, postcss@npm:^8.4.38, postcss@npm:^8.4.47, postcss@npm:latest":
+"postcss@npm:^8.3.11, postcss@npm:^8.4.24, postcss@npm:^8.4.32, postcss@npm:^8.4.33, postcss@npm:^8.4.35, postcss@npm:^8.4.38, postcss@npm:^8.4.47, postcss@npm:^8.4.49":
   version: 8.4.49
   resolution: "postcss@npm:8.4.49"
   dependencies:
@@ -20884,16 +20869,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "primer-template@workspace:apps/backend"
   dependencies:
-    "@strapi/plugin-cloud": "npm:latest"
-    "@strapi/plugin-i18n": "npm:latest"
-    "@strapi/plugin-seo": "npm:latest"
-    "@strapi/plugin-users-permissions": "npm:latest"
-    "@strapi/strapi": "npm:latest"
-    better-sqlite3: "npm:latest"
-    react: "npm:^18.0.0"
-    react-dom: "npm:^18.0.0"
+    "@strapi/plugin-i18n": "npm:4.25.13"
+    "@strapi/plugin-seo": "npm:^2.0.4"
+    "@strapi/plugin-users-permissions": "npm:^5.4.1"
+    "@strapi/strapi": "npm:^5.4.1"
+    better-sqlite3: "npm:^11.5.0"
+    react: "npm:^18.3.1"
+    react-dom: "npm:^18.3.1"
     react-router-dom: "npm:^7.0.0"
-    strapi-plugin-slugify: "npm:latest"
+    strapi-plugin-slugify: "npm:^2.3.8"
     styled-components: "npm:^6.1.13"
   languageName: unknown
   linkType: soft
@@ -20902,13 +20886,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "primer@workspace:."
   dependencies:
-    "@nx/next": "npm:20.1.2"
+    "@nx/next": "npm:^20.1.2"
     eslint: "npm:^9.15.0"
     eslint-define-config: "npm:^2.1.0"
-    npm-check-updates: "npm:latest"
-    nx: "npm:20.1.2"
-    react: "npm:latest"
-    react-dom: "npm:latest"
+    next: "npm:^15.0.3"
+    npm-check-updates: "npm:^17.1.11"
+    nx: "npm:^20.1.2"
+    react: "npm:^18.3.1"
+    react-dom: "npm:^18.3.1"
   languageName: unknown
   linkType: soft
 
@@ -21074,7 +21059,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qs@npm:^6.10.3, qs@npm:^6.11.0, qs@npm:^6.13.0, qs@npm:^6.4.0, qs@npm:^6.5.2, qs@npm:^6.9.6, qs@npm:latest":
+"qs@npm:^6.10.3, qs@npm:^6.11.0, qs@npm:^6.13.0, qs@npm:^6.13.1, qs@npm:^6.4.0, qs@npm:^6.5.2, qs@npm:^6.9.6":
   version: 6.13.1
   resolution: "qs@npm:6.13.1"
   dependencies:
@@ -21187,7 +21172,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^18.0.0, react-dom@npm:latest":
+"react-dom@npm:^18.0.0, react-dom@npm:^18.3.1":
   version: 18.3.1
   resolution: "react-dom@npm:18.3.1"
   dependencies:
@@ -21238,7 +21223,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-icons@npm:latest":
+"react-icons@npm:^5.3.0":
   version: 5.3.0
   resolution: "react-icons@npm:5.3.0"
   peerDependencies:
@@ -21663,7 +21648,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^18.0.0, react@npm:latest":
+"react@npm:^18.0.0, react@npm:^18.3.1":
   version: 18.3.1
   resolution: "react@npm:18.3.1"
   dependencies:
@@ -21902,7 +21887,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remark-gfm@npm:latest":
+"remark-gfm@npm:^4.0.0":
   version: 4.0.0
   resolution: "remark-gfm@npm:4.0.0"
   dependencies:
@@ -23420,7 +23405,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"strapi-plugin-slugify@npm:latest":
+"strapi-plugin-slugify@npm:^2.3.8":
   version: 2.3.8
   resolution: "strapi-plugin-slugify@npm:2.3.8"
   dependencies:
@@ -23860,7 +23845,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwindcss@npm:latest":
+"tailwindcss@npm:^3.4.15":
   version: 3.4.15
   resolution: "tailwindcss@npm:3.4.15"
   dependencies:
@@ -24532,7 +24517,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:latest":
+"typescript@npm:^5.6.3":
   version: 5.6.3
   resolution: "typescript@npm:5.6.3"
   bin:
@@ -24582,7 +24567,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3Alatest#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A^5.6.3#optional!builtin<compat/typescript>":
   version: 5.6.3
   resolution: "typescript@patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>::version=5.6.3&hash=8c6c40"
   bin:
@@ -25964,7 +25949,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yet-another-react-lightbox@npm:latest":
+"yet-another-react-lightbox@npm:^3.21.7":
   version: 3.21.7
   resolution: "yet-another-react-lightbox@npm:3.21.7"
   peerDependencies:

@@ -11,13 +11,14 @@
   "dependencies": {
     "eslint": "^9.15.0",
     "eslint-define-config": "^2.1.0",
-    "npm-check-updates": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "npm-check-updates": "^17.1.11",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@nx/next": "20.1.2",
-    "nx": "20.1.2"
+    "@nx/next": "^20.1.2",
+    "next": "^15.0.3",
+    "nx": "^20.1.2"
   },
   "nx": {},
   "workspaces": [
