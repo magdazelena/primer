@@ -6,10 +6,9 @@
     "backend": "nx dev backend",
     "cleanup": "nx clear frontend",
     "setup": "yarn install",
-    "dev": "yarn clear && concurrently \"yarn frontend\" \"yarn backend\""
+    "dev": "yarn clear && nx frontend && nx backend"
   },
   "dependencies": {
-    "concurrently": "latest",
     "npm-check-updates": "latest",
     "react": "latest",
     "react-dom": "latest"
