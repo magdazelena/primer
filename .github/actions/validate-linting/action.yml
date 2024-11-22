@@ -9,32 +9,33 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Install node.js
+    - name: Install Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: 20
+        node-version: 20.5.0
         token: ${{ inputs.github-token }}
 
     - name: Enable Corepack
       shell: bash
-      run: corepack enable
+      run: |
+        corepack enable
+        corepack prepare yarn@4.0.0 --activate
 
-    - name: Setup Yarn Berry
-      uses: threeal/setup-yarn-action@v2.0.0
-      with:
-        version: "4.x"
+    - name: Debug Corepack
+      shell: bash
+      run: corepack --version
 
     - name: Install dependencies
       shell: bash
       run: |
         echo "//npm.pkg.github.com/:_authToken=${{ inputs.github-token }}" > ./.npmrc
         yarn cache clean
-        yarn install --frozen-lockfile --network-concurrency 1
+        yarn install --immutable --network-concurrency 1
 
     - name: Cache Yarn
       uses: actions/cache@v3
       with:
-        path: ~/.yarn/cache
+        path: .yarn/cache
         key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-yarn-
