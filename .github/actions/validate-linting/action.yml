@@ -15,10 +15,19 @@ runs:
         node-version: 20
         token: ${{ inputs.github-token }}
 
+    - name: Cache Yarn modules
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+
     - name: Install dependencies
       shell: bash
       run: |
         echo "//npm.pkg.github.com/:_authToken=${{ inputs.github-token }}" > ./.npmrc
+        yarn clean cache
         yarn install --frozen-lockfile --network-concurrency 1
 
     - name: Run eslint
