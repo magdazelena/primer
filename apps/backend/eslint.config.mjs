@@ -1,49 +1,15 @@
-import globals from "globals";
-import babelParser from "babel-eslint";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-import js from "@eslint/js";
-import { FlatCompat } from "@eslint/eslintrc";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all
-});
+import eslintConfig from '../../eslint.config.mjs';
 
-export default [{
-    ignores: ["**/.cache", "**/build", "**/node_modules/**/*"],
-}, ...compat.extends("eslint:recommended"), {
-    languageOptions: {
-        globals: {
-            ...globals.commonjs,
-            ...globals.node,
-            ...Object.fromEntries(Object.entries(globals.browser).map(([key]) => [key, "off"])),
-            strapi: true,
-        },
+export default {
+    ...eslintConfig,
+    overrides: [
+        ...eslintConfig.overrides,
+        {
+            files: ['apps/backend/**/*.ts', 'apps/backend/**/*.js'],
+            rules: {
 
-        parser: babelParser,
-        ecmaVersion: 5,
-        sourceType: "module",
-
-        parserOptions: {
-            ecmaFeatures: {
-                experimentalObjectRestSpread: true,
-                jsx: false,
             },
         },
-    },
-
-    rules: {
-        indent: ["error", 2, {
-            SwitchCase: 1,
-        }],
-
-        "linebreak-style": ["error", "unix"],
-        "no-console": 0,
-        quotes: ["error", "single"],
-        semi: ["error", "always"],
-    },
-}];
+    ],
+};

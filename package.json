@@ -9,6 +9,7 @@
     "dev": "yarn clear && nx frontend && nx backend"
   },
   "dependencies": {
+    "eslint": "^9.15.0",
     "npm-check-updates": "latest",
     "react": "latest",
     "react-dom": "latest"
