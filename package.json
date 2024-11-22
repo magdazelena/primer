@@ -4,7 +4,7 @@
   "scripts": {
     "frontend": "nx dev frontend",
     "backend": "nx dev backend",
-    "clear": "nx clear frontend",
+    "cleanup": "nx clear frontend",
     "setup": "yarn install",
     "dev": "yarn clear && concurrently \"yarn frontend\" \"yarn backend\""
   },
