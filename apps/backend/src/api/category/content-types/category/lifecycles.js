@@ -22,15 +22,15 @@ async function updateParentWithChild(category) {
   if (category.parent) {
     // Fetch the parent category
     const parent = await strapi.entityService.findOne(
-      "api::category.category",
+      'api::category.category',
       category.parent.id,
-      { populate: ["children"] } // Populate the children field
+      { populate: ['children'] } // Populate the children field
     );
 
     // If the parent exists and doesn't already contain this child
     if (parent && !parent.children.some((child) => child.id === category.id)) {
       // Add this category (child) to the parent's children field
-      await strapi.entityService.update("api::category.category", parent.id, {
+      await strapi.entityService.update('api::category.category', parent.id, {
         data: {
           children: [...parent.children.map((child) => child.id), category.id], // Append this child
         },

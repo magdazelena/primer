@@ -7,24 +7,24 @@ module.exports = ({ env }) => ({
     config: {
       contentTypes: {
         article: {
-          field: "slug",
-          references: "title",
+          field: 'slug',
+          references: 'title',
         },
         category: {
-          field: "slug",
-          references: "name",
+          field: 'slug',
+          references: 'name',
         },
         page: {
-          field: "slug",
-          references: "shortName",
+          field: 'slug',
+          references: 'shortName',
         },
         product: {
-          field: "slug",
-          references: "name",
+          field: 'slug',
+          references: 'name',
         },
-        "product-category": {
-          field: "slug",
-          references: "name",
+        'product-category': {
+          field: 'slug',
+          references: 'name',
         },
       },
     },

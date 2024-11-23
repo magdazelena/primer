@@ -1,24 +1,28 @@
-// eslint.config.mjs (root config)
-import { defineConfig } from 'eslint-define-config';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import js from '@eslint/js';
+import { FlatCompat } from '@eslint/eslintrc';
 
-export default defineConfig({
-    ignores: ["**/.cache", "**/build", "**/node_modules/**/*"],
-
-    parser: '@typescript-eslint/parser',
-    extends: [
-        'eslint:recommended',
-        'plugin:@typescript-eslint/recommended',
-    ],
-    rules: {
-        indent: ["error", 2, {
-            SwitchCase: 1,
-        }],
-
-        "linebreak-style": ["error", "unix"],
-        "no-console": 0,
-        quotes: ["error", "single"],
-        semi: ["error", "always"],
-    },
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+  recommendedConfig: js.configs.recommended,
+  allConfig: js.configs.all
 });
 
+export default [
+  ...compat.extends('eslint:recommended'),
+  {
+    rules: {
+      indent: ['error', 2, {
+        SwitchCase: 1,
+      }],
 
+      'linebreak-style': ['error', 'unix'],
+      'no-console': 0,
+      quotes: ['error', 'single'],
+      semi: ['error', 'always'],
+    },
+  },
+];

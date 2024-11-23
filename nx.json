@@ -6,7 +6,18 @@
       "cache": true
     },
     "lint": {
-      "cache": true
+      "inputs": [
+        "default",
+        "{workspaceRoot}/eslint.config.mjs"
+      ]
     }
-  }
+  },
+  "plugins": [
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    }
+  ]
 }

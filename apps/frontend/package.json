@@ -28,6 +28,8 @@
     "yet-another-react-lightbox": "^3.21.7"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.15.0",
+    "@typescript-eslint/parser": "^8.15.0",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "react": "^18.3.1",

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * `page-populate-middleware` middleware
@@ -8,30 +8,30 @@ const populate = {
   contentSections: {
     populate: {
       picture: {
-        fields: ["url", "alternativeText", "caption", "width", "height"],
+        fields: ['url', 'alternativeText', 'caption', 'width', 'height'],
       },
       buttons: {
         populate: true,
       },
       feature: {
         populate: {
-          fields: ["title", "description", "showLink", "newTab", "url", "text"],
+          fields: ['title', 'description', 'showLink', 'newTab', 'url', 'text'],
           media: {
-            fields: ["url", "alternativeText", "caption", "width", "height"],
+            fields: ['url', 'alternativeText', 'caption', 'width', 'height'],
           },
         },
       },
       testimonials: {
         populate: {
           picture: {
-            fields: ["url", "alternativeText", "caption", "width", "height"],
+            fields: ['url', 'alternativeText', 'caption', 'width', 'height'],
           },
         },
       },
       cards: {
         populate: {
           coverImage: {
-            fields: ["url", "alternativeText", "caption", "width", "height"],
+            fields: ['url', 'alternativeText', 'caption', 'width', 'height'],
           },
           link: {
             populate: true,
@@ -39,7 +39,7 @@ const populate = {
         },
       },
       plans: {
-        populate: ["product_features"],
+        populate: ['product_features'],
       },
       submitButton: {
         populate: true,
@@ -47,7 +47,7 @@ const populate = {
     },
   },
   seo: {
-    fields: ["metaTitle", "metaDescription"],
+    fields: ['metaTitle', 'metaDescription'],
     populate: { shareImage: true },
   },
 };
@@ -61,7 +61,7 @@ module.exports = (config, { strapi }) => {
       locale: ctx.query.locale,
     };
 
-    console.log("page-populate-middleware.js: ctx.query = ", ctx.query);
+    console.log('page-populate-middleware.js: ctx.query = ', ctx.query);
 
     await next();
   };

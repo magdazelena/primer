@@ -6,16 +6,19 @@
     "backend": "nx dev backend",
     "cleanup": "nx clear frontend",
     "setup": "yarn install",
+    "lint": "nx run-many --target=lint --all",
     "dev": "yarn clear && nx frontend && nx backend"
   },
   "dependencies": {
     "eslint": "^9.15.0",
-    "eslint-define-config": "^2.1.0",
     "npm-check-updates": "^17.1.11",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.15.0",
+    "@nx/eslint": "20.1.2",
     "@nx/next": "^20.1.2",
     "next": "^15.0.3",
     "nx": "^20.1.2"
