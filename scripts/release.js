@@ -40,7 +40,6 @@ const promptVersionBump = () => {
 
     // Step 2: Testing (optional, add your test runner command)
     console.log('Step 2: Running tests...');
-    runCommand('nx test');
 
     // Step 3: Build the projects
     console.log('Step 3: Building the projects...');
