@@ -17,7 +17,7 @@ interface Meta {
 
 export default function Creators() {
   const [meta, setMeta] = useState<Meta | undefined>();
-  const [data, setData] = useState<any>([]);
+  const [data, setData] = useState<Creator[]>([]);
   const [isLoading, setLoading] = useState(true);
 
   const fetchData = useCallback(async (start: number, limit: number) => {
@@ -42,7 +42,7 @@ export default function Creators() {
       if (start === 0) {
         setData(responseData.data);
       } else {
-        setData((prevData: any[]) => [...prevData, ...responseData.data]);
+        setData((prevData) => [...prevData, ...responseData.data]);
       }
 
       setMeta(responseData.meta);
