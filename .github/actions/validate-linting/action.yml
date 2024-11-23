@@ -42,4 +42,4 @@ runs:
 
     - name: Run eslint
       shell: bash
-      run: npx eslint --max-warnings=0
+      run: yarn lint
