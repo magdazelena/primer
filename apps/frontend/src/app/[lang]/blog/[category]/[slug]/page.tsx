@@ -1,6 +1,9 @@
 import { fetchAPI } from "@/utils/fetch-api";
 import Post from "../../views/post";
 import type { Metadata } from "next";
+import { ArticleParams } from "@/types/article";
+import { mockArticleParams } from "@/mocks/data";
+import { FALLBACK_SEO } from "@/utils/constants";
 
 async function getPostBySlug(slug: string) {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
@@ -47,6 +50,7 @@ export async function generateMetadata({
   params: { slug: string };
 }): Promise<Metadata> {
   const meta = await getMetaData(params.slug);
+  if (meta.length === 0 ) return FALLBACK_SEO;
   const metadata = meta[0].attributes.seo;
 
   return {
@@ -66,26 +70,33 @@ export default async function PostRoute({
   return <Post data={data.data[0]} />;
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<ArticleParams[]> {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
   const path = `/articles`;
   const options = { headers: { Authorization: `Bearer ${token}` } };
-  const articleResponse = await fetchAPI(
-    path,
-    {
-      populate: ["category"],
-    },
-    options
-  );
-
-  return articleResponse.data.map(
-    (article: {
-      attributes: {
-        slug: string;
-        category: {
+  let articleParams: ArticleParams[];
+  try {
+    const articleResponse = await fetchAPI(
+      path,
+      {
+        populate: ["category"],
+      },
+      options
+    );
+  
+    articleParams = articleResponse.data.map(
+      (article: {
+        attributes: {
           slug: string;
+          category: {
+            slug: string;
+          };
         };
-      };
-    }) => ({ slug: article.attributes.slug, category: article.attributes.slug })
-  );
+      }) => ({ slug: article.attributes.slug, category: article.attributes.slug })
+    );
+  } catch (error) {
+    console.error('Error fetching articles', error);
+    articleParams = [mockArticleParams]
+  }
+  return articleParams;
 }

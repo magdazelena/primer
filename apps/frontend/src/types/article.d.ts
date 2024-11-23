@@ -44,10 +44,14 @@ interface Category {
     };
     topLevel: boolean;
     articles: {
-      data: Array<any>;
+      data: Article[]
     };
   };
 }
+interface ArticleParams {
+  slug: string;
+  category: string;
+}
 
 type Article = ArticleBase & ArticleFull;
-export { ArticleBase, Article, Category };
+export { ArticleBase, Article, Category, ArticleParams };

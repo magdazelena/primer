@@ -1,6 +1,7 @@
 import ArticleSelect from "../../components/ArticleSelect";
 import { fetchAPI } from "@/utils/fetch-api";
-import { Article, Category } from "@/types/article";
+import { Article, ArticleParams, Category } from "@/types/article";
+import { mockArticleParams } from "@/mocks/data";
 
 async function fetchSideMenuData(filter: string) {
   try {
@@ -88,22 +89,31 @@ export async function generateStaticParams() {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
   const path = `/articles`;
   const options = { headers: { Authorization: `Bearer ${token}` } };
-  const articleResponse = await fetchAPI(
-    path,
-    {
-      populate: ["category"],
-    },
-    options
-  );
 
-  return articleResponse.data.map(
-    (article: {
-      attributes: {
-        slug: string;
-        category: {
+  let articleParams: ArticleParams[];
+  try {
+    const articleResponse = await fetchAPI(
+      path,
+      {
+        populate: ["category"],
+      },
+      options
+    );
+  
+    articleParams = articleResponse.data.map(
+      (article: {
+        attributes: {
           slug: string;
+          category: {
+            slug: string;
+          };
         };
-      };
-    }) => ({ slug: article.attributes.slug, category: article.attributes.slug })
-  );
+      }) => ({ slug: article.attributes.slug, category: article.attributes.slug })
+    );
+  } catch (error) {
+    console.error('Error fetching articles', error);
+    articleParams = [mockArticleParams]
+  }
+  return articleParams;
 }
+
