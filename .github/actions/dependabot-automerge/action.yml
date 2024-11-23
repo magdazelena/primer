@@ -1,0 +1,22 @@
+name: Dependabot auto merge
+description: "Automatically merges Dependabot PRs"
+
+inputs:
+  github-token:
+    description: GITHUB_TOKEN authentication
+    required: true
+  pr-url:
+    description: Pull request html url
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Enable auto-merge for Dependabot PRs
+      shell: bash
+      run: |
+        gh pr review --approve "${{ inputs.pr-url }}"
+        gh pr merge --auto --squash "${{ inputs.pr-url }}"
+      env:
+        PR_URL: ${{ inputs.pr-url }}
+        GITHUB_TOKEN: ${{ inputs.github-token }}

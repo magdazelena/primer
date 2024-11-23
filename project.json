@@ -1,0 +1,38 @@
+{
+    "version": 2,
+    "projects": {
+        "frontend": {
+            "root": "apps/frontend",
+            "sourceRoot": "apps/frontend/src",
+            "projectType": "application",
+            "targets": {
+                "lint": {
+                    "executor": "@nx/eslint",
+                    "options": {
+                        "eslintConfig": "apps/frontend/eslint.config.mjs",
+                        "lintFilePatterns": [
+                            "apps/frontend/**/*.ts",
+                            "apps/frontend/**/*.tsx"
+                        ]
+                    }
+                }
+            }
+        },
+        "backend": {
+            "root": "apps/backend",
+            "sourceRoot": "apps/backend/src",
+            "projectType": "application",
+            "targets": {
+                "lint": {
+                    "executor": "@nx/eslint",
+                    "options": {
+                        "eslintConfig": "apps/backend/eslint.config.mjs",
+                        "lintFilePatterns": [
+                            "apps/backend/**/*.js"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,25 +1,32 @@
 {
   "name": "primer",
   "private": true,
-  "scripts": {
-    "frontend": "nx dev frontend",
-    "backend": "nx dev backend",
-    "clear": "nx clear frontend",
-    "setup": "yarn install",
-    "dev": "yarn clear && concurrently \"yarn frontend\" \"yarn backend\""
-  },
-  "dependencies": {
-    "concurrently": "latest",
-    "npm-check-updates": "latest",
-    "react": "latest",
-    "react-dom": "latest"
-  },
-  "devDependencies": {
-    "@nx/next": "^20.0.6",
-    "nx": "20.0.3"
-  },
-  "nx": {},
   "workspaces": [
     "apps/*"
-  ]
+  ],
+  "scripts": {
+    "backend": "nx dev backend",
+    "cleanup": "nx clear frontend",
+    "dev": "yarn clear && nx frontend && nx backend",
+    "frontend": "nx dev frontend",
+    "lint": "nx run backend:lint && nx run frontend:lint",
+    "setup": "yarn install"
+  },
+  "dependencies": {
+    "eslint": "^9.15.0",
+    "npm-check-updates": "^17.1.11",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.15.0",
+    "@nx/eslint": "20.1.3",
+    "@nx/next": "20.1.3",
+    "globals": "^15.12.0",
+    "next": "^15.0.3",
+    "nx": "20.1.3"
+  },
+  "packageManager": "yarn@4.5.2",
+  "nx": {}
 }
