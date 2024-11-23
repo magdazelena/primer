@@ -1,3 +1,4 @@
+![health](https://github.com/github/docs/actions/workflows/ci.yml/badge.svg)
 # Strapi Starter Next 14, Tailwind, Typescript and Strapi
 
 This is a monorepo supported by NX.
