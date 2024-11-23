@@ -7,7 +7,13 @@ import typescriptParser from "@typescript-eslint/parser";
 export default [
   {
     files: ["**/*.ts", "**/*.tsx"],
-    ignores: [".next/**", "public/**", "**/eslint.config.mjs"],
+    ignores: [
+      ".next/**",
+      "node_modules/**",
+      "public/**",
+      "build/**",
+      "next.config.js",
+    ],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: "module",
