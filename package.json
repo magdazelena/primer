@@ -9,7 +9,7 @@
     "cleanup": "nx clear frontend",
     "dev": "yarn clear && nx frontend && nx backend",
     "frontend": "nx dev frontend",
-    "lint": "nx run-many --target=lint --all",
+    "lint": "nx run backend:lint && nx run frontend:lint",
     "setup": "yarn install"
   },
   "dependencies": {
