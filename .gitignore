@@ -9,6 +9,6 @@ readme-images
 apps/frontend/next.config.js
 .nx
 
-
+dist
 .nx/cache
 .nx/workspace-data

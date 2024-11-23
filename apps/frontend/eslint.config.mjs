@@ -1,30 +1,43 @@
-import eslintConfig from "../../eslint.config.mjs";
+import js from "@eslint/js";
 import globals from "globals";
+import typescriptPlugin from "@typescript-eslint/eslint-plugin";
+import nextPlugin from "@next/eslint-plugin-next";
+import typescriptParser from "@typescript-eslint/parser";
 
 export default [
-  ...eslintConfig,
   {
-    ignores: [".next", "public", "**/eslint.config.mjs"],
+    files: ["**/*.ts", "**/*.tsx"],
+    ignores: [".next/**", "public/**", "**/eslint.config.mjs"],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: "module",
-      parser: "@typescript-eslint/parser",
+      parser: typescriptParser,
       parserOptions: {
-        project: "apps/frontend/tsconfig.json",
+        ecmaFeatures: {
+          jsx: true,
+        },
+        project: "./tsconfig.json",
+        tsconfigRootDir: process.cwd(),
       },
       globals: {
         ...globals.browser,
         ...globals.node,
+        React: "readonly",
       },
     },
     plugins: {
-      "@typescript-eslint": "@typescript-eslint/eslint-plugin",
+      "@typescript-eslint": typescriptPlugin,
+      "@next/next": nextPlugin,
     },
     rules: {
-      // Add TypeScript-specific rules here
-      "@typescript-eslint/no-unused-vars": "error",
-      "@typescript-eslint/explicit-function-return-type": "off",
-      "@typescript-eslint/no-explicit-any": "warn",
+      ...js.configs.recommended.rules,
+      ...typescriptPlugin.configs.recommended.rules,
+      ...nextPlugin.configs.recommended.rules,
+      "@typescript-eslint/no-explicit-any": ["warn"],
+      "@typescript-eslint/no-unused-vars": ["warn"],
+      "no-redeclare": "off",
+      "@typescript-eslint/no-redeclare": ["warn"],
+      "react/react-in-jsx-scope": "off",
     },
   },
 ];

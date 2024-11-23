@@ -15,6 +15,20 @@
                             "apps/frontend/**/*.tsx"
                         ]
                     }
+                },
+                "build": {
+                    "executor": "@nx/next:build",
+                    "options": {
+                        "outputPath": "dist/apps/frontend",
+                        "nextConfig": "apps/frontend/next.config.js",
+                        "generateBuildId": true
+                    },
+                    "configurations": {
+                        "production": {
+                            "optimization": true,
+                            "sourceMap": false
+                        }
+                    }
                 }
             }
         },
@@ -29,6 +43,18 @@
                         "eslintConfig": "apps/backend/eslint.config.mjs",
                         "lintFilePatterns": [
                             "apps/backend/**/*.js"
+                        ]
+                    }
+                },
+                "build": {
+                    "executor": "@nx/node:build",
+                    "options": {
+                        "outputPath": "dist/apps/backend",
+                        "main": "apps/backend/src/index.js",
+                        "tsConfig": "apps/backend/tsconfig.json",
+                        "assets": [
+                            "apps/backend/src/**/*.json",
+                            "apps/backend/public"
                         ]
                     }
                 }

@@ -44,7 +44,7 @@ interface Category {
     };
     topLevel: boolean;
     articles: {
-      data: Array<{}>;
+      data: Array<any>;
     };
   };
 }
