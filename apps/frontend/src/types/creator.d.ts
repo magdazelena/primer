@@ -19,4 +19,8 @@ interface Creator {
     }
 }
 
-export { Creator }
+interface CreatorParams {
+    slug: string
+}
+
+export { Creator, CreatorParams }

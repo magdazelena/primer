@@ -1,6 +1,8 @@
 import { fetchAPI } from "@/utils/fetch-api";
 import type { Metadata } from "next";
 import { CreatorView } from "../views/creator";
+import { CreatorParams } from "@/types/creator";
+import { mockCreatorParams } from "@/mocks/data";
 
 async function getCreatorBySlug(slug: string) {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
@@ -51,24 +53,31 @@ export default async function CreatorRoute({
   return <CreatorView creator={data.data[0]} />;
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<CreatorParams[]> {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
   const path = `/creators`;
   const options = { headers: { Authorization: `Bearer ${token}` } };
-  const creatorResponse = await fetchAPI(
-    path,
-    {
-      populate: "*",
-    },
-    options
-  );
-  return creatorResponse.data.map(
-    (creator: {
-      attributes: {
-        slug: string;
-      };
-    }) => ({
-      slug: creator.attributes.slug,
-    })
-  );
+  let creatorParams: CreatorParams[];
+  try {
+    const creatorResponse = await fetchAPI(
+      path,
+      {
+        populate: "*",
+      },
+      options
+    );
+    creatorParams = creatorResponse.data.map(
+      (creator: {
+        attributes: {
+          slug: string;
+        };
+      }) => ({
+        slug: creator.attributes.slug,
+      })
+    );
+  } catch (error) {
+    console.error(error);
+    creatorParams = [mockCreatorParams];
+  }
+  return creatorParams;
 }
