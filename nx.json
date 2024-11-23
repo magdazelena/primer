@@ -1,6 +1,10 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "defaultBase": "main",
+  "projects": {
+    "frontend": "apps/frontend",
+    "backend": "apps/backend"
+  },
   "targetDefaults": {
     "setup": {
       "cache": true

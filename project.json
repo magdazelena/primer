@@ -9,6 +9,7 @@
                 "lint": {
                     "executor": "@nx/eslint",
                     "options": {
+                        "eslintConfig": "apps/frontend/eslint.config.mjs",
                         "lintFilePatterns": [
                             "apps/frontend/**/*.ts",
                             "apps/frontend/**/*.tsx"
@@ -25,6 +26,7 @@
                 "lint": {
                     "executor": "@nx/eslint",
                     "options": {
+                        "eslintConfig": "apps/backend/eslint.config.mjs",
                         "lintFilePatterns": [
                             "apps/backend/**/*.js"
                         ]

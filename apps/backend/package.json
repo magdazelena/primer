@@ -1,16 +1,20 @@
 {
-  "name": "primer-template",
-  "private": true,
+  "name": "backend",
   "version": "0.1.0",
+  "private": true,
   "description": "A Strapi application",
+  "license": "MIT",
+  "author": {
+    "name": "magdazelena"
+  },
   "scripts": {
-    "dev": "strapi develop",
-    "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi",
-    "lint": "eslint",
+    "dev": "strapi develop",
     "export": "strapi export --no-encrypt --file seed-data",
-    "seed": "strapi import -f ./seed-data.tar.gz"
+    "lint": "eslint . --config ./eslint.config.mjs",
+    "seed": "strapi import -f ./seed-data.tar.gz",
+    "start": "strapi start",
+    "strapi": "strapi"
   },
   "dependencies": {
     "@strapi/plugin-seo": "^2.0.4",
@@ -23,18 +27,17 @@
     "strapi-plugin-slugify": "^2.3.8",
     "styled-components": "^6.1.13"
   },
-  "author": {
-    "name": "magdazelena"
-  },
-  "strapi": {
-    "uuid": "0f95dc7c-202b-4ab2-a874-3799d23b1640"
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "eslint": "^9.15.0",
+    "eslint-plugin-node": "^11.1.0",
+    "globals": "^15.12.0"
   },
   "engines": {
     "node": ">=18.0.0 <=20.x.x",
     "npm": ">=6.0.0"
   },
-  "license": "MIT",
-  "devDependencies": {
-    "globals": "^15.12.0"
+  "strapi": {
+    "uuid": "0f95dc7c-202b-4ab2-a874-3799d23b1640"
   }
 }
