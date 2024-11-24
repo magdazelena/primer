@@ -61,7 +61,7 @@ async function fetchSideMenuData(filter: string) {
             fields: ["slug"],
           },
         },
-        ...filters,
+        filters: {...filters},
       },
       options
     );

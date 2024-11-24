@@ -39,7 +39,7 @@ async function getMetaData(slug: string) {
   const path = `/products`;
   const urlParamsObject = {
     filters: { slug },
-    populate: { seo: { populate: "*" } },
+    populate: { seo: "*"},
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
   const response = await fetchAPI(path, urlParamsObject, options);

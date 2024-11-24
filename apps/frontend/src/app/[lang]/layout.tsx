@@ -7,7 +7,6 @@ import { i18n } from "../../../i18n-config";
 import Banner from "@/components/Banner";
 import Footer from "@/components/Footer";
 import { FALLBACK_SEO } from "@/utils/constants";
-import qs from "qs";
 import Body from "@/components/Body";
 import Navbar from "@/components/Navbar";
 
@@ -47,13 +46,12 @@ async function getCategories(lang: string): Promise<any> {
   const params = {
     populate: {
       children: {
-        populate: ["children"],
+        populate: ["*"],
       },
     },
     locale: lang,
   };
-  const queryString = qs.stringify(params);
-  console.log(queryString);
+
   // Fetch product categories from Strapi
   const productCategoriesRes = await fetchAPI(
     `/product-categories`,
