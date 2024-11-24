@@ -12,7 +12,12 @@ async function getCreatorBySlug(slug: string) {
     populate: "*",
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
-  const response = await fetchAPI(path, urlParamsObject, options);
+  let response; 
+  try {
+    response = await fetchAPI(path, urlParamsObject, options);
+  } catch(_e){
+    response = [];
+  } 
   return response;
 }
 
@@ -24,7 +29,12 @@ async function getMetaData(slug: string) {
     populate: { seo: { populate: "*" } },
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
-  const response = await fetchAPI(path, urlParamsObject, options);
+  let response; 
+  try {
+    response = await fetchAPI(path, urlParamsObject, options);
+  } catch(_e){
+    response.data = [];
+  } 
   return response.data;
 }
 

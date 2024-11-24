@@ -33,7 +33,12 @@ async function getProductBySlug(slug: string) {
     },
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
-  const response = await fetchAPI(path, urlParamsObject, options);
+  let response;
+  try {
+    response = await fetchAPI(path, urlParamsObject, options);
+  } catch (_error) {
+    response = []
+  }
   return response;
 }
 
