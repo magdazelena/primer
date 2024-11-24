@@ -5,6 +5,7 @@ import { fetchAPI } from "@/utils/fetch-api";
 import Loader from "@/components/Loader";
 import List from "./views/product-list";
 import PageHeader from "@/components/PageHeader";
+import { Product } from "@/types/product";
 
 interface Meta {
   pagination: {
@@ -16,7 +17,7 @@ interface Meta {
 
 export default function Products() {
   const [meta, setMeta] = useState<Meta | undefined>();
-  const [data, setData] = useState<any>([]);
+  const [data, setData] = useState<Product[]>([]);
   const [isLoading, setLoading] = useState(true);
 
   const fetchData = useCallback(async (start: number, limit: number) => {
@@ -41,7 +42,7 @@ export default function Products() {
       if (start === 0) {
         setData(responseData.data);
       } else {
-        setData((prevData: any[]) => [...prevData, ...responseData.data]);
+        setData((prevData) => [...prevData, ...responseData.data]);
       }
 
       setMeta(responseData.meta);

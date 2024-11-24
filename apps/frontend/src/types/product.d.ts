@@ -1,6 +1,5 @@
 import { BlocksContent } from "@strapi/blocks-react-renderer";
 import { Image } from "./image";
-import { RichTextModule } from "./richtext";
 import { Creator } from "./creator";
 
 interface Product {
@@ -50,4 +49,9 @@ interface ProductCategory {
   };
 }
 
-export { Product, ProductCategory };
+interface ProductParams {
+  slug: string;
+  productCategory: string;
+}
+
+export { Product, ProductCategory, ProductParams };

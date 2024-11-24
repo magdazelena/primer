@@ -1,6 +1,9 @@
 import { fetchAPI } from "@/utils/fetch-api";
 import type { Metadata } from "next";
 import ProductView from "../../views/product";
+import { FALLBACK_SEO } from "@/utils/constants";
+import { ProductParams } from "@/types/product";
+import { mockProductParams } from "@/mocks/data";
 
 async function getProductBySlug(slug: string) {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
@@ -52,6 +55,7 @@ export async function generateMetadata({
   params: { slug: string };
 }): Promise<Metadata> {
   const meta = await getMetaData(params.slug);
+  if (meta.length === 0) return FALLBACK_SEO;
   const metadata = meta[0].attributes.seo;
 
   return {
@@ -71,32 +75,40 @@ export default async function ProductRoute({
   return <ProductView data={data.data[0]} />;
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<ProductParams[]> {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
   const path = `/products`;
   const options = { headers: { Authorization: `Bearer ${token}` } };
-  const productResponse = await fetchAPI(
-    path,
-    {
-      populate: { category: { fields: ["slug"] } },
-    },
-    options
-  );
-  return productResponse.data.map(
-    (product: {
-      attributes: {
-        slug: string;
-        category: {
-          data: {
-            attributes: {
-              slug: string;
+  let productParams: ProductParams[];
+  try {
+    const productResponse = await fetchAPI(
+      path,
+      {
+        populate: { category: { fields: ["slug"] } },
+      },
+      options
+    );
+    productParams = productResponse.data.map(
+      (product: {
+        attributes: {
+          slug: string;
+          category: {
+            data: {
+              attributes: {
+                slug: string;
+              };
             };
           };
         };
-      };
-    }) => ({
-      slug: product.attributes.slug,
-      productCategory: product.attributes.category.data.attributes.slug,
-    })
-  );
+      }) => ({
+        slug: product.attributes.slug,
+        productCategory: product.attributes.category.data.attributes.slug,
+      })
+    );
+  
+  } catch (error) {
+    console.error("Error fetching product params", error);
+    productParams = [mockProductParams];
+  }
+  return productParams;
 }

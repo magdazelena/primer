@@ -1,7 +1,8 @@
 import ProductSelect from "../../components/ProductSelect";
 import { fetchAPI } from "@/utils/fetch-api";
-import { Product, ProductCategory } from "@/types/product";
+import { Product, ProductCategory, ProductParams } from "@/types/product";
 import { findParentCategory } from "@/utils/find-parent-category";
+import { mockProductParams } from "@/mocks/data";
 async function fetchSideMenuData(filter: string) {
   try {
     const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
@@ -131,41 +132,47 @@ export default async function LayoutRoute({
   );
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<ProductParams[]> {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
   const path = `/products`;
   const options = { headers: { Authorization: `Bearer ${token}` } };
-  const productResponse = await fetchAPI(
-    path,
-    {
-      populate: { category: { fields: ["slug"] } },
-    },
-    options
-  );
+  let productParams: ProductParams[];
+  try {
+    const productResponse = await fetchAPI(
+      path,
+      {
+        populate: { category: { fields: ["slug"] } },
+      },
+      options
+    );
 
-  const staticParams = productResponse.data.map(
-    (product: {
-      attributes: {
-        slug: string;
-        category: {
-          data: {
-            attributes: {
-              slug: string;
+    productParams = productResponse.data.map(
+      (product: {
+        attributes: {
+          slug: string;
+          category: {
+            data: {
+              attributes: {
+                slug: string;
+              };
             };
           };
         };
-      };
-    }) => ({
-      slug: product.attributes.slug,
-      productCategory: product.attributes.category.data.attributes.slug,
-    })
-  );
-  return staticParams;
+      }) => ({
+        slug: product.attributes.slug,
+        productCategory: product.attributes.category.data.attributes.slug,
+      })
+    );
+  } catch (error) {
+    console.error("Error fetching product params", error);
+    productParams = [mockProductParams];
+  }
+  return productParams;
 }
 export async function getStaticPaths() {
-  const paths = await generateStaticParams(); // Use your generateStaticParams here
+  const paths = await generateStaticParams();
   return {
     paths,
-    fallback: false, // Ensure correct behavior if a route is missing
+    fallback: true,
   };
 }
