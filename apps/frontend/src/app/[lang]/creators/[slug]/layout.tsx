@@ -71,15 +71,20 @@ interface Data {
   products: Product[];
   articles: Article[];
 }
-export default async function LayoutRoute({
-  params,
-  children,
-}: {
-  children: React.ReactNode;
-  params: {
-    slug: string;
-  };
-}) {
+export default async function LayoutRoute(
+  props: {
+    children: React.ReactNode;
+    params: Promise<{
+      slug: string;
+    }>;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    children
+  } = props;
+
   const { articles, products } = (await fetchCreationsData(
     params.slug
   )) as Data;

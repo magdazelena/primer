@@ -67,11 +67,12 @@ async function getCategories(lang: string): Promise<any> {
   return { productCategories, blogCategories };
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { lang: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ lang: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const meta = await getGlobal(params.lang);
 
   if (!meta.data) return FALLBACK_SEO;
@@ -88,13 +89,18 @@ export async function generateMetadata({
   };
 }
 
-export default async function RootLayout({
-  children,
-  params,
-}: {
-  readonly children: React.ReactNode;
-  readonly params: { lang: string };
-}) {
+export default async function RootLayout(
+  props: {
+    readonly children: React.ReactNode;
+    readonly params: Promise<{ lang: string }>;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    children
+  } = props;
+
   const global = await getGlobal(params.lang);
   // TODO: CREATE A CUSTOM ERROR PAGE
   if (!global.data) return null;

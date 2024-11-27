@@ -26,11 +26,12 @@ async function getMetaData(slug: string) {
   return response.data;
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ slug: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const meta = await getMetaData(params.slug);
   const metadata = meta[0].attributes.seo;
 
@@ -40,11 +41,12 @@ export async function generateMetadata({
   };
 }
 
-export default async function CreatorRoute({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default async function CreatorRoute(
+  props: {
+    params: Promise<{ slug: string }>;
+  }
+) {
+  const params = await props.params;
   const { slug } = params;
   const data = await getCreatorBySlug(slug);
   if (data.data.length === 0) return <h2>no creators found</h2>;

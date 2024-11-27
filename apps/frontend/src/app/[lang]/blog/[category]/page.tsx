@@ -2,11 +2,12 @@ import PageHeader from "@/components/PageHeader";
 import BlogList from "../views/article-list";
 import { fetchPostsByCategory } from "@/utils/categories-fetch";
 
-export default async function CategoryRoute({
-  params,
-}: {
-  params: { category: string };
-}) {
+export default async function CategoryRoute(
+  props: {
+    params: Promise<{ category: string }>;
+  }
+) {
+  const params = await props.params;
   const filter = params.category;
   const data = await fetchPostsByCategory("/articles", "/categories", filter);
 

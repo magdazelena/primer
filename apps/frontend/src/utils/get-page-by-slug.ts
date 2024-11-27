@@ -6,5 +6,12 @@ export async function getPageBySlug(slug: string, lang: string) {
     const path = `/pages`;
     const urlParamsObject = {filters: {slug}, locale: lang};
     const options = {headers: {Authorization: `Bearer ${token}`}};
-    return await fetchAPI(path, urlParamsObject, options);
+    let result;
+    try {
+      result =  await fetchAPI(path, urlParamsObject, options);
+    } catch (error) {
+        console.error(error);
+        result = {}
+    }
+    return result;
 }

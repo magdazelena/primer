@@ -57,16 +57,21 @@ interface Data {
   categories: Category[];
 }
 
-export default async function LayoutRoute({
-  params,
-  children,
-}: {
-  children: React.ReactNode;
-  params: {
-    slug: string;
-    category: string;
-  };
-}) {
+export default async function LayoutRoute(
+  props: {
+    children: React.ReactNode;
+    params: Promise<{
+      slug: string;
+      category: string;
+    }>;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    children
+  } = props;
+
   const { category } = params;
   const { categories, articles } = (await fetchSideMenuData(category)) as Data;
   return (
