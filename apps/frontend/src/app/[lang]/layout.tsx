@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import { FALLBACK_SEO } from "@/utils/constants";
 import Body from "@/components/Body";
 import Navbar from "@/components/Navbar";
+import { NotFound } from "./404";
 
 async function getGlobal(lang: string): Promise<any> {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
@@ -103,7 +104,7 @@ export default async function RootLayout(
 
   const global = await getGlobal(params.lang);
   // TODO: CREATE A CUSTOM ERROR PAGE
-  if (!global.data) return null;
+  if (!global.data) return <NotFound params={params}/>;
 
   const { notificationBanner, navbar, footer } = global.data.attributes;
 
