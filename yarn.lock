@@ -6868,41 +6868,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/design-system@npm:2.0.0-rc.12":
-  version: 2.0.0-rc.12
-  resolution: "@strapi/design-system@npm:2.0.0-rc.12"
-  dependencies:
-    "@codemirror/lang-json": "npm:6.0.1"
-    "@floating-ui/react-dom": "npm:2.1.0"
-    "@internationalized/date": "npm:3.5.4"
-    "@internationalized/number": "npm:3.5.3"
-    "@radix-ui/react-accordion": "npm:1.1.2"
-    "@radix-ui/react-alert-dialog": "npm:1.0.5"
-    "@radix-ui/react-avatar": "npm:1.0.4"
-    "@radix-ui/react-checkbox": "npm:1.0.4"
-    "@radix-ui/react-dialog": "npm:1.0.5"
-    "@radix-ui/react-dismissable-layer": "npm:1.0.5"
-    "@radix-ui/react-dropdown-menu": "npm:2.0.6"
-    "@radix-ui/react-focus-scope": "npm:1.0.4"
-    "@radix-ui/react-popover": "npm:1.0.7"
-    "@radix-ui/react-progress": "npm:1.0.3"
-    "@radix-ui/react-radio-group": "npm:1.1.3"
-    "@radix-ui/react-scroll-area": "npm:1.0.5"
-    "@radix-ui/react-switch": "npm:1.0.3"
-    "@radix-ui/react-tabs": "npm:1.0.4"
-    "@radix-ui/react-tooltip": "npm:1.0.7"
-    "@strapi/ui-primitives": "npm:2.0.0-rc.12"
-    "@uiw/react-codemirror": "npm:4.22.2"
-    react-remove-scroll: "npm:2.5.10"
-  peerDependencies:
-    "@strapi/icons": ^2.0.0 || ^2.0.0-beta || ^2.0.0-alpha
-    react: ^17.0.0 || ^18.0.0
-    react-dom: ^17.0.0 || ^18.0.0
-    styled-components: ^6.0.0
-  checksum: 10c0/6b165c6ddd736423622724b44cae54e439391e770242fa63671d23d91607b78319f3dbbc6b1b4f70c75b19ac0a22ea34acce899d132041d7782ff2d0eae493be
-  languageName: node
-  linkType: hard
-
 "@strapi/design-system@npm:2.0.0-rc.13, @strapi/design-system@npm:^2.0.0-rc.10":
   version: 2.0.0-rc.13
   resolution: "@strapi/design-system@npm:2.0.0-rc.13"
@@ -7070,17 +7035,6 @@ __metadata:
     react: ^17.0.0 || ^18.0.0
     react-dom: ^17.0.0 || ^18.0.0
   checksum: 10c0/f62f5e844b33cd9adafe7fd00824e7ff14a3d12d8322634f6fdabbee08eea83f9f221cf77be1deac539660e05746363ab7bd2dac10bbf1302f23948e26a05cb3
-  languageName: node
-  linkType: hard
-
-"@strapi/icons@npm:2.0.0-rc.12":
-  version: 2.0.0-rc.12
-  resolution: "@strapi/icons@npm:2.0.0-rc.12"
-  peerDependencies:
-    react: ^17.0.0 || ^18.0.0
-    react-dom: ^17.0.0 || ^18.0.0
-    styled-components: ^6.0.0
-  checksum: 10c0/636c3bc5ccff38bdec375ad767d0d461b339453f60c23b4eb10f4ee1ac67381337d5217f8bc55ce986474ab886eae6e1e8b50072a9f8afc580fcd99b16a30c2d
   languageName: node
   linkType: hard
 
@@ -7335,13 +7289,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/plugin-users-permissions@npm:^5.4.1":
-  version: 5.4.1
-  resolution: "@strapi/plugin-users-permissions@npm:5.4.1"
+"@strapi/plugin-users-permissions@npm:^5.4.2":
+  version: 5.4.2
+  resolution: "@strapi/plugin-users-permissions@npm:5.4.2"
   dependencies:
-    "@strapi/design-system": "npm:2.0.0-rc.12"
-    "@strapi/icons": "npm:2.0.0-rc.12"
-    "@strapi/utils": "npm:5.4.1"
+    "@strapi/design-system": "npm:2.0.0-rc.13"
+    "@strapi/icons": "npm:2.0.0-rc.13"
+    "@strapi/utils": "npm:5.4.2"
     bcryptjs: "npm:2.4.3"
     formik: "npm:2.4.5"
     grant-koa: "npm:5.4.8"
@@ -7364,7 +7318,7 @@ __metadata:
     react-dom: ^17.0.0 || ^18.0.0
     react-router-dom: ^6.0.0
     styled-components: ^6.0.0
-  checksum: 10c0/bf280ae1a5f0dbc0d9630e1ea98d384684383deeda74f752cb2ddbfa8b033be8f9033084a5c66190e5da0de465ebb4be6d39e5b254b0161b2492c1026efa8602
+  checksum: 10c0/ed14d6c81fe098a74cbd9f4aef3a858de09849a971f6ea46549273e755e9bc31bbbfd45ca37038c0830d7402f6169f3552745c436135cc60f602699008802cc8
   languageName: node
   linkType: hard
 
@@ -7668,38 +7622,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/ui-primitives@npm:2.0.0-rc.12":
-  version: 2.0.0-rc.12
-  resolution: "@strapi/ui-primitives@npm:2.0.0-rc.12"
-  dependencies:
-    "@radix-ui/number": "npm:1.0.1"
-    "@radix-ui/primitive": "npm:1.0.1"
-    "@radix-ui/react-collection": "npm:1.0.3"
-    "@radix-ui/react-compose-refs": "npm:1.0.1"
-    "@radix-ui/react-context": "npm:1.0.1"
-    "@radix-ui/react-direction": "npm:1.0.1"
-    "@radix-ui/react-dismissable-layer": "npm:1.0.5"
-    "@radix-ui/react-focus-guards": "npm:1.0.1"
-    "@radix-ui/react-focus-scope": "npm:1.0.4"
-    "@radix-ui/react-id": "npm:1.0.1"
-    "@radix-ui/react-popper": "npm:1.1.3"
-    "@radix-ui/react-portal": "npm:1.0.4"
-    "@radix-ui/react-primitive": "npm:1.0.3"
-    "@radix-ui/react-slot": "npm:1.0.2"
-    "@radix-ui/react-use-callback-ref": "npm:1.0.1"
-    "@radix-ui/react-use-controllable-state": "npm:1.0.1"
-    "@radix-ui/react-use-layout-effect": "npm:1.0.1"
-    "@radix-ui/react-use-previous": "npm:1.0.1"
-    "@radix-ui/react-visually-hidden": "npm:1.0.3"
-    aria-hidden: "npm:1.2.4"
-    react-remove-scroll: "npm:2.5.10"
-  peerDependencies:
-    react: ^17.0.0 || ^18.0.0
-    react-dom: ^17.0.0 || ^18.0.0
-  checksum: 10c0/b93b36c5c486dd0344dd69ede4d0354cacf2e6bc5d054a268bd2a8a7c230507eb85ba11485dfb4a20af8d4bbf85da1a6205f6cefca773c98ca4eeb2b89e822a1
-  languageName: node
-  linkType: hard
-
 "@strapi/ui-primitives@npm:2.0.0-rc.13":
   version: 2.0.0-rc.13
   resolution: "@strapi/ui-primitives@npm:2.0.0-rc.13"
@@ -7812,24 +7734,6 @@ __metadata:
     p-map: "npm:4.0.0"
     yup: "npm:0.32.9"
   checksum: 10c0/0f9149b414ad230fe04d4a3af549f413ab15ca8098cd8e8b4aca994eb5b7a3e596be692621931ef15d66251500c42d2887ac344148104f54d93570d8537e6d9f
-  languageName: node
-  linkType: hard
-
-"@strapi/utils@npm:5.4.1":
-  version: 5.4.1
-  resolution: "@strapi/utils@npm:5.4.1"
-  dependencies:
-    "@sindresorhus/slugify": "npm:1.1.0"
-    date-fns: "npm:2.30.0"
-    execa: "npm:5.1.1"
-    http-errors: "npm:2.0.0"
-    lodash: "npm:4.17.21"
-    node-machine-id: "npm:1.1.12"
-    p-map: "npm:4.0.0"
-    preferred-pm: "npm:3.1.2"
-    yup: "npm:0.32.9"
-    zod: "npm:^3.22.4"
-  checksum: 10c0/ccb75a58e92f2d07717e28208ffedba0fc1c0d305ce340839008ecd8b31295c2bba0699260ab42de6873bff44bba22e02e2cab8d039905fa81bdafee6fac2ff6
   languageName: node
   linkType: hard
 
@@ -10189,7 +10093,7 @@ __metadata:
   dependencies:
     "@eslint/js": "npm:^9.15.0"
     "@strapi/plugin-seo": "npm:^2.0.4"
-    "@strapi/plugin-users-permissions": "npm:^5.4.1"
+    "@strapi/plugin-users-permissions": "npm:^5.4.2"
     "@strapi/strapi": "npm:^5.4.2"
     better-sqlite3: "npm:^11.5.0"
     eslint: "npm:^9.15.0"
