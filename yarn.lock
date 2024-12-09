@@ -6903,6 +6903,41 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@strapi/design-system@npm:2.0.0-rc.14":
+  version: 2.0.0-rc.14
+  resolution: "@strapi/design-system@npm:2.0.0-rc.14"
+  dependencies:
+    "@codemirror/lang-json": "npm:6.0.1"
+    "@floating-ui/react-dom": "npm:2.1.0"
+    "@internationalized/date": "npm:3.5.4"
+    "@internationalized/number": "npm:3.5.3"
+    "@radix-ui/react-accordion": "npm:1.1.2"
+    "@radix-ui/react-alert-dialog": "npm:1.0.5"
+    "@radix-ui/react-avatar": "npm:1.0.4"
+    "@radix-ui/react-checkbox": "npm:1.0.4"
+    "@radix-ui/react-dialog": "npm:1.0.5"
+    "@radix-ui/react-dismissable-layer": "npm:1.0.5"
+    "@radix-ui/react-dropdown-menu": "npm:2.0.6"
+    "@radix-ui/react-focus-scope": "npm:1.0.4"
+    "@radix-ui/react-popover": "npm:1.0.7"
+    "@radix-ui/react-progress": "npm:1.0.3"
+    "@radix-ui/react-radio-group": "npm:1.1.3"
+    "@radix-ui/react-scroll-area": "npm:1.0.5"
+    "@radix-ui/react-switch": "npm:1.0.3"
+    "@radix-ui/react-tabs": "npm:1.0.4"
+    "@radix-ui/react-tooltip": "npm:1.0.7"
+    "@strapi/ui-primitives": "npm:2.0.0-rc.14"
+    "@uiw/react-codemirror": "npm:4.22.2"
+    react-remove-scroll: "npm:2.5.10"
+  peerDependencies:
+    "@strapi/icons": ^2.0.0 || ^2.0.0-beta || ^2.0.0-alpha
+    react: ^17.0.0 || ^18.0.0
+    react-dom: ^17.0.0 || ^18.0.0
+    styled-components: ^6.0.0
+  checksum: 10c0/db6290c2ee6617f81e4dc2f85e4d44902e79a7ad683c122cfa5f50e96d25b78ecfe5d0f3ad566cb8e54efb6082f3fca41311000cd466eaf8169047b9547e68cb
+  languageName: node
+  linkType: hard
+
 "@strapi/email@npm:5.4.2":
   version: 5.4.2
   resolution: "@strapi/email@npm:5.4.2"
@@ -7046,6 +7081,17 @@ __metadata:
     react-dom: ^17.0.0 || ^18.0.0
     styled-components: ^6.0.0
   checksum: 10c0/fc2e54f5d961524fc8bb1d5098f246e91dc85543f3272a7f2624710ddeff13014b94b41f3a86b37e8ec505467237367ab695b4d215bc1ec09f0950cd387fbbdc
+  languageName: node
+  linkType: hard
+
+"@strapi/icons@npm:2.0.0-rc.14":
+  version: 2.0.0-rc.14
+  resolution: "@strapi/icons@npm:2.0.0-rc.14"
+  peerDependencies:
+    react: ^17.0.0 || ^18.0.0
+    react-dom: ^17.0.0 || ^18.0.0
+    styled-components: ^6.0.0
+  checksum: 10c0/8acf78236bbd75947d5017cea447cc0f5a515add0c8d08d6313a9634ee1e2bd479733f63bcc1e67a23d50e2c87fa05d7c873344842652a5d98bc0b338b145be5
   languageName: node
   linkType: hard
 
@@ -7289,13 +7335,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/plugin-users-permissions@npm:^5.4.2":
-  version: 5.4.2
-  resolution: "@strapi/plugin-users-permissions@npm:5.4.2"
+"@strapi/plugin-users-permissions@npm:^5.5.0":
+  version: 5.5.0
+  resolution: "@strapi/plugin-users-permissions@npm:5.5.0"
   dependencies:
-    "@strapi/design-system": "npm:2.0.0-rc.13"
-    "@strapi/icons": "npm:2.0.0-rc.13"
-    "@strapi/utils": "npm:5.4.2"
+    "@strapi/design-system": "npm:2.0.0-rc.14"
+    "@strapi/icons": "npm:2.0.0-rc.14"
+    "@strapi/utils": "npm:5.5.0"
     bcryptjs: "npm:2.4.3"
     formik: "npm:2.4.5"
     grant-koa: "npm:5.4.8"
@@ -7318,7 +7364,7 @@ __metadata:
     react-dom: ^17.0.0 || ^18.0.0
     react-router-dom: ^6.0.0
     styled-components: ^6.0.0
-  checksum: 10c0/ed14d6c81fe098a74cbd9f4aef3a858de09849a971f6ea46549273e755e9bc31bbbfd45ca37038c0830d7402f6169f3552745c436135cc60f602699008802cc8
+  checksum: 10c0/057bd0781f47dc99dd1f05b7a08b44ef88562981708dd99e4b7829547c5d3508116f1a0cf83092394f25660b8b3a68a5426f35c0a9aff7fa57f95886b1609c91
   languageName: node
   linkType: hard
 
@@ -7654,6 +7700,38 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@strapi/ui-primitives@npm:2.0.0-rc.14":
+  version: 2.0.0-rc.14
+  resolution: "@strapi/ui-primitives@npm:2.0.0-rc.14"
+  dependencies:
+    "@radix-ui/number": "npm:1.0.1"
+    "@radix-ui/primitive": "npm:1.0.1"
+    "@radix-ui/react-collection": "npm:1.0.3"
+    "@radix-ui/react-compose-refs": "npm:1.0.1"
+    "@radix-ui/react-context": "npm:1.0.1"
+    "@radix-ui/react-direction": "npm:1.0.1"
+    "@radix-ui/react-dismissable-layer": "npm:1.0.5"
+    "@radix-ui/react-focus-guards": "npm:1.0.1"
+    "@radix-ui/react-focus-scope": "npm:1.0.4"
+    "@radix-ui/react-id": "npm:1.0.1"
+    "@radix-ui/react-popper": "npm:1.1.3"
+    "@radix-ui/react-portal": "npm:1.0.4"
+    "@radix-ui/react-primitive": "npm:1.0.3"
+    "@radix-ui/react-slot": "npm:1.0.2"
+    "@radix-ui/react-use-callback-ref": "npm:1.0.1"
+    "@radix-ui/react-use-controllable-state": "npm:1.0.1"
+    "@radix-ui/react-use-layout-effect": "npm:1.0.1"
+    "@radix-ui/react-use-previous": "npm:1.0.1"
+    "@radix-ui/react-visually-hidden": "npm:1.0.3"
+    aria-hidden: "npm:1.2.4"
+    react-remove-scroll: "npm:2.5.10"
+  peerDependencies:
+    react: ^17.0.0 || ^18.0.0
+    react-dom: ^17.0.0 || ^18.0.0
+  checksum: 10c0/9062bc6e13fb05e90dd42d7eeea88ebfe38e73affc077c3e08b9c68cd6c0a7d741da071020bc32a7c9e47d607476078647dba3b396990232823d33b0326feb39
+  languageName: node
+  linkType: hard
+
 "@strapi/ui-primitives@npm:^1.19.0":
   version: 1.19.0
   resolution: "@strapi/ui-primitives@npm:1.19.0"
@@ -7752,6 +7830,24 @@ __metadata:
     yup: "npm:0.32.9"
     zod: "npm:^3.22.4"
   checksum: 10c0/504f6a83dde1e320f5f1a6fa37d19ec0a72e8afafee312129adace95acfd1d9eac5fb8ac2be4f058068ca9ec20837d9ebce1941e940301cec1043e7da4b37ef4
+  languageName: node
+  linkType: hard
+
+"@strapi/utils@npm:5.5.0":
+  version: 5.5.0
+  resolution: "@strapi/utils@npm:5.5.0"
+  dependencies:
+    "@sindresorhus/slugify": "npm:1.1.0"
+    date-fns: "npm:2.30.0"
+    execa: "npm:5.1.1"
+    http-errors: "npm:2.0.0"
+    lodash: "npm:4.17.21"
+    node-machine-id: "npm:1.1.12"
+    p-map: "npm:4.0.0"
+    preferred-pm: "npm:3.1.2"
+    yup: "npm:0.32.9"
+    zod: "npm:^3.22.4"
+  checksum: 10c0/509a0dadb0bc9b71a9f2e96589657e74594c6a80cc1761ac1319cd5bfc5df784fed5de32fe0b7fe6a5cd10c56cff0936849a6e596abfd78e7fb862c898fde2e2
   languageName: node
   linkType: hard
 
@@ -10093,7 +10189,7 @@ __metadata:
   dependencies:
     "@eslint/js": "npm:^9.15.0"
     "@strapi/plugin-seo": "npm:^2.0.4"
-    "@strapi/plugin-users-permissions": "npm:^5.4.2"
+    "@strapi/plugin-users-permissions": "npm:^5.5.0"
     "@strapi/strapi": "npm:^5.4.2"
     better-sqlite3: "npm:^11.5.0"
     eslint: "npm:^9.15.0"
