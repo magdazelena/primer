@@ -22,7 +22,7 @@
     "@strapi/strapi": "^5.5.1",
     "better-sqlite3": "^11.7.0",
     "react": "^19.0.0",
-    "react-dom": "^18.3.1",
+    "react-dom": "^19.0.0",
     "react-router-dom": "7.1.0",
     "strapi-plugin-slugify": "^2.3.8",
     "styled-components": "^6.1.13"
