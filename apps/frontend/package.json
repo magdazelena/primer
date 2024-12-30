@@ -14,7 +14,7 @@
     "@heroicons/react": "^2.2.0",
     "@strapi/blocks-react-renderer": "^1.0.1",
     "@types/negotiator": "^0.6.3",
-    "@types/node": "^22.10.1",
+    "@types/node": "^22.10.2",
     "@types/qs": "^6.9.17",
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.2",
