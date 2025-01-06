@@ -32,7 +32,7 @@
     "@typescript-eslint/eslint-plugin": "^8.18.2",
     "@typescript-eslint/parser": "^8.19.0",
     "autoprefixer": "^10.4.20",
-    "globals": "^15.13.0",
+    "globals": "^15.14.0",
     "postcss": "^8.4.49",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
