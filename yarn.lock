@@ -2934,12 +2934,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/intl-localematcher@npm:0.5.8, @formatjs/intl-localematcher@npm:^0.5.8":
+"@formatjs/intl-localematcher@npm:0.5.8":
   version: 0.5.8
   resolution: "@formatjs/intl-localematcher@npm:0.5.8"
   dependencies:
     tslib: "npm:2"
   checksum: 10c0/7a660263986326b662d4cb537e8386331c34fda61fb830b105e6c62d49be58ace40728dae614883b27a41cec7b1df8b44f72f79e16e6028bfca65d398dc04f3b
+  languageName: node
+  linkType: hard
+
+"@formatjs/intl-localematcher@npm:^0.5.10":
+  version: 0.5.10
+  resolution: "@formatjs/intl-localematcher@npm:0.5.10"
+  dependencies:
+    tslib: "npm:2"
+  checksum: 10c0/362ec83aca9382165be575f1cefa477478339e6fead8ca8866185ce6e58427ea1487a811b12c73d1bcfa99fd4db0c24543b35c823451839f585576bfccb8c9cc
   languageName: node
   linkType: hard
 
@@ -15003,7 +15012,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "frontend@workspace:apps/frontend"
   dependencies:
-    "@formatjs/intl-localematcher": "npm:^0.5.8"
+    "@formatjs/intl-localematcher": "npm:^0.5.10"
     "@heroicons/react": "npm:^2.2.0"
     "@strapi/blocks-react-renderer": "npm:^1.0.1"
     "@types/negotiator": "npm:^0.6.3"
