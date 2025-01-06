@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^8.18.2",
-    "@typescript-eslint/parser": "^8.19.0",
+    "@typescript-eslint/parser": "^8.19.1",
     "autoprefixer": "^10.4.20",
     "globals": "^15.13.0",
     "postcss": "^8.4.49",
