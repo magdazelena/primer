@@ -2,6 +2,7 @@ import ProductSelect from "../../components/ProductSelect";
 import { fetchAPI } from "@/api/fetch-api";
 import { Product, ProductCategory } from "@/types/product";
 import { findParentCategory } from "@/utils/find-parent-category";
+import { CATEGORY_THREE_QUERY, lookupCategoryTree } from "@/api/shared-params";
 async function fetchSideMenuData(filter: string) {
   try {
     const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
@@ -13,52 +14,14 @@ async function fetchSideMenuData(filter: string) {
       options
     );
     const filters = filter
-      ? {
-            $or: [
-              {
-                category: {
-                  slug: filter,
-                },
-              },
-              {
-                category: {
-                  parent: {
-                    slug: filter, 
-                  },
-                },
-              },
-              {
-                category: {
-                  parent: {
-                    parent: {
-                      slug: filter, 
-                    },
-                  },
-                },
-              },
-            ],
-        
-        }
+      ? lookupCategoryTree(filter)
       : {};
     const productsResponse = await fetchAPI(
       "/products",
       {
         populate: {
           coverImage: { fields: ["url"] },
-          category: {
-            populate: {
-              parent: {
-                populate: {
-                  parent: {
-                    fields: ["slug"],
-                  },
-                },
-                fields: ["slug"],
-              },
-              children: { fields: ["slug"] }, 
-            },
-            fields: ["slug"],
-          },
+          ...CATEGORY_THREE_QUERY
         },
         filters: { ...filters },
       },
