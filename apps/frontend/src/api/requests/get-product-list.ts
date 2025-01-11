@@ -1,6 +1,7 @@
+import { APIResponse } from "../../types/api";
 import { fetchAPI } from "../fetch-api";
 
-export const getProductList = async (start: number, limit: number) => {
+export const getProductList = async (start: number, limit: number): Promise<APIResponse> => {
     const path = `/products`;
     const urlParamsObject = {
       sort: { createdAt: "desc" },

@@ -1,51 +1,31 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
-import { fetchAPI } from "@/api/fetch-api";
 
 import Loader from "@/components/Loader";
 import PageHeader from "@/components/PageHeader";
 import { Creator } from "@/types/creator";
 import { CreatorThumbnailListItem } from "./components/CreatorThumbnailItem";
+import { getCreatorsList } from "../../../api/requests/get-creators-list";
+import { Meta } from "../../../types/api";
 
-interface Meta {
-  pagination: {
-    start: number;
-    limit: number;
-    total: number;
-  };
-}
+
 
 export default function Creators() {
-  const [meta, setMeta] = useState<Meta | undefined>();
+  const [meta, setMeta] = useState<Meta>();
   const [data, setData] = useState<any>([]);
   const [isLoading, setLoading] = useState(true);
 
   const fetchData = useCallback(async (start: number, limit: number) => {
     setLoading(true);
     try {
-      const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-      const path = `/creators`;
-      const urlParamsObject = {
-        sort: { createdAt: "desc" },
-        populate: {
-          avatar: { fields: ["url"] },
-          name: { populate: true },
-        },
-        pagination: {
-          start: start,
-          limit: limit,
-        },
-      };
-      const options = { headers: { Authorization: `Bearer ${token}` } };
-      const responseData = await fetchAPI(path, urlParamsObject, options);
-
+      const { data, meta} = await getCreatorsList(start, limit);
       if (start === 0) {
-        setData(responseData.data);
+        setData(data);
       } else {
-        setData((prevData: any[]) => [...prevData, ...responseData.data]);
+        setData((prevData: any[]) => [...prevData, ...data]);
       }
 
-      setMeta(responseData.meta);
+      setMeta(meta);
     } catch (error) {
       console.error(error);
     } finally {
@@ -54,7 +34,7 @@ export default function Creators() {
   }, []);
 
   function loadMorePosts(): void {
-    const nextPosts = meta!.pagination.start + meta!.pagination.limit;
+    const nextPosts = meta!.pagination.pageCount + meta!.pagination.pageSize;
     fetchData(nextPosts, Number(process.env.NEXT_PUBLIC_PAGE_LIMIT));
   }
 
@@ -73,7 +53,7 @@ export default function Creators() {
             <CreatorThumbnailListItem key={creator.id} creator={creator} />
           ))}
         </div>
-        {meta!.pagination.start + meta!.pagination.limit <
+        {meta!.pagination.pageCount + meta!.pagination.pageSize <
           meta!.pagination.total && (
           <div className="flex justify-center">
             <button
