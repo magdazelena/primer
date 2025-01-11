@@ -11,7 +11,7 @@ async function getCreatorBySlug(slug: string) {
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
   const response = await fetchAPI(path, urlParamsObject, options);
-  return response;
+  return response.data;
 }
 
 async function getMetaData(slug: string) {
@@ -49,8 +49,8 @@ export default async function CreatorRoute(
   const params = await props.params;
   const { slug } = params;
   const data = await getCreatorBySlug(slug);
-  if (data.data.length === 0) return <h2>no creators found</h2>;
-  return <CreatorView creator={data.data[0]} />;
+  if (data.length === 0) return <h2>no creators found</h2>;
+  return <CreatorView creator={data[0]} />;
 }
 
 export async function generateStaticParams() {
@@ -64,11 +64,10 @@ export async function generateStaticParams() {
     },
     options
   );
-  return creatorResponse.data.map(
+  return creatorResponse.map(
     (creator: {
-      attributes: {
         slug: string;
-      };
+
     }) => ({
       slug: creator.slug,
     })

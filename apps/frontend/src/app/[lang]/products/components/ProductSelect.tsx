@@ -28,7 +28,7 @@ export default function ProductSelect({
       <div>
         <div className="flex flex-wrap py-6 space-x-2 border-accentDark">
           {categories.map((productCategory: ProductCategory) => {
-            if (productCategory.products.data.length === 0)
+            if (productCategory.products.length === 0)
               return null;
             return (
               <CategoryThumbnail

@@ -3,13 +3,13 @@ import { ImageSlider } from "@/components/ImageSlider";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { CreatorThumbnail } from "@/app/[lang]/creators/components/CreatorThumbnail";
 
-export default function ProductView({ data }: { data: Product }) {
+export default function ProductView({data}: {data: Product} ) {
   const { name, description, media, retailPrice, shortDescription, creator } =
     data;
   return (
     <article className="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-4 text-dark pb-10">
       <div className="space-y-6 col-span-12 lg:col-span-2">
-        {media && <ImageSlider images={media.data} />}
+        {media && <ImageSlider images={media} />}
       </div>
 
       <div className="space-y-6 ">
@@ -26,7 +26,7 @@ export default function ProductView({ data }: { data: Product }) {
         </div>
       </div>
       <div className="col-span-12">
-        {creator?.data && <CreatorThumbnail creator={creator.data} />}
+        {creator && <CreatorThumbnail creator={creator} />}
       </div>
     </article>
   );

@@ -36,10 +36,11 @@ async function fetchCreationsData(filter: string) {
           },
         },
         pagination: {
+          start: 0,
           limit: 4,
         },
 
-        sort: ["publishedAt:desc"],
+        sort: {"publishedAt":"desc"},
         ...filters,
       },
       options
@@ -51,10 +52,11 @@ async function fetchCreationsData(filter: string) {
           coverImage: { fields: ["url"] },
         },
         pagination: {
+          start: 0,
           limit: 4,
         },
 
-        sort: ["publishedAt"],
+        sort: {"publishedAt": "desc"},
         ...filters,
       },
       options
@@ -112,9 +114,8 @@ export async function generateStaticParams() {
 
   const staticParams = creatorsResponse.data.map(
     (creator: {
-      attributes: {
         slug: string;
-      };
+  
     }) => ({
       slug: creator.slug,
     })

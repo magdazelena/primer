@@ -27,7 +27,7 @@ interface ProductCategory {
   id: number;
   name: string;
   slug: string;
-  products: { data: Product[] };
+  products: Product[];
   children?: ProductCategory[];
   topLevel: boolean;
 }

@@ -30,9 +30,9 @@ const collectAllSlugs = (category: ProductCategory) => {
 
   if (
     category.children &&
-    category.children.data.length > 0
+    category.children.length > 0
   ) {
-    category.children.data.forEach((child) => {
+    category.children.forEach((child) => {
       slugs.push(...collectAllSlugs(child));
     });
   }
@@ -56,7 +56,6 @@ export async function fetchPostsByCategory(
       },
       populate: {
         coverImage: { fields: ["url"] },
-        cover: { fields: ["url"] },
         category: {
           populate: "*",
         },

@@ -66,7 +66,7 @@ export default function Products() {
   return (
     <div>
       <PageHeader heading="Products" text="Checkout Something Cool" />
-      <List data={data}>
+      <List products={data}>
         {meta!.pagination.start + meta!.pagination.limit <
           meta!.pagination.total && (
           <div className="flex justify-center">

@@ -14,17 +14,16 @@ async function fetchSideMenuData(filter: string) {
     );
     const filters = filter
       ? {
-          filters: {
             $or: [
               {
                 category: {
-                  slug: filter, // Products directly in the filtered category
+                  slug: filter,
                 },
               },
               {
                 category: {
                   parent: {
-                    slug: filter, // Products in categories whose parent matches the filter
+                    slug: filter, 
                   },
                 },
               },
@@ -32,13 +31,13 @@ async function fetchSideMenuData(filter: string) {
                 category: {
                   parent: {
                     parent: {
-                      slug: filter, // Products in categories whose grandparent matches the filter
+                      slug: filter, 
                     },
                   },
                 },
               },
             ],
-          },
+        
         }
       : {};
     const productsResponse = await fetchAPI(
@@ -55,13 +54,13 @@ async function fetchSideMenuData(filter: string) {
                   },
                 },
                 fields: ["slug"],
-              }, // Fetch the parent category's slug
-              children: { fields: ["slug"] }, // Fetch children categories' slug if needed
+              },
+              children: { fields: ["slug"] }, 
             },
             fields: ["slug"],
           },
         },
-        filters: {...filters},
+        filters: { ...filters },
       },
       options
     );
@@ -79,22 +78,19 @@ interface Data {
   categories: ProductCategory[];
 }
 
-export default async function LayoutRoute(
-  props: {
-    children: React.ReactNode;
-    params: Promise<{
-      slug: string;
-      ["product-category"]: string;
-    }>;
-  }
-) {
+export default async function LayoutRoute(props: {
+  children: React.ReactNode;
+  params: Promise<{
+    slug: string;
+    ["product-category"]: string;
+  }>;
+}) {
   const params = await props.params;
 
-  const {
-    children
-  } = props;
+  const { children } = props;
 
   const productCategory = params["product-category"];
+
   const { categories, products } = (await fetchSideMenuData(
     productCategory
   )) as Data;
@@ -150,12 +146,9 @@ export async function generateStaticParams() {
 
   const staticParams = productResponse.data.map(
     (product: {
-      attributes: {
+      slug: string;
+      category: {
         slug: string;
-        category: {
-              slug: string;
-            };
-         
       };
     }) => ({
       slug: product.slug,

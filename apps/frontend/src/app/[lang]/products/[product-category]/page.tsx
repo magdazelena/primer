@@ -16,7 +16,7 @@ export default async function ProductCategoryRoute(
   );
 
   //TODO: CREATE A COMPONENT FOR THIS
-  if (!data || data.posts.data.length === 0)
+  if (!data || data.posts.length === 0)
     return <div>Not Posts In this category</div>;
 
   const { category, posts } = data;
@@ -26,7 +26,7 @@ export default async function ProductCategoryRoute(
         heading={category.name}
         text={category.description}
       />
-      <List data={posts.data} />
+      <List products={posts.data} />
     </div>
   );
 }

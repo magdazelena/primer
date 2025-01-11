@@ -5,10 +5,10 @@ import { getStrapiMedia } from "@/utils/api-helpers";
 
 const ProductThumbnail = ({ product }: { product: Product }) => {
   const imageUrl = getStrapiMedia(
-    product.coverImage?.data?.url
+    product.coverImage?.url
   );
 
-  const category = product.category?.data?;
+  const category = product.category;
 
   return (
     <Link

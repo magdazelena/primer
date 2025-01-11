@@ -1,29 +1,23 @@
 import { fetchAPI } from "@/utils/fetch-api";
 import type { Metadata } from "next";
 import ProductView from "../../views/product";
+import { Product } from "@/types/product";
 
-async function getProductBySlug(slug: string) {
+async function getProductBySlug(slug: string): Promise<Product[]> {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
   const path = `/products`;
   const urlParamsObject = {
     filters: { slug },
     populate: {
       coverImage: { fields: ["url"] },
-      media: "*",
+      media: {
+        populate: "*",
+      },
       category: { fields: ["name", "slug"] },
       creator: {
         populate: {
           avatar: {
             fields: ["name", "alternativeText", "caption", "url"],
-          },
-          name: {
-            populate: true,
-          },
-          slug: {
-            populate: true,
-          },
-          lead: {
-            populate: true,
           },
         },
       },
@@ -31,7 +25,7 @@ async function getProductBySlug(slug: string) {
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
   const response = await fetchAPI(path, urlParamsObject, options);
-  return response;
+  return response.data;
 }
 
 async function getMetaData(slug: string) {
@@ -39,20 +33,27 @@ async function getMetaData(slug: string) {
   const path = `/products`;
   const urlParamsObject = {
     filters: { slug },
-    populate: { seo: "*"},
+    populate: {
+      seo: {
+        populate: {
+          shareImage: {
+            populate: "*",
+          },
+        },
+      },
+    },
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
   const response = await fetchAPI(path, urlParamsObject, options);
   return response.data;
 }
 
-export async function generateMetadata(
-  props: {
-    params: Promise<{ slug: string }>;
-  }
-): Promise<Metadata> {
+export async function generateMetadata(props: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
   const params = await props.params;
   const meta = await getMetaData(params.slug);
+
   const metadata = meta[0].seo;
 
   return {
@@ -61,16 +62,14 @@ export async function generateMetadata(
   };
 }
 
-export default async function ProductRoute(
-  props: {
-    params: Promise<{ slug: string }>;
-  }
-) {
+export default async function ProductRoute(props: {
+  params: Promise<{ slug: string }>;
+}) {
   const params = await props.params;
   const { slug } = params;
-  const data = await getProductBySlug(slug);
-  if (data.data.length === 0) return <h2>no post found</h2>;
-  return <ProductView data={data.data[0]} />;
+  const products = await getProductBySlug(slug);
+  if (products.length === 0) return <h2>no post found</h2>;
+  return <ProductView data={products[0]} />;
 }
 
 export async function generateStaticParams() {
@@ -86,19 +85,13 @@ export async function generateStaticParams() {
   );
   return productResponse.data.map(
     (product: {
-      attributes: {
+      slug: string;
+      category: {
         slug: string;
-        category: {
-          data: {
-            attributes: {
-              slug: string;
-            };
-          };
-        };
       };
     }) => ({
       slug: product.slug,
-      productCategory: product.category.data.slug,
+      productCategory: product.category.slug,
     })
   );
 }

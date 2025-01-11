@@ -2,10 +2,10 @@ import { Product } from "@/types/product";
 import { ProductThumbnail } from "../components/ProductThumbnail";
 
 export default function ProductList({
-  data: products,
+  products,
   children,
 }: {
-  data: Product[];
+  products: Product[];
   children?: React.ReactNode;
 }) {
   return (
