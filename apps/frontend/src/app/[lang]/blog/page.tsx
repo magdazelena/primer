@@ -5,6 +5,7 @@ import { fetchAPI } from "@/api/fetch-api";
 import Loader from "@/components/Loader";
 import Blog from "./views/article-list";
 import PageHeader from "@/components/PageHeader";
+import { ARTICLE_BASE_QUERY } from "../../../api/shared-params";
 
 interface Meta {
   pagination: {
@@ -26,13 +27,7 @@ export default function Profile() {
       const path = `/articles`;
       const urlParamsObject = {
         sort: { createdAt: "desc" },
-        populate: {
-          coverImage: { fields: ["url"] },
-          category: { populate: "*" },
-          creator: {
-            populate: "*",
-          },
-        },
+        ...ARTICLE_BASE_QUERY,
         pagination: {
           start: start,
           limit: limit,

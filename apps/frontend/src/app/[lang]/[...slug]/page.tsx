@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { getPageBySlug } from "@/utils/get-page-by-slug";
+import { getPageBySlug } from "@/api/requests/get-page-by-slug";
 import { FALLBACK_SEO } from "@/utils/constants";
 import componentResolver from "@/utils/component-resolver";
 

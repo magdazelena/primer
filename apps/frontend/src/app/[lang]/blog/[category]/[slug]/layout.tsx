@@ -1,7 +1,7 @@
 import ArticleSelect from "../../components/ArticleSelect";
 import { fetchAPI } from "@/api/fetch-api";
 import { Article, Category } from "@/types/article";
-import { CREATOR_QUERY } from "../../../../../api/shared-params";
+import { ARTICLE_BASE_QUERY, CREATOR_QUERY } from "../../../../../api/shared-params";
 
 async function fetchSideMenuData(filter: string) {
   try {
@@ -24,8 +24,7 @@ async function fetchSideMenuData(filter: string) {
       "/articles",
       {
         populate: {
-          coverImage: { fields: ["url"] },
-          category: { fields: ["slug"] },
+          ...ARTICLE_BASE_QUERY.populate,
           creator: CREATOR_QUERY
         },
         ...selectedFilter,

@@ -2,24 +2,14 @@ import { fetchAPI } from "@/api/fetch-api";
 import Post from "../../views/post";
 import type { Metadata } from "next";
 import { getSEOData } from "@/api/requests/getSEOData";
+import { ARTICLE_RICH_QUERY } from "../../../../../api/shared-params";
 
 async function getPostBySlug(slug: string) {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
   const path = `/articles`;
   const urlParamsObject = {
     filters: { slug },
-    populate: {
-      coverImage: { fields: ["url"] },
-      creator: { populate: "*" },
-      category: { fields: ["name"] },
-      blocks: {
-        on: {
-          'sections.rich-text': {
-            populate: '*'
-          }
-        }
-      },
-    },
+    ...ARTICLE_RICH_QUERY
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
   const response = await fetchAPI(path, urlParamsObject, options);
@@ -34,7 +24,7 @@ export async function generateMetadata(
   }
 ): Promise<Metadata> {
   const params = await props.params;
-  const seoData = await getSEOData('articles', params.slug);
+  const seoData = await getSEOData('/articles', params.slug);
   return {
     title: seoData.metaTitle,
     description: seoData.metaDescription,
