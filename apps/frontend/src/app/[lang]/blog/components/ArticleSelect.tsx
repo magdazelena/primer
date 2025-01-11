@@ -23,12 +23,12 @@ export default function ArticleSelect({
       <div>
         <div className="flex flex-wrap py-6">
           {categories.map((category: Category) => {
-            if (category.attributes.articles.data.length === 0) return null;
+            if (category.articles.data.length === 0) return null;
             return (
               <CategoryThumbnail
                 key={category.id}
-                categoryName={category.attributes.name}
-                categorySlug={category.attributes.slug}
+                categoryName={category.name}
+                categorySlug={category.slug}
                 selected={params["category"]}
                 basePath="/blog"
               />
@@ -36,10 +36,10 @@ export default function ArticleSelect({
           })}
           <CategoryThumbnail
             categoryName={`${
-              parentCategory ? parentCategory.attributes.name : "All posts"
+              parentCategory ? parentCategory.name : "All posts"
             }`}
             categorySlug={`${
-              parentCategory ? parentCategory.attributes.slug : ""
+              parentCategory ? parentCategory.slug : ""
             }`}
             selected="filter"
             basePath="/blog"

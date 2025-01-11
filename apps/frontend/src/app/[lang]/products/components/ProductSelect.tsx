@@ -28,13 +28,13 @@ export default function ProductSelect({
       <div>
         <div className="flex flex-wrap py-6 space-x-2 border-accentDark">
           {categories.map((productCategory: ProductCategory) => {
-            if (productCategory.attributes.products.data.length === 0)
+            if (productCategory.products.data.length === 0)
               return null;
             return (
               <CategoryThumbnail
                 key={productCategory.id}
-                categoryName={productCategory.attributes.name}
-                categorySlug={productCategory.attributes.slug}
+                categoryName={productCategory.name}
+                categorySlug={productCategory.slug}
                 selected={params["product-category"]}
                 basePath="/products"
               />
@@ -42,10 +42,10 @@ export default function ProductSelect({
           })}
           <CategoryThumbnail
             categoryName={`${
-              parentCategory ? parentCategory.attributes.name : "All products"
+              parentCategory ? parentCategory.name : "All products"
             }`}
             categorySlug={`${
-              parentCategory ? parentCategory.attributes.slug : ""
+              parentCategory ? parentCategory.slug : ""
             }`}
             selected="filter"
             basePath="/products"

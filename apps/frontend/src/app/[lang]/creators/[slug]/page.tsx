@@ -33,7 +33,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const params = await props.params;
   const meta = await getMetaData(params.slug);
-  const metadata = meta[0].attributes.seo;
+  const metadata = meta[0].seo;
 
   return {
     title: metadata.metaTitle,
@@ -70,7 +70,7 @@ export async function generateStaticParams() {
         slug: string;
       };
     }) => ({
-      slug: creator.attributes.slug,
+      slug: creator.slug,
     })
   );
 }

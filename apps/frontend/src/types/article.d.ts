@@ -2,51 +2,35 @@ import { Creator } from "./creator";
 
 interface ArticleBase {
   id: number;
-  attributes: {
-    title: string;
-    slug: string;
-  };
+  title: string;
+  slug: string;
 }
 interface ArticleFull {
-  attributes: {
-    description: string;
-    createdAt: string;
-    updatedAt: string;
-    publishedAt: string;
-    blocks?: any[];
-    cover: {
-      data: {
-        attributes: {
-          url: string;
-        };
-      };
-    };
-    category: {
-      data: {
-        attributes: {
-          name: string;
-          slug: string;
-        };
-      };
-    };
-    creator: {
-      data: Creator;
-    };
+
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  blocks?: any[];
+  cover: {
+    url: string;
   };
+  category: {
+    name: string;
+    slug: string;
+  };
+  creator: Creator;
+
 }
 interface Category {
   id: number;
-  attributes: {
-    name: string;
-    slug: string;
-    children?: {
-      data: Category[];
-    };
-    topLevel: boolean;
-    articles: {
-      data: Array<{}>;
-    };
-  };
+  name: string;
+  slug: string;
+  children?: Category[];
+  topLevel: boolean;
+  articles: Array<{}>;
+
+
 }
 
 type Article = ArticleBase & ArticleFull;

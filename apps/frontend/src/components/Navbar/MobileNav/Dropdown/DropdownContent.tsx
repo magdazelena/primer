@@ -35,7 +35,7 @@ const DropdownContent = ({
       >
         <NavLink
           url={url}
-          text={category.attributes.name}
+          text={category.name}
           onClick={(e) => {
             e.stopPropagation();
             onLinkClick();

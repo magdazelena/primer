@@ -116,7 +116,7 @@ export async function generateStaticParams() {
         slug: string;
       };
     }) => ({
-      slug: creator.attributes.slug,
+      slug: creator.slug,
     })
   );
   return staticParams;

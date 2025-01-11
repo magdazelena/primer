@@ -26,13 +26,13 @@ async function fetchAllChildCategories(path: string, slug: string) {
   }
 }
 const collectAllSlugs = (category: ProductCategory) => {
-  const slugs = [category.attributes.slug];
+  const slugs = [category.slug];
 
   if (
-    category.attributes.children &&
-    category.attributes.children.data.length > 0
+    category.children &&
+    category.children.data.length > 0
   ) {
-    category.attributes.children.data.forEach((child) => {
+    category.children.data.forEach((child) => {
       slugs.push(...collectAllSlugs(child));
     });
   }

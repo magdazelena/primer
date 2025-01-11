@@ -48,7 +48,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const params = await props.params;
   const meta = await getMetaData(params.slug);
-  const metadata = meta[0].attributes.seo;
+  const metadata = meta[0].seo;
 
   return {
     title: metadata.metaTitle,
@@ -64,8 +64,8 @@ export default async function PostRoute(
   const params = await props.params;
   const { slug } = params;
   const data = await getPostBySlug(slug);
-  if (data.data.length === 0) return <h2>no post found</h2>;
-  return <Post data={data.data[0]} />;
+  if (data.length === 0) return <h2>no post found</h2>;
+  return <Post data={data[0]} />;
 }
 
 export async function generateStaticParams() {
@@ -88,6 +88,6 @@ export async function generateStaticParams() {
           slug: string;
         };
       };
-    }) => ({ slug: article.attributes.slug, category: article.attributes.slug })
+    }) => ({ slug: article.slug, category: article.slug })
   );
 }

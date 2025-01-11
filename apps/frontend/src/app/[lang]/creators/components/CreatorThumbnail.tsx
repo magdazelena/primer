@@ -4,8 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 const CreatorThumbnail = ({ creator }: { creator: Creator }) => {
-  const { avatar, name, slug, lead } = creator.attributes;
-  const authorImgUrl = getStrapiMedia(avatar.data.attributes.url);
+  const { avatar, name, slug, lead } = creator;
+  const authorImgUrl = getStrapiMedia(avatar.data.url);
   return (
     <div className="flex flex-wrap justify-end lg:justify-start items-center bg-accentDarkDark/30 p-10">
       {authorImgUrl && (

@@ -5,35 +5,29 @@ interface Testimonial {
   text: string;
   authorName: string;
   picture: {
-    data: {
-      id: string;
-      attributes: {
-        name: string;
-        alternativeText: string;
-        url: string;
-      };
-    };
+    id: string;
+    name: string;
+    alternativeText: string;
+    url: string;
   };
 }
 
 interface TestimonialsProps {
-  data: {
-    id: string;
-    title: string;
-    description: string;
-    testimonials: Testimonial[];
-  };
+  id: string;
+  title: string;
+  description: string;
+  testimonials: Testimonial[];
 }
 
 function Testimonial({ text, authorName, picture }: Readonly<Testimonial>) {
-  const imageUrl = getStrapiMedia(picture.data?.attributes.url);
+  const imageUrl = getStrapiMedia(picture.url);
   return (
     <div className="flex flex-col items-center mx-12 lg:mx-0">
       <div className="flex items-center">
         <div className="my-6">
           <Image
             src={imageUrl ?? ""}
-            alt={picture.data?.attributes.alternativeText || "none provided"}
+            alt={picture.alternativeText || "none provided"}
             className="inline-block h-32 w-32 rounded-full"
             width={200}
             height={200}
@@ -67,7 +61,7 @@ function Testimonial({ text, authorName, picture }: Readonly<Testimonial>) {
   );
 }
 
-export default function Testimonials({ data }: TestimonialsProps) {
+export default function Testimonials( data : TestimonialsProps) {
   return (
     <section className="bg-accentDarkDark text-dark  m:py-12 lg:py-24">
       <div className="container mx-auto py-4 space-y-2 text-center">

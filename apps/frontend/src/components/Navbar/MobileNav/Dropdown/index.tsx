@@ -33,8 +33,8 @@ const Dropdown = ({
   };
 
   const renderMenu = (category: MenuCategory, path: string[] = []) => {
-    const url = `${basePath}/${category.attributes.slug}`;
-    const newPath = [...path, category.attributes.slug];
+    const url = `${basePath}/${category.slug}`;
+    const newPath = [...path, category.slug];
 
     const isActive = activePath.join("/") === newPath.join("/");
 
@@ -62,7 +62,7 @@ const Dropdown = ({
           if (onMobileClose) onMobileClose();
         }}
       >
-        {category.attributes.children?.data.map((childCategory: MenuCategory) =>
+        {category.children?.map((childCategory: MenuCategory) =>
           renderMenu(childCategory, newPath)
         )}
       </DropdownContent>
@@ -118,7 +118,7 @@ const Dropdown = ({
         } `}
       >
         {categories?.map((category: MenuCategory) => {
-          if (category.attributes.topLevel)
+          if (category.topLevel)
             return renderMenu(category, [basePath]);
           return null;
         })}

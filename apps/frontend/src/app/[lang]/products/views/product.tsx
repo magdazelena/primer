@@ -5,7 +5,7 @@ import { CreatorThumbnail } from "@/app/[lang]/creators/components/CreatorThumbn
 
 export default function ProductView({ data }: { data: Product }) {
   const { name, description, media, retailPrice, shortDescription, creator } =
-    data.attributes;
+    data;
   return (
     <article className="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-4 text-dark pb-10">
       <div className="space-y-6 col-span-12 lg:col-span-2">

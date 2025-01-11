@@ -99,13 +99,13 @@ export default async function LayoutRoute(
     productCategory
   )) as Data;
   const filteredProducts = products.filter((product) => {
-    return product.attributes.slug.trim() !== params.slug.trim();
+    return product.slug.trim() !== params.slug.trim();
   });
   if (filteredProducts.length === 0) {
     const parentCategory = findParentCategory(categories, productCategory);
     if (parentCategory) {
       const { products: otherProducts } = (await fetchSideMenuData(
-        parentCategory.attributes.slug
+        parentCategory.slug
       )) as Data;
       return (
         <section className="container p-8 mx-auto space-y-6 sm:space-y-12">
@@ -153,16 +153,13 @@ export async function generateStaticParams() {
       attributes: {
         slug: string;
         category: {
-          data: {
-            attributes: {
               slug: string;
             };
-          };
-        };
+         
       };
     }) => ({
-      slug: product.attributes.slug,
-      productCategory: product.attributes.category.data.attributes.slug,
+      slug: product.slug,
+      productCategory: product.category.slug,
     })
   );
   return staticParams;

@@ -35,7 +35,6 @@ export async function fetchAPI(
     const queryString = qs.stringify(urlParamsObject);
     if (!urlParamsObject.locale || !i18n.locales.includes(urlParamsObject.locale as Locale))
       urlParamsObject.locale = i18n.defaultLocale;
-    console.log("qs", urlParamsObject);
     const requestUrl = `${getStrapiURL(
       `/api${path}${queryString ? `?${queryString}` : ""}`
     )}`;

@@ -20,8 +20,8 @@ export default async function CategoryRoute(
   return (
     <div>
       <PageHeader
-        heading={category.attributes.name}
-        text={category.attributes.description}
+        heading={category.name}
+        text={category.description}
       />
       <BlogList data={posts.data} />
     </div>

@@ -23,8 +23,8 @@ export default async function ProductCategoryRoute(
   return (
     <div>
       <PageHeader
-        heading={category.attributes.name}
-        text={category.attributes.description}
+        heading={category.name}
+        text={category.description}
       />
       <List data={posts.data} />
     </div>

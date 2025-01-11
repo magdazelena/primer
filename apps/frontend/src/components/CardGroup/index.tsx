@@ -12,9 +12,7 @@ export interface Card {
   id: number;
   title: string;
   lead: string;
-  coverImage: {
-    data: Image;
-  };
+  coverImage: Image;
   link: {
     url: string;
     text: string;

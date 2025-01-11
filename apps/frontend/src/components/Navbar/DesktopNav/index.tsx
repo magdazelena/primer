@@ -11,13 +11,13 @@ const DesktopNav = ({
 }) => {
   const renderProductTopLevelCategories = () => {
     return categories.productCategories.map((category: any) => {
-      if (category.attributes.topLevel) {
+      if (category.topLevel) {
         return (
           <DesktopDropdown
             key={category.id}
-            title={category.attributes.name}
-            categories={category.attributes.children?.data || []}
-            url={`/products/${category.attributes.slug}`}
+            title={category.name}
+            categories={category.children || []}
+            url={`/products/${category.slug}`}
             basePath="/products"
           />
         );

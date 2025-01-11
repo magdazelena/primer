@@ -21,18 +21,37 @@ async function getGlobal(lang: string): Promise<any> {
   const options = { headers: { Authorization: `Bearer ${token}` } };
 
   const urlParamsObject = {
-    populate: [
-      "metadata.shareImage",
-      "favicon",
-      "notificationBanner.link",
-      "navbar.menuItems",
-      "navbar.navbarLogo.logoImg",
-      "footer.footerLogo.logoImg",
-      "footer.menuLinks",
-      "footer.legalLinks",
-      "footer.socialLinks",
-      "footer.categories",
-    ],
+    populate: {
+      metadata: {
+        populate: "*",
+      },
+      navbar: {
+        populate: {
+          navbarLogo: { populate: '*'},
+          menuItems: { populate: '*'}
+        },
+      },
+      footer: {
+        populate: {
+          'footerLogo': {
+            populate: '*'
+          },
+          menuLinks: {
+            populate: '*'
+          },
+          legalLinks: {
+            populate: '*'
+          },
+          socialLinks: {
+            populate: '*'
+          },
+          categories: {
+            populate: '*'
+          }
+        },
+      },
+    },
+
     locale: lang,
   };
   return await fetchAPI(path, urlParamsObject, options);
@@ -47,8 +66,11 @@ async function getCategories(lang: string): Promise<any> {
   const params = {
     populate: {
       children: {
-        populate: ["*"],
+        populate: "*",
       },
+      parent: {
+        populate: '*'
+      }
     },
     locale: lang,
   };
@@ -68,18 +90,21 @@ async function getCategories(lang: string): Promise<any> {
   return { productCategories, blogCategories };
 }
 
-export async function generateMetadata(
-  props: {
-    params: Promise<{ lang: string }>;
-  }
-): Promise<Metadata> {
+export async function generateMetadata(props: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
   const params = await props.params;
-  const meta = await getGlobal(params.lang);
+  let global;
+  try {
+    global = await getGlobal(params.lang);
+  } catch (error) {
+    console.error("Error fetching metadata: ", error);
+    return {};
+  }
 
-  if (!meta.data) return FALLBACK_SEO;
-
-  const { metadata, favicon } = meta.data.attributes;
-  const { url } = favicon.data.attributes;
+  if (!global.data?.meta) return FALLBACK_SEO;
+  const { metadata, favicon } = global.data.meta;
+  const { url } = favicon;
 
   return {
     title: metadata.metaTitle,
@@ -90,31 +115,37 @@ export async function generateMetadata(
   };
 }
 
-export default async function RootLayout(
-  props: {
-    readonly children: React.ReactNode;
-    readonly params: Promise<{ lang: string }>;
+export default async function RootLayout(props: {
+  readonly children: React.ReactNode;
+  readonly params: Promise<{ lang: string }>;
+}) {
+  let params = { lang: "en" };
+  try {
+    params = await props.params;
+  } catch (error) {
+    console.error("Couldn't load params");
   }
-) {
-  const params = await props.params;
 
-  const {
-    children
-  } = props;
+  const { children } = props;
 
-  const global = await getGlobal(params.lang);
-  // TODO: CREATE A CUSTOM ERROR PAGE
-  if (!global.data) return <NotFound params={params}/>;
-
-  const { notificationBanner, navbar, footer } = global.data.attributes;
-
+  let global;
+  try {
+    global = await getGlobal(params.lang);
+  } catch (error) {
+    console.error("Layout.tsx: ", error);
+    return <NotFound params={params} />;
+  }
+  if (!global.data) return <NotFound params={params} />;
   const categories = await getCategories(params.lang);
+
+  const { notificationBanner, navbar, footer } = global.data;
+
   const navbarLogoUrl = getStrapiMedia(
-    navbar.navbarLogo.logoImg.data?.attributes.url
+    navbar.navbarLogo.logoImg.url
   );
 
   const footerLogoUrl = getStrapiMedia(
-    footer.footerLogo.logoImg.data?.attributes.url
+    footer.footerLogo.logoImg.url
   );
 
   return (
@@ -135,7 +166,7 @@ export default async function RootLayout(
           logoUrl={footerLogoUrl}
           logoText={footer.footerLogo.logoText}
           menuLinks={footer.menuLinks}
-          categoryLinks={footer.categories.data}
+          categoryLinks={footer.categories}
           legalLinks={footer.legalLinks}
           socialLinks={footer.socialLinks}
         />

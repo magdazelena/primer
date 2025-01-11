@@ -5,17 +5,17 @@ import { Article } from "@/types/article";
 
 const ArticleThumbnail = ({ article }: { article: Article }) => {
   const imageUrl = getStrapiMedia(
-    article.attributes.cover.data?.attributes.url
+    article.cover.data?.url
   );
 
-  const category = article.attributes.category.data?.attributes;
-  const creator = article.attributes.creator.data?.attributes;
+  const category = article.category.data?;
+  const creator = article.creator.data?;
 
-  const avatarUrl = getStrapiMedia(creator?.avatar.data.attributes.url);
+  const avatarUrl = getStrapiMedia(creator?.avatar.data.url);
 
   return (
     <Link
-      href={`/blog/${category?.slug}/${article.attributes.slug}`}
+      href={`/blog/${category?.slug}/${article.slug}`}
       key={article.id}
       className="
        group mr-3 mb-5 hover:no-underline focus:no-underline w-[300px] xl:min-w-[375px] rounded-2xl overflow-hidden shadow-lg"
@@ -41,18 +41,18 @@ const ArticleThumbnail = ({ article }: { article: Article }) => {
         )}
 
         <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">
-          {article.attributes.title}
+          {article.title}
         </h3>
 
         <div className="flex justify-between items-center">
           <span className="text-xs text-accentDark">
-            {formatDate(article.attributes.publishedAt)}
+            {formatDate(article.publishedAt)}
           </span>
           {creator && (
             <span className="text-xs text-accentDark">{creator.name}</span>
           )}
         </div>
-        <p className="py-4">{article.attributes.description}</p>
+        <p className="py-4">{article.description}</p>
       </div>
     </Link>
   );

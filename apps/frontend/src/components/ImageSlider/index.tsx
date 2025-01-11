@@ -21,10 +21,10 @@ const ImageSlider = ({ images }: { images: Image[] }) => {
     setIndex(current);
   const slides = images.map((image: Image): SlideImage => {
     return {
-      src: getStrapiURL(image.attributes.url),
-      height: image.attributes.height,
-      width: image.attributes.width,
-      alt: image.attributes.alternativeText || "alternative text missing",
+      src: getStrapiURL(image.url),
+      height: image.height,
+      width: image.width,
+      alt: image.alternativeText || "alternative text missing",
     };
   });
   return (

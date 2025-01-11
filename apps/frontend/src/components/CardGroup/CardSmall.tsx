@@ -5,12 +5,12 @@ import { getStrapiMedia } from "@/utils/api-helpers";
 
 const CardSmall = ({ data }: { data: Card }) => {
   const { title, link, coverImage } = data;
-  const imgUrl = getStrapiMedia(coverImage.data.attributes.url);
+  const imgUrl = getStrapiMedia(coverImage.url);
   return (
     <div className="pb-10 max-w-[200px]">
       <Image
         src={imgUrl || ""}
-        alt={coverImage.data.attributes.alternativeText || "card cover image"}
+        alt={coverImage.alternativeText || "card cover image"}
         width={300}
         height={300}
         className="mb-3 aspect-square object-cover"

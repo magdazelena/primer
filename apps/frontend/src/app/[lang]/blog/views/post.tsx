@@ -5,11 +5,11 @@ import { Article } from "@/types/article";
 import { CreatorThumbnail } from "@/app/[lang]/creators/components/CreatorThumbnail";
 
 export default function Post({ data }: { data: Article }) {
-  const { title, description, publishedAt, cover, creator } = data.attributes;
-  const author = creator.data?.attributes;
-  const imageUrl = getStrapiMedia(cover.data?.attributes.url);
+  const { title, description, publishedAt, cover, creator } = data;
+  const author = creator.data?;
+  const imageUrl = getStrapiMedia(cover.data?.url);
   const authorImgUrl = getStrapiMedia(
-    creator.data?.attributes.avatar.data.attributes.url
+    creator.data?.avatar.data.url
   );
 
   return (
@@ -46,8 +46,8 @@ export default function Post({ data }: { data: Article }) {
       </div>
 
       <div className="text-dark max-w-[1000px] pb-5">
-        {data.attributes.blocks &&
-          data.attributes.blocks.map((section: any, index: number) =>
+        {data.blocks &&
+          data.blocks.map((section: any, index: number) =>
             componentResolver(section, index)
           )}
       </div>
