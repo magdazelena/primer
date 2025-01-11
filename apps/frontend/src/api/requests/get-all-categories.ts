@@ -7,11 +7,6 @@ interface AllCategories {
     blogCategories: Category[]
 }
 export async function getCategories(lang: string): Promise<AllCategories> {
-    const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-  
-    if (!token)
-      throw new Error("The Strapi API Token environment variable is not set.");
-    const options = { headers: { Authorization: `Bearer ${token}` } };
     const params = {
       populate: {
         children: {
@@ -24,16 +19,13 @@ export async function getCategories(lang: string): Promise<AllCategories> {
       locale: lang,
     };
   
-    // Fetch product categories from Strapi
     const productCategoriesRes = await fetchAPI(
       `/product-categories`,
       params,
-      options
     );
     const productCategories = productCategoriesRes.data;
   
-    // Fetch blog categories from Strapi
-    const blogCategoriesRes = await fetchAPI(`/categories`, params, options);
+    const blogCategoriesRes = await fetchAPI(`/categories`, params);
     const blogCategories = blogCategoriesRes.data;
   
     return { productCategories, blogCategories };

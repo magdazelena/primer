@@ -4,13 +4,10 @@ import { lookupCategoryTree, CATEGORY_THREE_QUERY } from "../shared-params";
 
 export async function fetchSideMenuData(filter: string): Promise<Data> {
   
-    const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-    const options = { headers: { Authorization: `Bearer ${token}` } };
 
     const categoriesResponse = await fetchAPI(
       "/product-categories",
       { populate: "*" },
-      options
     );
     const filters = filter
       ? lookupCategoryTree(filter)
@@ -23,8 +20,7 @@ export async function fetchSideMenuData(filter: string): Promise<Data> {
           ...CATEGORY_THREE_QUERY
         },
         filters: { ...filters },
-      },
-      options
+      }
     );
     return {
       products: productsResponse.data,

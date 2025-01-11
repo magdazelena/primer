@@ -21,6 +21,10 @@ export async function fetchAPI(
   },
   options = {}
 ) {
+
+    const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
+    const defaultOptions = Object.keys(options).length === 0 ?{ headers: { Authorization: `Bearer ${token}` } }: options;
+
   try {
     // Merge default and user options
     const mergedOptions = {
@@ -28,7 +32,7 @@ export async function fetchAPI(
       headers: {
         "Content-Type": "application/json",
       },
-      ...options,
+      ...defaultOptions,
     };
 
     // Build request URL

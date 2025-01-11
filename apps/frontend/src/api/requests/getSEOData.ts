@@ -7,7 +7,6 @@ interface SEOdata {
 }
 
 export async function getSEOData(path: string, slug: string): Promise<SEOdata> {
-    const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
     const urlParamsObject = {
       filters: { slug },
       populate: { seo: {
@@ -18,10 +17,8 @@ export async function getSEOData(path: string, slug: string): Promise<SEOdata> {
         },
       }, },
     };
-    const options = { headers: { Authorization: `Bearer ${token}` } };
-    const response = await fetchAPI(path, urlParamsObject, options);
+    const response = await fetchAPI(path, urlParamsObject);
     const data = response.data;
-    console.log(response)
     if (!data || data.length === 0) throw new Error('Error fetching SEO data, double check the syntax');
     return data[0];
   }

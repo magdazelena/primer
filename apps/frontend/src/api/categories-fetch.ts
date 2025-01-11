@@ -3,7 +3,6 @@ import { fetchAPI } from "./fetch-api";
 
 async function fetchAllChildCategories(path: string, slug: string) {
   try {
-    const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
     const params = {
       filters: { slug },
       populate: {
@@ -13,8 +12,7 @@ async function fetchAllChildCategories(path: string, slug: string) {
       },
     };
 
-    const options = { headers: { Authorization: `Bearer ${token}` } };
-    const responseData = await fetchAPI(path, params, options);
+    const responseData = await fetchAPI(path, params);
     const category = responseData.data[0];
     const childrenCategories = collectAllSlugs(category);
     return {
@@ -46,7 +44,6 @@ export async function fetchPostsByCategory(
 ) {
   const parentCategory = await fetchAllChildCategories(categoryPath, filter);
   try {
-    const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
     const urlParamsObject = {
       sort: { createdAt: "desc" },
       filters: {
@@ -64,8 +61,7 @@ export async function fetchPostsByCategory(
         },
       },
     };
-    const options = { headers: { Authorization: `Bearer ${token}` } };
-    const responseData = await fetchAPI(path, urlParamsObject, options);
+    const responseData = await fetchAPI(path, urlParamsObject);
     return { category: parentCategory?.parent, posts: responseData };
   } catch (error) {
     console.error(error);
