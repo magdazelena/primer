@@ -1,10 +1,10 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
-import { fetchAPI } from "@/api/fetch-api";
 
 import Loader from "@/components/Loader";
 import List from "./views/product-list";
 import PageHeader from "@/components/PageHeader";
+import { getProductList } from "@/api/requests/get-product-list";
 
 interface Meta {
   pagination: {
@@ -22,29 +22,15 @@ export default function Products() {
   const fetchData = useCallback(async (start: number, limit: number) => {
     setLoading(true);
     try {
-      const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-      const path = `/products`;
-      const urlParamsObject = {
-        sort: { createdAt: "desc" },
-        populate: {
-          coverImage: { fields: ["url"] },
-          category: { populate: "*" },
-        },
-        pagination: {
-          start: start,
-          limit: limit,
-        },
-      };
-      const options = { headers: { Authorization: `Bearer ${token}` } };
-      const responseData = await fetchAPI(path, urlParamsObject, options);
+      const { data, meta} = await getProductList(start, limit);
 
       if (start === 0) {
-        setData(responseData.data);
+        setData(data);
       } else {
-        setData((prevData: any[]) => [...prevData, ...responseData.data]);
+        setData((prevData: any[]) => [...prevData, ...data]);
       }
 
-      setMeta(responseData.meta);
+      setMeta(meta);
     } catch (error) {
       console.error(error);
     } finally {

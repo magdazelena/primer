@@ -1,25 +1,13 @@
 import LangRedirect from "../../components/LangRedirect";
 import componentResolver from "@/utils/component-resolver";
 import { getPageBySlug } from "@/api/requests/get-page-by-slug";
+import { PAGE_CONTENT_SECTIONS_QUERY } from "@/api/shared-params";
 
 export default async function RootRoute(props: {
   params: Promise<{ lang: string }>;
 }) {
   const params = await props.params;
-  const populate = {
-    contentSections: {
-      on: {
-        "sections.card-group": {
-          populate: {
-            cards: {
-              populate: "*",
-            },
-          },
-        },
-      },
-    },
-  };
-  const page = await getPageBySlug("home", params.lang, populate);
+  const page = await getPageBySlug("home", params.lang, PAGE_CONTENT_SECTIONS_QUERY);
 
   if (page.error && page.error.status == 401)
     throw new Error(

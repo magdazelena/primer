@@ -10,6 +10,8 @@ import { FALLBACK_SEO } from "@/utils/constants";
 import Body from "@/components/Body";
 import Navbar from "@/components/Navbar";
 import { NotFound } from "./404";
+import { GLOBAL_LAYOUT_QUERY } from "@/api/shared-params";
+import { getCategories } from "../../api/requests/get-all-categories";
 
 async function getGlobal(lang: string): Promise<any> {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
@@ -21,74 +23,13 @@ async function getGlobal(lang: string): Promise<any> {
   const options = { headers: { Authorization: `Bearer ${token}` } };
 
   const urlParamsObject = {
-    populate: {
-      metadata: {
-        populate: "*",
-      },
-      navbar: {
-        populate: {
-          navbarLogo: { populate: '*'},
-          menuItems: { populate: '*'}
-        },
-      },
-      footer: {
-        populate: {
-          'footerLogo': {
-            populate: '*'
-          },
-          menuLinks: {
-            populate: '*'
-          },
-          legalLinks: {
-            populate: '*'
-          },
-          socialLinks: {
-            populate: '*'
-          },
-          categories: {
-            populate: '*'
-          }
-        },
-      },
-    },
-
+    ...GLOBAL_LAYOUT_QUERY,
     locale: lang,
   };
   return await fetchAPI(path, urlParamsObject, options);
 }
 
-async function getCategories(lang: string): Promise<any> {
-  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 
-  if (!token)
-    throw new Error("The Strapi API Token environment variable is not set.");
-  const options = { headers: { Authorization: `Bearer ${token}` } };
-  const params = {
-    populate: {
-      children: {
-        populate: "*",
-      },
-      parent: {
-        populate: '*'
-      }
-    },
-    locale: lang,
-  };
-
-  // Fetch product categories from Strapi
-  const productCategoriesRes = await fetchAPI(
-    `/product-categories`,
-    params,
-    options
-  );
-  const productCategories = productCategoriesRes.data;
-
-  // Fetch blog categories from Strapi
-  const blogCategoriesRes = await fetchAPI(`/categories`, params, options);
-  const blogCategories = blogCategoriesRes.data;
-
-  return { productCategories, blogCategories };
-}
 
 export async function generateMetadata(props: {
   params: Promise<{ lang: string }>;

@@ -1,29 +1,8 @@
 import { fetchAPI } from "@/api/fetch-api";
 import type { Metadata } from "next";
 import ProductView from "../../views/product";
-import { Product } from "@/types/product";
 import { getSEOData } from "@/api/requests/getSEOData";
-import { CREATOR_QUERY } from "@/api/shared-params";
-
-async function getProductBySlug(slug: string): Promise<Product[]> {
-  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-  const path = `/products`;
-  const urlParamsObject = {
-    filters: { slug },
-    populate: {
-      coverImage: { fields: ["url"] },
-      media: {
-        populate: "*",
-      },
-      category: { fields: ["name", "slug"] },
-      creator: CREATOR_QUERY
-    },
-  };
-  const options = { headers: { Authorization: `Bearer ${token}` } };
-  const response = await fetchAPI(path, urlParamsObject, options);
-  return response.data;
-}
-
+import { getProductBySlug } from "@/api/requests/get-product-by-slug";
 
 export async function generateMetadata(props: {
   params: Promise<{ slug: string }>;
