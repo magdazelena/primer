@@ -23,7 +23,6 @@ export default function ArticleSelect({
       <div>
         <div className="flex flex-wrap py-6">
           {categories.map((category: Category) => {
-            console.log(category.articles)
             if (category.articles.length === 0) return null;
             return (
               <CategoryThumbnail

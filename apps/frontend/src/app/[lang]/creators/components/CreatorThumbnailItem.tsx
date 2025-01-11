@@ -5,7 +5,7 @@ import { getStrapiMedia } from "@/api/api-helpers";
 
 const CreatorThumbnailListItem = ({ creator }: { creator: Creator }) => {
   const { avatar, name, slug } = creator;
-  const imageUrl = getStrapiMedia(avatar.data?.url);
+  const imageUrl = getStrapiMedia(avatar.url);
 
   return (
     <Link

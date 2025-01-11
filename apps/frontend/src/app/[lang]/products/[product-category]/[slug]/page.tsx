@@ -2,7 +2,8 @@ import { fetchAPI } from "@/api/fetch-api";
 import type { Metadata } from "next";
 import ProductView from "../../views/product";
 import { Product } from "@/types/product";
-import { getSEOData } from "../../../../../api/requests/getSEOData";
+import { getSEOData } from "@/api/requests/getSEOData";
+import { CREATOR_QUERY } from "@/api/shared-params";
 
 async function getProductBySlug(slug: string): Promise<Product[]> {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
@@ -15,13 +16,7 @@ async function getProductBySlug(slug: string): Promise<Product[]> {
         populate: "*",
       },
       category: { fields: ["name", "slug"] },
-      creator: {
-        populate: {
-          avatar: {
-            fields: ["name", "alternativeText", "caption", "url"],
-          },
-        },
-      },
+      creator: CREATOR_QUERY
     },
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
