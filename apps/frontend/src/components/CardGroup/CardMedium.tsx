@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getStrapiMedia } from "@/utils/api-helpers";
+import { getStrapiMedia } from "@/api/api-helpers";
 import { Card } from ".";
 
 const CardMedium = ({ data }: { data: Card }) => {

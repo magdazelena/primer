@@ -1,4 +1,4 @@
-import { formatDate, getStrapiMedia } from "@/utils/api-helpers";
+import { formatDate, getStrapiMedia } from "@/api/api-helpers";
 import Image from "next/image";
 import componentResolver from "@/utils/component-resolver";
 import { Article } from "@/types/article";

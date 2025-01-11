@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Card } from ".";
-import { getStrapiMedia } from "@/utils/api-helpers";
+import { getStrapiMedia } from "@/api/api-helpers";
 
 const CardLarge = ({ data }: { data: Card }) => {
   const { title, link, lead, coverImage } = data;

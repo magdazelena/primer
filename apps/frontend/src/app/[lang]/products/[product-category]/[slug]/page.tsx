@@ -1,7 +1,8 @@
-import { fetchAPI } from "@/utils/fetch-api";
+import { fetchAPI } from "@/api/fetch-api";
 import type { Metadata } from "next";
 import ProductView from "../../views/product";
 import { Product } from "@/types/product";
+import { getSEOData } from "../../../../../api/requests/getSEOData";
 
 async function getProductBySlug(slug: string): Promise<Product[]> {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
@@ -28,37 +29,16 @@ async function getProductBySlug(slug: string): Promise<Product[]> {
   return response.data;
 }
 
-async function getMetaData(slug: string) {
-  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-  const path = `/products`;
-  const urlParamsObject = {
-    filters: { slug },
-    populate: {
-      seo: {
-        populate: {
-          shareImage: {
-            populate: "*",
-          },
-        },
-      },
-    },
-  };
-  const options = { headers: { Authorization: `Bearer ${token}` } };
-  const response = await fetchAPI(path, urlParamsObject, options);
-  return response.data;
-}
 
 export async function generateMetadata(props: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const params = await props.params;
-  const meta = await getMetaData(params.slug);
-
-  const metadata = meta[0].seo;
+  const seoData = await getSEOData('/products',params.slug);
 
   return {
-    title: metadata.metaTitle,
-    description: metadata.metaDescription,
+    title: seoData.metaTitle,
+    description: seoData.metaDescription,
   };
 }
 

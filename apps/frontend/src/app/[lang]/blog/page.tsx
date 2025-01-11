@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
-import { fetchAPI } from "@/utils/fetch-api";
+import { fetchAPI } from "@/api/fetch-api";
 
 import Loader from "@/components/Loader";
 import Blog from "./views/article-list";

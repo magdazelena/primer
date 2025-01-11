@@ -1,6 +1,7 @@
-import { fetchAPI } from "@/utils/fetch-api";
+import { fetchAPI } from "@/api/fetch-api";
 import type { Metadata } from "next";
 import { CreatorView } from "../views/creator";
+import { getSEOData } from "@/api/requests/getSEOData";
 
 async function getCreatorBySlug(slug: string) {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
@@ -14,30 +15,18 @@ async function getCreatorBySlug(slug: string) {
   return response.data;
 }
 
-async function getMetaData(slug: string) {
-  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-  const path = `/creators`;
-  const urlParamsObject = {
-    filters: { slug },
-    populate: { seo:  "*"  },
-  };
-  const options = { headers: { Authorization: `Bearer ${token}` } };
-  const response = await fetchAPI(path, urlParamsObject, options);
-  return response.data;
-}
-
 export async function generateMetadata(
   props: {
     params: Promise<{ slug: string }>;
   }
 ): Promise<Metadata> {
   const params = await props.params;
-  const meta = await getMetaData(params.slug);
-  const metadata = meta[0].seo;
+  const seoData = await getSEOData('/creators', params.slug);
+
 
   return {
-    title: metadata.metaTitle,
-    description: metadata.metaDescription,
+    title: seoData.metaTitle,
+    description: seoData.metaDescription,
   };
 }
 

@@ -1,5 +1,5 @@
 import ProductSelect from "../../components/ProductSelect";
-import { fetchAPI } from "@/utils/fetch-api";
+import { fetchAPI } from "@/api/fetch-api";
 import { Product, ProductCategory } from "@/types/product";
 import { findParentCategory } from "@/utils/find-parent-category";
 async function fetchSideMenuData(filter: string) {

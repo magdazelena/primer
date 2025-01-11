@@ -1,11 +1,11 @@
 import { Creator } from "@/types/creator";
-import { getStrapiMedia } from "@/utils/api-helpers";
+import { getStrapiMedia } from "@/api/api-helpers";
 import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 const CreatorView = ({ creator }: { creator: Creator }) => {
   const { avatar, name, bio, lead, email } = creator;
-  const imageUrl = getStrapiMedia(avatar.data?.url);
+  const imageUrl = getStrapiMedia(avatar.url);
   return (
     <article className="grid grid-cols-3 lg:gap-20 text-dark">
       <div className="col-span-12 lg:col-span-2 ">

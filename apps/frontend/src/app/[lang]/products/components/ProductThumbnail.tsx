@@ -1,7 +1,7 @@
 import { Product } from "@/types/product";
 import Link from "next/link";
 import Image from "next/image";
-import { getStrapiMedia } from "@/utils/api-helpers";
+import { getStrapiMedia } from "@/api/api-helpers";
 
 const ProductThumbnail = ({ product }: { product: Product }) => {
   const imageUrl = getStrapiMedia(
