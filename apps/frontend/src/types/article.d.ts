@@ -12,7 +12,7 @@ interface ArticleFull {
   updatedAt: string;
   publishedAt: string;
   blocks?: any[];
-  cover: {
+  coverImage: {
     url: string;
   };
   category: {

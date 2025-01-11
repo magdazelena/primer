@@ -14,10 +14,8 @@ async function fetchSideMenuData(filter: string) {
     );
     const selectedFilter = filter
       ? {
-          filters: {
-            category: {
-              slug: filter,
-            },
+          category: {
+            slug: filter,
           },
         }
       : {};
@@ -25,15 +23,12 @@ async function fetchSideMenuData(filter: string) {
       "/articles",
       {
         populate: {
-          cover: { fields: ["url"] },
+          coverImage: { fields: ["url"] },
           category: { fields: ["slug"] },
           creator: {
             populate: {
               avatar: {
                 fields: ["name", "alternativeText", "caption", "url"],
-              },
-              name: {
-                populate: true,
               },
             },
           },
@@ -57,23 +52,20 @@ interface Data {
   categories: Category[];
 }
 
-export default async function LayoutRoute(
-  props: {
-    children: React.ReactNode;
-    params: Promise<{
-      slug: string;
-      category: string;
-    }>;
-  }
-) {
+export default async function LayoutRoute(props: {
+  children: React.ReactNode;
+  params: Promise<{
+    slug: string;
+    category: string;
+  }>;
+}) {
   const params = await props.params;
 
-  const {
-    children
-  } = props;
+  const { children } = props;
 
   const { category } = params;
   const { categories, articles } = (await fetchSideMenuData(category)) as Data;
+  console.log(articles);
   return (
     <section className="container p-8 mx-auto space-y-6 sm:space-y-12">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-2 lg:gap-4">
@@ -103,11 +95,9 @@ export async function generateStaticParams() {
 
   return articleResponse.data.map(
     (article: {
-      attributes: {
+      slug: string;
+      category: {
         slug: string;
-        category: {
-          slug: string;
-        };
       };
     }) => ({ slug: article.slug, category: article.slug })
   );

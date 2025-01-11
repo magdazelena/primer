@@ -5,11 +5,11 @@ import { Article } from "@/types/article";
 import { CreatorThumbnail } from "@/app/[lang]/creators/components/CreatorThumbnail";
 
 export default function Post({ data }: { data: Article }) {
-  const { title, description, publishedAt, cover, creator } = data;
-  const author = creator.data?;
-  const imageUrl = getStrapiMedia(cover.data?.url);
-  const authorImgUrl = getStrapiMedia(
-    creator.data?.avatar.data.url
+  const { title, description, publishedAt, coverImage, creator } = data;
+
+  const imageUrl = getStrapiMedia(coverImage.url);
+  const creatorImgUrl = getStrapiMedia(
+    creator.avatar.url
   );
 
   return (
@@ -29,9 +29,9 @@ export default function Post({ data }: { data: Article }) {
         <h1 className="leading-tight text-5xl font-bold ">{title}</h1>
         <div className="flex flex-col items-start justify-between w-full md:flex-row md:items-center text-accentDarkDark">
           <div className="flex items-center md:space-x-2">
-            {authorImgUrl && (
+            {creatorImgUrl && (
               <Image
-                src={authorImgUrl}
+                src={creatorImgUrl}
                 alt="article cover image"
                 width={400}
                 height={400}
@@ -39,7 +39,7 @@ export default function Post({ data }: { data: Article }) {
               />
             )}
             <p className="text-md text-dark">
-              {author && author.name} • {formatDate(publishedAt)}
+              {creator && creator.name} • {formatDate(publishedAt)}
             </p>
           </div>
         </div>
@@ -52,7 +52,7 @@ export default function Post({ data }: { data: Article }) {
           )}
       </div>
       <div className="col-span-12">
-        {creator?.data && <CreatorThumbnail creator={creator.data} />}
+        {creator && <CreatorThumbnail creator={creator} />}
       </div>
     </article>
   );

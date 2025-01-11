@@ -8,25 +8,21 @@ async function getPostBySlug(slug: string) {
   const urlParamsObject = {
     filters: { slug },
     populate: {
-      cover: { fields: ["url"] },
+      coverImage: { fields: ["url"] },
       creator: { populate: "*" },
       category: { fields: ["name"] },
       blocks: {
-        populate: {
-          __component: "*",
-          files: "*",
-          file: "*",
-          url: "*",
-          body: "*",
-          title: "*",
-          author: "*",
-        },
+        on: {
+          'sections.rich-text': {
+            populate: '*'
+          }
+        }
       },
     },
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
   const response = await fetchAPI(path, urlParamsObject, options);
-  return response;
+  return response.data;
 }
 
 async function getMetaData(slug: string) {
@@ -34,7 +30,13 @@ async function getMetaData(slug: string) {
   const path = `/articles`;
   const urlParamsObject = {
     filters: { slug },
-    populate: { seo:  "*"  },
+    populate: { seo: {
+      populate: {
+        shareImage: {
+          populate: "*",
+        },
+      },
+    }, },
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
   const response = await fetchAPI(path, urlParamsObject, options);
@@ -64,6 +66,7 @@ export default async function PostRoute(
   const params = await props.params;
   const { slug } = params;
   const data = await getPostBySlug(slug);
+  console.log(data)
   if (data.length === 0) return <h2>no post found</h2>;
   return <Post data={data[0]} />;
 }
@@ -82,12 +85,11 @@ export async function generateStaticParams() {
 
   return articleResponse.data.map(
     (article: {
-      attributes: {
         slug: string;
         category: {
           slug: string;
         };
-      };
+
     }) => ({ slug: article.slug, category: article.slug })
   );
 }

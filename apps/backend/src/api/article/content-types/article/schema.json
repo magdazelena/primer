@@ -24,7 +24,7 @@
       "type": "uid",
       "targetField": "title"
     },
-    "cover": {
+    "coverImage": {
       "type": "media",
       "multiple": false,
       "required": false,

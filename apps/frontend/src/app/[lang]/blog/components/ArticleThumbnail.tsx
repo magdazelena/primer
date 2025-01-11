@@ -5,13 +5,13 @@ import { Article } from "@/types/article";
 
 const ArticleThumbnail = ({ article }: { article: Article }) => {
   const imageUrl = getStrapiMedia(
-    article.cover.data?.url
+    article.coverImage.url
   );
 
-  const category = article.category.data?;
-  const creator = article.creator.data?;
+  const category = article.category;
+  const creator = article.creator;
 
-  const avatarUrl = getStrapiMedia(creator?.avatar.data.url);
+  const avatarUrl = getStrapiMedia(creator?.avatar.url);
 
   return (
     <Link
