@@ -6,12 +6,12 @@ import List from "./views/product-list";
 import PageHeader from "@/components/PageHeader";
 import { getProductList } from "@/api/requests/get-product-list";
 
-interface Meta {
-  pagination: {
+interface Pagination {
+ 
     start: number;
     limit: number;
     total: number;
-  };
+
 }
 
 export default function Products() {

@@ -2,15 +2,16 @@ export interface APIResponse {
     data: unknown[];
     meta: Meta
 }
-export interface PaginationUtil {
+export interface Pagination{
     start: number;
     limit: number;
+    total: number;
 }
-export interface Pagination {
+export interface PaginationPerPage {
 	page: number;
 	pageSize: number;
 	pageCount: number;
-	total: number;
+	
 }
 
 export interface Meta {

@@ -34,7 +34,7 @@ export default function Creators() {
   }, []);
 
   function loadMorePosts(): void {
-    const nextPosts = meta!.pagination.pageCount + meta!.pagination.pageSize;
+    const nextPosts = meta!.pagination.start + meta!.pagination.limit;
     fetchData(nextPosts, Number(process.env.NEXT_PUBLIC_PAGE_LIMIT));
   }
 
@@ -53,7 +53,7 @@ export default function Creators() {
             <CreatorThumbnailListItem key={creator.id} creator={creator} />
           ))}
         </div>
-        {meta!.pagination.pageCount + meta!.pagination.pageSize <
+        {meta!.pagination.start + meta!.pagination.limit <
           meta!.pagination.total && (
           <div className="flex justify-center">
             <button
