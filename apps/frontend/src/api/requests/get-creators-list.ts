@@ -7,7 +7,6 @@ export const getCreatorsList = async (start: number, limit: number): Promise<API
       sort: { createdAt: "desc" },
       populate: {
         avatar: { fields: ["url"] },
-        name: { populate: true },
       },
       pagination: {
         start: start,
@@ -15,5 +14,6 @@ export const getCreatorsList = async (start: number, limit: number): Promise<API
       },
     };
     const responseData = await fetchAPI(path, urlParamsObject);
+
     return { ...responseData };
 }
