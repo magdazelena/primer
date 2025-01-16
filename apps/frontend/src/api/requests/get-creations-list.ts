@@ -1,6 +1,7 @@
 import { Article } from "../../types/article";
 import { Product } from "../../types/product";
 import { fetchAPI } from "../fetch-api";
+import { CREATOR_QUERY } from "../shared-params";
 
 export async function fetchCreationsData(filter: string): Promise<{
     products: Product[];
@@ -20,18 +21,9 @@ export async function fetchCreationsData(filter: string): Promise<{
         "/articles",
         {
             populate: {
-                cover: { fields: ["url"] },
+                coverImage: { fields: ["url"] },
                 category: { fields: ["slug"] },
-                creator: {
-                    populate: {
-                        avatar: {
-                            fields: ["name", "alternativeText", "caption", "url"],
-                        },
-                        name: {
-                            populate: true,
-                        },
-                    },
-                },
+                creator: CREATOR_QUERY
             },
             pagination: {
                 start: 0,
