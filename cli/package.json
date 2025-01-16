@@ -1,6 +1,7 @@
 {
     "name": "primer-cli",
     "version": "0.0.1",
+    "type": "module",
     "description": "CLI for managing the Primer monorepo",
     "bin": {
         "prime": "./bin/create.js",

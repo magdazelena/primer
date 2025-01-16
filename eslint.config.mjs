@@ -15,6 +15,15 @@ export default [
   ...compat.extends("eslint:recommended"),
   {
     ignores: ["**/*.mjs"],
+    languageOptions: {
+      ecmaVersion: 2021, // Modern ECMAScript features
+      sourceType: "module",
+      globals: {
+        process: "readonly", 
+        __dirname: "readonly", 
+        console: "readonly"
+      },
+    },
     rules: {
       indent: [
         "error",
