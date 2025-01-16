@@ -1,7 +1,7 @@
 import ProductSelect from "../../components/ProductSelect";
-import { fetchAPI } from "@/api/fetch-api";
 import { findParentCategory } from "@/utils/find-parent-category";
 import { fetchSideMenuData } from "@/api/requests/get-side-menu-data";
+import { getProductSlugAndCategoryList } from "@/api/requests/get-product-list";
 
 
 
@@ -60,34 +60,13 @@ export default async function LayoutRoute(props: {
 }
 
 export async function generateStaticParams() {
-  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-  const path = `/products`;
-  const options = { headers: { Authorization: `Bearer ${token}` } };
-  const productResponse = await fetchAPI(
-    path,
-    {
-      populate: { category: { fields: ["slug"] } },
-    },
-    options
-  );
-
-  const staticParams = productResponse.data.map(
-    (product: {
-      slug: string;
-      category: {
-        slug: string;
-      };
-    }) => ({
-      slug: product.slug,
-      productCategory: product.category.slug,
-    })
-  );
-  return staticParams;
+  const params = await getProductSlugAndCategoryList()
+  return params;
 }
 export async function getStaticPaths() {
-  const paths = await generateStaticParams(); // Use your generateStaticParams here
+  const paths = await generateStaticParams(); 
   return {
     paths,
-    fallback: false, // Ensure correct behavior if a route is missing
+    fallback: false, 
   };
 }

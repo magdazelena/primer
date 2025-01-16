@@ -17,3 +17,25 @@ export const getProductList = async (start: number, limit: number): Promise<APIR
     const responseData = await fetchAPI(path, urlParamsObject);
     return { data: responseData.data, meta: responseData.meta }
 }
+
+export async function getProductSlugAndCategoryList(): Promise<Array<{slug: string, productCategory: string}>>{
+    const path = `/products`;
+    const productResponse = await fetchAPI(
+      path,
+      {
+        populate: { category: { fields: ["slug"] } },
+      },
+    );
+  
+    return productResponse.data.map(
+      (product: {
+        slug: string;
+        category: {
+          slug: string;
+        };
+      }) => ({
+        slug: product.slug,
+        productCategory: product.category.slug,
+      })
+    );
+}

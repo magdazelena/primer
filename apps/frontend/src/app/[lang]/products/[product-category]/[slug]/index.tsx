@@ -8,7 +8,12 @@ import LayoutRoute, {
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await generateStaticParams();
   return {
-    paths,
+    paths: paths.map((path) => ({
+      params: {
+        slug: path.slug,
+        productCategory: path.productCategory,
+      },
+    })),
     fallback: false,
   };
 };
