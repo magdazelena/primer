@@ -2,7 +2,8 @@
   "name": "primer",
   "private": true,
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "cli"
   ],
   "scripts": {
     "backend": "nx dev backend",

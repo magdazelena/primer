@@ -3,7 +3,8 @@
   "defaultBase": "main",
   "projects": {
     "frontend": "apps/frontend",
-    "backend": "apps/backend"
+    "backend": "apps/backend",
+    "cli": "cli"
   },
   "targetDefaults": {
     "setup": {

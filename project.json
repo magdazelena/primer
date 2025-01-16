@@ -1,6 +1,11 @@
 {
     "version": 2,
     "projects": {
+        "cli": {
+            "root": "cli",
+            "sourceRoot": "cli/bin",
+            "projectType": "cli"
+        },
         "frontend": {
             "root": "apps/frontend",
             "sourceRoot": "apps/frontend/src",
