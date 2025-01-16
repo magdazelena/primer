@@ -66,6 +66,16 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::product-category.product-category"
+    },
+    "featured": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "sections.card-group"
     }
   }
 }

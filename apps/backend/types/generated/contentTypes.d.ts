@@ -764,6 +764,12 @@ export interface ApiProductCategoryProductCategory
           localized: true;
         };
       }>;
+    featured: Schema.Attribute.Component<'sections.card-group', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
