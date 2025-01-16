@@ -1,50 +1,8 @@
+import { fetchArticlesSideMenuData } from "@/api/requests/get-articles-side-menu-data";
 import ArticleSelect from "../../components/ArticleSelect";
-import { fetchAPI } from "@/api/fetch-api";
-import { Article, Category } from "@/types/article";
-import { ARTICLE_BASE_QUERY, CREATOR_QUERY } from "../../../../../api/shared-params";
+import { getArticlesSlugAndCategoryList } from "@/api/requests/get-articles-list";
 
-async function fetchSideMenuData(filter: string) {
-  try {
-    const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-    const options = { headers: { Authorization: `Bearer ${token}` } };
 
-    const categoriesResponse = await fetchAPI(
-      "/categories",
-      { populate: "*" },
-      options
-    );
-    const selectedFilter = filter
-      ? {
-          category: {
-            slug: filter,
-          },
-        }
-      : {};
-    const articlesResponse = await fetchAPI(
-      "/articles",
-      {
-        populate: {
-          ...ARTICLE_BASE_QUERY.populate,
-          creator: CREATOR_QUERY
-        },
-        ...selectedFilter,
-      },
-      options
-    );
-
-    return {
-      articles: articlesResponse.data,
-      categories: categoriesResponse.data,
-    };
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-interface Data {
-  articles: Article[];
-  categories: Category[];
-}
 
 export default async function LayoutRoute(props: {
   children: React.ReactNode;
@@ -58,8 +16,8 @@ export default async function LayoutRoute(props: {
   const { children } = props;
 
   const { category } = params;
-  const { categories, articles } = (await fetchSideMenuData(category)) as Data;
-  console.log(articles);
+  const { categories, articles } = await fetchArticlesSideMenuData(category)
+
   return (
     <section className="container p-8 mx-auto space-y-6 sm:space-y-12">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-2 lg:gap-4">
@@ -76,23 +34,5 @@ export default async function LayoutRoute(props: {
 }
 
 export async function generateStaticParams() {
-  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-  const path = `/articles`;
-  const options = { headers: { Authorization: `Bearer ${token}` } };
-  const articleResponse = await fetchAPI(
-    path,
-    {
-      populate: ["category"],
-    },
-    options
-  );
-
-  return articleResponse.data.map(
-    (article: {
-      slug: string;
-      category: {
-        slug: string;
-      };
-    }) => ({ slug: article.slug, category: article.slug })
-  );
+  return (await getArticlesSlugAndCategoryList())
 }

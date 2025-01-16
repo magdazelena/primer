@@ -1,20 +1,10 @@
-import { fetchAPI } from "@/api/fetch-api";
 import Post from "../../views/post";
 import type { Metadata } from "next";
 import { getSEOData } from "@/api/requests/getSEOData";
-import { ARTICLE_RICH_QUERY } from "../../../../../api/shared-params";
+import { getArticlesSlugAndCategoryList } from "@/api/requests/get-articles-list";
+import { getPostBySlug } from "@/api/requests/get-post-by-slug";
 
-async function getPostBySlug(slug: string) {
-  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-  const path = `/articles`;
-  const urlParamsObject = {
-    filters: { slug },
-    ...ARTICLE_RICH_QUERY
-  };
-  const options = { headers: { Authorization: `Bearer ${token}` } };
-  const response = await fetchAPI(path, urlParamsObject, options);
-  return response.data;
-}
+
 
 
 
@@ -45,24 +35,5 @@ export default async function PostRoute(
 }
 
 export async function generateStaticParams() {
-  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-  const path = `/articles`;
-  const options = { headers: { Authorization: `Bearer ${token}` } };
-  const articleResponse = await fetchAPI(
-    path,
-    {
-      populate: ["category"],
-    },
-    options
-  );
-
-  return articleResponse.data.map(
-    (article: {
-        slug: string;
-        category: {
-          slug: string;
-        };
-
-    }) => ({ slug: article.slug, category: article.slug })
-  );
+  return (await getArticlesSlugAndCategoryList())
 }

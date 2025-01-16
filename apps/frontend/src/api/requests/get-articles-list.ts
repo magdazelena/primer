@@ -15,3 +15,21 @@ export async function getArticlesList(start: number, limit: number): Promise<API
     const responseData = await fetchAPI(path, urlParamsObject);
     return { ...responseData }
 }
+export async function getArticlesSlugAndCategoryList(): Promise<Array<{slug: string, category: string}>> {
+  const path = `/articles`;
+  const articleResponse = await fetchAPI(
+    path,
+    {
+      populate: ["category"],
+    },
+  );
+
+  return articleResponse.data.map(
+    (article: {
+      slug: string;
+      category: {
+        slug: string;
+      };
+    }) => ({ slug: article.slug, category: article.slug })
+  );
+}
