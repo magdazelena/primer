@@ -1,19 +1,8 @@
-import { fetchAPI } from "@/api/fetch-api";
 import type { Metadata } from "next";
 import { CreatorView } from "../views/creator";
 import { getSEOData } from "@/api/requests/getSEOData";
-
-async function getCreatorBySlug(slug: string) {
-  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-  const path = `/creators`;
-  const urlParamsObject = {
-    filters: { slug },
-    populate: "*",
-  };
-  const options = { headers: { Authorization: `Bearer ${token}` } };
-  const response = await fetchAPI(path, urlParamsObject, options);
-  return response.data;
-}
+import { getCreatorBySlug } from "@/api/requests/get-creator-by-slug";
+import { getCreatorsSlugList } from "../../../../api/requests/get-creators-list";
 
 export async function generateMetadata(
   props: {
@@ -43,22 +32,5 @@ export default async function CreatorRoute(
 }
 
 export async function generateStaticParams() {
-  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-  const path = `/creators`;
-  const options = { headers: { Authorization: `Bearer ${token}` } };
-  const creatorResponse = await fetchAPI(
-    path,
-    {
-      populate: "*",
-    },
-    options
-  );
-  return creatorResponse.map(
-    (creator: {
-        slug: string;
-
-    }) => ({
-      slug: creator.slug,
-    })
-  );
+  return (await getCreatorsSlugList());
 }
