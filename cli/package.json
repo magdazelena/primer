@@ -1,11 +1,11 @@
 {
-    "name": "primer-cli",
+    "name": "create-store-primer",
     "version": "0.0.1",
     "type": "module",
     "description": "CLI for managing the Primer monorepo",
     "bin": {
-        "prime": "./bin/create.js",
-        "update-primer": "./bin/update.js"
+        "create-store-primer": "bin/create.js",
+        "update-store-primer": "bin/update.js"
     },
     "dependencies": {
         "commander": "^10.0.0",
