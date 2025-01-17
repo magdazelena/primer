@@ -12,7 +12,7 @@ The project is young and new features are arriving often. Make sure to update th
 
 ```(bash)
 cd my-project-name
-npx update-store-primer update
+npx create-store-primer update
 ```
 
 ## Project repository and docs:

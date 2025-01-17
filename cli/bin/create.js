@@ -1,35 +1,66 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import { copy } from 'fs-extra';
 import { resolve } from 'path';
 import path from 'path';
-import { fileURLToPath } from 'url';
+
+import fs from 'fs/promises';
+import simpleGit from 'simple-git';
 
 const program = new Command();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 program
   .argument('<project-name>', 'Name of the new project')
   .description('Scaffold a new project using the Primer template')
   .action((projectName) => {
-    const source = resolve(__dirname, '../../'); // Path to monorepo root
     const destination = resolve(process.cwd(), projectName);
 
     console.log(`Creating project: ${projectName}`);
-    console.log(`Copying files from ${source} to ${destination}...`);
-
-    copy(source, destination, { overwrite: false })
-      .then(() => {
-        console.log('Project created successfully!');
-        console.log(`Run 'cd ${projectName} && yarn install' to get started.`);
-      })
-      .catch((err) => {
-        console.error('Error creating project:', err.message);
-        process.exit(1);
-      });
+    cloneTemplate('https://github.com/magdazelena/primer' ,'main',destination);
   });
 
 program.parse(process.argv);
+
+
+async function cloneTemplate(repoUrl, branch, targetDir) {
+  const git = simpleGit();
+  // Ensure the target directory exists
+  await fs.mkdir(targetDir, { recursive: true });
+
+  // Create a temporary directory for cloning
+  const tempDir = path.resolve(targetDir, '.temp-repo');
+  await fs.mkdir(tempDir, { recursive: true });
+  
+
+  console.log(`Cloning template from ${repoUrl} (${branch})...`);
+  await git.clone(repoUrl, tempDir, ['--branch', branch, '--no-checkout']);
+  const includes = [];
+
+  await fs.readFile(`${repoUrl}/cli/.template-include`, (err, file) => {
+    if (err) throw err;
+    file.toString().split('\n').forEach(line => {
+      includes.push(line);
+    });
+  });
+  await git.cwd(tempDir).raw(['sparse-checkout', 'init', '--cone']);
+  await git.cwd(tempDir).raw(['sparse-checkout', 'set', ...includes]);
+  await git.cwd(tempDir).checkout();
+
+  // Copy files from tempDir to targetDir
+  await fs.cp(tempDir, targetDir, { recursive: true });
+
+  // Save metadata
+  const headHash = await git.cwd(tempDir).revparse(['HEAD']);
+  const metadata = {
+    repo: repoUrl,
+    branch,
+    commit: headHash,
+  };
+  await fs.writeFile(path.join(targetDir, '.template-config.json'), JSON.stringify(metadata, null, 2));
+
+  // Clean up
+  await fs.rm(tempDir, { recursive: true, force: true });
+
+  console.log(`Template copied to ${targetDir}`);
+}

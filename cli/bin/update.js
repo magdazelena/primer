@@ -1,67 +1,74 @@
-#!/usr/bin/env node
+import fs from 'fs/promises';
+import path from 'path';
+import simpleGit from 'simple-git';
 
-import { execSync } from 'child_process';
-import { resolve } from 'path';
-import { existsSync, promises as fs } from 'fs';
-import { path } from 'path';
+async function fetchLatestRemoteCommit(repoUrl, branch) {
+  const git = simpleGit();
+  const tempDir = path.resolve(process.cwd(), '.temp-repo');
 
-async function checkVersion() {
-  const userVersionPath = path.resolve(process.cwd(), '.template-version.json');
-  const templateVersionPath = path.resolve(__dirname, '../../template-version.json');
-  
-  if (!existsSync(userVersionPath)) {
-    console.error('No .template-version.json found. Unable to determine project version.');
-    process.exit(1);
+  try {
+    await git.clone(repoUrl, tempDir, ['--branch', branch, '--single-branch', '--depth=1']);
+    const latestCommit = await git.cwd(tempDir).revparse(['HEAD']);
+    await fs.rm(tempDir, { recursive: true, force: true });
+    return latestCommit;
+  } catch (error) {
+    console.error('Error fetching latest remote commit:', error);
+    return null;
   }
-  
-  const userVersion = (await readJsonFile(userVersionPath)).version;
-  const templateVersion = (await readJsonFile(templateVersionPath)).version;
-  
-  if (userVersion === templateVersion) {
-    console.log('Your project is up to date.');
+}
+
+async function getLocalMetadata(projectDir) {
+  try {
+    const metadataPath = path.join(projectDir, '.template-config.json');
+    const metadata = JSON.parse(await fs.readFile(metadataPath, 'utf8'));
+    return metadata;
+  } catch (error) {
+    console.error('Error reading local metadata:', error);
+    return null;
+  }
+}
+
+async function updateProject(projectDir) {
+  const metadata = await getLocalMetadata(projectDir);
+
+  if (!metadata) {
+    console.error('No metadata found. Cannot determine update source.');
     return;
   }
-  
-  console.log(`Update available: ${userVersion} -> ${templateVersion}`);
-  updateProject();
-}
-  
-checkVersion();
-const updateProject = () => {
 
-  console.log('Updating project with the latest template changes...');
+  const { repo, branch, commit: currentCommit } = metadata;
+  console.log(`Current template commit: ${currentCommit}`);
 
-  try {
-    // Ensure this is a project created with the template
-    const configPath = resolve(process.cwd(), '.template-config.json');
-    if (!existsSync(configPath)) {
-      throw new Error('No .template-config.json found. Are you in a valid project directory?');
-    }
+  const latestCommit = await fetchLatestRemoteCommit(repo, branch);
 
-    // Fetch updates from the monorepo
-    console.log('Fetching updates...');
-    execSync('git pull origin main', { stdio: 'inherit' });
-
-    // Run migrations if using Nx
-    console.log('Applying migrations...');
-    execSync('nx migrate latest', { stdio: 'inherit' });
-    execSync('yarn install', { stdio: 'inherit' });
-    execSync('nx run-migrations', { stdio: 'inherit' });
-
-    console.log('Update complete! Please review changes before committing.');
-  } catch (err) {
-    console.error('Error during update:', err.message);
-    process.exit(1);
+  if (!latestCommit) {
+    console.error('Unable to fetch latest commit from remote.');
+    return;
   }
-};
 
-async function readJsonFile(filePath) {
-  try {
-    const data = await fs.readFile(filePath, 'utf8');
-    const json = JSON.parse(data);
-    return json;
-  } catch (error) {
-    console.error('Error reading JSON file:', error);
-    throw error;
+  if (currentCommit === latestCommit) {
+    console.log('Your project is already up-to-date.');
+  } else {
+    console.log(`Updating to latest commit: ${latestCommit}`);
+
+    // Pull updates
+    const tempDir = path.resolve(projectDir, '.temp-repo');
+    const git = simpleGit();
+    await git.clone(repo, tempDir, ['--branch', branch, '--single-branch']);
+
+    // Merge files
+    await fs.cp(tempDir, projectDir, { recursive: true });
+
+    // Update metadata
+    const updatedMetadata = { ...metadata, commit: latestCommit };
+    await fs.writeFile(path.join(projectDir, '.template-config.json'), JSON.stringify(updatedMetadata, null, 2));
+
+    // Clean up
+    await fs.rm(tempDir, { recursive: true, force: true });
+
+    console.log('Project updated successfully.');
   }
 }
+
+const projectDir = process.cwd(); // Assume the current working directory is the project directory
+updateProject(projectDir);

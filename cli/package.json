@@ -1,6 +1,6 @@
 {
     "name": "create-store-primer",
-    "version": "0.0.1",
+    "version": "0.0.19",
     "type": "module",
     "description": "CLI for managing the Primer monorepo",
     "bin": {
@@ -9,7 +9,8 @@
     },
     "dependencies": {
         "commander": "^10.0.0",
-        "fs-extra": "^11.1.1"
+        "fs-extra": "^11.1.1",
+        "simple-git": "^3.27.0"
     },
     "keywords": [
         "CLI",
