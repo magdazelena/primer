@@ -10780,7 +10780,7 @@ __metadata:
     "@strapi/plugin-seo": "npm:^2.0.4"
     "@strapi/plugin-users-permissions": "npm:^5.7.0"
     "@strapi/strapi": "npm:^5.7.0"
-    better-sqlite3: "npm:^11.5.0"
+    better-sqlite3: "npm:^11.8.1"
     eslint: "npm:^9.15.0"
     eslint-plugin-node: "npm:^11.1.0"
     globals: "npm:^15.12.0"
@@ -10894,14 +10894,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"better-sqlite3@npm:^11.5.0":
-  version: 11.5.0
-  resolution: "better-sqlite3@npm:11.5.0"
+"better-sqlite3@npm:^11.8.1":
+  version: 11.8.1
+  resolution: "better-sqlite3@npm:11.8.1"
   dependencies:
     bindings: "npm:^1.5.0"
     node-gyp: "npm:latest"
     prebuild-install: "npm:^7.1.1"
-  checksum: 10c0/c24200972e11f6f99c4e6538122bd7ec8b31b92b2fa095f4b595cc39fedf924cb0a93fd326f0900415eccdf634367f7bba2ba4eaa4d164edd7352f4cfaaaec51
+  checksum: 10c0/b6b1844f8ed5668080cc1e2a137656da756af406b616ffbd6139b230c906b9c0571bbdac53cd78cc1415689f5090d25daf95ea596ced0b9ad5e8be9b4a08662e
   languageName: node
   linkType: hard
 
@@ -12495,7 +12495,7 @@ __metadata:
     simple-git: "npm:^3.27.0"
   bin:
     create-store-primer: bin/create.js
-    update: bin/update.js
+    update-store-primer: bin/update.js
   languageName: unknown
   linkType: soft
 
