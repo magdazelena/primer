@@ -1,0 +1,12 @@
+[ 
+"apps",
+".gitignore",
+".nvmrc",
+".yarnrc.yml",
+"CODE_OF_CONDUCT.md",
+"esling.config.mjs",
+"LICENSE ",
+"nx.json",
+"package.json",
+"README.md",
+"yarn.lock"]

@@ -2,12 +2,18 @@ import fs from 'fs/promises';
 import path from 'path';
 import simpleGit from 'simple-git';
 
+import includes from './templateinclude.json' with { type: "json" }; // eslint-disable-line -- THIS WORKS
+
 async function fetchLatestRemoteCommit(repoUrl, branch) {
   const git = simpleGit();
   const tempDir = path.resolve(process.cwd(), '.temp-repo');
 
   try {
-    await git.clone(repoUrl, tempDir, ['--branch', branch, '--single-branch', '--depth=1']);
+    await git.clone(repoUrl, tempDir, ['--branch', branch, '--no-checkout']);
+
+    await git.cwd(tempDir).raw(['sparse-checkout', 'init', '--cone']);
+    await git.cwd(tempDir).raw(['sparse-checkout', 'set', ...includes]);
+    await git.cwd(tempDir).checkout();
     const latestCommit = await git.cwd(tempDir).revparse(['HEAD']);
     await fs.rm(tempDir, { recursive: true, force: true });
     return latestCommit;

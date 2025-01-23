@@ -3,10 +3,12 @@
 import { Command } from 'commander';
 import { resolve } from 'path';
 import path from 'path';
-
+import * as childProcess from 'child_process';
 import fs from 'fs/promises';
 import simpleGit from 'simple-git';
+import { fileURLToPath } from 'url';
 
+import includes from './templateinclude.json' with { type: "json" }; // eslint-disable-line -- THIS WORKS
 const program = new Command();
 
 
@@ -19,6 +21,18 @@ program
     console.log(`Creating project: ${projectName}`);
     cloneTemplate('https://github.com/magdazelena/primer' ,'main',destination);
   });
+
+program.command('update')
+.description('Update your Primer template')
+.action(()=> {
+    const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
+const __dirname = path.dirname(__filename);
+    const cp = childProcess.fork(path.join(__dirname, "update.js"));
+    cp.on("exit", function (code, signal) {
+        console.log("Exited", {code: code, signal: signal});
+    });
+    cp.on("error", console.error.bind(console));
+})
 
 program.parse(process.argv);
 
@@ -35,14 +49,7 @@ async function cloneTemplate(repoUrl, branch, targetDir) {
 
   console.log(`Cloning template from ${repoUrl} (${branch})...`);
   await git.clone(repoUrl, tempDir, ['--branch', branch, '--no-checkout']);
-  const includes = [];
 
-  await fs.readFile(`${repoUrl}/cli/.template-include`, (err, file) => {
-    if (err) throw err;
-    file.toString().split('\n').forEach(line => {
-      includes.push(line);
-    });
-  });
   await git.cwd(tempDir).raw(['sparse-checkout', 'init', '--cone']);
   await git.cwd(tempDir).raw(['sparse-checkout', 'set', ...includes]);
   await git.cwd(tempDir).checkout();
