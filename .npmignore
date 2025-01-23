@@ -17,3 +17,4 @@ apps/frontend/.next/*
 
 cli/*
 dist/*
+create-primer-template/*
