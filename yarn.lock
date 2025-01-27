@@ -7927,13 +7927,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/plugin-users-permissions@npm:^5.7.0":
-  version: 5.7.0
-  resolution: "@strapi/plugin-users-permissions@npm:5.7.0"
+"@strapi/plugin-users-permissions@npm:^5.8.1":
+  version: 5.8.1
+  resolution: "@strapi/plugin-users-permissions@npm:5.8.1"
   dependencies:
     "@strapi/design-system": "npm:2.0.0-rc.14"
     "@strapi/icons": "npm:2.0.0-rc.14"
-    "@strapi/utils": "npm:5.7.0"
+    "@strapi/utils": "npm:5.8.1"
     bcryptjs: "npm:2.4.3"
     formik: "npm:2.4.5"
     grant-koa: "npm:5.4.8"
@@ -7956,7 +7956,7 @@ __metadata:
     react-dom: ^17.0.0 || ^18.0.0
     react-router-dom: ^6.0.0
     styled-components: ^6.0.0
-  checksum: 10c0/a356a98c115f1fa90c4abab8109be7a9238ed8442d11e55a1f714ce13402aeb277c58f430987e4b852deb749ec55d7bb5d39756bb61814f787b9c6a675bfe845
+  checksum: 10c0/1cdb77167776e93d7feb8de39e777b1df970dba304336e3c677089fb55119859ed84adcf9558fbe426c012a7d16e95ec71ff1ddf11de0c24903897d2726d2146
   languageName: node
   linkType: hard
 
@@ -8423,6 +8423,24 @@ __metadata:
     yup: "npm:0.32.9"
     zod: "npm:^3.22.4"
   checksum: 10c0/d58dea6c3d574c2185c93502f7a531107029241649ebca0a521b8d129ef4a72f1e186f3a37b717722c867f583aed73cbf6dfacd82d15bf3835fb41b25552f880
+  languageName: node
+  linkType: hard
+
+"@strapi/utils@npm:5.8.1":
+  version: 5.8.1
+  resolution: "@strapi/utils@npm:5.8.1"
+  dependencies:
+    "@sindresorhus/slugify": "npm:1.1.0"
+    date-fns: "npm:2.30.0"
+    execa: "npm:5.1.1"
+    http-errors: "npm:2.0.0"
+    lodash: "npm:4.17.21"
+    node-machine-id: "npm:1.1.12"
+    p-map: "npm:4.0.0"
+    preferred-pm: "npm:3.1.2"
+    yup: "npm:0.32.9"
+    zod: "npm:^3.22.4"
+  checksum: 10c0/ace78d846e150b2c21e8b8042d8082fdc09fc66be7db73699063699e412e5ec95133875f38948debc69160701f3c14151c40c3d1993bdcaba4eeb97b52c3dd53
   languageName: node
   linkType: hard
 
@@ -10811,7 +10829,7 @@ __metadata:
   dependencies:
     "@eslint/js": "npm:^9.15.0"
     "@strapi/plugin-seo": "npm:^2.0.4"
-    "@strapi/plugin-users-permissions": "npm:^5.7.0"
+    "@strapi/plugin-users-permissions": "npm:^5.8.1"
     "@strapi/strapi": "npm:^5.7.0"
     better-sqlite3: "npm:^11.8.1"
     eslint: "npm:^9.15.0"
@@ -12559,7 +12577,6 @@ __metadata:
     simple-git: "npm:^3.27.0"
   bin:
     create-store-primer: bin/create.js
-    update-store-primer: bin/update.js
   languageName: unknown
   linkType: soft
 
