@@ -15,7 +15,7 @@
     "setup": "yarn install"
   },
   "dependencies": {
-    "eslint": "^9.15.0",
+    "eslint": "^9.19.0",
     "npm-check-updates": "^17.1.11",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
