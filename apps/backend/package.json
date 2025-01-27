@@ -25,7 +25,7 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "6.28.0",
     "strapi-plugin-slugify": "^2.3.8",
-    "styled-components": "^6.1.13"
+    "styled-components": "^6.1.14"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
