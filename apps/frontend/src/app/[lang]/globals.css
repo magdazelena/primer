@@ -9,6 +9,7 @@
     --color-accentBright: 235, 182, 86;
     --color-accentDark: 217, 102, 78;
     --menu-height: 6rem;
+    --border-radius: 2px;
   }
   @font-face {
     font-family: "Roboto";
@@ -50,6 +51,13 @@ hr {
   background-color: rgb(var(--color-dark));
   border-top-width: unset;
   border: 0;
+}
+.rounded-xl,
+.rounded-lg {
+  border-radius: var(--border-radius);
+}
+.rounded-2xl {
+  border-radius: calc(2 * var(--border-radius));
 }
 
 /******************************************* 
@@ -237,7 +245,7 @@ Dropdowns
   height: 3px;
   width: 100%;
   background-color: rgb(var(--color-dark));
-  border-radius: 9px;
+  border-radius: var(--border-radius);
   opacity: 1;
   left: 0;
   -webkit-transform: rotate(0deg);
