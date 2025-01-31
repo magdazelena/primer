@@ -7,8 +7,7 @@ import * as childProcess from 'child_process';
 import fs from 'fs/promises';
 import simpleGit from 'simple-git';
 import { fileURLToPath } from 'url';
-
-import includes from './templateinclude.json' with { type: "json" }; // eslint-disable-line -- THIS WORKS
+import { includes } from './templateinclude.js';
 const program = new Command();
 
 
@@ -23,16 +22,16 @@ program
   });
 
 program.command('update')
-.description('Update your Primer template')
-.action(()=> {
+  .description('Update your Primer template')
+  .action(()=> {
     const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
-const __dirname = path.dirname(__filename);
-    const cp = childProcess.fork(path.join(__dirname, "update.js"));
-    cp.on("exit", function (code, signal) {
-        console.log("Exited", {code: code, signal: signal});
+    const __dirname = path.dirname(__filename);
+    const cp = childProcess.fork(path.join(__dirname, 'update.js'));
+    cp.on('exit', function (code, signal) {
+      console.log('Exited', {code: code, signal: signal});
     });
-    cp.on("error", console.error.bind(console));
-})
+    cp.on('error', console.error.bind(console));
+  });
 
 program.parse(process.argv);
 
