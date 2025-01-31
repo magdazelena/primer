@@ -1,6 +1,6 @@
 {
     "name": "create-store-primer",
-    "version": "0.0.31",
+    "version": "0.0.33`",
     "type": "module",
     "description": "CLI for managing the Primer monorepo",
     "bin": {

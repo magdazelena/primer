@@ -3,6 +3,7 @@
 ".gitignore",
 ".nvmrc",
 ".yarnrc.yml",
+".yarn",
 "CODE_OF_CONDUCT.md",
 "esling.config.mjs",
 "LICENSE ",
