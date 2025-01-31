@@ -6,9 +6,10 @@ export interface NavLink extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   url: string;
   text: string;
   closeMenu?: () => void;
+  newtab?: boolean
 }
 
-export function NavLink({ url, text, closeMenu, ...props }: NavLink) {
+export function NavLink({ url, text, closeMenu, newtab, ...props }: NavLink) {
   const path = usePathname();
   const handleClick = () => {
     if (closeMenu) closeMenu();
@@ -16,6 +17,7 @@ export function NavLink({ url, text, closeMenu, ...props }: NavLink) {
   return (
     <Link
       {...props}
+      target={newtab? '_blank': "_self"}
       href={url}
       onClick={handleClick}
       className={`flex items-center text-dark ${
