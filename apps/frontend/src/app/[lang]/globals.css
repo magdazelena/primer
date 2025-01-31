@@ -4,10 +4,10 @@
 
 @layer base {
   :root {
-    --color-dark: 0, 21, 36;
-    --color-light: 255, 248, 237;
-    --color-accentBright: 255, 125, 0;
-    --color-accentDark: 21, 97, 109;
+    --color-dark: 24, 83, 66;
+    --color-light: 255, 255, 255;
+    --color-accentBright: 235, 182, 86;
+    --color-accentDark: 217, 102, 78;
     --menu-height: 6rem;
   }
   @font-face {
