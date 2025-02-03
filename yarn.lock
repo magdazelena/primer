@@ -5909,13 +5909,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/blocks-react-renderer@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@strapi/blocks-react-renderer@npm:1.0.1"
+"@strapi/blocks-react-renderer@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@strapi/blocks-react-renderer@npm:1.0.2"
   peerDependencies:
-    react: ^18.0.0
-    react-dom: ^18.0.0
-  checksum: 10c0/99e3d5d6e08d01a1cc37a406668e7ee378d1db7cfa3570d6e0ef1eacf82859793458ac750a8306c634c85c851758d1d163ee35ac113e03d56bad45f4645117a7
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
+  checksum: 10c0/4fa75836cfde327da5665336e22d475949757df85ab3680ca0c8eb77b1d46fc5e9f75b420554a397c478608de52d109a259e99242b8282313ebc70fd82dafe79
   languageName: node
   linkType: hard
 
@@ -13029,7 +13029,7 @@ __metadata:
   dependencies:
     "@formatjs/intl-localematcher": "npm:^0.5.8"
     "@heroicons/react": "npm:^2.2.0"
-    "@strapi/blocks-react-renderer": "npm:^1.0.1"
+    "@strapi/blocks-react-renderer": "npm:^1.0.2"
     "@types/negotiator": "npm:^0.6.3"
     "@types/node": "npm:^22.9.1"
     "@types/qs": "npm:^6.9.18"

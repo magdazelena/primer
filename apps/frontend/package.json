@@ -12,7 +12,7 @@
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.8",
     "@heroicons/react": "^2.2.0",
-    "@strapi/blocks-react-renderer": "^1.0.1",
+    "@strapi/blocks-react-renderer": "^1.0.2",
     "@types/negotiator": "^0.6.3",
     "@types/node": "^22.9.1",
     "@types/qs": "^6.9.18",
