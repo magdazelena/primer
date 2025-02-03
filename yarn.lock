@@ -6389,16 +6389,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/plugin-users-permissions@npm:^5.8.1":
-  version: 5.8.1
-  resolution: "@strapi/plugin-users-permissions@npm:5.8.1"
+"@strapi/plugin-users-permissions@npm:^5.9.0":
+  version: 5.9.0
+  resolution: "@strapi/plugin-users-permissions@npm:5.9.0"
   dependencies:
     "@strapi/design-system": "npm:2.0.0-rc.14"
     "@strapi/icons": "npm:2.0.0-rc.14"
-    "@strapi/utils": "npm:5.8.1"
+    "@strapi/utils": "npm:5.9.0"
     bcryptjs: "npm:2.4.3"
     formik: "npm:2.4.5"
-    grant-koa: "npm:5.4.8"
+    grant: "npm:^5.4.8"
     immer: "npm:9.0.21"
     jsonwebtoken: "npm:9.0.0"
     jwk-to-pem: "npm:2.0.5"
@@ -6418,7 +6418,7 @@ __metadata:
     react-dom: ^17.0.0 || ^18.0.0
     react-router-dom: ^6.0.0
     styled-components: ^6.0.0
-  checksum: 10c0/1cdb77167776e93d7feb8de39e777b1df970dba304336e3c677089fb55119859ed84adcf9558fbe426c012a7d16e95ec71ff1ddf11de0c24903897d2726d2146
+  checksum: 10c0/b3fb7f9e2afa0f679cdc3bb08a2d5600e78255c4840ef565da6b47c173a009d7f45b18605a75bda11da17a97b4abd6580821401d67d9a1aa0726f7a53fc4313b
   languageName: node
   linkType: hard
 
@@ -6704,9 +6704,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi/utils@npm:5.8.1":
-  version: 5.8.1
-  resolution: "@strapi/utils@npm:5.8.1"
+"@strapi/utils@npm:5.9.0":
+  version: 5.9.0
+  resolution: "@strapi/utils@npm:5.9.0"
   dependencies:
     "@sindresorhus/slugify": "npm:1.1.0"
     date-fns: "npm:2.30.0"
@@ -6718,7 +6718,7 @@ __metadata:
     preferred-pm: "npm:3.1.2"
     yup: "npm:0.32.9"
     zod: "npm:^3.22.4"
-  checksum: 10c0/ace78d846e150b2c21e8b8042d8082fdc09fc66be7db73699063699e412e5ec95133875f38948debc69160701f3c14151c40c3d1993bdcaba4eeb97b52c3dd53
+  checksum: 10c0/39cd595f30975cfd79877019520871136da2b7de61e4a70ca5775961b0afc0802fd8a820e9bad74c8386f69073bf0a86bc3e94d12a5089c1c3715e587b9e4794
   languageName: node
   linkType: hard
 
@@ -8966,7 +8966,7 @@ __metadata:
   dependencies:
     "@eslint/js": "npm:^9.15.0"
     "@strapi/plugin-seo": "npm:^2.0.4"
-    "@strapi/plugin-users-permissions": "npm:^5.8.1"
+    "@strapi/plugin-users-permissions": "npm:^5.9.0"
     "@strapi/strapi": "npm:^5.7.0"
     better-sqlite3: "npm:^11.8.1"
     eslint: "npm:^9.19.0"
@@ -13582,17 +13582,6 @@ __metadata:
   version: 4.2.11
   resolution: "graceful-fs@npm:4.2.11"
   checksum: 10c0/386d011a553e02bc594ac2ca0bd6d9e4c22d7fa8cfbfc448a6d148c59ea881b092db9dbe3547ae4b88e55f1b01f7c4a2ecc53b310c042793e63aa44cf6c257f2
-  languageName: node
-  linkType: hard
-
-"grant-koa@npm:5.4.8":
-  version: 5.4.8
-  resolution: "grant-koa@npm:5.4.8"
-  dependencies:
-    grant: "npm:^5.4.8"
-  peerDependencies:
-    koa: ">=2.0.0"
-  checksum: 10c0/74d0ef4c1ca359675988a8939507163b16e6257088f287100c1bbb6ae9eecb2945740cca38a8039cb293f8ddfca5341435a32d561ce3d658120f8a84e9808807
   languageName: node
   linkType: hard
 
