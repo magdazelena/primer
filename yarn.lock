@@ -8683,7 +8683,7 @@ __metadata:
     "@strapi/plugin-users-permissions": "npm:^5.9.0"
     "@strapi/strapi": "npm:^5.10.2"
     better-sqlite3: "npm:^11.8.1"
-    eslint: "npm:^9.20.0"
+    eslint: "npm:^9.20.1"
     eslint-plugin-node: "npm:^11.1.0"
     globals: "npm:^15.12.0"
     react: "npm:^19.0.0"
@@ -11849,9 +11849,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^9.20.0":
-  version: 9.20.0
-  resolution: "eslint@npm:9.20.0"
+"eslint@npm:^9.20.1":
+  version: 9.20.1
+  resolution: "eslint@npm:9.20.1"
   dependencies:
     "@eslint-community/eslint-utils": "npm:^4.2.0"
     "@eslint-community/regexpp": "npm:^4.12.1"
@@ -11894,7 +11894,7 @@ __metadata:
       optional: true
   bin:
     eslint: bin/eslint.js
-  checksum: 10c0/5eb2d9b5ed85a0b022871d19719417d110afb07a4abfedd856ad03d9a821def5f6bc31d7c407ca27f56e5e66e39375300fd2b877017245eb99c44060d6c983bd
+  checksum: 10c0/056789dd5a00897730376f8c0a191e22840e97b7276916068ec096341cb2ec3a918c8bd474bf94ccd7b457ad9fbc16e5c521a993c7cc6ebcf241933e2fd378b0
   languageName: node
   linkType: hard
 
@@ -12640,7 +12640,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:^8.21.0"
     autoprefixer: "npm:^10.4.20"
     classnames: "npm:^2.5.1"
-    eslint: "npm:^9.20.0"
+    eslint: "npm:^9.20.1"
     globals: "npm:^15.12.0"
     negotiator: "npm:^1.0.0"
     next: "npm:^15.1.7"
@@ -19013,7 +19013,7 @@ __metadata:
     "@eslint/js": "npm:^9.15.0"
     "@nx/eslint": "npm:20.4.4"
     "@nx/next": "npm:20.3.2"
-    eslint: "npm:^9.20.0"
+    eslint: "npm:^9.20.1"
     globals: "npm:^15.12.0"
     next: "npm:^15.1.7"
     npm-check-updates: "npm:^17.1.11"
