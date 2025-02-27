@@ -1,14 +1,25 @@
-import { Main } from '@strapi/design-system';
-import { useIntl } from 'react-intl';
-
-import { getTranslation } from '../utils/getTranslation';
+import { Main, Flex, Typography, Box } from '@strapi/design-system';
 
 const HomePage = () => {
-  const { formatMessage } = useIntl();
 
   return (
     <Main>
-      <h1>Welcome to {formatMessage({ id: getTranslation('plugin.name') })}</h1>
+      <Flex padding={10 }gap={{
+    initial: 1,
+    medium: 4,
+    large: 8
+  }} direction={{
+    initial: 'column',
+    medium: 'row'
+  }} alignItems={{
+    initial: 'center',
+    medium: 'flex-start'
+    
+  }}>
+      <Box  padding={1}>
+        <Typography variant="alpha">Status manager</Typography>
+      </Box>
+    </Flex>
     </Main>
   );
 };
