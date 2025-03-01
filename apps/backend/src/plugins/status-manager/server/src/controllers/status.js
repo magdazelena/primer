@@ -60,6 +60,21 @@ const status = ({ strapi }) => ({
       ctx.internalServerError("Error updating order", error);
     }
   },
+  async delete(ctx) {
+    try {
+      const { statusId, replacementId } = ctx.request.body;
+
+      if (!statusId) {
+        return ctx.badRequest("Status ID is required.");
+      }
+
+      const result = await strapi.plugin('status-manager').service('status').deleteStatus(statusId, replacementId);
+      
+      return ctx.send(result);
+    } catch (error) {
+      ctx.internalServerError("Error deleting status.", error);
+    }
+  },
 });
   
 module.exports = status;

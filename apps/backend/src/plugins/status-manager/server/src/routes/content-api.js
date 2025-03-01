@@ -26,4 +26,13 @@ module.exports = [
       auth: false
     },
   },
+  {
+    method: 'PATCH',
+    path: '/statuses',
+    handler: 'status.delete',
+    config: {
+      policies: [],
+      auth: false, // Change to `true` if authentication is required
+    },
+  },
 ];
