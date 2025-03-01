@@ -1,4 +1,5 @@
 import { Main, Flex, Typography, Box } from '@strapi/design-system';
+import StatusManager from '../components/StatusManager';
 
 const HomePage = () => {
 
@@ -18,6 +19,7 @@ const HomePage = () => {
   }}>
       <Box  padding={1}>
         <Typography variant="alpha">Status manager</Typography>
+        <StatusManager/>
       </Box>
     </Flex>
     </Main>

@@ -1203,10 +1203,10 @@ export interface PluginStatusManagerStatus extends Struct.CollectionTypeSchema {
   };
   pluginOptions: {
     'content-manager': {
-      visible: true;
+      visible: false;
     };
     'content-type-builder': {
-      visible: true;
+      visible: false;
     };
   };
   attributes: {
@@ -1227,6 +1227,8 @@ export interface PluginStatusManagerStatus extends Struct.CollectionTypeSchema {
         },
         number
       >;
+    order: Schema.Attribute.Integer;
+    published: Schema.Attribute.Boolean;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

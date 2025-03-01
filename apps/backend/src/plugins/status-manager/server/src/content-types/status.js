@@ -12,10 +12,10 @@ module.exports = {
   },
   pluginOptions: {
     'content-manager': {
-      visible: true,
+      visible: false,
     },
     'content-type-builder': {
-      visible: true,
+      visible: false,
     }
   },
   attributes: {
@@ -25,5 +25,11 @@ module.exports = {
       max: 50,
       configurable: false,
     },
+    published: {
+      type: 'boolean',
+    },
+    order: {
+      type: 'integer'
+    }
   }
 };

@@ -4,4 +4,13 @@ module.exports = ({ strapi}) =>  ({
       'plugin::status-manager.status'
     );
   },
+  async createStatus(data) {
+    try {
+      const newStatus = await strapi.entityService.create('plugin::status-manager.status', { data });
+      return newStatus;
+    } catch (error) {
+      strapi.log.error("Error creating status:", error);
+      throw new Error("Failed to create status");
+    }
+  },
 });

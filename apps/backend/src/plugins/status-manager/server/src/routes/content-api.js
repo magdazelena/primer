@@ -8,4 +8,13 @@ module.exports = [
       auth: false
     },
   },
+  {
+    method: 'POST',
+    path: '/statuses', // Ensure this is not "/"
+    handler: 'status.create',  // Ensure this matches your controller file and method name
+    config: {
+      policies: [],
+      auth: false
+    },
+  },
 ];
