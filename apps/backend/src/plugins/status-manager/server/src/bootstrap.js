@@ -1,5 +1,3 @@
-const bootstrap = ({ strapi }) => {
+module.exports =  ({ strapi }) => {
   // bootstrap phase
 };
-
-export default bootstrap;

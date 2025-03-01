@@ -1,5 +1,4 @@
-const destroy = ({ strapi }) => {
+module.exports = ({ strapi }) => {
   // destroy phase
 };
 
-export default destroy;

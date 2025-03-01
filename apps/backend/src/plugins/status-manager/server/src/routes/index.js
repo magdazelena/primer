@@ -1,10 +1,10 @@
-import contentAPIRoutes from './content-api';
+const contentAPIRoutes = require('./content-api');
 
 const routes = {
   'content-api': {
     type: 'content-api',
-    routes: contentAPIRoutes,
-  },
+    routes: contentAPIRoutes
+  }
 };
 
-export default routes;
+module.exports = routes;

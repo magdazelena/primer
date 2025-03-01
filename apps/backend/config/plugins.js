@@ -2,7 +2,7 @@ module.exports = ({ env }) => ({
   seo: {
     enabled: true,
   },
-  'primer-status-manager': {
+  'status-manager': {
     enabled: true,
     resolve: './src/plugins/status-manager'
   },

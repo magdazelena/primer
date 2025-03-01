@@ -4,7 +4,9 @@ import globals from "globals";
 export default [
     {
         files: ["**/config/**/*.js", "**/*.js"],
-        ignores: ["**/.strapi/client/**", "**/*.example.js"],
+        ignores: ["**/.strapi/client/**", "**/*.example.js", '.cache',
+            'build',
+            '**/node_modules/**'],
         languageOptions: {
             ecmaVersion: 2022,
             sourceType: "script",
@@ -37,4 +39,25 @@ export default [
             "no-unused-vars": ["warn", { argsIgnorePattern: "^_?(strapi|config)?" }],
         },
     },
+    {
+        files: ['**/src/plugins/*/strapi-server.js','**/src/plugins/*/server/**/*.js'],
+        languageOptions: {
+            ecmaVersion: 2022,
+            sourceType: "script",
+            globals: {
+                ...globals.node,
+                module: "readonly",
+                require: "readonly",
+                __dirname: "readonly",
+                strapi: "readonly"
+            },
+        },
+    },
+    {
+        files: ['**/src/plugins/*/strapi-admin.js','**/src/plugins/*/admin/**/*.js'],
+        languageOptions: {
+            ecmaVersion: 2022,
+            sourceType: "module",
+        },
+    }
 ];

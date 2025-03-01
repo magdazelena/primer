@@ -1,5 +1,9 @@
-const register = ({ strapi }) => {
-  // register phase
-};
+module.exports = async ({ strapi }) => {
+  console.log('🔌 Registering Status Manager Plugin...');
 
-export default register;
+  strapi.customFields.register({
+    name: 'status',
+    plugin: 'status-manager',
+    type: 'string',
+  });
+};

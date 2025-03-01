@@ -1,22 +1,22 @@
 /**
  * Application methods
  */
-import bootstrap from './bootstrap';
-import destroy from './destroy';
-import register from './register';
+const bootstrap = require('./bootstrap');
+const destroy = require('./destroy');
+const register = require('./register');
 
 /**
  * Plugin server methods
  */
-import config from './config';
-import contentTypes from './content-types';
-import controllers from './controllers';
-import middlewares from './middlewares';
-import policies from './policies';
-import routes from './routes';
-import services from './services';
+const config = require('./config');
+const contentTypes = require('./content-types');
+const controllers = require('./controllers');
+const middlewares = require('./middlewares');
+const policies = require('./policies');
+const routes = require('./routes');
+const services = require('./services');
 
-export default {
+module.exports = {
   bootstrap,
   destroy,
   register,

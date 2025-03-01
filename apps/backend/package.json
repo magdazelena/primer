@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "strapi build",
-    "dev": "strapi develop",
+    "dev": "NODE_OPTIONS='--experimental-specifier-resolution=node' strapi develop",
     "export": "strapi export --no-encrypt --file seed-data",
     "lint": "eslint . --config ./eslint.config.mjs",
     "seed": "strapi import -f ./seed-data.tar.gz",

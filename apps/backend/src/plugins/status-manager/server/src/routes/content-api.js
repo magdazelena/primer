@@ -1,11 +1,11 @@
-export default [
+module.exports = [
   {
     method: 'GET',
-    path: '/',
-    // name of the controller file & the method.
-    handler: 'controller.index',
+    path: '/statuses', // Ensure this is not "/"
+    handler: 'status.find',  // Ensure this matches your controller file and method name
     config: {
       policies: [],
+      auth: false
     },
   },
 ];

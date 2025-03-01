@@ -1,5 +1,5 @@
-import controller from './controller';
+const status = require('./status');
 
-export default {
-  controller,
+module.exports = {
+  status
 };
