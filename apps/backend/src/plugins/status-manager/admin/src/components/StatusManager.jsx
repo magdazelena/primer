@@ -26,6 +26,22 @@ const StatusManager = () => {
     setStatuses([...statuses, data]);
     setNewStatus('');
   };
+  const onDragEnd = async (result) => {
+    if (!result.destination) return;
+  
+    const reordered = [...statuses];
+    const [moved] = reordered.splice(result.source.index, 1);
+    reordered.splice(result.destination.index, 0, moved);
+    setStatuses(reordered);
+  
+    // Send new order to API
+    const orderedIds = reordered.map((status, index) => ({ id: status.id, order: index }));
+    try {
+      await axios.put('/statuses/reorder', { statuses: orderedIds });
+    } catch (error) {
+      console.error("Error updating order:", error);
+    }
+};
 
   // Open delete dialog
   const confirmDelete = (status) => {
@@ -47,14 +63,6 @@ const StatusManager = () => {
     setStatuses(statuses.map(s => s.id === id ? { ...s, published: !published } : s));
   };
 
-  // Handle reordering
-  const onDragEnd = (result) => {
-    if (!result.destination) return;
-    const reordered = [...statuses];
-    const [moved] = reordered.splice(result.source.index, 1);
-    reordered.splice(result.destination.index, 0, moved);
-    setStatuses(reordered);
-  };
 
   return (
     <Box padding={4}>

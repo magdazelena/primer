@@ -1,7 +1,7 @@
 module.exports = ({ strapi}) =>  ({
   async find() {
     return await strapi.entityService.findMany(
-      'plugin::status-manager.status'
+      'plugin::status-manager.status',{ orderBy: { order: 'asc' }} 
     );
   },
   async createStatus(data) {

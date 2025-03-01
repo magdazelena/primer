@@ -40,6 +40,26 @@ const status = ({ strapi }) => ({
       ctx.internalServerError("Error adding status", error);
     }
   },
+  async reorder(ctx) {
+    try {
+      const { statuses } = ctx.request.body; // Expecting [{id: 1, order: 0}, {id: 2, order: 1}, ...]
+
+      if (!Array.isArray(statuses)) {
+        return ctx.badRequest("Invalid data format");
+      }
+
+      // Update each status with new order
+      await Promise.all(
+        statuses.map(({ id, order }) =>
+          strapi.entityService.update('plugin::status-manager.status', id, { data: { order } })
+        )
+      );
+
+      ctx.send({ message: "Order updated successfully" });
+    } catch (error) {
+      ctx.internalServerError("Error updating order", error);
+    }
+  },
 });
   
 module.exports = status;

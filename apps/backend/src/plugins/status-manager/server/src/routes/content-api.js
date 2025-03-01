@@ -17,4 +17,13 @@ module.exports = [
       auth: false
     },
   },
+  {
+    method: 'PUT',
+    path: '/statuses/reorder',
+    handler: 'status.reorder',
+    config: {
+      policies: [],
+      auth: false
+    },
+  },
 ];
