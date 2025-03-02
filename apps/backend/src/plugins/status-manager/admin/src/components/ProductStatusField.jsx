@@ -8,6 +8,7 @@ const ProductStatusField = ({
 const productId = document.documentId;
   const [statuses, setStatuses] = useState([]);
   const [currentStatus, setCurrentStatus] = useState('')
+  const [message, setMessage] = useState('')
 
   useEffect(() => {
     async function fetchCurrentStatus(){
@@ -42,8 +43,11 @@ const productId = document.documentId;
             set: [{ documentId: newStatus }]
         }
       } });
+      setMessage(`Status updated from ${currentStatus} to ${newStatusName}`);
       setCurrentStatus(newStatusName);
+      
     } catch (error) {
+    setMessage("Error updating status");
       console.error("Error updating status:", error);
     }
   };
@@ -51,7 +55,7 @@ const productId = document.documentId;
   return {
     title: "Status",
     content: (
-        <Box padding={2}>
+        <Box>
           <SingleSelect
             placeholder={currentStatus}
             onChange={handleStatusChange}
@@ -62,7 +66,8 @@ const productId = document.documentId;
               </SingleSelectOption>
             ))}
           </SingleSelect>
-        </Box>
+          <Box padding={2}><Typography variant="sigma" >{message}</Typography></Box>
+          </Box>
       )
   } 
 };
