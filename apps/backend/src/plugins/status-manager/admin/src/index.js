@@ -1,6 +1,7 @@
 import { PLUGIN_ID } from './pluginId';
 import { Initializer } from './components/Initializer';
 import { PluginIcon } from './components/PluginIcon';
+import ProductStatusField from './components/ProductStatusField';
 
 export default {
   register(app) {
@@ -25,5 +26,8 @@ export default {
       name: PLUGIN_ID,
     });
   },
+  bootstrap(app) {
+    app.getPlugin('content-manager').apis.addEditViewSidePanel([ProductStatusField]);
+  }
 
 };

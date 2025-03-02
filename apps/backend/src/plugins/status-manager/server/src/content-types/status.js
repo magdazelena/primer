@@ -30,6 +30,12 @@ module.exports = {
     },
     order: {
       type: 'integer'
+    },
+    products: {
+      type: 'relation',
+      relation: 'oneToMany',
+      target: 'api::product.product',
+      mappedBy: 'status'
     }
   }
 };

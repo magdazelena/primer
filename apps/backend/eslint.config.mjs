@@ -1,6 +1,6 @@
 import js from "@eslint/js";
 import globals from "globals";
-
+import react from 'eslint-plugin-react'
 export default [
     {
         files: ["**/config/**/*.js", "**/*.js"],
@@ -54,10 +54,19 @@ export default [
         },
     },
     {
-        files: ['**/src/plugins/*/strapi-admin.js','**/src/plugins/*/admin/**/*.js'],
+        files: ['**/src/plugins/*/strapi-admin.js','**/src/plugins/*/admin/**/*.js|jsx'],
         languageOptions: {
             ecmaVersion: 2022,
             sourceType: "module",
+            parserOptions: {
+                ecmaFeatures: {
+                  jsx: true,
+                },
+              },
         },
+        plugins: {
+            react
+        }
+
     }
 ];

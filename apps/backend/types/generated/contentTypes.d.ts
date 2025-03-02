@@ -816,7 +816,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     singularName: 'product';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   pluginOptions: {
     i18n: {
@@ -893,6 +893,10 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    status: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::status-manager.status'
+    >;
     totalCost: Schema.Attribute.Integer &
       Schema.Attribute.Required &
       Schema.Attribute.Private &
@@ -1228,6 +1232,7 @@ export interface PluginStatusManagerStatus extends Struct.CollectionTypeSchema {
         number
       >;
     order: Schema.Attribute.Integer;
+    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
     published: Schema.Attribute.Boolean;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;

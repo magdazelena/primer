@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {
     "i18n": {
@@ -16,6 +16,13 @@
     }
   },
   "attributes": {
+    "status": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::status-manager.status",
+      "inversedBy": "products",
+      "visible": false
+    },
     "name": {
       "pluginOptions": {
         "i18n": {

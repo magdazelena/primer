@@ -22,7 +22,7 @@ const StatusManager = () => {
 
   // Fetch statuses
   useEffect(() => {
-    axios.get("/statuses").then(({ data }) => setStatuses(data));
+    axios.get("/status-manager/statuses").then(({ data }) => setStatuses(data));
   }, []);
 
   // Validate input (Latin characters only)
@@ -53,7 +53,7 @@ const StatusManager = () => {
       order: index,
     }));
     try {
-      await axios.put("/statuses/reorder", { statuses: orderedIds });
+      await axios.put("/status-manager/statuses/reorder", { statuses: orderedIds });
     } catch (error) {
       console.error("Error updating order:", error);
     }
@@ -68,7 +68,7 @@ const StatusManager = () => {
   const deleteStatus = async () => {
     if (!replacementStatus) return alert("Select a replacement status!");
     const statusId = statuses.find(s => s.name = replacementStatus).id
-    await axios.patch(`/statuses`, {
+    await axios.patch(`/status-manager/statuses`, {
       statusId: statusToDelete.id, replacementId: statusId 
     });
     setStatuses(statuses.filter((s) => s.id !== statusToDelete.id));
@@ -76,7 +76,7 @@ const StatusManager = () => {
 
   // Toggle publish status
   const togglePublish = async (id, published) => {
-    await axios.put(`/statuses/${id}`, { published: !published });
+    await axios.put(`/status-manager/statuses/${id}`, { published: !published });
     setStatuses(
       statuses.map((s) => (s.id === id ? { ...s, published: !published } : s)),
     );

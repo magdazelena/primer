@@ -9,7 +9,7 @@ const getToken = () => {
 
 // Create Axios instance
 const axiosInstance = axios.create({
-  baseURL: `${API_BASE_URL}/status-manager`,
+  baseURL: `${API_BASE_URL}`,
   headers: {
     'Content-Type': 'application/json',
   },
