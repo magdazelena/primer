@@ -60,6 +60,19 @@ const status = ({ strapi }) => ({
       ctx.internalServerError("Error updating order", error);
     }
   },
+  async publish(ctx) {
+    const { id } = ctx.request.params;
+    const { published } = ctx.request.body
+    try {
+      await strapi.db.query("plugin::status-manager.status").update({
+        where: { documentId: id },
+        data: { published }
+      })
+      ctx.send({ message: "Un/published successfully successfully" });
+    } catch (error) {
+      ctx.internalServerError("Error publishing", error);
+    }
+  },
   async delete(ctx) {
     try {
       const { statusId, replacementId } = ctx.request.body;

@@ -27,6 +27,15 @@ module.exports = [
     },
   },
   {
+    method: 'PUT',
+    path: '/statuses/:id',
+    handler: 'status.publish',
+    config: {
+      policies: [],
+      auth: false
+    },
+  },
+  {
     method: 'PATCH',
     path: '/statuses',
     handler: 'status.delete',

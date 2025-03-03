@@ -5,7 +5,6 @@ import {
   Flex,
   Typography,
   Box,
-  Badge,
   Dialog,
   SingleSelect,
   SingleSelectOption,
@@ -32,7 +31,7 @@ const StatusManager = () => {
   const addStatus = async () => {
     if (!newStatus || !validateInput(newStatus))
       return alert("Only Latin characters allowed!");
-    const { data } = await axios.post("/statuses", {
+    const { data } = await axios.post("/status-manager/statuses", {
       name: newStatus,
       published: false,
     });
@@ -78,7 +77,7 @@ const StatusManager = () => {
   const togglePublish = async (id, published) => {
     await axios.put(`/status-manager/statuses/${id}`, { published: !published });
     setStatuses(
-      statuses.map((s) => (s.id === id ? { ...s, published: !published } : s)),
+      statuses.map((s) => (s.documentId === id ? { ...s, published: !published } : s)),
     );
   };
 
@@ -120,19 +119,21 @@ const StatusManager = () => {
                       alignItems="center"
                       gap={2}
                       marginBottom={2}
+                      paddingBottom={2}
+                      style={{ borderBottom: `1px solid gray`, minWidth: 300 }}
                     >
                       <Box {...provided.dragHandleProps}>
                         <Drag />
                       </Box>
-                      <Typography>{status.name}</Typography>
-                      <Badge
-                        variant={status.published ? "success" : "secondary"}
+                      <Typography variant="sigma" style={{ display: 'inline-block', marginRight: 'auto'}}>{status.name}</Typography>
+                      <Button
+                        variant={status.published ? "success-light" : "secondary"}
                         onClick={() =>
-                          togglePublish(status.id, status.published)
+                          togglePublish(status.documentId, status.published)
                         }
                       >
                         {status.published ? "Published" : "Unpublished"}
-                      </Badge>
+                      </Button>
                       <Dialog.Root onOpenChange={() => confirmDelete(status)}>
                         <Dialog.Trigger>
                           <Button
