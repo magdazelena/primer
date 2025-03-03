@@ -15,22 +15,25 @@ module.exports = ({ strapi}) =>  ({
   },
   async deleteStatus(statusId, replacementId) {
     try {
-      const statusToDelete = await strapi.entityService.findOne('plugin::status-manager.status', statusId);
 
-      if (!statusToDelete) {
-        throw new Error("Status not found.");
+      if (!statusId) {
+        throw new Error("Status not provided.");
+      }
+      
+      if (replacementId) {
+        const replacementStatus = await strapi.db.query('plugin::status-manager.status').findOne({
+          select: '*',
+          where: { documentId: replacementId}
+        });
+        await strapi.db.query('api::product.product').update({
+          where: { status: { documentId:  statusId } },
+          data: { status: replacementStatus },
+          populate: { status: true }
+        });
       }
 
-      // If replacement is provided, update references in other collections
-      // if (replacementId) {
-      //   await strapi.db.query('plugin::status-manager.status').updateMany({
-      //     where: { id: statusId },
-      //     data: { id: replacementId },
-      //   });
-      // }
-
       // Delete the status
-      await strapi.entityService.delete('plugin::status-manager.status', statusId);
+      await strapi.db.query('plugin::status-manager.status').delete({ where: { documentId: statusId }});
 
       // Reorder remaining statuses
       const remainingStatuses = await strapi.entityService.findMany('plugin::status-manager.status', {

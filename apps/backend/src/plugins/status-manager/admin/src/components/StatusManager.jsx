@@ -67,9 +67,9 @@ const StatusManager = () => {
   // Delete status and replace with selected one
   const deleteStatus = async () => {
     if (!replacementStatus) return alert("Select a replacement status!");
-    const statusId = statuses.find(s => s.name = replacementStatus).id
+    const statusId = statuses.find(s => s.name = replacementStatus).documentId
     await axios.patch(`/status-manager/statuses`, {
-      statusId: statusToDelete.id, replacementId: statusId 
+      statusId: statusToDelete.documentId, replacementId: statusId 
     });
     setStatuses(statuses.filter((s) => s.id !== statusToDelete.id));
   };
