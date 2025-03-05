@@ -5,7 +5,7 @@ import axios from '../utils/axiosInstance';
 const ProductStatusField = ({  
     document, 
 }) => {
-const productId = document.documentId;
+  const productId = document?.documentId;
   const [statuses, setStatuses] = useState([]);
   const [currentStatus, setCurrentStatus] = useState('')
   const [message, setMessage] = useState('')
@@ -14,13 +14,15 @@ const productId = document.documentId;
     async function fetchCurrentStatus(){
         try {
             const {data} = await axios.get(`/products/${productId}?populate=statusName`)
-            setCurrentStatus(data.data.status.name)
+            const status = data.data.statusName;
+            if (status && status.name) return setCurrentStatus(status.name)
+            if (statuses.length) return handleStatusChange(statuses[0].documentId)
         }catch (error) {
             console.error("Error fetching product status:", error);
           }
     }
-    fetchCurrentStatus()
-  }, [productId]);
+    if (productId) fetchCurrentStatus();
+  }, [productId, statuses]);
   
   useEffect(() => {
     async function fetchStatuses() {
