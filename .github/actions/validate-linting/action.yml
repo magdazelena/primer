@@ -15,16 +15,6 @@ runs:
         node-version: 20.5.0
         token: ${{ inputs.github-token }}
 
-    - name: Enable Corepack
-      shell: bash
-      run: |
-        corepack enable
-        corepack prepare yarn@4.0.0 --activate
-
-    - name: Debug Corepack
-      shell: bash
-      run: corepack --version
-
     - name: Install dependencies
       shell: bash
       run: |
