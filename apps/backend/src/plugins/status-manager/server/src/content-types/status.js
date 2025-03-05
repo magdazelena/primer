@@ -15,7 +15,7 @@ module.exports = {
       visible: false,
     },
     'content-type-builder': {
-      visible: false,
+      visible: true,
     }
   },
   attributes: {
@@ -24,6 +24,7 @@ module.exports = {
       min: 1,
       max: 50,
       configurable: false,
+      required: true
     },
     published: {
       type: 'boolean',
@@ -35,7 +36,7 @@ module.exports = {
       type: 'relation',
       relation: 'oneToMany',
       target: 'api::product.product',
-      mappedBy: 'status'
+      mappedBy: 'statusName'
     }
   }
 };

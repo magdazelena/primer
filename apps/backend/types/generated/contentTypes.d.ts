@@ -893,7 +893,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    status: Schema.Attribute.Relation<
+    statusName: Schema.Attribute.Relation<
       'manyToOne',
       'plugin::status-manager.status'
     >;
@@ -1210,7 +1210,7 @@ export interface PluginStatusManagerStatus extends Struct.CollectionTypeSchema {
       visible: false;
     };
     'content-type-builder': {
-      visible: false;
+      visible: true;
     };
   };
   attributes: {
@@ -1224,6 +1224,7 @@ export interface PluginStatusManagerStatus extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String &
+      Schema.Attribute.Required &
       Schema.Attribute.SetMinMax<
         {
           max: 50;

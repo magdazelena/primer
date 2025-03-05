@@ -13,7 +13,7 @@ const productId = document.documentId;
   useEffect(() => {
     async function fetchCurrentStatus(){
         try {
-            const {data} = await axios.get(`/products/${productId}?populate=status`)
+            const {data} = await axios.get(`/products/${productId}?populate=statusName`)
             setCurrentStatus(data.data.status.name)
         }catch (error) {
             console.error("Error fetching product status:", error);
@@ -38,8 +38,8 @@ const productId = document.documentId;
   const handleStatusChange = async (newStatus) => {
     const newStatusName = statuses.find(s => s.documentId === newStatus).name
     try {
-      await axios.put(`/products/${productId}?populate=status`, { data: {
-        status: {
+      await axios.put(`/products/${productId}?populate=statusName`, { data: {
+        statusName: {
             set: [{ documentId: newStatus }]
         }
       } });

@@ -16,12 +16,11 @@
     }
   },
   "attributes": {
-    "status": {
+    "statusName": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::status-manager.status",
-      "inversedBy": "products",
-      "visible": false
+      "inversedBy": "products"
     },
     "name": {
       "pluginOptions": {
