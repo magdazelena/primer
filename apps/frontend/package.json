@@ -17,7 +17,7 @@
     "@types/node": "^22.13.1",
     "@types/qs": "^6.9.18",
     "@types/react": "^19.0.8",
-    "@types/react-dom": "^18.3.1",
+    "@types/react-dom": "^19.0.4",
     "classnames": "^2.5.1",
     "eslint": "^9.20.1",
     "negotiator": "^1.0.0",
