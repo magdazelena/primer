@@ -10,7 +10,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@formatjs/intl-localematcher": "^0.5.8",
+    "@formatjs/intl-localematcher": "^0.6.0",
     "@heroicons/react": "^2.2.0",
     "@strapi/blocks-react-renderer": "^1.0.2",
     "@types/negotiator": "^0.6.3",
