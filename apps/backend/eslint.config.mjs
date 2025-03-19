@@ -54,7 +54,7 @@ export default [
         },
     },
     {
-        files: ['**/src/plugins/*/strapi-admin.js','**/src/plugins/*/admin/**/*.js|jsx'],
+        files: ['**/src/plugins/*/strapi-admin.js','**/src/plugins/*/admin/**/*.js|jsx', '**/src/plugins/*/admin/**/*.js'],
         languageOptions: {
             ecmaVersion: 2022,
             sourceType: "module",

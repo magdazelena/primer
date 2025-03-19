@@ -4,8 +4,8 @@ module.exports = [
     path: '/statuses', // Ensure this is not "/"
     handler: 'status.find',  // Ensure this matches your controller file and method name
     config: {
-      policies: [],
-      auth: false
+      auth: { authenticate: true },
+      description: 'Fetch status',
     },
   },
   {
@@ -13,8 +13,7 @@ module.exports = [
     path: '/statuses', // Ensure this is not "/"
     handler: 'status.create',  // Ensure this matches your controller file and method name
     config: {
-      policies: [],
-      auth: false
+      auth: { authenticate: true }
     },
   },
   {
@@ -22,8 +21,7 @@ module.exports = [
     path: '/statuses/reorder',
     handler: 'status.reorder',
     config: {
-      policies: [],
-      auth: false
+      auth: { authenticate: true }
     },
   },
   {
@@ -31,8 +29,7 @@ module.exports = [
     path: '/statuses/:id',
     handler: 'status.publish',
     config: {
-      policies: [],
-      auth: false
+      auth: { authenticate: true }
     },
   },
   {
@@ -40,8 +37,7 @@ module.exports = [
     path: '/statuses',
     handler: 'status.delete',
     config: {
-      policies: [],
-      auth: false, // Change to `true` if authentication is required
+      auth: { authenticate: true }
     },
   },
 ];
