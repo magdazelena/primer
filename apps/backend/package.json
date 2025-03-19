@@ -17,23 +17,24 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/helper-plugin": "4.25.12",
+    "@strapi/helper-plugin": "^4.15.5",
     "@strapi/plugin-seo": "^2.0.4",
-    "@strapi/plugin-users-permissions": "^5.9.0",
-    "@strapi/strapi": "^5.10.4",
-    "better-sqlite3": "^11.8.1",
-    "react": "^19.0.0",
+    "@strapi/plugin-users-permissions": "^5.11.0",
+    "@strapi/strapi": "^5.11.0",
+    "better-sqlite3": "^8.6.0",
+    "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "7.2.0",
-    "styled-components": "^6.1.15"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.0",
+    "strapi-plugin-slugify": "^2.3.8",
+    "styled-components": "^6"
   },
   "devDependencies": {
-    "@eslint/js": "^9.15.0",
-    "eslint": "^9.20.1",
+    "@eslint/js": "^8.56.0",
+    "eslint": "^8.56.0",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-react": "^7.37.4",
-    "globals": "^16.0.0"
+    "eslint-plugin-react": "^7.33.2",
+    "globals": "^13.24.0"
   },
   "engines": {
     "node": ">=18.0.0 <=20.x.x",

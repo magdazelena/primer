@@ -16,15 +16,15 @@
     "prune": "rm -rf node_modules/ && rm -rf dist/ && rm .nx/ && yarn install"
   },
   "dependencies": {
-    "eslint": "^9.20.1",
+    "@strapi/strapi": "^5.11.0",
+    "eslint": "^8.56.0",
     "npm-check-updates": "^17.1.11",
-    "react": "^19.0.0",
-    "react-dom": "^18.3.1",
-    "strapi": "^3.6.11"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.2.0",
-    "@eslint/js": "^9.15.0",
+    "@eslint/eslintrc": "^2.1.4",
+    "@eslint/js": "^8.56.0",
     "@nx/eslint": "20.4.6",
     "@nx/next": "20.4.6",
     "globals": "^16.0.0",
