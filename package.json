@@ -13,7 +13,11 @@
     "frontend": "nx dev frontend",
     "lint": "nx run backend:lint && nx run frontend:lint",
     "setup": "yarn install",
-    "prune": "rm -rf node_modules/ && rm -rf dist/ && rm .nx/ && yarn install"
+    "prune": "rm -rf node_modules/ && rm -rf dist/ && rm .nx/ && yarn install",
+    "test": "nx run-many --target=test --all",
+    "test:watch": "nx run-many --target=test --all --watch",
+    "test:coverage": "nx run-many --target=test --all --coverage",
+    "e2e": "nx run-many --target=e2e --all"
   },
   "dependencies": {
     "@strapi/strapi": "^5.11.0",
@@ -25,9 +29,18 @@
   "devDependencies": {
     "@eslint/eslintrc": "^2.1.4",
     "@eslint/js": "^8.56.0",
+    "@nx/cypress": "20.4.6",
     "@nx/eslint": "20.4.6",
+    "@nx/jest": "20.4.6",
     "@nx/next": "20.4.6",
+    "@testing-library/cypress": "^10.0.1",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^14.2.1",
+    "@types/jest": "^29.5.12",
+    "cypress": "^13.6.6",
     "globals": "^16.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "next": "^15.2.0",
     "nx": "20.5.0"
   },
