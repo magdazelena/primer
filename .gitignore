@@ -11,3 +11,7 @@ readme-images
 
 .nx/cache
 .nx/workspace-data
+
+apps/frontend/cypress/screenshots
+apps/frontend/cypress/videos
+apps/frontend/cypress/downloads

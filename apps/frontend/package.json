@@ -7,7 +7,12 @@
     "clear": "rm -rf .next && rm -rf cache",
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "e2e": "cypress run",
+    "e2e:open": "cypress open"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.6.0",
@@ -31,10 +36,12 @@
     "yet-another-react-lightbox": "^3.21.7"
   },
   "devDependencies": {
+    "@testing-library/cypress": "^10.0.1",
     "@types/jest": "^29.5.14",
     "@typescript-eslint/eslint-plugin": "^8.27.0",
     "@typescript-eslint/parser": "^8.27.0",
     "autoprefixer": "^10.4.20",
+    "cypress": "^13.6.6",
     "globals": "^16.0.0",
     "jest": "^29.7.0",
     "postcss": "^8.4.49",

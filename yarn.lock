@@ -4515,25 +4515,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/cypress@npm:20.4.6":
-  version: 20.4.6
-  resolution: "@nx/cypress@npm:20.4.6"
-  dependencies:
-    "@nx/devkit": "npm:20.4.6"
-    "@nx/eslint": "npm:20.4.6"
-    "@nx/js": "npm:20.4.6"
-    "@phenomnomnominal/tsquery": "npm:~5.0.1"
-    detect-port: "npm:^1.5.1"
-    tslib: "npm:^2.3.0"
-  peerDependencies:
-    cypress: ">= 3 < 14"
-  peerDependenciesMeta:
-    cypress:
-      optional: true
-  checksum: 10c0/177e0b4ad567177e15971b82ac9454649f6de7fa0ec80436ea29fe7ef79fcaee43d0ce2aa0919bfcc19638efd5b90727e20dc234409d4b65a1030fbea29da5a4
-  languageName: node
-  linkType: hard
-
 "@nx/devkit@npm:20.4.6":
   version: 20.4.6
   resolution: "@nx/devkit@npm:20.4.6"
@@ -16273,6 +16254,7 @@ __metadata:
     "@formatjs/intl-localematcher": "npm:^0.6.0"
     "@heroicons/react": "npm:^2.2.0"
     "@strapi/blocks-react-renderer": "npm:^1.0.2"
+    "@testing-library/cypress": "npm:^10.0.1"
     "@types/jest": "npm:^29.5.14"
     "@types/negotiator": "npm:^0.6.3"
     "@types/node": "npm:^22.13.1"
@@ -16283,7 +16265,12 @@ __metadata:
     "@typescript-eslint/parser": "npm:^8.27.0"
     autoprefixer: "npm:^10.4.20"
     classnames: "npm:^2.5.1"
+<<<<<<< HEAD
     eslint: "npm:^9.22.0"
+=======
+    cypress: "npm:^13.6.6"
+    eslint: "npm:^9.20.1"
+>>>>>>> 7778d19 (chore: configure cypress)
     globals: "npm:^16.0.0"
     jest: "npm:^29.7.0"
     negotiator: "npm:^1.0.0"
@@ -24131,19 +24118,20 @@ __metadata:
   dependencies:
     "@eslint/eslintrc": "npm:^2.1.4"
     "@eslint/js": "npm:^8.56.0"
-    "@nx/cypress": "npm:20.4.6"
     "@nx/eslint": "npm:20.4.6"
     "@nx/jest": "npm:20.4.6"
     "@nx/next": "npm:20.4.6"
     "@strapi/strapi": "npm:^5.11.0"
 <<<<<<< HEAD
+<<<<<<< HEAD
     eslint: "npm:^9.22.0"
 =======
     "@testing-library/cypress": "npm:^10.0.1"
+=======
+>>>>>>> 7778d19 (chore: configure cypress)
     "@testing-library/jest-dom": "npm:^6.4.2"
     "@testing-library/react": "npm:^14.2.1"
     "@types/jest": "npm:^29.5.12"
-    cypress: "npm:^13.6.6"
     eslint: "npm:^8.56.0"
 >>>>>>> 8dd9b60 (chore: scaffold testing libs)
     globals: "npm:^16.0.0"
