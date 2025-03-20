@@ -12,6 +12,23 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: Check PR changes
+      shell: bash
+      run: |
+        # Get the list of changed files
+        CHANGED_FILES=$(gh pr view "${{ inputs.pr-url }}" --json files --jq '.files[].path')
+        
+        # Check if any of the changed files is apps/backend/package.json
+        if echo "$CHANGED_FILES" | grep -q "apps/backend/package.json"; then
+          echo "Changes include apps/backend/package.json. Skipping auto-merge."
+          exit 1
+        fi
+        
+        echo "No changes to apps/backend/package.json. Proceeding with auto-merge."
+      env:
+        PR_URL: ${{ inputs.pr-url }}
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+
     - name: Enable auto-merge for Dependabot PRs
       shell: bash
       run: |
