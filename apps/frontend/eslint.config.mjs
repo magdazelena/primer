@@ -1,8 +1,6 @@
-import eslintConfig from "../../eslint.config.mjs";
 import globals from "globals";
 
 export default [
-  ...eslintConfig,
   {
     ignores: [".next", "public", "**/eslint.config.mjs"],
     languageOptions: {
