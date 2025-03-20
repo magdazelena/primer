@@ -4,11 +4,13 @@
  */
 import seo from "@strapi/plugin-seo/strapi-admin";
 import usersPermissions from "@strapi/plugin-users-permissions/strapi-admin";
+import statusManager from "../../src/plugins/status-manager/strapi-admin";
 import { renderAdmin } from "@strapi/strapi/admin";
 
 renderAdmin(document.getElementById("strapi"), {
   plugins: {
     seo: seo,
     "users-permissions": usersPermissions,
+    "status-manager": statusManager,
   },
 });
