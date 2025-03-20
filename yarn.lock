@@ -3983,24 +3983,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/env@npm:14.2.25":
-  version: 14.2.25
-  resolution: "@next/env@npm:14.2.25"
-  checksum: 10c0/8a4f4226a4e31b6189512c13faf039dced2a1e48236b1be30da72b85cdf87d08876a8fb242ed8fd25380dc1f4ae77613650214d1566f04f0cc32f2384cad1785
-  languageName: node
-  linkType: hard
-
 "@next/env@npm:15.2.3":
   version: 15.2.3
   resolution: "@next/env@npm:15.2.3"
   checksum: 10c0/52e60419f71b991bdab23fc23f05d221dfe07b725140a110eedc158b2612cebcaa71a74726e2f78b1d53ae162ae0a745fdc3263a2bc76eda013cac057a30f05e
-  languageName: node
-  linkType: hard
-
-"@next/swc-darwin-arm64@npm:14.2.25":
-  version: 14.2.25
-  resolution: "@next/swc-darwin-arm64@npm:14.2.25"
-  conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
@@ -4011,24 +3997,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/swc-darwin-x64@npm:14.2.25":
-  version: 14.2.25
-  resolution: "@next/swc-darwin-x64@npm:14.2.25"
-  conditions: os=darwin & cpu=x64
-  languageName: node
-  linkType: hard
-
 "@next/swc-darwin-x64@npm:15.2.3":
   version: 15.2.3
   resolution: "@next/swc-darwin-x64@npm:15.2.3"
   conditions: os=darwin & cpu=x64
-  languageName: node
-  linkType: hard
-
-"@next/swc-linux-arm64-gnu@npm:14.2.25":
-  version: 14.2.25
-  resolution: "@next/swc-linux-arm64-gnu@npm:14.2.25"
-  conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
@@ -4039,24 +4011,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/swc-linux-arm64-musl@npm:14.2.25":
-  version: 14.2.25
-  resolution: "@next/swc-linux-arm64-musl@npm:14.2.25"
-  conditions: os=linux & cpu=arm64 & libc=musl
-  languageName: node
-  linkType: hard
-
 "@next/swc-linux-arm64-musl@npm:15.2.3":
   version: 15.2.3
   resolution: "@next/swc-linux-arm64-musl@npm:15.2.3"
   conditions: os=linux & cpu=arm64 & libc=musl
-  languageName: node
-  linkType: hard
-
-"@next/swc-linux-x64-gnu@npm:14.2.25":
-  version: 14.2.25
-  resolution: "@next/swc-linux-x64-gnu@npm:14.2.25"
-  conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
@@ -4067,13 +4025,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/swc-linux-x64-musl@npm:14.2.25":
-  version: 14.2.25
-  resolution: "@next/swc-linux-x64-musl@npm:14.2.25"
-  conditions: os=linux & cpu=x64 & libc=musl
-  languageName: node
-  linkType: hard
-
 "@next/swc-linux-x64-musl@npm:15.2.3":
   version: 15.2.3
   resolution: "@next/swc-linux-x64-musl@npm:15.2.3"
@@ -4081,31 +4032,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/swc-win32-arm64-msvc@npm:14.2.25":
-  version: 14.2.25
-  resolution: "@next/swc-win32-arm64-msvc@npm:14.2.25"
-  conditions: os=win32 & cpu=arm64
-  languageName: node
-  linkType: hard
-
 "@next/swc-win32-arm64-msvc@npm:15.2.3":
   version: 15.2.3
   resolution: "@next/swc-win32-arm64-msvc@npm:15.2.3"
   conditions: os=win32 & cpu=arm64
-  languageName: node
-  linkType: hard
-
-"@next/swc-win32-ia32-msvc@npm:14.2.25":
-  version: 14.2.25
-  resolution: "@next/swc-win32-ia32-msvc@npm:14.2.25"
-  conditions: os=win32 & cpu=ia32
-  languageName: node
-  linkType: hard
-
-"@next/swc-win32-x64-msvc@npm:14.2.25":
-  version: 14.2.25
-  resolution: "@next/swc-win32-x64-msvc@npm:14.2.25"
-  conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
@@ -8466,16 +8396,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/helpers@npm:0.5.5":
-  version: 0.5.5
-  resolution: "@swc/helpers@npm:0.5.5"
-  dependencies:
-    "@swc/counter": "npm:^0.1.3"
-    tslib: "npm:^2.4.0"
-  checksum: 10c0/21a9b9cfe7e00865f9c9f3eb4c1cc5b397143464f7abee76a2c5366e591e06b0155b5aac93fe8269ef8d548df253f6fd931e9ddfc0fd12efd405f90f45506e7d
-  languageName: node
-  linkType: hard
-
 "@swc/types@npm:^0.1.19":
   version: 0.1.19
   resolution: "@swc/types@npm:0.1.19"
@@ -9137,27 +9057,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 1cbb3db (chore: reinstalled after rebase)
-"@types/react-dom@npm:^19.0.4":
-=======
 "@types/react-dom@npm:^19.0.0":
->>>>>>> f3d8745 (chore: fix frontend deps)
   version: 19.0.4
   resolution: "@types/react-dom@npm:19.0.4"
   peerDependencies:
     "@types/react": ^19.0.0
   checksum: 10c0/4e71853919b94df9e746a4bd73f8180e9ae13016333ce9c543dcba9f4f4c8fe6e28b038ca6ee61c24e291af8e03ca3bc5ded17c46dee938fcb32d71186fda7a3
-<<<<<<< HEAD
-=======
-=======
   languageName: node
   linkType: hard
 
->>>>>>> 1cbb3db (chore: reinstalled after rebase)
 "@types/react-redux@npm:^7.1.20":
   version: 7.1.34
   resolution: "@types/react-redux@npm:7.1.34"
@@ -9167,7 +9075,6 @@ __metadata:
     hoist-non-react-statics: "npm:^3.3.0"
     redux: "npm:^4.0.0"
   checksum: 10c0/6750964ec656eb6973b0e4fda787549aee5dbc266a0f0e78fc9efb417b4965c0b060d10b99a7b7fa0c8812b8a0a07d97a1ef46d094bf64fee07144e8bbad781a
->>>>>>> 58502ee (chore: show status label on the edit view)
   languageName: node
   linkType: hard
 
@@ -9180,22 +9087,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:16 || 17 || 18":
+"@types/react@npm:*, @types/react@npm:^19.0.0":
+  version: 19.0.12
+  resolution: "@types/react@npm:19.0.12"
+  dependencies:
+    csstype: "npm:^3.0.2"
+  checksum: 10c0/c814b6af5c0fbcf5c65d031b1c9bf98c5b857e015254d95811f2851b27b869c3d31c6f35dab127dc6921a3dbda0b0622c6323d493a14b31b231a6a58c41c5e84
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:16 || 17 || 18":
   version: 18.3.19
   resolution: "@types/react@npm:18.3.19"
   dependencies:
     "@types/prop-types": "npm:*"
     csstype: "npm:^3.0.2"
   checksum: 10c0/236bfe0c4748ada1a640f13573eca3e0fc7c9d847b442947adb352b0718d6d285357fd84c33336c8ffb8cbfabc0d58a43a647c7fd79857fecd61fb58ab6f7918
-  languageName: node
-  linkType: hard
-
-"@types/react@npm:^19.0.0":
-  version: 19.0.12
-  resolution: "@types/react@npm:19.0.12"
-  dependencies:
-    csstype: "npm:^3.0.2"
-  checksum: 10c0/c814b6af5c0fbcf5c65d031b1c9bf98c5b857e015254d95811f2851b27b869c3d31c6f35dab127dc6921a3dbda0b0622c6323d493a14b31b231a6a58c41c5e84
   languageName: node
   linkType: hard
 
@@ -10540,24 +10447,9 @@ __metadata:
     better-sqlite3: "npm:^8.6.0"
     eslint: "npm:^8.56.0"
     eslint-plugin-node: "npm:^11.1.0"
-<<<<<<< HEAD
-<<<<<<< HEAD
-    globals: "npm:^16.0.0"
-=======
-    eslint-plugin-react: "npm:^7.37.4"
-<<<<<<< HEAD
-    globals: "npm:^15.12.0"
-<<<<<<< HEAD
->>>>>>> 58502ee (chore: show status label on the edit view)
-=======
-    globals: "npm:^16.0.0"
->>>>>>> 1cbb3db (chore: reinstalled after rebase)
-    react: "npm:^19.0.0"
-=======
     eslint-plugin-react: "npm:^7.33.2"
     globals: "npm:^13.24.0"
     react: "npm:^18.2.0"
->>>>>>> 627104d (chore: fixed peer deps)
     react-beautiful-dnd: "npm:^13.1.1"
     react-dom: "npm:^18.2.0"
     react-router-dom: "npm:^6.22.0"
@@ -13257,9 +13149,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.5.73":
-  version: 1.5.122
-  resolution: "electron-to-chromium@npm:1.5.122"
-  checksum: 10c0/e6bcb82e0c91687c9d93753393d438eb4d744c4d75e5d4e247c742ac45ca14611b3c5d5df138fd6671648a2868d5c7b429bef829fe2b3b990a8b7b1d9a8c01e6
+  version: 1.5.123
+  resolution: "electron-to-chromium@npm:1.5.123"
+  checksum: 10c0/ffaa65e9337f5ba0b51d5709795c3d1074e0cae8efda24116561feed6cedd281f523be50339d991c2fc65344e66e65e7308a157ff87047a8bb4e8008412e9eb1
   languageName: node
   linkType: hard
 
@@ -15713,30 +15605,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-<<<<<<< HEAD
-"globals@npm:^16.0.0":
-  version: 16.0.0
-  resolution: "globals@npm:16.0.0"
-  checksum: 10c0/8906d5f01838df64a81d6c2a7b7214312e2216cf65c5ed1546dc9a7d0febddf55ffa906cf04efd5b01eec2534d6f14859a89535d1a68241832810e41ef3fd5bb
-  languageName: node
-  linkType: hard
-
-"globals@npm:^16.0.0":
-  version: 16.0.0
-  resolution: "globals@npm:16.0.0"
-  checksum: 10c0/8906d5f01838df64a81d6c2a7b7214312e2216cf65c5ed1546dc9a7d0febddf55ffa906cf04efd5b01eec2534d6f14859a89535d1a68241832810e41ef3fd5bb
-  languageName: node
-  linkType: hard
-
-"globals@npm:^16.0.0":
-  version: 16.0.0
-  resolution: "globals@npm:16.0.0"
-  checksum: 10c0/8906d5f01838df64a81d6c2a7b7214312e2216cf65c5ed1546dc9a7d0febddf55ffa906cf04efd5b01eec2534d6f14859a89535d1a68241832810e41ef3fd5bb
-  languageName: node
-  linkType: hard
-
-=======
->>>>>>> 627104d (chore: fixed peer deps)
 "globals@npm:^16.0.0":
   version: 16.0.0
   resolution: "globals@npm:16.0.0"
@@ -20105,65 +19973,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:^14.1.0":
-  version: 14.2.25
-  resolution: "next@npm:14.2.25"
-  dependencies:
-    "@next/env": "npm:14.2.25"
-    "@next/swc-darwin-arm64": "npm:14.2.25"
-    "@next/swc-darwin-x64": "npm:14.2.25"
-    "@next/swc-linux-arm64-gnu": "npm:14.2.25"
-    "@next/swc-linux-arm64-musl": "npm:14.2.25"
-    "@next/swc-linux-x64-gnu": "npm:14.2.25"
-    "@next/swc-linux-x64-musl": "npm:14.2.25"
-    "@next/swc-win32-arm64-msvc": "npm:14.2.25"
-    "@next/swc-win32-ia32-msvc": "npm:14.2.25"
-    "@next/swc-win32-x64-msvc": "npm:14.2.25"
-    "@swc/helpers": "npm:0.5.5"
-    busboy: "npm:1.6.0"
-    caniuse-lite: "npm:^1.0.30001579"
-    graceful-fs: "npm:^4.2.11"
-    postcss: "npm:8.4.31"
-    styled-jsx: "npm:5.1.1"
-  peerDependencies:
-    "@opentelemetry/api": ^1.1.0
-    "@playwright/test": ^1.41.2
-    react: ^18.2.0
-    react-dom: ^18.2.0
-    sass: ^1.3.0
-  dependenciesMeta:
-    "@next/swc-darwin-arm64":
-      optional: true
-    "@next/swc-darwin-x64":
-      optional: true
-    "@next/swc-linux-arm64-gnu":
-      optional: true
-    "@next/swc-linux-arm64-musl":
-      optional: true
-    "@next/swc-linux-x64-gnu":
-      optional: true
-    "@next/swc-linux-x64-musl":
-      optional: true
-    "@next/swc-win32-arm64-msvc":
-      optional: true
-    "@next/swc-win32-ia32-msvc":
-      optional: true
-    "@next/swc-win32-x64-msvc":
-      optional: true
-  peerDependenciesMeta:
-    "@opentelemetry/api":
-      optional: true
-    "@playwright/test":
-      optional: true
-    sass:
-      optional: true
-  bin:
-    next: dist/bin/next
-  checksum: 10c0/2ee3859b957208e93dd10925d1059bc8580fedb612348d67a34523c586f19dc4666b28bc4b7107f268fc501a6ad7ea50de65a4f076b41101e633cbac68dfa142
-  languageName: node
-  linkType: hard
-
-"next@npm:^15.2.3":
+"next@npm:^15.2.0, next@npm:^15.2.3":
   version: 15.2.3
   resolution: "next@npm:15.2.3"
   dependencies:
@@ -22308,25 +22118,14 @@ __metadata:
     "@eslint/js": "npm:^8.56.0"
     "@nx/eslint": "npm:20.4.6"
     "@nx/next": "npm:20.4.6"
-<<<<<<< HEAD
-    eslint: "npm:^9.20.1"
+    "@strapi/strapi": "npm:^5.11.0"
+    eslint: "npm:^8.56.0"
     globals: "npm:^16.0.0"
     next: "npm:^15.2.0"
     npm-check-updates: "npm:^17.1.11"
     nx: "npm:20.5.0"
-    react: "npm:^19.0.0"
-    react-dom: "npm:^18.3.1"
-    strapi: "npm:^3.6.11"
-=======
-    "@strapi/strapi": "npm:^5.11.0"
-    eslint: "npm:^8.56.0"
-    globals: "npm:^13.24.0"
-    next: "npm:^14.1.0"
-    npm-check-updates: "npm:^17.1.11"
-    nx: "npm:20.4.2"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
->>>>>>> 627104d (chore: fixed peer deps)
   languageName: unknown
   linkType: soft
 
@@ -23001,29 +22800,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-<<<<<<< HEAD
-"react-router@npm:7.2.0":
-  version: 7.2.0
-  resolution: "react-router@npm:7.2.0"
-  dependencies:
-    "@types/cookie": "npm:^0.6.0"
-    cookie: "npm:^1.0.1"
-    set-cookie-parser: "npm:^2.6.0"
-    turbo-stream: "npm:2.4.0"
-  peerDependencies:
-    react: ">=18"
-    react-dom: ">=18"
-  peerDependenciesMeta:
-    react-dom:
-      optional: true
-  checksum: 10c0/eb3fe57405a90d22f0a5455a3f73ec60fe2808a579d37bf130c192dfde18ebab06353e2cda2ed0f67701a6c43445eab1c1b6caa1347e5635dc65ff3028b7c2e2
-<<<<<<< HEAD
-=======
-  languageName: node
-  linkType: hard
-
-=======
->>>>>>> 627104d (chore: fixed peer deps)
 "react-select@npm:5.7.0":
   version: 5.7.0
   resolution: "react-select@npm:5.7.0"
@@ -23041,7 +22817,6 @@ __metadata:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
   checksum: 10c0/5ab64144930245cabedd08a399deaa35a19281163b0d4637811ae1cffd3b9ba45090d640c4f3ab95864229d07509fbdee69e960d074ad22dbacb223d21876443
->>>>>>> 1cbb3db (chore: reinstalled after rebase)
   languageName: node
   linkType: hard
 
@@ -25425,22 +25200,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"styled-jsx@npm:5.1.1":
-  version: 5.1.1
-  resolution: "styled-jsx@npm:5.1.1"
-  dependencies:
-    client-only: "npm:0.0.1"
-  peerDependencies:
-    react: ">= 16.8.0 || 17.x.x || ^18.0.0-0"
-  peerDependenciesMeta:
-    "@babel/core":
-      optional: true
-    babel-plugin-macros:
-      optional: true
-  checksum: 10c0/42655cdadfa5388f8a48bb282d6b450df7d7b8cf066ac37038bd0499d3c9f084815ebd9ff9dfa12a218fd4441338851db79603498d7557207009c1cf4d609835
-  languageName: node
-  linkType: hard
-
 "styled-jsx@npm:5.1.6":
   version: 5.1.6
   resolution: "styled-jsx@npm:5.1.6"
@@ -26365,12 +26124,12 @@ __metadata:
   linkType: hard
 
 "typescript@npm:^5.3.3":
-  version: 5.3.3
-  resolution: "typescript@npm:5.3.3"
+  version: 5.8.2
+  resolution: "typescript@npm:5.8.2"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/e33cef99d82573624fc0f854a2980322714986bc35b9cb4d1ce736ed182aeab78e2cb32b385efa493b2a976ef52c53e20d6c6918312353a91850e2b76f1ea44f
+  checksum: 10c0/5c4f6fbf1c6389b6928fe7b8fcd5dc73bb2d58cd4e3883f1d774ed5bd83b151cbac6b7ecf11723de56d4676daeba8713894b1e9af56174f2f9780ae7848ec3c6
   languageName: node
   linkType: hard
 
@@ -26405,12 +26164,12 @@ __metadata:
   linkType: hard
 
 "typescript@patch:typescript@npm%3A^5.3.3#optional!builtin<compat/typescript>":
-  version: 5.3.3
-  resolution: "typescript@patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"
+  version: 5.8.2
+  resolution: "typescript@patch:typescript@npm%3A5.8.2#optional!builtin<compat/typescript>::version=5.8.2&hash=5786d5"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/1d0a5f4ce496c42caa9a30e659c467c5686eae15d54b027ee7866744952547f1be1262f2d40de911618c242b510029d51d43ff605dba8fb740ec85ca2d3f9500
+  checksum: 10c0/5448a08e595cc558ab321e49d4cac64fb43d1fa106584f6ff9a8d8e592111b373a995a1d5c7f3046211c8a37201eb6d0f1566f15cdb7a62a5e3be01d087848e2
   languageName: node
   linkType: hard
 
