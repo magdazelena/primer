@@ -4,6 +4,7 @@ module.exports = ({ strapi}) =>  ({
       'plugin::status-manager.status',{ orderBy: { order: 'asc' }} 
     );
   },
+
   async createStatus(data) {
     try {
       const newStatus = await strapi.entityService.create('plugin::status-manager.status', { data });

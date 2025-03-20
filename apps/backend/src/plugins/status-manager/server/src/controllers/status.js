@@ -10,6 +10,19 @@ const status = ({ strapi }) => ({
     } catch (err) {
       ctx.throw(500, err);
     }
+  },  async findOne(ctx) {
+    try {
+      const { id } = ctx.params;
+      const status = await strapi.entityService.findOne('plugin::status-manager.status', id);
+      
+      if (!status) {
+        return ctx.notFound('Status not found');
+      }
+      
+      return ctx.send(status);
+    } catch (err) {
+      ctx.throw(500, err);
+    }
   },
   async create(ctx) {
     try {

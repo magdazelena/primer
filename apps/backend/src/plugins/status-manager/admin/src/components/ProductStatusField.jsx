@@ -14,8 +14,8 @@ const ProductStatusField = ({
   useEffect(() => {
     async function fetchCurrentStatus(){
         try {
-            const { data } = await get(`/products/${productId}?populate=statusName`)
-            const status = data.data.statusName;
+            const { data: productData } = await get(`/content-manager/collection-types/api::product.product/${productId}?populate[statusName][populate]=*`);
+            const status = productData.data.statusName;
             if (status && status.name) return setCurrentStatus(status.name)
             if (statuses.length) return handleStatusChange(statuses[0].documentId)
         }catch (error) {
@@ -40,11 +40,12 @@ const ProductStatusField = ({
   const handleStatusChange = async (newStatus) => {
     const newStatusName = statuses.find(s => s.documentId === newStatus).name
     try {
-      await put(`/products/${productId}?populate=statusName`, { data: {
-        statusName: {
+      await put(`/content-manager/collection-types/api::product.product/${productId}`, {
+          statusName: {
             set: [{ documentId: newStatus }]
-        }
-      } });
+          }
+        
+      });
       setMessage(`Status updated from ${currentStatus} to ${newStatusName}`);
       setCurrentStatus(newStatusName);
       
