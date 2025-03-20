@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { SingleSelect,SingleSelectOption, Box, Typography } from '@strapi/design-system';
-import axios from '../utils/axiosInstance';
+import { SingleSelect, SingleSelectOption, Box, Typography } from '@strapi/design-system';
+import { useFetchClient } from '@strapi/strapi/admin';
 
 const ProductStatusField = ({  
     document, 
@@ -9,38 +9,38 @@ const ProductStatusField = ({
   const [statuses, setStatuses] = useState([]);
   const [currentStatus, setCurrentStatus] = useState('')
   const [message, setMessage] = useState('')
+  const { get, put } = useFetchClient();
 
   useEffect(() => {
     async function fetchCurrentStatus(){
         try {
-            const {data} = await axios.get(`/products/${productId}?populate=statusName`)
+            const { data } = await get(`/products/${productId}?populate=statusName`)
             const status = data.data.statusName;
             if (status && status.name) return setCurrentStatus(status.name)
             if (statuses.length) return handleStatusChange(statuses[0].documentId)
         }catch (error) {
             console.error("Error fetching product status:", error);
-          }
+        }
     }
     if (productId) fetchCurrentStatus();
-  }, [productId, statuses]);
+  }, [productId, statuses, get]);
   
   useEffect(() => {
     async function fetchStatuses() {
       try {
-        const { data } = await axios.get('/status-manager/statuses');
+        const { data } = await get('/status-manager/statuses');
         setStatuses(data);
       } catch (error) {
         console.error("Error fetching statuses:", error);
       }
     }
     fetchStatuses();
-    
-  }, []);
+  }, [get]);
 
   const handleStatusChange = async (newStatus) => {
     const newStatusName = statuses.find(s => s.documentId === newStatus).name
     try {
-      await axios.put(`/products/${productId}?populate=statusName`, { data: {
+      await put(`/products/${productId}?populate=statusName`, { data: {
         statusName: {
             set: [{ documentId: newStatus }]
         }
@@ -49,7 +49,7 @@ const ProductStatusField = ({
       setCurrentStatus(newStatusName);
       
     } catch (error) {
-    setMessage("Error updating status");
+      setMessage("Error updating status");
       console.error("Error updating status:", error);
     }
   };
@@ -69,7 +69,7 @@ const ProductStatusField = ({
             ))}
           </SingleSelect>
           <Box padding={2}><Typography variant="sigma" >{message}</Typography></Box>
-          </Box>
+        </Box>
       )
   } 
 };

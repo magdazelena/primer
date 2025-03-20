@@ -11,18 +11,27 @@ import {
 } from "@strapi/design-system";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { Plus, Trash, Drag } from "@strapi/icons";
-import axios from "../utils/axiosInstance";
+import { useFetchClient } from '@strapi/strapi/admin';
 
 const StatusManager = () => {
   const [statuses, setStatuses] = useState([]);
   const [newStatus, setNewStatus] = useState("");
   const [statusToDelete, setStatusToDelete] = useState(null);
   const [replacementStatus, setReplacementStatus] = useState("");
+  const { get, post, put, patch } = useFetchClient();
 
   // Fetch statuses
   useEffect(() => {
-    axios.get("/status-manager/statuses").then(({ data }) => setStatuses(data));
-  }, []);
+    const loadStatuses = async () => {
+      try {
+        const { data } = await get('/status-manager/statuses');
+        setStatuses(data);
+      } catch (error) {
+        console.error("Error fetching statuses:", error);
+      }
+    };
+    loadStatuses();
+  }, [get]);
 
   // Validate input (Latin characters only)
   const validateInput = (value) => /^[a-zA-Z\s]+$/.test(value);
@@ -31,13 +40,18 @@ const StatusManager = () => {
   const addStatus = async () => {
     if (!newStatus || !validateInput(newStatus))
       return alert("Only Latin characters allowed!");
-    const { data } = await axios.post("/status-manager/statuses", {
-      name: newStatus,
-      published: false,
-    });
-    setStatuses([...statuses, data]);
-    setNewStatus("");
+    try {
+      const { data } = await post('/status-manager/statuses', {
+        name: newStatus,
+        published: false,
+      });
+      setStatuses([...statuses, data]);
+      setNewStatus("");
+    } catch (error) {
+      console.error("Error creating status:", error);
+    }
   };
+
   const onDragEnd = async (result) => {
     if (!result.destination) return;
 
@@ -52,7 +66,7 @@ const StatusManager = () => {
       order: index,
     }));
     try {
-      await axios.put("/status-manager/statuses/reorder", { statuses: orderedIds });
+      await put('/status-manager/statuses/reorder', { statuses: orderedIds });
     } catch (error) {
       console.error("Error updating order:", error);
     }
@@ -66,19 +80,28 @@ const StatusManager = () => {
   // Delete status and replace with selected one
   const deleteStatus = async () => {
     if (!replacementStatus) return alert("Select a replacement status!");
-    const statusId = statuses.find(s => s.name = replacementStatus).documentId
-    await axios.patch(`/status-manager/statuses`, {
-      statusId: statusToDelete.documentId, replacementId: statusId 
-    });
-    setStatuses(statuses.filter((s) => s.id !== statusToDelete.id));
+    const statusId = statuses.find(s => s.name === replacementStatus).documentId;
+    try {
+      await patch('/status-manager/statuses', {
+        statusId: statusToDelete.documentId,
+        replacementId: statusId
+      });
+      setStatuses(statuses.filter((s) => s.id !== statusToDelete.id));
+    } catch (error) {
+      console.error("Error deleting status:", error);
+    }
   };
 
   // Toggle publish status
   const togglePublish = async (id, published) => {
-    await axios.put(`/status-manager/statuses/${id}`, { published: !published });
-    setStatuses(
-      statuses.map((s) => (s.documentId === id ? { ...s, published: !published } : s)),
-    );
+    try {
+      await put(`/status-manager/statuses/${id}`, { published: !published });
+      setStatuses(
+        statuses.map((s) => (s.documentId === id ? { ...s, published: !published } : s)),
+      );
+    } catch (error) {
+      console.error("Error toggling publish status:", error);
+    }
   };
 
   return (

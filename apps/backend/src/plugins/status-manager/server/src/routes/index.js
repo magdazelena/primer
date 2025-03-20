@@ -1,9 +1,10 @@
-const contentAPIRoutes = require('./content-api');
+const adminAPIRoutes = require('./admin-api');
 
 const routes = {
-  'content-api': {
-    type: 'content-api',
-    routes: contentAPIRoutes
+
+  'admin': {
+    type: 'admin',
+    routes: adminAPIRoutes
   }
 };
 
