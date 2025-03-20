@@ -1,6 +1,7 @@
 import js from "@eslint/js";
 import globals from "globals";
 import react from 'eslint-plugin-react'
+
 export default [
     {
         files: ["**/config/**/*.js", "**/*.js"],
@@ -68,5 +69,19 @@ export default [
             react
         }
 
-    }
+    },
+    {
+        ignores: ["**/eslint.config.mjs"],
+        languageOptions: {
+            ecmaVersion: 2022,
+            sourceType: "module",
+            globals: {
+                ...globals.node,
+                ...globals.jest,
+            },
+        },
+        rules: {
+            "no-unused-vars": "error",
+        },
+    },
 ];

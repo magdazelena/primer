@@ -1,8 +1,9 @@
 /** @type {import('jest').Config} */
 module.exports = {
   displayName: 'backend',
-  preset: '@nx/jest',
   testEnvironment: 'node',
+  injectGlobals: true,
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   transform: {
     '^.+\\.js$': ['babel-jest', {
       presets: ['@babel/preset-env'],
@@ -14,4 +15,7 @@ module.exports = {
     '**/*.js',
     '!**/index.js',
   ],
+  testEnvironmentOptions: {
+    url: 'http://localhost:1337',
+  },
 }; 
