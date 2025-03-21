@@ -20,7 +20,23 @@
                             "apps/frontend/**/*.tsx"
                         ]
                     }
-                }
+                },
+                "e2e": {
+                    "executor": "@nx/cypress:cypress",
+                    "options": {
+                      "cypressConfig": "apps/frontend/cypress.config.ts",
+                      "devServerTarget": "frontend:serve"
+                    }
+                  },
+
+                "test": {
+                    "executor": "@nx/jest:jest",
+                    "options": {
+                      "jestConfig": "apps/frontend/jest.config.js",
+                      "passWithNoTests": true,
+                      "preset": "apps/frontend/jest-preset.json"
+                    }
+                  }
             }
         },
         "backend": {
@@ -36,7 +52,14 @@
                             "apps/backend/**/*.js"
                         ]
                     }
-                }
+                },
+                "test": {
+                    "executor": "@nx/jest:jest",
+                    "options": {
+                      "jestConfig": "apps/backend/jest.config.js",
+                      "passWithNoTests": true
+                    }
+                  }
             }
         }
     }

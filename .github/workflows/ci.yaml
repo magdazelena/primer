@@ -14,8 +14,16 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
 
-      - name: Run action
+      - name: Check linting
         uses: ./.github/actions/validate-linting
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run unit tests
+        uses: ./.github/actions/validate-unit-testing
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run e2e tests
+        uses: ./.github/actions/validate-e2e
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 

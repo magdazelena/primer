@@ -1,10 +1,12 @@
 import type { Config } from 'jest';
 import { pathsToModuleNameMapper } from 'ts-jest';
 import { compilerOptions } from './tsconfig.json';
+import { getJestProjectsAsync } from '@nx/jest';
 
 const config: Config = {
   displayName: 'frontend',
-  preset: '@nx/jest',
+  projects: [],
+  preset: './jest-preset.json',
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
@@ -25,5 +27,9 @@ const config: Config = {
     '!**/jest.setup.ts',
   ],
 };
-
-export default config; 
+async function setupConfig() {
+  const projects = await getJestProjectsAsync();
+  config.projects = projects;
+  return config;
+}
+export default setupConfig(); 

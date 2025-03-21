@@ -14,9 +14,10 @@
     "lint": "nx run backend:lint && nx run frontend:lint",
     "setup": "yarn install",
     "prune": "rm -rf node_modules/ && rm -rf dist/ && rm .nx/ && yarn install",
-    "test": "nx run-many --target=test --all",
-    "test:watch": "nx run-many --target=test --all --watch",
-    "test:coverage": "nx run-many --target=test --all --coverage"
+    "test": "nx run-many --target=test  --projects=frontend,backend --parallel --passWithNoTests",
+    "test:watch": "nx run-many --target=test --projects=frontend,backend --parallel --watch",
+    "test:coverage": "nx run-many --target=test --coverage --projects=frontend,backend --parallel",
+     "e2e": "nx run-many --target=e2e --projects=frontend"
   },
   "dependencies": {
     "@strapi/strapi": "^5.11.0",
