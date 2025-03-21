@@ -93,7 +93,6 @@ const status = ({ strapi }) => ({
       if (!statusId) {
         return ctx.badRequest("Status ID is required.");
       }
-
       const result = await strapi.plugin('status-manager').service('status').deleteStatus(statusId, replacementId);
       
       return ctx.send(result);
