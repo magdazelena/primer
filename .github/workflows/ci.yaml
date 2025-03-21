@@ -18,10 +18,27 @@ jobs:
         uses: ./.github/actions/validate-linting
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+  unit-tests:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    needs: [linting]
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
       - name: Run unit tests
         uses: ./.github/actions/validate-unit-testing
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+
+  e2e-tests:
+    name: Run e2e tests
+    runs-on: ubuntu-latest
+    needs: [linting]
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
       - name: Run e2e tests
         uses: ./.github/actions/validate-e2e
         with:
