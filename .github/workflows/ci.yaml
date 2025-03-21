@@ -34,7 +34,7 @@ jobs:
   e2e-tests:
     name: Run e2e tests
     runs-on: ubuntu-latest
-    needs: [linting]
+    needs: [linting, unit-tests]
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
