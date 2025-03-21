@@ -17,7 +17,7 @@
     "test": "nx run-many --target=test  --projects=frontend,backend --parallel --passWithNoTests",
     "test:watch": "nx run-many --target=test --projects=frontend,backend --parallel --watch",
     "test:coverage": "nx run-many --target=test --coverage --projects=frontend,backend --parallel",
-     "e2e": "nx run-many --target=e2e --projects=frontend"
+    "e2e": "nx run-many --target=e2e --projects=frontend"
   },
   "dependencies": {
     "@strapi/strapi": "^5.11.0",
