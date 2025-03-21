@@ -16,27 +16,37 @@ module.exports = ({ strapi}) =>  ({
   },
   async deleteStatus(statusId, replacementId) {
     try {
-
       if (!statusId) {
         throw new Error("Status not provided.");
       }
-      
       if (replacementId) {
         const replacementStatus = await strapi.db.query('plugin::status-manager.status').findOne({
-          select: '*',
-          where: { documentId: replacementId}
+          where: { documentId: replacementId }
         });
-        await strapi.db.query('api::product.product').update({
-          where: { status: { documentId:  statusId } },
-          data: { status: replacementStatus },
-          populate: { status: true }
-        });
+        if (!replacementStatus) {
+          throw new Error("Replacement status not found");
+        }
+        try {
+          const relatedProducts = await strapi.db.query('api::product.product').findMany({
+            where: { statusName: { documentId: statusId } },
+            populate: ['statusName']
+          });
+          const productsToUpdatePromises = relatedProducts.map(product => 
+            strapi.db.query('api::product.product').update({
+              where: { id: product.id },
+              data: { statusName: replacementStatus }
+            })
+          );
+          await Promise.all(productsToUpdatePromises);
+        } catch (error) {
+          console.error('Error updating products:', error);
+        }
       }
 
-      // Delete the status
-      await strapi.db.query('plugin::status-manager.status').delete({ where: { documentId: statusId }});
+      await strapi.db.query('plugin::status-manager.status').delete({
+        where: { documentId: statusId }
+      });
 
-      // Reorder remaining statuses
       const remainingStatuses = await strapi.entityService.findMany('plugin::status-manager.status', {
         orderBy: { order: 'asc' },
       });

@@ -131,7 +131,7 @@ const StatusManager = () => {
             >
               {statuses.map((status, index) => (
                 <Draggable
-                  key={status.id}
+                  key={status.documentId}
                   draggableId={status.id.toString()}
                   index={index}
                 >

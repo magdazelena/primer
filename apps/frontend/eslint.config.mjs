@@ -1,4 +1,6 @@
 import globals from "globals";
+import tsPlugin from "@typescript-eslint/eslint-plugin";
+import tsParser from "@typescript-eslint/parser";
 
 export default [
   {
@@ -6,20 +8,20 @@ export default [
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: "module",
-      parser: "@typescript-eslint/parser",
+      parser: tsParser,
       parserOptions: {
         project: "apps/frontend/tsconfig.json",
       },
       globals: {
         ...globals.browser,
         ...globals.node,
+        ...globals.jest,
       },
     },
     plugins: {
-      "@typescript-eslint": "@typescript-eslint/eslint-plugin",
+      "@typescript-eslint": tsPlugin,
     },
     rules: {
-      // Add TypeScript-specific rules here
       "@typescript-eslint/no-unused-vars": "error",
       "@typescript-eslint/explicit-function-return-type": "off",
       "@typescript-eslint/no-explicit-any": "warn",
