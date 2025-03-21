@@ -19,8 +19,7 @@ runs:
       shell: bash
       run: |
         echo "//npm.pkg.github.com/:_authToken=${{ inputs.github-token }}" > ./.npmrc
-        yarn cache clean
-        yarn install
+        yarn install --frozen-lockfile
 
     - name: Cache Yarn
       uses: actions/cache@v3
