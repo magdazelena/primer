@@ -1,0 +1,39 @@
+name: Install dependencies
+description: "Installs dependencies"
+
+inputs:
+  github-token:
+    description: "GitHub Token for API access"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Install Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.5.0
+        token: ${{ inputs.github-token }}
+    - name: Cache node modules
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cache/yarn
+          node_modules
+          apps/frontend/node_modules
+          apps/backend/node_modules
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - name: Install dependencies
+      shell: bash
+      run: |
+        echo "//npm.pkg.github.com/:_authToken=${{ inputs.github-token }}" > ./.npmrc
+        yarn install 
+
+
+    - name: Print cache key
+      shell: bash
+      run: |
+        echo "Cache key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}"
+
+

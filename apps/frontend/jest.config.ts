@@ -1,3 +1,4 @@
+import 'ts-node/register';
 import type { Config } from 'jest';
 import { pathsToModuleNameMapper } from 'ts-jest';
 import { compilerOptions } from './tsconfig.json';
@@ -7,7 +8,7 @@ const config: Config = {
   displayName: 'frontend',
   projects: [],
   preset: './jest-preset.json',
-  testEnvironment: 'jsdom',
+  testEnvironment: 'node',
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
     prefix: '<rootDir>/',

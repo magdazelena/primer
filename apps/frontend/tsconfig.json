@@ -33,7 +33,9 @@
     "src/app/blog-3/page.tsx",
     "src/components/ErrorBoundry.jsx",
     "src/components/ErrorBoundary.tsx",
-    "src/app/global-error.tsx"
+    "src/app/global-error.tsx",
+    "jest.setup.ts",
+    "jest.config.ts"
   ],
   "exclude": ["node_modules"]
 }

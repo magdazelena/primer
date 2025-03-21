@@ -1,6 +1,6 @@
 {
     "preset": "ts-jest",
-    "testEnvironment": "jsdom",
+    "testEnvironment": "node",
     "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest"

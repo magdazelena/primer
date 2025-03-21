@@ -27,15 +27,6 @@
                       "cypressConfig": "apps/frontend/cypress.config.ts",
                       "devServerTarget": "frontend:serve"
                     }
-                  },
-
-                "test": {
-                    "executor": "@nx/jest:jest",
-                    "options": {
-                      "jestConfig": "apps/frontend/jest.config.js",
-                      "passWithNoTests": true,
-                      "preset": "apps/frontend/jest-preset.json"
-                    }
                   }
             }
         },
