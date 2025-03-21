@@ -19,8 +19,7 @@ runs:
       shell: bash
       run: |
         echo "//npm.pkg.github.com/:_authToken=${{ inputs.github-token }}" > ./.npmrc
-        yarn install --immutable-cache
-
+        yarn install 
     - name: Cache Yarn
       uses: actions/cache@v3
       with:
