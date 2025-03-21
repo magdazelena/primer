@@ -7,7 +7,8 @@ export default [
         files: ["**/config/**/*.js", "**/*.js"],
         ignores: ["**/.strapi/client/**", "**/*.example.js", '.cache',
             'build',
-            '**/node_modules/**'],
+            '**/node_modules/**',
+            '**/jest.setup.js'],
         languageOptions: {
             ecmaVersion: 2022,
             sourceType: "script",
@@ -21,15 +22,25 @@ export default [
         },
     },
     {
-        files: ["**/.strapi/client/**/*.js", "**/*.mjs"],
+        files: ["**/.strapi/client/**/*.js", "**/*.mjs", "**/jest.setup.js"],
         languageOptions: {
             ecmaVersion: 2022,
             sourceType: "module",
             globals: {
                 ...globals.browser,
+                ...globals.jest,
+            },
+            parserOptions: {
+                ecmaFeatures: {
+                  jsx: true,
+                },
             },
         },
+        plugins: {
+            react
+        },
         rules: {
+            "react/react-in-jsx-scope": "off",
         },
     },
     {
