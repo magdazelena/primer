@@ -1,16 +1,18 @@
 "use client";
 import { NavLink } from "@/components/NavLink";
 import DesktopDropdown from "./DesktopDropdown";
+import { ProductCategory } from "../../../types/product";
+import { Category } from "../../../types/article";
 
 const DesktopNav = ({
   links,
   categories,
 }: {
   links: Array<NavLink>;
-  categories: { productCategories: Array<any>; blogCategories: Array<any> };
+  categories: { productCategories: Array<ProductCategory>; blogCategories: Array<Category> };
 }) => {
   const renderProductTopLevelCategories = () => {
-    return categories.productCategories.map((category: any) => {
+    return categories.productCategories.map((category: ProductCategory) => {
       if (category.topLevel) {
         return (
           <DesktopDropdown

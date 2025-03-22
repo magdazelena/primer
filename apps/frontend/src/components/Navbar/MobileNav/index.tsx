@@ -3,13 +3,14 @@ import { Fragment, useState } from "react";
 import Dropdown from "./Dropdown";
 import { NavLink } from "@/components/NavLink";
 import HamburgerIcon from "./HamburgerIcon";
-
+import { ProductCategory } from "@/types/product";
+import { Category } from "../../../types/article";
 const MobileNav = ({
   links,
   categories,
 }: {
   links: Array<NavLink>;
-  categories: { productCategories: Array<any>; blogCategories: Array<any> };
+  categories: { productCategories: Array<ProductCategory>; blogCategories: Array<Category> };
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState("");

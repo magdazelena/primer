@@ -1,3 +1,5 @@
+import { Category } from "../../types/article";
+import { ProductCategory } from "../../types/product";
 import Logo from "../Logo";
 import { NavLink } from "../NavLink";
 import { DesktopNav } from "./DesktopNav";
@@ -12,7 +14,7 @@ export default function Navbar({
   links: Array<NavLink>;
   logoUrl: string | null;
   logoText: string | null;
-  categories: { productCategories: Array<any>; blogCategories: Array<any> };
+  categories: { productCategories: Array<ProductCategory>; blogCategories: Array<Category> };
 }) {
   return (
     <div className={`nav fixed left-0 top-0 w-full p-4 text-dark`}>

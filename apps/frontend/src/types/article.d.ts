@@ -11,7 +11,7 @@ interface ArticleFull {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  blocks?: any[];
+  blocks?: object[];
   coverImage: {
     url: string;
   };
@@ -28,7 +28,7 @@ interface Category {
   slug: string;
   children?: Category[];
   topLevel: boolean;
-  articles: Array<{}>;
+  articles: Array<object>;
 
 
 }
