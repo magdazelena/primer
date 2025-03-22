@@ -1,3 +1,6 @@
+import { Category } from "../../types/article";
+import { ElementsNotificationBanner, LayoutFooter, LayoutLogo, LayoutNavbar, LinksLink, LinksSocialLink, MenuLink, SocialLink } from "../../types/components";
+
 export const PAGE_CONTENT_SECTIONS_QUERY = {
   contentSections: {
     on: {
@@ -11,13 +14,13 @@ export const PAGE_CONTENT_SECTIONS_QUERY = {
       "sections.hero": {
         populate: {
           picture: {
-            populate: "*"
+            populate: "*",
           },
           buttons: {
-            populate: '*'
-          }
-        }
-      }
+            populate: "*",
+          },
+        },
+      },
     },
   },
 };
@@ -29,28 +32,59 @@ export const GLOBAL_LAYOUT_QUERY = {
     },
     navbar: {
       populate: {
-        navbarLogo: { populate: '*' },
-        menuItems: { populate: '*' }
+        navbarLogo: { populate: "*" },
+        menuItems: { populate: "*" },
       },
     },
     footer: {
       populate: {
-        'footerLogo': {
-          populate: '*'
+        footerLogo: {
+          populate: "*",
         },
         menuLinks: {
-          populate: '*'
+          populate: "*",
         },
         legalLinks: {
-          populate: '*'
+          populate: "*",
         },
         socialLinks: {
-          populate: '*'
+          populate: "*",
         },
         categories: {
-          populate: '*'
-        }
+          populate: "*",
+        },
       },
     },
-  }
-}
+  },
+};
+export type GlobalLayoutQuery = {
+  meta: {
+    metadata: { metaTitle: string; metaDescription: string };
+    favicon: { url: string };
+  };
+  notificationBanner: ElementsNotificationBanner["attributes"];
+  navbar: LayoutNavbar["attributes"] & {
+    navbarLogo: LayoutLogo["attributes"] & {
+      logoImg: LayoutLogo["attributes"]["logoImg"] & {
+        url: string;
+      };
+      logoText: string;
+    };
+    menuItems: Array<{
+      title: string;
+      url: string;
+    }>;
+  };
+  footer: LayoutFooter["attributes"] & {
+    footerLogo: LayoutLogo["attributes"] & {
+      logoImg: LayoutLogo["attributes"]["logoImg"] & {
+        url: string;
+      };
+      logoText: string;
+    };
+    menuLinks: LinksLink["attributes"][];
+    legalLinks: LinksLink["attributes"][];
+    socialLinks: LinksSocialLink["attributes"][];
+    categories: Category[];
+  };
+};

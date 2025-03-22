@@ -1,6 +1,6 @@
 import {fetchAPI} from "@/api/fetch-api";
-
-export async function getPageBySlug(slug: string, lang: string, parameters = {}) {
+import { ApiPagePage } from "@/types/contentTypes";
+export async function getPageBySlug(slug: string, lang: string, parameters = {}): Promise<{ data?: ApiPagePage[], error?: Error }> {
 
     const path = `/pages`;
     const urlParamsObject = {

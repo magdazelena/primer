@@ -1,5 +1,5 @@
-export interface APIResponse {
-    data: unknown[];
+export interface APIResponse<T> {
+    data: T;
     meta: Meta
 }
 export interface Pagination{

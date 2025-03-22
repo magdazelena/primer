@@ -1,6 +1,7 @@
 import qs from "qs";
 import { getStrapiURL } from "./api-helpers";
 import { i18n, Locale } from "../../i18n-config";
+import { APIResponse } from "../types/api";
 
 export interface URLParamsObject {
   populate?: unknown;
@@ -14,13 +15,13 @@ export interface URLParamsObject {
   }
   locale?: string;
 }
-export async function fetchAPI(
+export async function fetchAPI<T>(
   path: string,
   urlParamsObject: URLParamsObject = {
     locale: i18n.defaultLocale,
   },
-  options = {}
-) {
+  options: Record<string, unknown> = {}
+): Promise<APIResponse<T>> {
 
     const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
     const defaultOptions = Object.keys(options).length === 0 ?{ headers: { Authorization: `Bearer ${token}` } }: options;
@@ -48,9 +49,8 @@ export async function fetchAPI(
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error(error);
     throw new Error(
-      `Please check if your server is running and you set all the required tokens.`
+      `Please check if your server is running and you set all the required tokens.`, { cause: error }
     );
   }
 }

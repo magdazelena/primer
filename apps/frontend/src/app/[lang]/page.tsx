@@ -18,7 +18,7 @@ export default async function RootRoute(props: {
 
   const contentSections = page.data[0].contentSections;
   if (!contentSections || contentSections.length === 0) return null;
-  return contentSections.map((section: any, index: number) =>
+  return contentSections.map((section: { __component: string }, index: number) =>
     componentResolver(section, index)
   );
 }

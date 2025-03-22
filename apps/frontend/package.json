@@ -12,7 +12,8 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "e2e": "cypress run",
-    "e2e:open": "cypress open"
+    "e2e:open": "cypress open",
+    "copystrapitypes": "node src/types/utils/copyStrapiTypes.js"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.6.0",
@@ -37,6 +38,7 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^15.2.3",
+    "@strapi/strapi": "^5.11.3",
     "@testing-library/cypress": "^10.0.1",
     "@types/eslint-plugin-tailwindcss": "^3",
     "@types/jest": "^29.5.14",

@@ -12,8 +12,10 @@ import Navbar from "@/components/Navbar";
 import { NotFound } from "./404";
 import { GLOBAL_LAYOUT_QUERY } from "@/api/shared-params";
 import { getCategories } from "../../api/requests/get-all-categories";
-
-async function getGlobal(lang: string): Promise<any> {
+import { APIResponse } from "../../types/api";
+import { GlobalLayoutQuery } from "@/api/shared-params/page";
+import { LayoutLogo } from "@/types/components";
+async function getGlobal(lang: string): Promise<APIResponse<GlobalLayoutQuery>> {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 
   if (!token)
@@ -42,8 +44,8 @@ export async function generateMetadata(props: {
     console.error("Error fetching metadata: ", error);
     return {};
   }
+  if (!global?.data?.meta) return FALLBACK_SEO;
 
-  if (!global.data?.meta) return FALLBACK_SEO;
   const { metadata, favicon } = global.data.meta;
   const { url } = favicon;
 
@@ -64,7 +66,7 @@ export default async function RootLayout(props: {
   try {
     params = await props.params;
   } catch (error) {
-    console.error("Couldn't load params");
+    console.error("Couldn't load params", error);
   }
 
   const { children } = props;
@@ -76,7 +78,7 @@ export default async function RootLayout(props: {
     console.error("Layout.tsx: ", error);
     return <NotFound params={params} />;
   }
-  if (!global.data) return <NotFound params={params} />;
+  if (!global?.data) return <NotFound params={params} />;
   const categories = await getCategories(params.lang);
 
   const { notificationBanner, navbar, footer } = global.data;
