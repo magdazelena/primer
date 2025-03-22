@@ -32,7 +32,7 @@
                 "test": {
                     "executor": "@nx/jest:jest",
                     "options": {
-                      "jestConfig": "apps/frontend/jest.config.js",
+                      "jestConfig": "apps/frontend/jest.config.ts",
                       "passWithNoTests": true,
                       "preset": "apps/frontend/jest-preset.json"
                     }
