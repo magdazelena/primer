@@ -14,7 +14,6 @@ import { GLOBAL_LAYOUT_QUERY } from "@/api/shared-params";
 import { getCategories } from "../../api/requests/get-all-categories";
 import { APIResponse } from "../../types/api";
 import { GlobalLayoutQuery } from "@/api/shared-params/page";
-import { LayoutLogo } from "@/types/components";
 async function getGlobal(lang: string): Promise<APIResponse<GlobalLayoutQuery>> {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 
