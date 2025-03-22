@@ -75,7 +75,7 @@ const Dropdown = ({
     } else {
       setMenuOpen(true); // Ensure the menu stays open if it's the active one
     }
-  }, [activeMenu]);
+  }, [activeMenu, basePath]);
 
   const closeSubmenu = () => {
     setMenuOpen(false);
