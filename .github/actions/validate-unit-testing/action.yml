@@ -16,6 +16,11 @@ runs:
           ~/.cache/yarn
           node_modules
         key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+    - name: Print cache key
+      shell: bash
+      run: |
+        echo "Cache key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}"
+
     - name: Run tests
       shell: bash
       run: yarn test

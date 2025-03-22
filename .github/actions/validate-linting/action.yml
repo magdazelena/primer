@@ -9,14 +9,14 @@ inputs:
 runs:
   using: composite
   steps:
-  - name: Restore cache Yarn
+    - name: Restore cache Yarn
       uses: actions/cache@v3
       with:
         path: |
           ~/.cache/yarn
           node_modules
         key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-    
+
     - name: Run eslint
       shell: bash
       run: yarn lint

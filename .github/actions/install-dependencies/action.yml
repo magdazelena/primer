@@ -15,15 +15,21 @@ runs:
         node-version: 20.5.0
         token: ${{ inputs.github-token }}
 
+    - name: Cache node modules
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cache/yarn
+          node_modules
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - name: Print cache key
+      shell: bash
+      run: |
+        echo "Cache key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}"
+
     - name: Install dependencies
       shell: bash
       run: |
         echo "//npm.pkg.github.com/:_authToken=${{ inputs.github-token }}" > ./.npmrc
         yarn install 
-    - name: Cache Yarn
-      uses: actions/cache@v3
-      with:
-        path: .yarn/cache
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
