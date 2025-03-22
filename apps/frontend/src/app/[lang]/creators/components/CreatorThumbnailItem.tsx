@@ -12,18 +12,18 @@ const CreatorThumbnailListItem = ({ creator }: { creator: Creator }) => {
       href={`/creators/${slug}`}
       key={creator.id}
       className="
-           group col-span-12 sm:col-span-1 lg:mr-3 mb-5 hover:no-underline focus:no-underline w-[300px] xl:min-w-[375px] rounded-2xl overflow-hidden shadow-lg"
+           group col-span-12 mb-5 w-[300px] overflow-hidden rounded-2xl shadow-lg hover:no-underline focus:no-underline sm:col-span-1 lg:mr-3 xl:min-w-[375px]"
     >
       {imageUrl && (
         <Image
           alt="presentation"
           width="240"
           height="240"
-          className="object-cover w-full h-44 "
+          className="h-44 w-full object-cover "
           src={imageUrl}
         />
       )}
-      <div className="p-6 space-y-2 relative">
+      <div className="relative space-y-2 p-6">
         <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">
           {name}
         </h3>

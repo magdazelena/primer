@@ -14,23 +14,23 @@ const ProductThumbnail = ({ product }: { product: Product }) => {
     <Link
       href={`/products/${category?.slug}/${product.slug}`}
       key={product.id}
-      className="max-w-sm mb-3 lg:mr-8 group hover:no-underline focus:no-underline w-[250px] lg:w-[300px] xl:min-w-[375px] rounded-2xl overflow-hidden shadow-lg"
+      className="group mb-3 w-[250px] max-w-sm overflow-hidden rounded-2xl shadow-lg hover:no-underline focus:no-underline lg:mr-8 lg:w-[300px] xl:min-w-[375px]"
     >
       {imageUrl && (
         <Image
           alt="presentation"
           width="240"
           height="240"
-          className="object-cover w-full h-44 "
+          className="h-44 w-full object-cover "
           src={imageUrl}
         />
       )}
-      <div className="p-6 space-y-2 relative text-dark">
+      <div className="relative space-y-2 p-6 text-dark">
         <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">
           {product.name}
         </h3>
 
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           <h4 className="font-bold">
             {product.retailPrice.toFixed(2)}
           </h4>

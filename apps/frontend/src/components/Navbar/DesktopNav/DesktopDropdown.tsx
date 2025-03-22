@@ -18,14 +18,14 @@ const DesktopDropdown = ({
   const renderMenu = (category: Category | ProductCategory) => {
     const url = `${basePath}/${category.slug}`;
     return (
-      <li key={category.id} className="relative group">
+      <li key={category.id} className="group relative">
         <NavLink
           text={category.name}
           url={url}
           className="block px-4 py-2 hover:bg-gray-100"
         />
         {category.children?.length ? (
-          <ul className="relative w-full hidden group-hover:block">
+          <ul className="relative hidden w-full group-hover:block">
             {category.children.map(
               (childCategory: Category | ProductCategory) =>
                 renderMenu(childCategory)
@@ -36,15 +36,15 @@ const DesktopDropdown = ({
     );
   };
   return (
-    <li className="relative group">
+    <li className="group relative">
       <NavLink
         url={url || basePath}
         text={title}
         className="block px-4 py-2 hover:bg-gray-200"
       />
       {categories?.length > 0 && (
-        <ul className="fixed left-0 p-5 w-full hidden group-hover:flex top-level bg-light shadow-lg">
-          <span className="block h-[2px] w-full bg-dark mb-5"></span>
+        <ul className="top-level fixed left-0 hidden w-full bg-light p-5 shadow-lg group-hover:flex">
+          <span className="mb-5 block h-[2px] w-full bg-dark"></span>
           {categories.map((category: Category | ProductCategory) =>
             renderMenu(category)
           )}

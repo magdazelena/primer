@@ -15,11 +15,11 @@ export default function Navbar({
   categories: { productCategories: Array<any>; blogCategories: Array<any> };
 }) {
   return (
-    <div className={`p-4 text-dark fixed top-0 left-0 w-full nav`}>
-      <div className="container flex justify-between h-16 mx-auto px-0 sm:px-6">
+    <div className={`nav fixed left-0 top-0 w-full p-4 text-dark`}>
+      <div className="container mx-auto flex h-16 justify-between px-0 sm:px-6">
         <Logo src={logoUrl}>
           {logoText && (
-            <h2 className="text-2xl text-dark font-display">{logoText}</h2>
+            <h2 className="font-display text-2xl text-dark">{logoText}</h2>
           )}
         </Logo>
 

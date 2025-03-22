@@ -21,9 +21,9 @@ export interface Card {
 export default function CardGroup({ data }: CardGroup) {
   const { title, type, cards } = data;
   return (
-    <div className="w-full text-center p-10">
-      {title && <h2 className="font-bold text-2xl">{title}</h2>}
-      <div className="flex justify-evenly pt-10 flex-wrap">
+    <div className="w-full p-10 text-center">
+      {title && <h2 className="text-2xl font-bold">{title}</h2>}
+      <div className="flex flex-wrap justify-evenly pt-10">
         {cards.map((card) => {
           const extendedCard = {
             __component: `elements.card-${type}`,

@@ -26,8 +26,8 @@ const DesktopNav = ({
     });
   };
   return (
-    <div className="items-center hidden lg:flex ">
-      <ul className="items-stretch hidden space-x-3 lg:flex">
+    <div className="hidden items-center lg:flex ">
+      <ul className="hidden items-stretch space-x-3 lg:flex">
         {links.map((item: NavLink) => {
           if (item.url === "/products") {
             return renderProductTopLevelCategories();

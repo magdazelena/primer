@@ -20,14 +20,14 @@ export default function Post({ data }: { data: Article }) {
           alt="article cover image"
           width={400}
           height={400}
-          className="w-full h-96 object-cover rounded-lg"
+          className="h-96 w-full rounded-lg object-cover"
         />
       )}
       <div className="space-y-6">
         <p className="text-lg italic">{description}</p>
         <hr />
-        <h1 className="leading-tight text-5xl font-bold ">{title}</h1>
-        <div className="flex flex-col items-start justify-between w-full md:flex-row md:items-center text-accentDarkDark">
+        <h1 className="text-5xl font-bold leading-tight ">{title}</h1>
+        <div className="text-accentDarkDark flex w-full flex-col items-start justify-between md:flex-row md:items-center">
           <div className="flex items-center md:space-x-2">
             {creatorImgUrl && (
               <Image
@@ -35,7 +35,7 @@ export default function Post({ data }: { data: Article }) {
                 alt="article cover image"
                 width={400}
                 height={400}
-                className="w-14 h-14 border rounded-full bg-accentDarkDark/50 border-accentDarkDark"
+                className="bg-accentDarkDark/50 border-accentDarkDark size-14 rounded-full border"
               />
             )}
             <p className="text-md text-dark">
@@ -45,7 +45,7 @@ export default function Post({ data }: { data: Article }) {
         </div>
       </div>
 
-      <div className="text-dark max-w-[1000px] pb-5">
+      <div className="max-w-[1000px] pb-5 text-dark">
         {data.blocks &&
           data.blocks.map((section: any, index: number) =>
             componentResolver(section, index)

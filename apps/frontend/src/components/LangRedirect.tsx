@@ -6,26 +6,26 @@ import HighlightedText from "./HighlightedText";
 export default function LangRedirect() {
   return (
     <section className="bg-dark text-light">
-      <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
-        <div className="flex flex-col justify-center p-6 text-center rounded-lg lg:max-w-md xl:max-w-lg lg:text-left">
+      <div className="container mx-auto flex flex-col justify-center p-6 sm:py-12 lg:flex-row lg:justify-between lg:py-24">
+        <div className="flex flex-col justify-center rounded-lg p-6 text-center lg:max-w-md lg:text-left xl:max-w-lg">
           <HighlightedText
             text="There is no content available in your language."
             tag="h1"
-            className="text-5xl font-bold leading-none sm:text-4xl mb-8"
+            className="mb-8 text-5xl font-bold leading-none sm:text-4xl"
             color="text-dark/50"
           />
 
-          <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
+          <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-center sm:space-x-4 sm:space-y-0 lg:justify-start">
             <Link href="/en" className={renderButtonStyle("primary")}>
               Back To English
             </Link>
           </div>
         </div>
-        <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
+        <div className="xl:h-112 2xl:h-128 mt-8 flex h-72 items-center justify-center p-6 sm:h-80 lg:mt-0 lg:h-96">
           <Image
             src="https://images.pexels.com/photos/409701/pexels-photo-409701.jpeg"
             alt="city view"
-            className="object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 "
+            className="xl:h-112 2xl:h-128 h-72 object-contain sm:h-80 lg:h-96 "
             width={600}
             height={600}
           />

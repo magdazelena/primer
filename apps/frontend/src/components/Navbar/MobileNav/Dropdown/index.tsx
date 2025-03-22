@@ -113,7 +113,7 @@ const Dropdown = ({
       </div>
 
       <div
-        className={`dropdown-content space-y-2 pl-5 top-level ${
+        className={`dropdown-content top-level space-y-2 pl-5 ${
           menuOpen ? "active" : "hidden"
         } `}
       >

@@ -19,7 +19,7 @@ const CategoryThumbnail = ({
   return (
     <Link
       href={`${basePath}/${categorySlug}`}
-      className={`flex p-3 m-3 text-center rounded-lg w-full min-h-20 lg:h-36 lg:w-36 hover:no-underline justify-center items-center transition-all duration-300 ${selectedFilter(
+      className={`m-3 flex min-h-20 w-full items-center justify-center rounded-lg p-3 text-center transition-all duration-300 hover:no-underline lg:size-36 ${selectedFilter(
         categorySlug,
         selected
       )}`}

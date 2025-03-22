@@ -28,7 +28,7 @@ const ImageSlider = ({ images }: { images: Image[] }) => {
     };
   });
   return (
-    <div className="w-full lg:max-w-3xl m-auto">
+    <div className="m-auto w-full lg:max-w-3xl">
       <Lightbox
         index={index}
         slides={slides}

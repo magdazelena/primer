@@ -29,7 +29,7 @@ export default function Products() {
           <div className="flex justify-center">
             <button
               type="button"
-              className="px-6 py-3 text-sm rounded-lg hover:underline bg-accentDark text-light"
+              className="rounded-lg bg-accentDark px-6 py-3 text-sm text-light hover:underline"
               onClick={loadMore}
             >
               Load more products...

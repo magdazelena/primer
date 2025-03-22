@@ -31,7 +31,7 @@ export default async function LayoutRoute(props: {
         parentCategory.slug
       );
       return (
-        <section className="container p-8 mx-auto space-y-6 sm:space-y-12">
+        <section className="container mx-auto space-y-6 p-8 sm:space-y-12">
           <div>
             {children}
             <ProductSelect
@@ -46,7 +46,7 @@ export default async function LayoutRoute(props: {
   }
 
   return (
-    <section className="container p-8 mx-auto space-y-6 sm:space-y-12">
+    <section className="container mx-auto space-y-6 p-8 sm:space-y-12">
       <div>
         {children}
         <ProductSelect

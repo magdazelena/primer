@@ -13,8 +13,8 @@ interface EmailProps {
 
 export default function Email({ data }: { data: EmailProps }) {
   return (
-    <section className="py-6 bg-dark text-gray-50">
-      <div className="container mx-auto flex flex-col justify-center p-4 space-y-8 md:p-10 lg:space-y-0 lg:space-x-12 lg:justify-between lg:flex-row">
+    <section className="bg-dark py-6 text-gray-50">
+      <div className="container mx-auto flex flex-col justify-center space-y-8 p-4 md:p-10 lg:flex-row lg:justify-between lg:space-x-12 lg:space-y-0">
         <div className="flex flex-col space-y-4 text-center lg:text-left">
           <h1 className="text-5xl font-bold leading-none">{data.title}</h1>
           <p className="text-lg">{data.description}</p>

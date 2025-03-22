@@ -1,7 +1,7 @@
 import { fetchAPI } from "../fetch-api";
 
 interface SEOdata {
-    shareImage: Object,
+    shareImage: object,
     metaTitle: string,
     metaDescription: string
 }

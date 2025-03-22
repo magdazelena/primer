@@ -46,11 +46,11 @@ export default function FormSubmit({
   }
 
   return (
-    <div className="flex flex-row items-center self-center justify-center flex-shrink-0 shadow-md lg:justify-end">
+    <div className="flex shrink-0 flex-row items-center justify-center self-center shadow-md lg:justify-end">
       <div className="flex flex-col">
         <div className="flex flex-row">
           {successMessage ? (
-            <p className="text-green-700 bg-green-300 px-4 py-2 rounded-lg">
+            <p className="rounded-lg bg-green-300 px-4 py-2 text-green-700">
               {successMessage}
             </p>
           ) : (
@@ -60,11 +60,11 @@ export default function FormSubmit({
                 placeholder={errorMessage || placeholder}
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
-                className={"w-3/5 p-3 rounded-l-lg sm:w-2/3 text-dark"}
+                className={"w-3/5 rounded-l-lg p-3 text-dark sm:w-2/3"}
               />
               <button
                 type="button"
-                className="w-2/5 p-3 font-semibold rounded-r-lg sm:w-1/3 bg-accentDark text-light"
+                className="w-2/5 rounded-r-lg bg-accentDark p-3 font-semibold text-light sm:w-1/3"
                 onClick={handleSubmit}
               >
                 {text}
@@ -74,7 +74,7 @@ export default function FormSubmit({
         </div>
 
         {errorMessage && (
-          <p className="text-red-500 bg-red-200 px-4 py-2 rounded-lg my-2">
+          <p className="my-2 rounded-lg bg-red-200 px-4 py-2 text-red-500">
             {errorMessage}
           </p>
         )}

@@ -22,13 +22,13 @@ interface TestimonialsProps {
 function Testimonial({ text, authorName, picture }: Readonly<Testimonial>) {
   const imageUrl = getStrapiMedia(picture.url);
   return (
-    <div className="flex flex-col items-center mx-12 lg:mx-0">
+    <div className="mx-12 flex flex-col items-center lg:mx-0">
       <div className="flex items-center">
         <div className="my-6">
           <Image
             src={imageUrl ?? ""}
             alt={picture.alternativeText || "none provided"}
-            className="inline-block h-32 w-32 rounded-full"
+            className="inline-block size-32 rounded-full"
             width={200}
             height={200}
           />
@@ -39,7 +39,7 @@ function Testimonial({ text, authorName, picture }: Readonly<Testimonial>) {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 512 512"
           fill="currentColor"
-          className="absolute top-0 left-0 w-8 h-8 text-dark"
+          className="absolute left-0 top-0 size-8 text-dark"
         >
           <path d="M232,246.857V16H16V416H54.4ZM48,48H200V233.143L48,377.905Z"></path>
           <path d="M280,416h38.4L496,246.857V16H280ZM312,48H464V233.143L312,377.905Z"></path>
@@ -49,13 +49,13 @@ function Testimonial({ text, authorName, picture }: Readonly<Testimonial>) {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 512 512"
           fill="currentColor"
-          className="absolute bottom-0 right-0 w-8 h-8 text-dark"
+          className="absolute bottom-0 right-0 size-8 text-dark"
         >
           <path d="M280,185.143V416H496V16H457.6ZM464,384H312V198.857L464,54.1Z"></path>
           <path d="M232,16H193.6L16,185.143V416H232ZM200,384H48V198.857L200,54.1Z"></path>
         </svg>
       </div>
-      <span className="w-12 h-1 my-2 rounded-lg bg-accentDark"></span>
+      <span className="my-2 h-1 w-12 rounded-lg bg-accentDark"></span>
       <p>{authorName}</p>
     </div>
   );
@@ -63,14 +63,14 @@ function Testimonial({ text, authorName, picture }: Readonly<Testimonial>) {
 
 export default function Testimonials( data : TestimonialsProps) {
   return (
-    <section className="bg-accentDarkDark text-dark  m:py-12 lg:py-24">
-      <div className="container mx-auto py-4 space-y-2 text-center">
-        <h1 className="text-4xl font-semibold leading-none text-center">
+    <section className="bg-accentDarkDark m:py-12  text-dark lg:py-24">
+      <div className="container mx-auto space-y-2 py-4 text-center">
+        <h1 className="text-center text-4xl font-semibold leading-none">
           {data.title}
         </h1>
-        <p className="mt-4 text-lg text-center">{data.description}</p>
+        <p className="mt-4 text-center text-lg">{data.description}</p>
       </div>
-      <div className="container mx-auto grid grid-cols-1 gap-8 lg:gap-20 md:px-10 md:pb-10 lg:grid-cols-2">
+      <div className="container mx-auto grid grid-cols-1 gap-8 md:px-10 md:pb-10 lg:grid-cols-2 lg:gap-20">
         {data.testimonials.map((testimonial: Testimonial, index: number) => (
           <Testimonial key={index} {...testimonial} />
         ))}

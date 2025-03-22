@@ -99,7 +99,7 @@ export default async function RootLayout(props: {
           logoText={navbar.navbarLogo.logoText}
         />
 
-        <main className="text-dark min-h-screen">{children}</main>
+        <main className="min-h-screen text-dark">{children}</main>
 
         <Banner data={notificationBanner} />
 

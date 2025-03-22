@@ -9,8 +9,8 @@ export default function PostList({
   children?: React.ReactNode;
 }) {
   return (
-    <section className="container p-6 mx-auto space-y-6 sm:space-y-12">
-      <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <section className="container mx-auto space-y-6 p-6 sm:space-y-12">
+      <div className="grid grid-cols-1 justify-center gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {articles.map((article) => (
           <ArticleThumbnail key={article.id} article={article} />
         ))}

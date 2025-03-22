@@ -23,12 +23,12 @@ const MobileNav = ({
         <HamburgerIcon isOpen={mobileMenuOpen} />
       </button>
       <div
-        className={`lg:hidden fixed left-0 ${
+        className={`fixed left-0 lg:hidden ${
           mobileMenuOpen ? "mobile-nav-open" : "mobile-nav-closed"
         }`}
       >
         <div
-          className={`fixed  w-full  overflow-y-auto bg-light px-6 py-6 sm:ring-1 sm:ring-inset sm:ring-light/10 border-t-2 border-b-2 border-dark text-lg `}
+          className={`fixed  w-full  overflow-y-auto border-y-2 border-dark bg-light p-6 text-lg sm:ring-1 sm:ring-inset sm:ring-light/10 `}
         >
           <div className="space-y-2 ">
             {links.map((item: NavLink) => {

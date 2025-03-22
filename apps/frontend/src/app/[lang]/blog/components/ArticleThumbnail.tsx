@@ -18,25 +18,25 @@ const ArticleThumbnail = ({ article }: { article: Article }) => {
       href={`/blog/${category?.slug}/${article.slug}`}
       key={article.id}
       className="
-       group mr-3 mb-5 hover:no-underline focus:no-underline w-[300px] xl:min-w-[375px] rounded-2xl overflow-hidden shadow-lg"
+       group mb-5 mr-3 w-[300px] overflow-hidden rounded-2xl shadow-lg hover:no-underline focus:no-underline xl:min-w-[375px]"
     >
       {imageUrl && (
         <Image
           alt="presentation"
           width="240"
           height="240"
-          className="object-cover w-full h-44 "
+          className="h-44 w-full object-cover "
           src={imageUrl}
         />
       )}
-      <div className="p-6 space-y-2 relative">
+      <div className="relative space-y-2 p-6">
         {avatarUrl && (
           <Image
             alt="avatar"
             width="80"
             height="80"
             src={avatarUrl}
-            className="rounded-full h-16 w-16 object-cover absolute -top-8 right-4"
+            className="absolute -top-8 right-4 size-16 rounded-full object-cover"
           />
         )}
 
@@ -44,7 +44,7 @@ const ArticleThumbnail = ({ article }: { article: Article }) => {
           {article.title}
         </h3>
 
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           <span className="text-xs text-accentDark">
             {formatDate(article.publishedAt)}
           </span>

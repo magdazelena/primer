@@ -24,7 +24,7 @@ export default function Creators() {
   return (
     <div>
       <PageHeader heading="Creators" text="Meet our creators" />
-      <section className="container p-6 mx-auto space-y-6 sm:space-y-12">
+      <section className="container mx-auto space-y-6 p-6 sm:space-y-12">
         <div className="grid justify-center gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {creators.map((creator: Creator) => (
             <CreatorThumbnailListItem key={creator.id} creator={creator} />
@@ -34,7 +34,7 @@ export default function Creators() {
           <div className="flex justify-center">
             <button
               type="button"
-              className="px-6 py-3 text-sm rounded-lg hover:underline bg-accentDark text-light"
+              className="rounded-lg bg-accentDark px-6 py-3 text-sm text-light hover:underline"
               onClick={loadMore}
             >
               Load more creators...

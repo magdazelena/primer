@@ -7,12 +7,12 @@ const CreatorView = ({ creator }: { creator: Creator }) => {
   const { avatar, name, bio, lead, email } = creator;
   const imageUrl = getStrapiMedia(avatar.url);
   return (
-    <article className="grid grid-cols-3 lg:gap-20 text-dark">
+    <article className="grid grid-cols-3 text-dark lg:gap-20">
       <div className="col-span-12 lg:col-span-2 ">
-        <h1 className="leading-tight text-5xl font-bold ">{name}</h1>
-        <p className="text-lg italic py-5">{lead}</p>
+        <h1 className="text-5xl font-bold leading-tight ">{name}</h1>
+        <p className="py-5 text-lg italic">{lead}</p>
         <hr className="mb-5 h-[2px] bg-dark" />
-        <div className="text-dark max-w-[1000px] rich-text">
+        <div className="rich-text max-w-[1000px] text-dark">
           <BlocksRenderer content={bio} />
           {email && (
             <>
@@ -28,7 +28,7 @@ const CreatorView = ({ creator }: { creator: Creator }) => {
             alt="article cover image"
             width={400}
             height={400}
-            className="w-full h-96 object-cover rounded-lg"
+            className="h-96 w-full rounded-lg object-cover"
           />
         )}
       </div>

@@ -12,7 +12,7 @@ export default function HighlightedText({
   color,
 }: HighlightedTextProps) {
   const tempText = text.split(" ");
-  let result = [];
+  const result = [];
 
   result.push(`<${tag} class="${className ? className : ""}">`);
 

@@ -25,7 +25,7 @@ export default function VideoEmbed({ data }: { data: VideoEmbedProps }) {
   if (!embedUrl) return <div>Invalid video URL</div>;
 
   return (
-    <div className="video-embed relative pb-56.25 h-72 lg:h-[450px] overflow-hidden my-8">
+    <div className="video-embed pb-56.25 relative my-8 h-72 overflow-hidden lg:h-[450px]">
       <iframe
         title="video"
         src={embedUrl || ""}
@@ -33,7 +33,7 @@ export default function VideoEmbed({ data }: { data: VideoEmbedProps }) {
         height={data.height || "100%"}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
-        className="absolute top-0 left-0 w-full h-full"
+        className="absolute left-0 top-0 size-full"
       />
     </div>
   );

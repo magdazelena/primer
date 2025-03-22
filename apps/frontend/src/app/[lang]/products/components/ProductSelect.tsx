@@ -20,13 +20,13 @@ export default function ProductSelect({
     params["product-category"]
   );
   return (
-    <div className="p-4 rounded-lg  min-h-[365px] relative">
+    <div className="relative min-h-[365px]  rounded-lg p-4">
       <h4 className="text-xl font-semibold">
         See products in other categories
       </h4>
 
       <div>
-        <div className="flex flex-wrap py-6 space-x-2 border-accentDark">
+        <div className="flex flex-wrap space-x-2 border-accentDark py-6">
           {categories.map((productCategory: ProductCategory) => {
             if (productCategory.products.length === 0)
               return null;

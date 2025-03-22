@@ -17,7 +17,7 @@ export default function ArticleSelect({
 }) {
   const parentCategory = findParentCategory(categories, params["category"]);
   return (
-    <div className="col-span-12 p-4 min-h-[365px] relative">
+    <div className="relative col-span-12 min-h-[365px] p-4">
       <h4 className="text-xl font-semibold">Browse By Category</h4>
 
       <div>

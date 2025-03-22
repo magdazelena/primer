@@ -22,7 +22,7 @@ export default async function LayoutRoute(
     params.slug
   );
   return (
-    <section className="container p-8 mx-auto space-y-6 sm:space-y-12">
+    <section className="container mx-auto space-y-6 p-8 sm:space-y-12">
       <div>{children}</div>
       {articles.length > 0 && <ArticleCarousel articles={articles} />}
       {products.length > 0 && <ProductCarousel products={products} />}
