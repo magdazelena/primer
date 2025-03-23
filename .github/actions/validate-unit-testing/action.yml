@@ -11,7 +11,7 @@ runs:
   steps:
     - name: Run tests
       shell: bash
-      run: nx report --verbose
+      run: npx nx report --verbose
     - name: Run tests
       shell: bash
       run: yarn test
