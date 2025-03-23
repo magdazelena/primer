@@ -31,6 +31,8 @@ jobs:
         uses: ./.github/actions/install-dependencies
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run tests
+        run: npx nx run backend:test --passWithNoTests --verbose
 
 
 
@@ -77,6 +79,15 @@ jobs:
             apps/backend/node_modules
             .nx/
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install dependencies
+        run: |
+          cd apps/backend
+          yarn install
+
+      - name: Run tests
+        run: npx nx run backend:test --passWithNoTests --verbose
+
 
       - name: Run unit tests
         uses: ./.github/actions/validate-unit-testing
