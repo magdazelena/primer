@@ -13,6 +13,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Clear Nx cache
+        run: rm -rf .nx/
+
       - name: Cache node modules
         uses: actions/cache@v3
         with:
@@ -21,6 +24,7 @@ jobs:
             node_modules
             apps/frontend/node_modules
             apps/backend/node_modules
+            .nx/
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install dependencies
@@ -28,17 +32,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Clear Nx cache
-        run: rm -rf .nx/
 
-      - name: Run Nx report
-        run: npx nx report
-
-      - name: List project structure
-        run: tree apps/backend
-
-      - name: List .nx directory
-        run: ls -la .nx/
 
   linting:
     name: Validate linting
@@ -57,6 +51,7 @@ jobs:
             node_modules
             apps/frontend/node_modules
             apps/backend/node_modules
+            .nx/
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
       - name: Check linting
@@ -80,6 +75,7 @@ jobs:
             node_modules
             apps/frontend/node_modules
             apps/backend/node_modules
+            .nx/
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
       - name: Run unit tests
@@ -128,39 +124,4 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           pr-url: ${{ github.event.pull_request.html_url }}
 
-  run-tests:
-    name: Run tests
-    runs-on: ubuntu-latest
-    needs: [install]
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
 
-      - name: Restore node modules cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cache/yarn
-            node_modules
-            apps/frontend/node_modules
-            apps/backend/node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-
-      - name: Install dependencies
-        run: |
-          cd apps/backend
-          yarn install
-
-      - name: Run tests
-        run: npx nx run backend:test --passWithNoTests --verbose
-
-      - name: Cache Nx folder
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cache/yarn
-            node_modules
-            apps/frontend/node_modules
-            apps/backend/node_modules
-            .nx/
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
