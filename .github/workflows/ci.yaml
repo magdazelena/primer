@@ -1,138 +1,99 @@
-name: CI
+name: CI/CD Pipeline
 
 on:
   push:
     branches:
-      - "**"
+      - main
+  pull_request:
 
 jobs:
-  install:
-    name: Install dependencies
+  setup:
+    name: Setup & Cache Dependencies
     runs-on: ubuntu-latest
+    outputs:
+      affected: ${{ steps.affected.outputs.affected_targets }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Clear Nx cache
-        run: rm -rf .nx/
-
-      - name: Cache node modules
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cache/yarn
-            node_modules
-            apps/frontend/node_modules
-            apps/backend/node_modules
-            .nx/
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-
-      - name: Install dependencies
-        uses: ./.github/actions/install-dependencies
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Run tests
-        run: npx nx run backend:test --passWithNoTests --verbose
-
-
-
-  linting:
-    name: Validate linting
-    runs-on: ubuntu-latest
-    needs: install
-    if: ${{ github.event_name == 'push' }}
-    steps:
-      - name: Check out repository code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Restore node modules cache
-        uses: actions/cache@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          path: |
-            ~/.cache/yarn
-            node_modules
-            apps/frontend/node_modules
-            apps/backend/node_modules
-            .nx/
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          node-version: 20.5
+          cache: 'yarn'
 
-      - name: Check linting
-        uses: ./.github/actions/validate-linting
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Cache Nx
+        uses: actions/cache@v4
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }} 
+          path: node_modules/.cache/nx
+          key: ${{ runner.os }}-nx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-nx-
 
-  unit-tests:
-    name: Run unit tests
-    runs-on: ubuntu-latest
-    needs: [install]
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
-
-      - name: Restore node modules cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cache/yarn
-            node_modules
-            apps/frontend/node_modules
-            apps/backend/node_modules
-            .nx/
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-
-      - name: Install dependencies
+      - name: Compute Affected Targets
+        id: affected
         run: |
-          cd apps/backend
-          yarn install
+          echo "affected_targets=$(npx nx print-affected --base=origin/main --type=app --select=projects)" >> $GITHUB_ENV
 
-      - name: Run tests
-        run: npx nx run backend:test --passWithNoTests --verbose
-
-
-      - name: Run unit tests
-        uses: ./.github/actions/validate-unit-testing
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
-  e2e-tests:
-    name: Run e2e tests
+  lint:
+    name: Lint Code
+    needs: setup
     runs-on: ubuntu-latest
-    needs: [install, unit-tests]
     steps:
-      - name: Check out repository code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Restore node modules cache
-        uses: actions/cache@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          path: |
-            ~/.cache/yarn
-            node_modules
-            apps/frontend/node_modules
-            apps/backend/node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          node-version: 20.5
+          cache: 'yarn'
 
-      - name: Run e2e tests
-        uses: ./.github/actions/validate-e2e
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
 
-  dependabot:
-    name: Dependabot
+      - name: Lint Frontend & Backend
+        run: npx nx affected --target=lint --base=origin/main
+
+  test:
+    name: Run Unit Tests
+    needs: setup
     runs-on: ubuntu-latest
-    needs: [linting, unit-tests, e2e-tests, install]
-    if: ${{ github.actor == 'dependabot[bot]' }}
-    permissions:
-      contents: write
-      pull-requests: write
     steps:
-      - name: Check out repository code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run action
-        uses: ./.github/actions/dependabot-automerge
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          pr-url: ${{ github.event.pull_request.html_url }}
+          node-version: 20.5
+          cache: 'yarn'
 
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
 
+      - name: Run Unit Tests (Backend & Frontend)
+        run: npx nx affected --target=test --base=origin/main --configuration=ci
+
+  e2e:
+    name: Run Frontend E2E Tests
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.5
+          cache: 'yarn'
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Run E2E Tests (Frontend Only)
+        run: npx nx affected --target=e2e --base=origin/main
