@@ -29,10 +29,10 @@
   "devDependencies": {
     "@eslint/eslintrc": "^2.1.4",
     "@eslint/js": "^8.56.0",
-    "@nx/eslint": "20.4.6",
+    "@nx/eslint": "20.5.0",
     "@nx/jest": "20.5.0",
     "@nx/js": "20.5.0",
-    "@nx/next": "20.4.6",
+    "@nx/next": "20.5.0",
     "@swc-node/register": "~1.9.1",
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
