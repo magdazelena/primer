@@ -31,12 +31,6 @@ jobs:
       - name: Clear Nx cache
         run: rm -rf .nx/
 
-      - name: Print environment variables
-        run: printenv
-
-      - name: Run Nx graph
-        run: npx nx graph
-
       - name: Run Nx report
         run: npx nx report
 
