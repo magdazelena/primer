@@ -48,7 +48,7 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
       - name: Test nx
         shell: bash
-        run: npx nx affected -t lint test build e2e-ci
+        run: npx nx lint test build e2e-ci
       - name: Check linting
         uses: ./.github/actions/validate-linting
         with:
