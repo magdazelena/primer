@@ -4,7 +4,8 @@
   "projects": {
     "frontend": "apps/frontend",
     "backend": "apps/backend",
-    "cli": "cli"
+    "cli": "cli",
+    "@primer/status-manager": "apps/backend/src/plugins/status-manager"
   },
   "targetDefaults": {
     "setup": {

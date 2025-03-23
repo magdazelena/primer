@@ -54,7 +54,7 @@
             },
             "exclude": ["apps/backend/src/plugins/status-manager"]
         },
-        "status-manager": {
+        "@primer/status-manager": {
             "root": "apps/backend/src/plugins/status-manager",
             "sourceRoot": "apps/backend/src/plugins/status-manager",
             "projectType": "plugin",
