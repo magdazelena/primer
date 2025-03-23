@@ -15,7 +15,7 @@
     "lint": "nx run backend:lint && nx run frontend:lint",
     "prune": "rm -rf node_modules/ && rm -rf dist/ && rm .nx/ && yarn install",
     "setup": "yarn install",
-    "test": "nx run-many --target=test  --projects=frontend,backend --parallel --passWithNoTests",
+    "test:all": "nx run-many --target=test --parallel --passWithNoTests",
     "test:coverage": "nx run-many --target=test --coverage --projects=frontend,backend --parallel",
     "test:watch": "nx run-many --target=test --projects=frontend,backend --parallel --watch"
   },

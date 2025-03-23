@@ -14,4 +14,4 @@ runs:
       run: npx nx report --verbose
     - name: Run tests
       shell: bash
-      run: yarn test
+      run: yarn test:all

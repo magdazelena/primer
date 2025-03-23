@@ -51,21 +51,6 @@
                       "passWithNoTests": true
                     }
                   }
-            },
-            "exclude": ["apps/backend/src/plugins/status-manager"]
-        },
-        "@primer/status-manager": {
-            "root": "apps/backend/src/plugins/status-manager",
-            "sourceRoot": "apps/backend/src/plugins/status-manager",
-            "projectType": "plugin",
-            "targets": {
-                "test": {
-                    "executor": "@nx/jest:jest",
-                    "options": {
-                      "jestConfig": "apps/backend/jest.config.js",
-                      "passWithNoTests": true
-                    }
-                  }
             }
         }
     }

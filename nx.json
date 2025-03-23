@@ -4,8 +4,7 @@
   "projects": {
     "frontend": "apps/frontend",
     "backend": "apps/backend",
-    "cli": "cli",
-    "@primer/status-manager": "apps/backend/src/plugins/status-manager"
+    "cli": "cli"
   },
   "targetDefaults": {
     "setup": {
@@ -41,5 +40,8 @@
         "targetName": "jest:test"
       }
     }
+  ],
+  "exclude": [
+    "apps/backend/src/plugins/status-manager" 
   ]
 }
