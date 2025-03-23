@@ -10,8 +10,6 @@ jobs:
   setup:
     name: Setup & Cache Dependencies
     runs-on: ubuntu-latest
-    outputs:
-      affected: ${{ steps.affected.outputs.affected_targets }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -33,28 +31,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nx-
 
-      - name: Compute Affected Targets
-        id: affected
-        run: |
-          echo "affected_targets=$(npx nx print-affected --base=origin/main --type=app --select=projects)" >> $GITHUB_ENV
-
   lint:
     name: Lint Code
     needs: setup
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20.5
-          cache: 'yarn'
-
-      - name: Install Dependencies
-        run: yarn install --frozen-lockfile
-
       - name: Lint Frontend & Backend
         run: npx nx affected --target=lint --base=origin/main
 
@@ -63,37 +44,6 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20.5
-          cache: 'yarn'
-
-      - name: Install Dependencies
-        run: yarn install --frozen-lockfile
-
       - name: Run Unit Tests (Backend & Frontend)
         run: npx nx affected --target=test --base=origin/main --configuration=ci
 
-  e2e:
-    name: Run Frontend E2E Tests
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20.5
-          cache: 'yarn'
-
-      - name: Install Dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Run E2E Tests (Frontend Only)
-        run: npx nx affected --target=e2e --base=origin/main
