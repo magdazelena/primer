@@ -15,7 +15,7 @@
     "seed": "strapi import -f ./seed-data.tar.gz",
     "start": "strapi start",
     "strapi": "strapi",
-    "test": "NODE_ENV=test jest --detectOpenHandles",
+    "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
   },
