@@ -15,7 +15,7 @@
     "seed": "strapi import -f ./seed-data.tar.gz",
     "start": "strapi start",
     "strapi": "strapi",
-    "test": "jest",
+    "test": "nx jest:test",
     "test:coverage": "nx jest:test --coverage",
     "test:watch": "nx jest:test --watch"
   },

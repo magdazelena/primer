@@ -24,7 +24,7 @@
     {
       "plugin": "@nx/jest/plugin",
       "options": {
-        "targetName": "test"
+        "targetName": "jest:test"
       }
     }
   ]

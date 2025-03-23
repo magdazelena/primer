@@ -8,6 +8,7 @@
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "lint": "next lint",
     "start": "next start",
+    "test": "nx jest:test",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "e2e": "cypress run",
