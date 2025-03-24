@@ -15,7 +15,6 @@
       "!{projectRoot}/tsconfig.storybook.json"
     ],
     "eslintInputs": [
-      "{workspaceRoot}/eslint.config.mjs",
       "{projectRoot}/eslint.config.mjs",
       "{projectRoot}/**/*.@(js|jsx|ts|tsx|mdx)",
       "sharedGlobals"
