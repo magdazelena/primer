@@ -2714,10 +2714,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:^8.56.0":
-  version: 8.57.1
-  resolution: "@eslint/js@npm:8.57.1"
-  checksum: 10c0/b489c474a3b5b54381c62e82b3f7f65f4b8a5eaaed126546520bf2fede5532a8ed53212919fed1e9048dcf7f37167c8561d58d0ba4492a4244004e7793805223
+"@eslint/js@npm:^9.23.0":
+  version: 9.23.0
+  resolution: "@eslint/js@npm:9.23.0"
+  checksum: 10c0/4e70869372b6325389e0ab51cac6d3062689807d1cef2c3434857571422ce11dde3c62777af85c382b9f94d937127598d605d2086787f08611351bf99faded81
   languageName: node
   linkType: hard
 
@@ -11397,7 +11397,7 @@ __metadata:
     "@babel/core": "npm:^7.24.0"
     "@babel/preset-env": "npm:^7.24.0"
     "@babel/preset-react": "npm:^7.23.3"
-    "@eslint/js": "npm:^8.56.0"
+    "@eslint/js": "npm:^9.23.0"
     "@nx/jest": "npm:^20.6.2"
     "@strapi/helper-plugin": "npm:^4.15.5"
     "@strapi/plugin-seo": "npm:^2.0.4"
@@ -24380,7 +24380,7 @@ __metadata:
   resolution: "primer@workspace:."
   dependencies:
     "@eslint/eslintrc": "npm:^2.1.4"
-    "@eslint/js": "npm:^8.56.0"
+    "@eslint/js": "npm:^9.23.0"
     "@nx/eslint": "npm:20.4.6"
     "@nx/jest": "npm:20.4.6"
     "@nx/next": "npm:20.4.6"
