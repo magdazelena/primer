@@ -1,0 +1,87 @@
+{
+    "name": "frontend",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "apps/frontend",
+    "projectType": "application",
+    "targets": {
+      "build": {
+        "executor": "@nx/next:build",
+        "inputs": [
+          "default",
+          "production",
+          "^production",
+          {
+            "externalDependencies": ["next"]
+          }
+        ],
+        "outputs": ["{options.outputPath}"],
+        "defaultConfiguration": "production",
+        "configurations": {
+          "development": {},
+          "production": {}
+        },
+        "options": {
+          "outputPath": "dist/apps/frontend"
+        }
+      },
+      "dev": {
+        "cache": false,
+        "executor": "@nx/next:server",
+        "defaultConfiguration": "development",
+        "options": {
+          "buildTarget": "frontend:build",
+          "dev": true,
+          "port": 3000,
+          "experimentalHttps": true,
+          "turbo": true
+        },
+        "configurations": {
+          "development": {
+            "buildTarget": "frontend:build:development",
+            "dev": true
+          },
+          "production": {
+            "buildTarget": "frontend:build:production",
+            "dev": false
+          }
+        }
+      },
+      "start": {
+        "cache": false,
+        "executor": "nx:run-commands",
+        "dependsOn": [
+          {
+            "projects": "frontend",
+            "target": "build"
+          }
+        ],
+        "options": {
+          "command": "nx run frontend:dev:production"
+        }
+      },
+      "lint": {
+        "executor": "@nx/eslint:lint",
+        "outputs": ["{options.outputFile}"],
+        "options": {
+          "cache": true,
+          "cacheLocation": "{workspaceRoot}/.eslintcache",
+          "lintFilePatterns": ["{projectRoot}/**/*.{ts,tsx,js,jsx,mdx}"]
+        }
+      },
+      "test": {
+        "executor": "@nx/jest:jest",
+        "options": {
+          "jestConfig": "apps/frontend/jest.config.ts",
+          "passWithNoTests": true,
+          "preset": "apps/frontend/jest-preset.json"
+        }
+      },
+      "e2e": {
+        "executor": "@nx/cypress:cypress",
+        "options": {
+          "cypressConfig": "apps/frontend/cypress.config.ts",
+          "devServerTarget": "frontend:serve"
+        }
+      }
+    }
+  }

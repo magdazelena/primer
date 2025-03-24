@@ -101,7 +101,12 @@
             "jest",
             "next",
             "react",
-            "react-dom"
+            "react-dom",
+            "cypress",
+            "@testing-library/cypress",
+            "@testing-library/jest-dom",
+            "@testing-library/react",
+            "@types/jest"
           ]
         }
       ],
@@ -117,7 +122,5 @@
         }
       ]
     }
-  },
-  "parallel": 4,
-  "useLegacyCache": true
+  }
 }
