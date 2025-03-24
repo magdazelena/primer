@@ -40,7 +40,15 @@
     "react-icons": "^5.3.0",
     "remark-gfm": "^4.0.1",
     "typescript": "^5.3.3",
-    "yet-another-react-lightbox": "^3.21.7"
+    "yet-another-react-lightbox": "^3.21.7",
+    "@strapi/helper-plugin": "^4.15.5",
+    "@strapi/plugin-seo": "^2.0.4",
+    "@strapi/plugin-users-permissions": "^5.11.0",
+    "better-sqlite3": "^8.6.0",
+    "react-beautiful-dnd": "^13.1.1",
+    "react-router-dom": "^6.22.0",
+    "strapi-plugin-slugify": "^2.3.8",
+    "styled-components": "^6"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^2.1.4",
@@ -63,8 +71,24 @@
     "cypress": "^13.6.6",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.1",
-    "ts-jest": "^29.2.6"
+    "ts-jest": "^29.2.6",
+    "@babel/core": "^7.24.0",
+    "@babel/preset-env": "^7.24.0",
+    "@babel/preset-react": "^7.23.3",
+    "@testing-library/user-event": "^14.5.2",
+    "babel-jest": "^29.7.0",
+    "eslint": "^9.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-react": "^7.33.2",
+    "identity-obj-proxy": "^3.0.0"
   },
   "packageManager": "yarn@4.5.2",
-  "nx": {}
+  "nx": {},
+  "engines": {
+    "node": ">=18.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "0f95dc7c-202b-4ab2-a874-3799d23b1640"
+  }
 }
