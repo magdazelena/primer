@@ -49,6 +49,8 @@ describe('Status Controller', () => {
     await strapi.db.query('plugin::status-manager.status').delete({
       where: { id: mockReplacementStatus.id },
     });
+    
+    // Clean up Strapi instance
     await strapi.destroy();
   });
 

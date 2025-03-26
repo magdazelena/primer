@@ -1,0 +1,17 @@
+name: Setup Yarn
+description: "Sets up Yarn with the specified version"
+
+inputs:
+  github-token:
+    description: "GitHub Token for API access"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Yarn
+      shell: bash
+      run: |
+        corepack enable
+        yarn set version ${{ env.YARN_VERSION }}
+        yarn config set nodeLinker node-modules 
