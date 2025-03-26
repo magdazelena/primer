@@ -15,3 +15,6 @@ readme-images
 apps/frontend/cypress/screenshots
 apps/frontend/cypress/videos
 apps/frontend/cypress/downloads
+
+.tmp
+.strapi-updater.json

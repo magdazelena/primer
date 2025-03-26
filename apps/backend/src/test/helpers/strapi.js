@@ -3,23 +3,25 @@ const fs = require('fs');
 const path = require('path');
 
 async function createStrapiInstance() {
+  // Get the correct app directory path
+  const appDir = path.join(__dirname, '..', '..', '..');
+  
   // Ensure test database directory exists
-  const testDbDir = path.join(process.cwd(), '.tmp');
+  const testDbDir = path.join(appDir, '.tmp');
   if (!fs.existsSync(testDbDir)) {
     fs.mkdirSync(testDbDir, { recursive: true });
   }
 
   // Create a new Strapi instance
   const app = await createStrapi({
-    appDir: process.cwd(),
-    distDir: process.cwd(),
+    appDir,
+    distDir: appDir,
     env: 'test',
+    autoReload: false,
   });
 
-  // Load the application
+  // Register plugins
   await app.load();
-  
-  // Start the application
   await app.start();
 
   return app;

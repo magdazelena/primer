@@ -1,35 +1,33 @@
 import type { Config } from 'jest';
-import { pathsToModuleNameMapper } from 'ts-jest';
-import { compilerOptions } from './tsconfig.json';
-import { getJestProjectsAsync } from '@nx/jest';
 
-const config: Config = {
+const jestConfig: Config = {
   displayName: 'frontend',
-  projects: [],
   preset: './jest-preset.json',
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
-    prefix: '<rootDir>/',
-  }),
-  transform: {
-    '^.+\\.(ts|tsx|js|jsx)$': ['ts-jest', {
-      tsconfig: '<rootDir>/tsconfig.json',
-    }],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+      '<rootDir>/__mocks__/fileMock.js',
   },
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   coverageDirectory: '../../coverage/apps/frontend',
   collectCoverageFrom: [
-    '**/*.{ts,tsx}',
-    '!**/*.stories.{ts,tsx}',
+    'src/**/*.{ts,tsx}',
     '!**/*.d.ts',
     '!**/index.ts',
     '!**/jest.setup.ts',
   ],
-};
-async function setupConfig() {
-  const projects = await getJestProjectsAsync();
-  config.projects = projects;
-  return config;
-}
-export default setupConfig(); 
+  testMatch: [
+    '**/__tests__/**/*.test.ts',
+    '**/__tests__/**/*.test.tsx',
+  ],
+  rootDir: '.',
+  moduleDirectories: ['node_modules', '<rootDir>'],
+  testPathIgnorePatterns: ['/node_modules/', '/.next/'],
+  transformIgnorePatterns: [
+    '/node_modules/(?!(@testing-library/react|@testing-library/jest-dom|next)/)',
+  ],
+}; 
+
+export default jestConfig;

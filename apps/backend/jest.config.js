@@ -20,7 +20,7 @@ module.exports = {
   moduleFileExtensions: ['js', 'jsx', 'json'],
   coverageDirectory: '../../coverage/apps/backend',
   collectCoverageFrom: [
-    '**/*.{js,jsx}',
+    'src/**/*.{js,jsx}',
     '!**/index.js',
     '!**/jest.setup.js',
     '!**/jest.setup.admin.js',
@@ -38,6 +38,14 @@ module.exports = {
       testEnvironment: 'node',
       testMatch: ['**/__tests__/**/*.test.js', '!**/admin/**/*.test.jsx'],
       setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+      transform: {
+        '^.+\\.(js|jsx)$': ['babel-jest', {
+          presets: [
+            ['@babel/preset-env', { targets: { node: 'current' } }],
+            ['@babel/preset-react', { runtime: 'automatic' }],
+          ],
+        }],
+      },
     },
     {
       displayName: 'admin',
@@ -53,5 +61,11 @@ module.exports = {
         }],
       },
     },
+  ],
+  rootDir: '.',
+  moduleDirectories: ['node_modules', '<rootDir>'],
+  testPathIgnorePatterns: ['/node_modules/'],
+  transformIgnorePatterns: [
+    '/node_modules/(?!(@strapi/strapi|@strapi/helper-plugin|@strapi/plugin-users-permissions|@strapi/plugin-seo|strapi-plugin-slugify)/)',
   ],
 }; 
