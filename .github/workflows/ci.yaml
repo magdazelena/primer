@@ -7,7 +7,6 @@ on:
 
 env:
   NODE_VERSION: '20.5.0'
-  YARN_VERSION: '4.5.2'
 
 jobs:
   setup:
@@ -23,33 +22,22 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'yarn'
-
-      - name: Setup Yarn
-        uses: ./.github/actions/setup-yarn
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+          cache: 'npm'
 
       - name: Cache dependencies
         id: cache-deps
         uses: actions/cache@v3
         with:
           path: |
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
-            .yarn/cache
-            .yarn/install-state.gz
+            ~/.npm
             node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-npm-
 
       - name: Install dependencies
         if: steps.cache-deps.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile
+        run: npm ci
 
   linting:
     name: Validate linting
@@ -64,22 +52,20 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'yarn'
+          cache: 'npm'
 
       - name: Cache dependencies
         uses: actions/cache@v3
         with:
           path: |
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
-            .yarn/cache
-            .yarn/install-state.gz
+            ~/.npm
             node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-npm-
 
       - name: Run linting
-        run: yarn lint
+        run: npm run lint
 
   unit-tests:
     name: Run unit tests
@@ -94,22 +80,20 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'yarn'
+          cache: 'npm'
 
       - name: Cache dependencies
         uses: actions/cache@v3
         with:
           path: |
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
-            .yarn/cache
-            .yarn/install-state.gz
+            ~/.npm
             node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-npm-
 
       - name: Run unit tests
-        run: yarn test
+        run: npm test
 
   e2e-tests:
     name: Run e2e tests
@@ -124,22 +108,20 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'yarn'
+          cache: 'npm'
 
       - name: Cache dependencies
         uses: actions/cache@v3
         with:
           path: |
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
-            .yarn/cache
-            .yarn/install-state.gz
+            ~/.npm
             node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-npm-
 
       - name: Run e2e tests
-        run: yarn e2e
+        run: npm run e2e
 
   dependabot:
     name: Dependabot

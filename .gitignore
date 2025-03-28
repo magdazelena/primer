@@ -2,15 +2,10 @@ node_modules
 readme-images
 .vscode
 .DS_Store
-.yarn/*
-!.yarn
-!.yarn/releases
-!.yarn/releases/yarn-4.5.2.cjs
-.nx
 
-
-.nx/cache
-.nx/workspace-data
+.turbo
+.turbo/*
+coverage
 
 apps/frontend/cypress/screenshots
 apps/frontend/cypress/videos

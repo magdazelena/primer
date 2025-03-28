@@ -30,31 +30,6 @@ global.navigator = {
   },
 };
 
-// Mock react-beautiful-dnd with simple pass-through components
-jest.mock('react-beautiful-dnd', () => ({
-  DragDropContext: ({ children }) => children,
-  Droppable: ({ children }) => {
-    if (typeof children === 'function') {
-      return children({
-        innerRef: () => {},
-        droppableProps: {},
-        placeholder: null,
-      });
-    }
-    return children;
-  },
-  Draggable: ({ children }) => {
-    if (typeof children === 'function') {
-      return children({
-        innerRef: () => {},
-        draggableProps: {},
-        dragHandleProps: {},
-      });
-    }
-    return children;
-  },
-}));
-
 // Mock all Strapi Design System components
 jest.mock('@strapi/design-system', () => {
   const mockReact = require('react');

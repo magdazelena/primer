@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { SingleSelect, SingleSelectOption, Box, Typography } from '@strapi/design-system';
-import { useFetchClient } from '@strapi/strapi/admin';
+import { useFetchClient, unstable_useContentManagerContext as useContentManagerContext } from '@strapi/strapi/admin';
 
 const ProductStatusField = ({  
     document, 
@@ -10,7 +10,9 @@ const ProductStatusField = ({
   const [currentStatus, setCurrentStatus] = useState('')
   const [message, setMessage] = useState('')
   const { get, put } = useFetchClient();
-
+  const {
+    model,
+  } = useContentManagerContext();
   useEffect(() => {
     async function fetchCurrentStatus(){
         try {
@@ -23,6 +25,7 @@ const ProductStatusField = ({
         }
     }
     if (productId) fetchCurrentStatus();
+    if (!productId && statuses.length) setCurrentStatus(statuses[0].name)
   }, [productId, statuses, get]);
   
   useEffect(() => {
@@ -38,6 +41,7 @@ const ProductStatusField = ({
   }, [get]);
 
   const handleStatusChange = async (newStatus) => {
+    if (!productId) setMessage("Save the product first and then change the status")
     const newStatusName = statuses.find(s => s.documentId === newStatus).name
     try {
       await put(`/content-manager/collection-types/api::product.product/${productId}`, {
@@ -54,7 +58,7 @@ const ProductStatusField = ({
       console.error("Error updating status:", error);
     }
   };
-
+  if (model !== 'api::product.product') return null;
   return {
     title: "Status",
     content: (
