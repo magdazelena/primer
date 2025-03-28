@@ -24,7 +24,7 @@ const StatusManager = () => {
   const [newStatus, setNewStatus] = useState("");
   const [statusToDelete, setStatusToDelete] = useState(null);
   const [replacementStatus, setReplacementStatus] = useState("");
-  const { get, post, put, patch } = useFetchClient();
+  const { get, post, put, del } = useFetchClient();
   const [instanceId] = useState(() => Symbol('instance-id'));
 
   // Fetch statuses
@@ -236,22 +236,25 @@ const StatusManager = () => {
 
   // Open delete dialog
   const confirmDelete = (status) => {
+
     setStatusToDelete(status);
   };
 
   // Delete status and replace with selected one
   const deleteStatus = async () => {
     if (!replacementStatus) return alert("Select a replacement status!");
+
     const statusId = statuses.find(s => s.name === replacementStatus).documentId;
+
     try {
-      await patch('/status-manager/statuses', {
+      await put('/status-manager/statuses/delete', {
         statusId: statusToDelete.documentId,
         replacementId: statusId
       });
-      setStatuses(statuses.filter((s) => s.id !== statusToDelete.id));
     } catch (error) {
       console.error("Error deleting status:", error);
     }
+    setStatuses(statuses.filter((s) => s.id !== statusToDelete.id));
   };
 
   // Toggle publish status

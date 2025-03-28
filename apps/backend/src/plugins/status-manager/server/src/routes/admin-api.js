@@ -30,6 +30,17 @@ module.exports = [
       }
     },
   },
+
+  {
+    method: 'PUT',
+    path: '/statuses/delete',
+    handler: 'status.delete',
+    config: {
+      auth: {
+        type: 'admin'
+      }
+    },
+  },
   {
     method: 'PUT',
     path: '/statuses/:id',
@@ -39,15 +50,5 @@ module.exports = [
         type: 'admin'
       }
     },
-  },
-  {
-    method: 'PATCH',
-    path: '/statuses',
-    handler: 'status.delete',
-    config: {
-      auth: {
-        type: 'admin'
-      }
-    },
-  },
+  }
 ];
