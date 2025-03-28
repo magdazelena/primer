@@ -12,11 +12,7 @@ export default {
         id: `${PLUGIN_ID}.plugin.name`,
         defaultMessage: 'Status manager',
       },
-      Component: async () => {
-        const { App } = await import('./pages/App');
-
-        return App;
-      },
+      Component: () => import('./pages/App')
     });
 
     app.registerPlugin({
@@ -27,7 +23,9 @@ export default {
     });
   },
   bootstrap(app) {
-    app.getPlugin('content-manager').apis.addEditViewSidePanel([ProductStatusField]);
+    app.getPlugin('content-manager').apis.addEditViewSidePanel((panels) => {
+      return [ProductStatusField, ...panels];
+    });
   }
 
 };
