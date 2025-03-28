@@ -21,7 +21,8 @@ export default [
         module: "readonly",
         require: "readonly",
         __dirname: "readonly",
-        strapi: "readonly"
+        strapi: "readonly",
+        document: "readonly"
       }
     }
   },
@@ -31,7 +32,8 @@ export default [
       ecmaVersion: 2022,
       sourceType: "module",
       globals: {
-        ...globals.jest
+        ...globals.jest,
+        document: "readonly"
       },
       parserOptions: {
         ecmaFeatures: {
