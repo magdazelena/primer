@@ -7,17 +7,17 @@
     "cli"
   ],
   "scripts": {
-    "backend": "nx dev backend",
-    "cleanup": "nx clear frontend",
-    "dev": "yarn cleanup && nx frontend backend",
-    "frontend": "nx dev frontend",
-    "lint": "nx run backend:lint && nx run frontend:lint",
+    "backend": "turbo dev --filter=backend",
+    "cleanup": "turbo clean --filter=frontend",
+    "dev": "turbo dev",
+    "frontend": "turbo dev --filter=frontend",
+    "lint": "turbo lint",
     "setup": "yarn install",
-    "prune": "rm -rf node_modules/ && rm -rf dist/ && rm .nx/ && yarn install",
-    "test": "nx run-many --target=test  --projects=frontend,backend --parallel --passWithNoTests",
-    "test:watch": "nx run-many --target=test --projects=frontend,backend --parallel --watch",
-    "test:coverage": "nx run-many --target=test --coverage --projects=frontend,backend --parallel",
-    "e2e": "nx run-many --target=e2e --projects=frontend"
+    "prune": "rm -rf node_modules/ && rm -rf dist/ && rm .turbo/ && yarn install",
+    "test": "turbo test",
+    "test:watch": "turbo test --watch",
+    "test:coverage": "turbo test --coverage",
+    "e2e": "turbo e2e"
   },
   "dependencies": {
     "@strapi/plugin-seo": "^2.0.8",
@@ -39,10 +39,6 @@
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.23.0",
     "@next/eslint-plugin-next": "^15.2.3",
-    "@nx/eslint": "20.6.4",
-    "@nx/eslint-plugin": "20.6.4",
-    "@nx/jest": "20.6.4",
-    "@nx/js": "20.6.4",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@types/jest": "^29.5.14",
@@ -72,10 +68,10 @@
     "postcss": "^8.5.3",
     "tailwindcss": "^4.0.15",
     "ts-jest": "^29.3.0",
-    "typescript-eslint": "^8.28.0"
+    "typescript-eslint": "^8.28.0",
+    "turbo": "latest"
   },
-  "packageManager": "yarn@4.5.2",
-  "nx": {},
+  "packageManager": "npm@10.8.2",
   "engines": {
     "node": ">=18.0.0 <=20.x.x",
     "npm": ">=6.0.0"
