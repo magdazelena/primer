@@ -23,9 +23,7 @@ export default {
     });
   },
   bootstrap(app) {
-    app.getPlugin('content-manager').apis.addEditViewSidePanel((panels) => {
-      return [ProductStatusField, ...panels];
-    });
+    app.getPlugin('content-manager').apis.addEditViewSidePanel([ProductStatusField]);
   }
 
 };
