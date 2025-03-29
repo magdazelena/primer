@@ -1,148 +1,158 @@
 {
-  "kind": "collectionType",
-  "collectionName": "products",
-  "info": {
-    "singularName": "product",
-    "pluralName": "products",
-    "displayName": "Product",
-    "description": ""
-  },
-  "options": {
-    "draftAndPublish": false
-  },
-  "pluginOptions": {
-    "i18n": {
-      "localized": true
-    }
-  },
-  "attributes": {
-    "sku": {
-      "type": "string",
-      "required": true,
-      "unique": true,
-      "private": false,
-      "readOnly": true
-    },
-    "statusName": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "plugin::status-manager.status",
-      "inversedBy": "products"
-    },
-    "name": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string",
-      "required": true
-    },
-    "description": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "blocks",
-      "required": true
-    },
-    "media": {
-      "type": "media",
-      "multiple": true,
-      "required": true,
-      "allowedTypes": [
-        "images",
-        "videos"
-      ],
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "slug": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "uid",
-      "required": true,
-      "targetField": "name"
-    },
-    "totalCost": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "integer",
-      "required": true,
-      "private": true
-    },
-    "wholesalePrice": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "integer",
-      "required": true,
-      "private": true
-    },
-    "retailPrice": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "integer",
-      "required": true
-    },
-    "coverImage": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ],
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
-    },
-    "seo": {
-      "type": "component",
-      "repeatable": false,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "shared.seo",
-      "required": true
-    },
-    "category": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::product-category.product-category",
-      "inversedBy": "products"
-    },
-    "shortDescription": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "text"
-    },
-    "creator": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::creator.creator",
-      "inversedBy": "products"
-    }
-  }
+	"kind": "collectionType",
+	"collectionName": "products",
+	"info": {
+		"singularName": "product",
+		"pluralName": "products",
+		"displayName": "Product",
+		"description": ""
+	},
+	"options": {
+		"draftAndPublish": false
+	},
+	"pluginOptions": {
+		"i18n": {
+			"localized": true
+		}
+	},
+	"attributes": {
+		"sku": {
+			"type": "string",
+			"required": true,
+			"unique": true,
+			"private": false,
+			"readOnly": true
+		},
+		"statusName": {
+			"type": "relation",
+			"relation": "manyToOne",
+			"target": "plugin::status-manager.status",
+			"inversedBy": "products"
+		},
+		"series": {
+			"type": "relation",
+			"relation": "manyToOne",
+			"target": "api::product-series.product-series",
+			"inversedBy": "products"
+		},
+		"seriesIndex": {
+			"type": "integer",
+			"private": true
+		},
+		"name": {
+			"pluginOptions": {
+				"i18n": {
+					"localized": true
+				}
+			},
+			"type": "string",
+			"required": true
+		},
+		"description": {
+			"pluginOptions": {
+				"i18n": {
+					"localized": true
+				}
+			},
+			"type": "blocks",
+			"required": true
+		},
+		"media": {
+			"type": "media",
+			"multiple": true,
+			"required": true,
+			"allowedTypes": [
+				"images",
+				"videos"
+			],
+			"pluginOptions": {
+				"i18n": {
+					"localized": true
+				}
+			}
+		},
+		"slug": {
+			"pluginOptions": {
+				"i18n": {
+					"localized": true
+				}
+			},
+			"type": "uid",
+			"required": true,
+			"targetField": "name"
+		},
+		"totalCost": {
+			"pluginOptions": {
+				"i18n": {
+					"localized": true
+				}
+			},
+			"type": "integer",
+			"required": true,
+			"private": true
+		},
+		"wholesalePrice": {
+			"pluginOptions": {
+				"i18n": {
+					"localized": true
+				}
+			},
+			"type": "integer",
+			"required": true,
+			"private": true
+		},
+		"retailPrice": {
+			"pluginOptions": {
+				"i18n": {
+					"localized": true
+				}
+			},
+			"type": "integer",
+			"required": true
+		},
+		"coverImage": {
+			"type": "media",
+			"multiple": false,
+			"required": true,
+			"allowedTypes": [
+				"images"
+			],
+			"pluginOptions": {
+				"i18n": {
+					"localized": false
+				}
+			}
+		},
+		"seo": {
+			"type": "component",
+			"repeatable": false,
+			"pluginOptions": {
+				"i18n": {
+					"localized": true
+				}
+			},
+			"component": "shared.seo",
+			"required": true
+		},
+		"category": {
+			"type": "relation",
+			"relation": "manyToOne",
+			"target": "api::product-category.product-category",
+			"inversedBy": "products"
+		},
+		"shortDescription": {
+			"pluginOptions": {
+				"i18n": {
+					"localized": true
+				}
+			},
+			"type": "text"
+		},
+		"creator": {
+			"type": "relation",
+			"relation": "manyToOne",
+			"target": "api::creator.creator",
+			"inversedBy": "products"
+		}
+	}
 }

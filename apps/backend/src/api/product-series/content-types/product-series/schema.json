@@ -1,14 +1,14 @@
 {
   "kind": "collectionType",
-  "collectionName": "creators",
+  "collectionName": "product_series",
   "info": {
-    "singularName": "creator",
-    "pluralName": "creators",
-    "displayName": "Creator",
-    "description": ""
+    "singularName": "product-series",
+    "pluralName": "product-seria",
+    "displayName": "Product Series",
+    "description": "A template for creating multiple related products"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {
     "i18n": {
@@ -35,15 +35,30 @@
       "targetField": "name",
       "required": true
     },
-    "bio": {
+    "description": {
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "type": "blocks"
+      "type": "blocks",
+      "required": true
     },
-    "avatar": {
+    "media": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "coverImage": {
       "type": "media",
       "multiple": false,
       "required": true,
@@ -52,35 +67,9 @@
       ],
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       }
-    },
-    "email": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "email"
-    },
-    "articles": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::article.article",
-      "mappedBy": "creator"
-    },
-    "products": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::product.product",
-      "mappedBy": "creator"
-    },
-    "productSeries": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::product-series.product-series",
-      "mappedBy": "creator"
     },
     "seo": {
       "type": "component",
@@ -93,15 +82,36 @@
       "component": "shared.seo",
       "required": true
     },
-    "lead": {
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product-category.product-category",
+      "inversedBy": "productSeries"
+    },
+    "shortDescription": {
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "type": "text",
+      "type": "text"
+    },
+    "creator": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::creator.creator",
+      "inversedBy": "productSeries"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product",
+      "mappedBy": "series"
+    },
+    "defaultValues": {
+      "type": "json",
       "required": true,
-      "maxLength": 300
+      "private": true
     }
   }
-}
+} 
