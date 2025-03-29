@@ -16,6 +16,13 @@
     }
   },
   "attributes": {
+    "sku": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "private": false,
+      "readOnly": true
+    },
     "statusName": {
       "type": "relation",
       "relation": "manyToOne",
