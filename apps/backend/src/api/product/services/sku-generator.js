@@ -36,7 +36,7 @@ const generateUniqueSKU = async () => {
   let sku = await generateSKU();
   let isUnique = await isSKUUnique(sku);
   let count = 0;
-  
+  console.log("I'm being called")
   while (!isUnique) {
     sku = await generateSKU();
     isUnique = await isSKUUnique(sku);

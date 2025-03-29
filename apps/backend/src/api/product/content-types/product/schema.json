@@ -16,6 +16,13 @@
     }
   },
   "attributes": {
+    "sku": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "private": false,
+      "readOnly": true
+    },
     "statusName": {
       "type": "relation",
       "relation": "manyToOne",
@@ -136,13 +143,6 @@
       "relation": "manyToOne",
       "target": "api::creator.creator",
       "inversedBy": "products"
-    },
-    "sku": {
-      "type": "string",
-      "required": true,
-      "unique": true,
-      "private": false,
-      "readOnly": true
     }
   }
 }
