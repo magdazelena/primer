@@ -21,24 +21,46 @@ describe('Product Series Service', () => {
 
     beforeEach(async () => {
       // Create a test series
-      testSeries = await strapi.entityService.create('api::product-series.product-series', {
+      testSeries = await strapi.documents('api::product-series.product-series').create({
         data: {
           name: 'Test Series',
           slug: 'test-series',
-          description: 'Test Description',
+          description: [
+            {
+              type: 'paragraph',
+              children: [
+                { type: 'text', text: 'Amazing wooden chair, what a great bargain' }
+              ]
+            }
+          ],
           shortDescription: 'Test Short Description',
           totalCost: 100,
           wholesalePrice: 150,
           retailPrice: 200,
+          media: [],
+          coverImage: null,
+          seo: {
+            metaTitle: 'Test Series',
+            metaDescription: 'Test Description',
+            keywords: 'test,series',
+            metaRobots: 'index,follow',
+            structuredData: null,
+            metaViewport: 'width=device-width, initial-scale=1',
+            canonicalURL: null
+          },
+          locale: 'en'
         },
+        populate: ['products', 'category', 'creator', 'media', 'coverImage', 'seo']
       });
     });
 
     afterEach(async () => {
       // Clean up test data
-      await strapi.entityService.delete('api::product-series.product-series', testSeries.id, {
-        populate: ['products'],
-      });
+      if (testSeries?.id) {
+        await strapi.documents('api::product-series.product-series').delete({
+          where: { id: testSeries.id }
+        });
+      }
     });
 
     it('should create products from series with correct data', async () => {
@@ -70,35 +92,73 @@ describe('Product Series Service', () => {
 
     beforeEach(async () => {
       // Create a test series
-      testSeries = await strapi.entityService.create('api::product-series.product-series', {
+      testSeries = await strapi.documents('api::product-series.product-series').create({
         data: {
           name: 'Test Series',
           slug: 'test-series',
-          description: 'Original Description',
+          description: [
+            {
+              type: 'paragraph',
+              children: [
+                { type: 'text', text: 'Amazing wooden chair, what a great bargain' }
+              ]
+            }
+          ],
           shortDescription: 'Original Short Description',
           totalCost: 100,
           wholesalePrice: 150,
           retailPrice: 200,
-        },
+          media: [],
+          coverImage: null,
+          seo: {
+            metaTitle: 'Test Series',
+            metaDescription: 'Test Description',
+            keywords: 'test,series',
+            metaRobots: 'index,follow',
+            structuredData: null,
+            metaViewport: 'width=device-width, initial-scale=1',
+            canonicalURL: null
+          },
+          locale: 'en'
+        }
       });
 
       // Create test products
       testProducts = await Promise.all(
         [1, 2, 3].map((index) =>
-          strapi.entityService.create('api::product.product', {
+          strapi.documents('api::product.product').create({
             data: {
               name: `Test Product ${index}`,
               slug: `test-product-${index}`,
               series: {
-                set: [testSeries.id],
+                connect: [testSeries.id]
               },
               seriesIndex: index - 1,
-              description: 'Product Description',
+              description: [
+                {
+                  type: 'paragraph',
+                  children: [
+                    { type: 'text', text: 'Amazing wooden chair, what a great bargain' }
+                  ]
+                }
+              ],
               shortDescription: 'Product Short Description',
               totalCost: 50,
               wholesalePrice: 75,
               retailPrice: 100,
-            },
+              media: [],
+              coverImage: null,
+              seo: {
+                metaTitle: `Test Product ${index}`,
+                metaDescription: 'Product Description',
+                keywords: 'test,product',
+                metaRobots: 'index,follow',
+                structuredData: null,
+                metaViewport: 'width=device-width, initial-scale=1',
+                canonicalURL: null
+              },
+              locale: 'en'
+            }
           })
         )
       );
@@ -106,12 +166,20 @@ describe('Product Series Service', () => {
 
     afterEach(async () => {
       // Clean up test data
-      await Promise.all(
-        testProducts.map((product) =>
-          strapi.entityService.delete('api::product.product', product.id)
-        )
-      );
-      await strapi.entityService.delete('api::product-series.product-series', testSeries.id);
+      if (testProducts?.length) {
+        await Promise.all(
+          testProducts.map((product) =>
+            strapi.documents('api::product.product').delete({
+              where: { id: product.id }
+            })
+          )
+        );
+      }
+      if (testSeries?.id) {
+        await strapi.documents('api::product-series.product-series').delete({
+          where: { id: testSeries.id }
+        });
+      }
     });
 
     it('should update specified fields for all products in series', async () => {
@@ -124,7 +192,9 @@ describe('Product Series Service', () => {
       // Verify updates
       const updatedProducts = await Promise.all(
         testProducts.map((product) =>
-          strapi.entityService.findOne('api::product.product', product.id)
+          strapi.documents('api::product.product').findOne({
+            where: { id: product.id }
+          })
         )
       );
 

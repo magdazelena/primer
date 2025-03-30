@@ -3,7 +3,6 @@
 module.exports = ({ strapi }) => ({
   async createProductsFromSeries(seriesId, count = 1) {
     const series = await getSeries(strapi, seriesId);
-
     const products = [];
     const startIndex = series.products?.length || 0;
 

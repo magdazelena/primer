@@ -1,6 +1,6 @@
 import { PLUGIN_ID } from './pluginId';
-import {Initializer} from './components/Initializer';
-import SeriesProductActions from './components/SeriesProductActions';
+import {Initializer} from './admin/components/Initializer';
+import SeriesProductActions from './admin/components/SeriesProductActions';
 export default {
   register(app) {
 
