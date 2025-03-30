@@ -6,6 +6,8 @@ import {
   Dialog,
   NumberInput,
   Flex,
+  MultiSelect,
+  MultiSelectOption,
 } from "@strapi/design-system";
 import en from "../../translations/en.json";
 import {
@@ -16,10 +18,13 @@ import {
 const formatMessage = (arg) => {
   return en[arg.id];
 };
+
+const valuesToUpdate = ['description', 'shortDescription', 'media', 'coverImage', 'seo', 'totalCost', 'wholesalePrice', 'retailPrice', 'category', 'creator'];
 const SeriesProductActions = ({ document }) => {
   const documentId = document?.documentId;
   const [productCount, setProductCount] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const [fieldsToUpdate, setFieldsToUpdate] = useState([]);
   const { model } = useContentManagerContext();
   const { post, put } = useFetchClient();
 
@@ -51,14 +56,7 @@ const SeriesProductActions = ({ document }) => {
       const response = await put(
         `/product-actions/product-series/${documentId}/update-products`,
         {
-          description: document.description,
-          shortDescription: document.shortDescription,
-          media: document.media,
-          coverImage: document.coverImage,
-          seo: document.seo,
-          totalCost: document.totalCost,
-          wholesalePrice: document.wholesalePrice,
-          retailPrice: document.retailPrice
+          fieldsToUpdate: fieldsToUpdate
         },
       );
 
@@ -155,12 +153,29 @@ const SeriesProductActions = ({ document }) => {
                 </Button>
               </Dialog.Trigger>
               <Dialog.Content>
-                <Dialog.Body>
-                  <Typography>
+                <Dialog.Body display={"flex"} flexDirection={"column"} gap={2} justifyContent={"center"} alignItems={"center"} width={"100%"} >
+                  <Typography variant="delta" fontWeight="bold">
                     {formatMessage({
                       id: "product-series.actions.updateDialogTitle",
                     })}
                   </Typography>
+                  <Typography>
+                    {formatMessage({
+                      id: "product-series.actions.updateDialogDescription",
+                    })}
+                  </Typography>
+                  <MultiSelect 
+                    minWidth={"100%"}
+                    withTags={true}
+                    value={fieldsToUpdate}
+                    onClear={() => setFieldsToUpdate([])}
+                    onChange={(value) => setFieldsToUpdate(value)}
+                    required={true}
+                    size="large"
+                    placeholder={formatMessage({ id: "product-series.actions.selectFields" })}
+                    >
+                    {valuesToUpdate.map(field => <MultiSelectOption key={field} value={field}>{field}</MultiSelectOption>)}
+                  </MultiSelect>
                 </Dialog.Body>
                 <Dialog.Footer>
                   <Dialog.Cancel>

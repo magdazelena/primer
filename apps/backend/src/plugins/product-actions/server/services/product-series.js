@@ -2,15 +2,7 @@
 
 module.exports = ({ strapi }) => ({
   async createProductsFromSeries(seriesId, count = 1) {
-    
-    const series = await strapi.db.query('api::product-series.product-series').findOne({
-      where: { documentId: seriesId },
-      populate: ['products', 'category', 'creator', 'media', 'coverImage', 'seo']
-    });
-
-    if (!series) {
-      throw new Error('Series not found');
-    }
+    const series = await getSeries(strapi, seriesId);
 
     const products = [];
     const startIndex = series.products?.length || 0;
@@ -54,19 +46,61 @@ module.exports = ({ strapi }) => ({
   },
 
   async updateSeriesProducts(seriesId, updateData) {
-    const series = await strapi.entityService.findOne('api::product-series.product-series', seriesId, {
-      populate: ['products']
-    });
+    const series = await getSeries(strapi, seriesId);
 
-    if (!series) {
-      throw new Error('Series not found');
+    const fieldsToUpdate = updateData.fieldsToUpdate;
+
+    const dataToUpdate = {};
+
+    if (fieldsToUpdate.includes('description')) {
+      dataToUpdate.description = series.description;
+    }
+
+    if (fieldsToUpdate.includes('shortDescription')) {
+      dataToUpdate.shortDescription = series.shortDescription;
+    }
+
+    if (fieldsToUpdate.includes('media')) {
+      dataToUpdate.media = series.media;
+    }
+
+    if (fieldsToUpdate.includes('coverImage')) {
+      dataToUpdate.coverImage = series.coverImage;
+    }
+
+    if (fieldsToUpdate.includes('seo')) {
+      dataToUpdate.seo = series.seo;
+    }
+
+    if (fieldsToUpdate.includes('totalCost')) {
+      dataToUpdate.totalCost = series.totalCost;
+    }
+
+    if (fieldsToUpdate.includes('wholesalePrice')) {
+      dataToUpdate.wholesalePrice = series.wholesalePrice;
+    }
+
+    if (fieldsToUpdate.includes('retailPrice')) {
+      dataToUpdate.retailPrice = series.retailPrice;
+    }
+
+    if (fieldsToUpdate.includes('category')) {
+      dataToUpdate.category = {
+        set: [series.category?.documentId]
+      };
+    }
+
+    if (fieldsToUpdate.includes('creator')) {
+      dataToUpdate.creator = {
+        set: [series.creator?.documentId]
+      };
     }
 
     const updatePromises = series.products.map(product =>
-      strapi.entityService.update('api::product.product', product.id, {
+      strapi.documents('api::product.product').update( {
+        documentId: product.documentId,
         data: {
-          ...updateData,
-          name: `${updateData.name || series.name} #${product.seriesIndex + 1}`
+            ...dataToUpdate,
         }
       })
     );
@@ -75,3 +109,15 @@ module.exports = ({ strapi }) => ({
     return true;
   }
 }); 
+
+async function getSeries(strapi, seriesId) {
+    const series = await strapi.db.query('api::product-series.product-series').findOne({
+        where: { documentId: seriesId },
+        populate: ['products', 'category', 'creator', 'media', 'coverImage', 'seo']
+      });
+  
+      if (!series) {
+        throw new Error('Series not found');
+      }
+      return series;
+}
