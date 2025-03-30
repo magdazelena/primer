@@ -3,14 +3,15 @@ import { SingleSelect, SingleSelectOption, Box, Typography } from '@strapi/desig
 import { useFetchClient, unstable_useContentManagerContext as useContentManagerContext } from '@strapi/strapi/admin';
 
 const ProductStatusField = ({ document }) => {
-
+  const {
+    model
+  } = useContentManagerContext();
+  if (model !== 'api::product.product') return null;
   const [statuses, setStatuses] = useState([]);
   const [currentStatus, setCurrentStatus] = useState('')
   const [message, setMessage] = useState('')
   const { get, put } = useFetchClient();
-  const {
-    model
-  } = useContentManagerContext();
+
   const productId = document?.documentId;
   useEffect(() => {
     async function fetchCurrentStatus(){
@@ -57,7 +58,7 @@ const ProductStatusField = ({ document }) => {
       console.error("Error updating status:", error);
     }
   };
-  if (model !== 'api::product.product') return null;
+
   return {
     title: "Status",
     content: (

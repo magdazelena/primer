@@ -21,11 +21,13 @@ const formatMessage = (arg) => {
 
 const valuesToUpdate = ['description', 'shortDescription', 'media', 'coverImage', 'seo', 'totalCost', 'wholesalePrice', 'retailPrice', 'category', 'creator'];
 const SeriesProductActions = ({ document }) => {
+  const { model } = useContentManagerContext();
+  if (model !== "api::product-series.product-series") return null;
   const documentId = document?.documentId;
   const [productCount, setProductCount] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [fieldsToUpdate, setFieldsToUpdate] = useState([]);
-  const { model } = useContentManagerContext();
+
   const { post, put } = useFetchClient();
 
   const handleCreateProducts = async () => {
@@ -70,7 +72,6 @@ const SeriesProductActions = ({ document }) => {
       setIsLoading(false);
     }
   };
-  if (model !== "api::product-series.product-series") return null;
   return {
     title: "Series Product Actions",
     content: (
