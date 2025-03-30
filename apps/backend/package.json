@@ -12,7 +12,8 @@
     "test:coverage": "jest --coverage",
     "clean": "rm -rf .strapi-updater.json build .turbo node_modules",
     "seed": "strapi import -f ./seed-data.tar.gz",
-    "export": "strapi export --no-encrypt --file seed-data"
+    "export": "strapi export --no-encrypt --file seed-data",
+    "strapi": "strapi"
   },
   "dependencies": {
     "@atlaskit/pragmatic-drag-and-drop": "^1.5.2",

@@ -849,9 +849,6 @@ export interface ApiProductSeriesProductSeries
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     creator: Schema.Attribute.Relation<'manyToOne', 'api::creator.creator'>;
-    defaultValues: Schema.Attribute.JSON &
-      Schema.Attribute.Required &
-      Schema.Attribute.Private;
     description: Schema.Attribute.Blocks &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -880,6 +877,13 @@ export interface ApiProductSeriesProductSeries
       }>;
     products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
+    retailPrice: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     seo: Schema.Attribute.Component<'shared.seo', false> &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -900,9 +904,25 @@ export interface ApiProductSeriesProductSeries
           localized: true;
         };
       }>;
+    totalCost: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.Private &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    wholesalePrice: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.Private &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
   };
 }
 

@@ -27,7 +27,7 @@ const SeriesProductActions = ({ document }) => {
     try {
       setIsLoading(true);
       const response = await post(
-        `/content-manager/collection-types/api::product-series.product-series/${documentId}/create-products`,
+        `/product-actions/product-series/${documentId}/create-products`,
         {
           count: productCount,
         },
@@ -49,9 +49,16 @@ const SeriesProductActions = ({ document }) => {
     try {
       setIsLoading(true);
       const response = await put(
-        `/content-manager/collection-types/api::product-series.product-series/${documentId}/update-products`,
+        `/product-actions/product-series/${documentId}/update-products`,
         {
-          body: JSON.stringify(value.defaultValues),
+          description: document.description,
+          shortDescription: document.shortDescription,
+          media: document.media,
+          coverImage: document.coverImage,
+          seo: document.seo,
+          totalCost: document.totalCost,
+          wholesalePrice: document.wholesalePrice,
+          retailPrice: document.retailPrice
         },
       );
 

@@ -108,10 +108,34 @@
       "target": "api::product.product",
       "mappedBy": "series"
     },
-    "defaultValues": {
-      "type": "json",
+    "totalCost": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "integer",
       "required": true,
       "private": true
+    },
+    "wholesalePrice": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "integer",
+      "required": true,
+      "private": true
+    },
+    "retailPrice": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "integer",
+      "required": true
     }
   }
 } 
