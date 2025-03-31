@@ -1,4 +1,3 @@
-const { createStrapiInstance } = require('../../../../../../test/helpers/strapi');
 
 describe('Status Controller', () => {
   let strapi;

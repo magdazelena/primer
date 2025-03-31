@@ -13,7 +13,7 @@ describe('SKU Generator Service', () => {
   })
 
 
-  beforeEach(async () => {
+  afterEach(async () => {
     if (!strapi) {
       console.warn('Strapi instance not available for cleanup');
       return;
