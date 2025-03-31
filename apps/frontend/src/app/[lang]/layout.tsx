@@ -9,7 +9,7 @@ import Footer from "@/components/Footer";
 import { FALLBACK_SEO } from "@/utils/constants";
 import Body from "@/components/Body";
 import Navbar from "@/components/Navbar";
-import { NotFound } from "./404";
+import { NotFound } from "@/components/NotFound";
 import { GLOBAL_LAYOUT_QUERY } from "@/api/shared-params";
 import { getCategories } from "../../api/requests/get-all-categories";
 

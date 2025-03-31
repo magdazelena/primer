@@ -1,7 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@theme {
+  --*: initial;
+  --color-dark: 24, 83, 66;
+  --color-light: 255, 255, 255;
+  --color-accentBright: 235, 182, 86;
+  --color-accentDark: 217, 102, 78;
+  --menu-height: 6rem;
+  --border-radius: 2px;
+  --font-body: "Roboto", sans-serif;
+  --font-display: "Playfair Display", serif;
+}
 @layer base {
   :root {
     --color-dark: 24, 83, 66;
@@ -33,17 +43,18 @@
 Generic styles
 **/
 a {
-  @apply text-accentDark;
+  color: rgb(var(--color-accentDark));
 }
 a:hover {
-  @apply text-accentDark/50 underline;
+  color: rgb(var(--color-accentDark) / 0.5);
+  text-decoration: underline;
 }
 a:active,
 a:visited {
-  @apply text-accentDark;
+  color: rgb(var(--color-accentDark));
 }
 a.link-active {
-  @apply text-accentDark;
+  color: rgb(var(--color-accentDark));
 }
 hr {
   margin: 2rem 0;
@@ -66,105 +77,152 @@ hr {
 
 /* Headers */
 .rich-text h1 {
-  @apply text-4xl font-bold mb-4 text-dark;
+  font-size: var(--text-3xl);
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: rgb(var(--color-dark));
 }
 
 .rich-text h2 {
-  @apply text-3xl font-bold mb-4 text-dark;
+  font-size: var(--text-3xl);
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: rgb(var(--color-dark));
 }
 
 .rich-text h3 {
-  @apply text-2xl font-bold mb-4 text-dark;
+  font-size: var(--text-2xl);
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: rgb(var(--color-dark));
 }
 
 .rich-text h4 {
-  @apply text-xl font-bold mb-4 text-dark;
+  font-size: var(--text-xl);
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: rgb(var(--color-dark));
 }
 
 .rich-text h5 {
-  @apply text-lg font-bold mb-4 text-dark;
+  font-size: var(--text-lg);
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: rgb(var(--color-dark));
 }
 
 .rich-text h6 {
-  @apply text-base font-bold mb-4 text-dark;
+  font-size: var(--text-base);
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: rgb(var(--color-dark));
 }
 
 .rich-text a {
-  @apply text-accentDark;
+  color: rgb(var(--color-accentDark));
 }
 .rich-text a:hover {
-  @apply text-accentDark/50 underline;
+  color: rgb(var(--color-accentDark) / 0.5);
+  text-decoration: underline;
 }
 .rich-text a:active,
 .rich-text a:visited {
-  @apply text-accentDark;
+  color: rgb(var(--color-accentDark));
 }
 
 /* Typographic replacements */
 .rich-text p {
-  @apply mb-4;
+  margin-bottom: 1rem;
 }
 
 /* Emphasis */
 .rich-text strong {
-  @apply font-bold;
+  font-weight: bold;
 }
 
 .rich-text em {
-  @apply italic;
+  font-style: italic;
 }
 
 .rich-text del {
-  @apply line-through;
+  text-decoration: line-through;
 }
 
 /* Blockquotes */
 .rich-text blockquote {
-  @apply border-l-4 border-accentDark pl-4 py-2 mb-4;
+  border-left: 4px solid rgb(var(--color-accentDark));
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 /* Lists */
 .rich-text ul {
-  @apply list-disc pl-4 mb-4;
+  list-style-type: disc;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
 }
 
 .rich-text ol {
-  @apply list-decimal pl-4 mb-4;
+  list-style-type: decimal;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
 }
 
 .rich-text li {
-  @apply mb-2;
+  margin-bottom: 0.5rem;
 }
 
 .rich-text li > ul {
-  @apply list-disc pl-4 mb-2;
+  list-style-type: disc;
+  padding-left: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .rich-text li > ol {
-  @apply list-decimal pl-4 mb-2;
+  list-style-type: decimal;
+  padding-left: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 /* Tables */
 .rich-text table {
-  @apply w-full border-collapse border-accentDark my-6;
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid rgb(var(--color-accentDark));
+  margin: 1.5rem 0;
 }
 
 .rich-text th {
-  @apply bg-accentDark text-left py-2 px-4 font-semibold border-b border-accentDark;
+  background-color: rgb(var(--color-accentDark));
+  text-align: left;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-bottom: 1px solid rgb(var(--color-accentDark));
 }
 
 .rich-text td {
-  @apply py-2 px-4 border-b border-accentDark;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid rgb(var(--color-accentDark));
 }
 
 /* Images */
 .rich-text img {
-  @apply w-full object-cover rounded-xl my-6;
+  width: 100%;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+  margin: 1.5rem 0;
 }
 
 /* Custom containers */
 .rich-text .warning {
-  @apply bg-yellow-100 border-yellow-500 text-yellow-700 px-4 py-2 rounded-lg mb-4;
+  background-color: var(--yellow-100);
+  border: 1px solid var(--yellow-500);
+  color: var(--yellow-700);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
 }
 
 /******************************************* 
