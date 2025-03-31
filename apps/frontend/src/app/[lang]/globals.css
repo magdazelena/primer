@@ -1,17 +1,19 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@import 'yet-another-react-lightbox/styles.css';
+@import 'yet-another-react-lightbox/plugins/thumbnails.css';
+
 @theme {
-  --*: initial;
   --color-dark: 24, 83, 66;
   --color-light: 255, 255, 255;
   --color-accentBright: 235, 182, 86;
   --color-accentDark: 217, 102, 78;
   --menu-height: 6rem;
   --border-radius: 2px;
-  --font-body: "Roboto", sans-serif;
-  --font-display: "Playfair Display", serif;
+  --font-body: 'Roboto', sans-serif;
+  --font-display: 'Playfair Display', serif;
 }
+
 @layer base {
   :root {
     --color-dark: 24, 83, 66;
@@ -36,9 +38,6 @@
     src: url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
   }
 }
-
-@import "yet-another-react-lightbox/styles.css";
-@import "yet-another-react-lightbox/plugins/thumbnails.css";
 /**
 Generic styles
 **/
