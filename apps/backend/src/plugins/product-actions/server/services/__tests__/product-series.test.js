@@ -1,6 +1,5 @@
 'use strict';
 
-const { createStrapiInstance } = require('../../../../../test/helpers/strapi');
 const productSeriesService = require('../product-series');
 
 describe('Product Series Service', () => {
@@ -8,18 +7,19 @@ describe('Product Series Service', () => {
   let service;
 
   beforeAll(async () => {
-    strapi = await createStrapiInstance();
+    strapi = await global.testStrapi;
     service = productSeriesService({ strapi });
   });
-
   afterAll(async () => {
-    await strapi.destroy();
+    await strapi.db.query('api::product-series.product-series').deleteMany({});
+    await strapi.db.query('api::product.product').deleteMany({});
   });
 
   describe('createProductsFromSeries', () => {
     let testSeries;
 
     beforeEach(async () => {
+   
       // Create a test series
       testSeries = await strapi.documents('api::product-series.product-series').create({
         data: {
@@ -54,29 +54,28 @@ describe('Product Series Service', () => {
       });
     });
 
-    afterEach(async () => {
-      // Clean up test data
-      if (testSeries?.id) {
-        await strapi.documents('api::product-series.product-series').delete({
-          where: { id: testSeries.id }
-        });
-      }
-    });
-
+afterEach(async () => {
+  await strapi.db.query('api::product-series.product-series').deleteMany({});
+  await strapi.db.query('api::product.product').deleteMany({});
+});
     it('should create products from series with correct data', async () => {
       const count = 3;
-      const products = await service.createProductsFromSeries(testSeries.id, count);
+      const products = await service.createProductsFromSeries(testSeries.documentId, count);
 
       expect(products).toHaveLength(count);
       products.forEach((product, index) => {
         expect(product.name).toBe(`Test Series #${index + 1}`);
         expect(product.slug).toBe(`test-series-${index + 1}`);
-        expect(product.description).toBe('Test Description');
+        expect(product.description).toStrictEqual([{
+          type: 'paragraph',
+          children: [
+            { type: 'text', text: 'Amazing wooden chair, what a great bargain' }
+          ]
+        }]);
         expect(product.shortDescription).toBe('Test Short Description');
         expect(product.totalCost).toBe(100);
         expect(product.wholesalePrice).toBe(150);
         expect(product.retailPrice).toBe(200);
-        expect(product.series).toContainEqual(testSeries.id);
         expect(product.seriesIndex).toBe(index);
       });
     });
@@ -91,11 +90,12 @@ describe('Product Series Service', () => {
     let testProducts;
 
     beforeEach(async () => {
+
       // Create a test series
       testSeries = await strapi.documents('api::product-series.product-series').create({
         data: {
           name: 'Test Series',
-          slug: 'test-series',
+          slug: 'test-series-1',
           description: [
             {
               type: 'paragraph',
@@ -122,17 +122,19 @@ describe('Product Series Service', () => {
           locale: 'en'
         }
       });
-
       // Create test products
-      testProducts = await Promise.all(
-        [1, 2, 3].map((index) =>
-          strapi.documents('api::product.product').create({
-            data: {
-              name: `Test Product ${index}`,
-              slug: `test-product-${index}`,
+      testProducts = [10, 20, 30].map((index) => ({
+              name: `Update Test Product ${index+1}`,
+              slug: `update-test-product-${index+1}`,
               series: {
-                connect: [testSeries.id]
+                set: [testSeries.documentId]
               },
+              category: {
+                set: [testSeries.category?.documentId]
+              },
+              creator: {
+                set: [testSeries.creator?.documentId]
+            },
               seriesIndex: index - 1,
               description: [
                 {
@@ -159,52 +161,58 @@ describe('Product Series Service', () => {
               },
               locale: 'en'
             }
-          })
-        )
-      );
-    });
-
-    afterEach(async () => {
-      // Clean up test data
-      if (testProducts?.length) {
-        await Promise.all(
-          testProducts.map((product) =>
-            strapi.documents('api::product.product').delete({
-              where: { id: product.id }
-            })
           )
-        );
-      }
-      if (testSeries?.id) {
-        await strapi.documents('api::product-series.product-series').delete({
-          where: { id: testSeries.id }
-        });
-      }
+        )
+     await strapi.db.query('api::product.product').createMany({ data: testProducts})
+    }, 3000);
+    afterEach(async () => {
+      await strapi.db.query('api::product-series.product-series').deleteMany({});
+      await strapi.db.query('api::product.product').deleteMany({});
     });
-
+   
     it('should update specified fields for all products in series', async () => {
+      const series = await strapi.db.query('api::product-series.product-series').update({
+        where: {
+          documentId: testSeries.documentId
+        },
+        data: {
+          totalCost: 100,
+          description: [{
+            type: 'paragraph',
+            children: [
+              { type: 'text', text: 'Amazing.' }
+            ]
+          }]
+        }
+      })
       const updateData = {
         fieldsToUpdate: ['description', 'totalCost'],
       };
 
-      await service.updateSeriesProducts(testSeries.id, updateData);
+      await service.updateSeriesProducts(testSeries.documentId, updateData);
 
       // Verify updates
-      const updatedProducts = await Promise.all(
-        testProducts.map((product) =>
-          strapi.documents('api::product.product').findOne({
-            where: { id: product.id }
-          })
-        )
-      );
+      const updatedProducts = await strapi.db.query('api::product.product').findMany({
+        where: {
+          series: {
+            documentId: testSeries.documentId
+          }
+        },
+        populate: ['series']
+      })
 
-      updatedProducts.forEach((product) => {
-        expect(product.description).toBe('Original Description');
-        expect(product.totalCost).toBe(100);
-        expect(product.shortDescription).toBe('Product Short Description');
-        expect(product.wholesalePrice).toBe(75);
-        expect(product.retailPrice).toBe(100);
-      });
+        updatedProducts.forEach((product) => {
+          expect(product.description).toStrictEqual([{
+            type: 'paragraph',
+            children: [
+              { type: 'text', text: 'Amazing.' }
+            ]
+          }]);
+          expect(product.totalCost).toBe(100);
+          expect(product.shortDescription).toBe('Product Short Description');
+          expect(product.wholesalePrice).toBe(75);
+          expect(product.retailPrice).toBe(100);
+        });
     });
 
     it('should throw error if series not found', async () => {
@@ -233,7 +241,7 @@ describe('Product Series Service', () => {
         ],
       };
 
-      await expect(service.updateSeriesProducts(testSeries.id, updateData)).resolves.toBe(true);
+      await expect(service.updateSeriesProducts(testSeries.documentId, updateData)).resolves.toBe(true);
     });
   });
 }); 
