@@ -1,4 +1,5 @@
 import { defineConfig } from 'cypress';
+import intercept from 'cypress/plugins'
 
 export default defineConfig({
   e2e: {
@@ -9,6 +10,16 @@ export default defineConfig({
     screenshotOnRunFailure: true,
     chromeWebSecurity: false,
     defaultCommandTimeout: 10000,
-    experimentalStudio: true
+    experimentalStudio: true,
+    env: {
+      api_url: 'http://localhost:1337/api',
+    },
+    setupNodeEvents(on, config) {
+      on('task', {
+        'mockServer': ({ interceptUrl, fixture }) => {
+          return intercept({ interceptUrl, fixture });
+        },
+      });
+    },
   },
 }); 

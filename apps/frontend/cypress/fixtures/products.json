@@ -1,0 +1,48 @@
+[
+    {
+      "id": 1,
+      "attributes": {
+        "name": "Test Product 1",
+        "slug": "test-product-1",
+        "description": "This is a test product description",
+        "coverImage": {
+          "data": {
+            "attributes": {
+              "url": "/uploads/test-product-1.jpg"
+            }
+          }
+        },
+        "series": {
+          "data": {
+            "attributes": {
+              "name": "Test Series",
+              "slug": "test-series"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 2,
+      "attributes": {
+        "name": "Test Product 2",
+        "slug": "test-product-2",
+        "description": "This is another test product description",
+        "coverImage": {
+          "data": {
+            "attributes": {
+              "url": "/uploads/test-product-2.jpg"
+            }
+          }
+        },
+        "series": {
+          "data": {
+            "attributes": {
+              "name": "Test Series",
+              "slug": "test-series"
+            }
+          }
+        }
+      }
+    }
+  ]

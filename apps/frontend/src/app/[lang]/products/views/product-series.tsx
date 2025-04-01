@@ -18,7 +18,7 @@ export default function ProductSeriesView({series, products}: {series: Product, 
         return min + " - " + max;
     }
   return (
-    <article className="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-4 text-dark pb-10">
+    <article className="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-4 text-dark pb-10" data-testid="product-series-view">
      
       <ProductMedia media={media} />
       <ProductSide name={name} retailPrice={getRetailRange()} shortDescription={shortDescription} />

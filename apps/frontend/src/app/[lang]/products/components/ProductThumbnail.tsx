@@ -15,6 +15,7 @@ const ProductThumbnail = ({ product }: { product: Product }) => {
       href={`/products/${category?.slug}/${product.slug}`}
       key={product.id}
       className="max-w-sm mb-3 lg:mr-8 group hover:no-underline focus:no-underline w-[250px] lg:w-[300px] xl:min-w-[375px] rounded-2xl overflow-hidden shadow-lg"
+      data-testid="product-card"
     >
       {imageUrl && (
         <Image
