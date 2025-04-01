@@ -171,7 +171,7 @@ afterEach(async () => {
     });
    
     it('should update specified fields for all products in series', async () => {
-      const series = await strapi.db.query('api::product-series.product-series').update({
+      await strapi.db.query('api::product-series.product-series').update({
         where: {
           documentId: testSeries.documentId
         },
