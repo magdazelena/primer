@@ -1,6 +1,8 @@
 ![health](https://github.com/magdazelena/primer/actions/workflows/ci.yaml/badge.svg)
-# Strapi Starter Next 14, Tailwind, Typescript and Strapi
+# PRIMER: shopping template with: Next 14, Tailwind, Typescript and Strapi
 
+[About Primer]('./docs/index.md)
+-----
 This is a monorepo supported by Turborepo, containing the following applications:
 - `apps/frontend`: Next.js 14 frontend application
 - `apps/backend`: Strapi backend application
@@ -144,8 +146,13 @@ If your dependency is being **shared** by the projects, make sure to install it 
 
 ## More docs:
 
-- Frontend [docs](./apps/docs/frontend.md)
+- Frontend [docs](./apps/docs/frontend/index.md)
 
 ---
 
 > note: This project was started with love by [Trecia](https://github.com/TreciaKS), [Daniel](https://github.com/malgamves) and [Paul](https://github.com/PaulBratslavsky). You can find the original [here](https://github.com/strapi/nextjs-corporate-starter/).
+
+## Buy me coffee
+This is an open-source side project. It is progressing slowly, and I'm pretty tired ☕️.
+
+[Buy me a coffee here](https://buymeacoffee.com/magdazelena)
