@@ -5,73 +5,166 @@ The frontend is built using a modern stack of technologies that provide a robust
 ## Core Technologies
 
 ### Next.js 14
-- **App Router**: File-based routing system
-- **Server Components**: Optimized server-side rendering
-- **API Routes**: Built-in API endpoints
-- **Image Optimization**: Automatic image optimization
-- **Font Optimization**: Automatic font optimization
+- App Router for file-based routing
+- Server Components for improved performance
+- API Routes for backend functionality
+- Built-in image optimization
+- Automatic code splitting
+
+### React 18
+- Concurrent rendering
+- Suspense for data fetching
+- Server Components support
+- Improved performance with automatic batching
 
 ### TypeScript
-- **Type Safety**: Catch errors at compile time
-- **Better IDE Support**: Enhanced code completion
-- **Improved Documentation**: Self-documenting code
-- **Refactoring Support**: Safe code refactoring
+- Static type checking
+- Enhanced IDE support
+- Better code maintainability
+- Improved developer experience
 
 ### Tailwind CSS
-- **Utility-First**: Rapid UI development
-- **Responsive Design**: Mobile-first approach
-- **Customization**: Extensive configuration options
-- **Performance**: Purge unused styles
+- Utility-first CSS framework
+- Responsive design utilities
+- Custom theme configuration
+- PurgeCSS for production optimization
 
-## Supporting Libraries
+## State Management
 
-### React Query
-- **Data Fetching**: Simplified API calls
-- **Caching**: Automatic data caching
-- **State Management**: Server state management
-- **Optimistic Updates**: Improved UX
+### React Context
+- Global state management
+- Theme and authentication state
+- Lightweight alternative to Redux
+- Built-in with React
 
-### Strapi SDK
-- **API Integration**: Seamless backend integration
-- **Type Safety**: TypeScript support
-- **Authentication**: Built-in auth handling
-- **Content Management**: Easy content access
+### SWR/React Query
+- Data fetching and caching
+- Real-time updates
+- Automatic revalidation
+- Error handling
+
+## Testing
+
+### Jest
+- Unit testing framework
+- Snapshot testing
+- Mock functions and modules
+- Test coverage reporting
+
+### React Testing Library
+- Component testing
+- Accessibility testing
+- DOM testing utilities
+- User-centric testing approach
 
 ## Development Tools
 
-### Testing
-- **Jest**: Unit testing
-- **React Testing Library**: Component testing
-- **Cypress**: E2E testing
+### ESLint
+- Code linting
+- Custom rules configuration
+- TypeScript support
+- Prettier integration
 
-### Code Quality
-- **ESLint**: Code linting
-- **Prettier**: Code formatting
-- **Husky**: Git hooks
-- **lint-staged**: Staged file linting
+### Prettier
+- Code formatting
+- Consistent style
+- Automatic fixes
+- Editor integration
 
 ## Build Tools
 
 ### Turborepo
-- **Monorepo Support**: Multiple package management
-- **Build Caching**: Faster builds
-- **Task Orchestration**: Parallel execution
-- **Remote Caching**: Team-wide build caching
+- Monorepo management
+- Build caching
+- Parallel execution
+- Remote caching
 
-### Package Management
-- **Yarn**: Fast, reliable dependency management
-- **Workspaces**: Monorepo support
-- **Lockfile**: Consistent installations
+### Vite
+- Fast development server
+- Optimized builds
+- Hot module replacement
+- TypeScript support
 
-## Performance Tools
+## API Integration
 
-### Monitoring
-- **Web Vitals**: Core web vitals tracking
-- **Error Tracking**: Error monitoring
-- **Analytics**: User behavior tracking
+### Strapi Client
+- Type-safe API calls
+- Authentication handling
+- Error management
+- Response caching
 
-### Optimization
-- **Code Splitting**: Automatic code splitting
-- **Tree Shaking**: Dead code elimination
-- **Minification**: Code size reduction
-- **Compression**: Asset compression 
+### GraphQL (Optional)
+- Type-safe queries
+- Efficient data fetching
+- Real-time updates
+- Schema validation
+
+## Performance Optimization
+
+### Next.js Image
+- Automatic image optimization
+- Lazy loading
+- Responsive images
+- WebP support
+
+### Dynamic Imports
+- Code splitting
+- Lazy loading
+- Reduced initial bundle size
+- Improved performance
+
+## Security
+
+### NextAuth.js
+- Authentication
+- Session management
+- OAuth providers
+- JWT handling
+
+### CSP Headers
+- Content Security Policy
+- XSS protection
+- Resource restrictions
+- Security headers
+
+## Monitoring
+
+### Sentry
+- Error tracking
+- Performance monitoring
+- User feedback
+- Release tracking
+
+### Analytics
+- User behavior tracking
+- Performance metrics
+- Custom events
+- Real-time reporting
+
+## Development Workflow
+
+### Git
+- Version control
+- Branch management
+- Code review
+- CI/CD integration
+
+### Husky
+- Git hooks
+- Pre-commit checks
+- Lint-staged
+- Commit message validation
+
+## Deployment
+
+### Vercel
+- Zero-config deployment
+- Automatic previews
+- Edge functions
+- Analytics integration
+
+### Docker
+- Containerization
+- Environment consistency
+- Scalability
+- Deployment flexibility 

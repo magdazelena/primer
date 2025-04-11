@@ -1,92 +1,138 @@
-# Project Structure
+# Frontend Project Structure
 
-The frontend project follows a well-organized structure that promotes maintainability and scalability.
+## Overview
 
-## Directory Overview
+The frontend project follows a modular and scalable architecture designed for Next.js 14 applications. The structure is organized to promote code reusability, maintainability, and clear separation of concerns.
+
+## Directory Structure
 
 ```
 apps/frontend/
-├── app/                    # Next.js app directory (routes)
-│   ├── api/               # API routes
-│   ├── (auth)/           # Authentication routes
-│   ├── (dashboard)/      # Dashboard routes
-│   └── layout.tsx        # Root layout
-├── components/            # Reusable UI components
-│   ├── ui/               # Basic UI components
-│   ├── forms/            # Form components
-│   └── layout/           # Layout components
-├── hooks/                # Custom React hooks
-│   ├── api/              # API-related hooks
-│   └── ui/               # UI-related hooks
-├── types/                # TypeScript type definitions
-│   ├── api/              # API types
-│   └── components/       # Component props types
-├── utils/                # Utility functions
-│   ├── api/              # API utilities
-│   └── helpers/          # Helper functions
-├── public/               # Static assets
-│   ├── images/           # Image assets
-│   └── fonts/            # Font files
-└── styles/               # Global styles
-    ├── globals.css       # Global CSS
-    └── tailwind.config.js # Tailwind configuration
+├── src/
+│   ├── app/                    # Next.js 14 app directory
+│   │   ├── (auth)/            # Authentication routes
+│   │   ├── (dashboard)/       # Dashboard routes
+│   │   ├── api/               # API routes
+│   │   └── layout.tsx         # Root layout
+│   ├── components/            # Reusable components
+│   │   ├── common/           # Shared components
+│   │   ├── forms/            # Form components
+│   │   └── layout/           # Layout components
+│   ├── hooks/                # Custom React hooks
+│   ├── lib/                  # Utility functions and configurations
+│   ├── styles/               # Global styles and theme
+│   ├── types/                # TypeScript type definitions
+│   └── utils/                # Helper functions
+├── public/                   # Static assets
+└── tests/                    # Test files
 ```
 
-## Key Directories Explained
+## Key Directories
 
-### `app/` Directory
-The `app` directory uses Next.js 14's App Router for file-based routing. Each subdirectory represents a route, and special directories are wrapped in parentheses to indicate route groups.
+### `src/app`
 
-- **`api/`**: Contains API route handlers
-- **`(auth)/`**: Authentication-related routes
-- **`(dashboard)/`**: Dashboard-related routes
-- **`layout.tsx`**: Root layout component
+The app directory follows Next.js 14's App Router convention:
+- Route groups are denoted by parentheses (e.g., `(auth)`, `(dashboard)`)
+- Each route has its own directory with `page.tsx` and optional `layout.tsx`
+- API routes are handled in the `api` directory
 
-### `components/` Directory
-Organized by feature and type, the components directory follows the atomic design pattern:
+### `src/components`
 
-- **`ui/`**: Basic UI components (atoms)
-- **`forms/`**: Form-related components
-- **`layout/`**: Layout components
+Components are organized by functionality:
+- `common`: Shared UI components (buttons, inputs, etc.)
+- `forms`: Form-related components and validation
+- `layout`: Page layout components
 
-### `hooks/` Directory
-Custom React hooks are organized by their purpose:
+### `src/hooks`
 
-- **`api/`**: Hooks for API interactions
-- **`ui/`**: Hooks for UI-related functionality
+Custom React hooks for:
+- Data fetching
+- State management
+- UI interactions
+- Authentication
 
-### `types/` Directory
-TypeScript type definitions are organized by domain:
+### `src/lib`
 
-- **`api/`**: API response and request types
-- **`components/`**: Component prop types
+Core application configurations:
+- API client setup
+- Authentication configuration
+- Environment variables
+- Feature flags
 
-### `utils/` Directory
-Utility functions are organized by their purpose:
+### `src/styles`
 
-- **`api/`**: API-related utilities
-- **`helpers/`**: General helper functions
-
-## File Naming Conventions
-
-- **Components**: PascalCase (e.g., `Button.tsx`)
-- **Hooks**: camelCase with 'use' prefix (e.g., `useAuth.ts`)
-- **Utils**: camelCase (e.g., `formatDate.ts`)
-- **Types**: PascalCase with 'Type' suffix (e.g., `UserType.ts`)
+Styling approach:
+- Tailwind CSS configuration
+- Global styles
+- Theme variables
+- Responsive design utilities
 
 ## Best Practices
 
 1. **Component Organization**
    - Keep components small and focused
-   - Use index files for cleaner imports
-   - Follow the single responsibility principle
+   - Use consistent naming conventions
+   - Document component props and usage
 
-2. **File Structure**
-   - Group related files together
-   - Use clear, descriptive names
-   - Maintain consistent naming conventions
+2. **State Management**
+   - Use React Context for global state
+   - Implement proper state initialization
+   - Handle loading and error states
 
 3. **Code Splitting**
-   - Use dynamic imports for large components
-   - Split routes for better performance
-   - Lazy load non-critical components 
+   - Implement dynamic imports
+   - Optimize bundle size
+   - Use proper loading states
+
+4. **Type Safety**
+   - Define proper TypeScript interfaces
+   - Use strict type checking
+   - Document type definitions
+
+## Example Component Structure
+
+```typescript
+// components/common/Button.tsx
+import { ButtonProps } from '@/types/components';
+
+export const Button = ({
+  variant = 'primary',
+  size = 'medium',
+  children,
+  ...props
+}: ButtonProps) => {
+  return (
+    <button
+      className={`button button--${variant} button--${size}`}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+};
+```
+
+## Development Guidelines
+
+1. **File Naming**
+   - Use PascalCase for components
+   - Use camelCase for utilities and hooks
+   - Use kebab-case for CSS files
+
+2. **Import Order**
+   - React and Next.js imports
+   - Third-party libraries
+   - Local components
+   - Styles and types
+
+3. **Component Structure**
+   - Props interface
+   - Component definition
+   - Helper functions
+   - Return statement
+
+4. **Documentation**
+   - Component purpose
+   - Prop descriptions
+   - Usage examples
+   - Type definitions 

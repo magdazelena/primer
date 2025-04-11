@@ -35,10 +35,10 @@ The frontend is built with Next.js 14, TypeScript, and Tailwind CSS, providing a
 
 ```bash
 # Install dependencies
-yarn install
+npm run install
 
 # Start development server
-yarn dev
+npm run dev
 ```
 
 ## Required Environment Variables
