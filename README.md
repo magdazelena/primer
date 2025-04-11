@@ -1,19 +1,24 @@
 ![health](https://github.com/magdazelena/primer/actions/workflows/ci.yaml/badge.svg)
-# Strapi Starter Next 14, Tailwind, Typescript and Strapi
+# PRIMER: shopping template with: Next 14, Tailwind, Typescript and Strapi
 
-This is a monorepo supported by NX.
+[About Primer]('./docs/index.md)
+-----
+This is a monorepo supported by Turborepo, containing the following applications:
+- `apps/frontend`: Next.js 14 frontend application
+- `apps/backend`: Strapi backend application
+- `docs`: Documentation
 
 ## Getting Started
 
 1. Clone the repository locally.
 
-2. Run `setup` command to setup frontend and backend dependencies:
+2. Run `setup` command to install dependencies:
 
 ```bash
-  nx setup
+npm run setup
 ```
 
-3. Next, navigate to your `/backend` directory and set up your `.env` file. You can use the `.env.example` file as reference:
+3. Next, navigate to your `/apps/backend` directory and set up your `.env` file. You can use the `.env.example` file as reference:
 
 ```bash
 HOST=localhost
@@ -28,50 +33,53 @@ TRANSFER_TOKEN_SALT=tobemodified
 4. Start your project by running the following command:
 
 ```bash
-  nx build
-  nx dev
+npm run dev
 ```
+
+This will start both the frontend and backend applications concurrently.
 
 You will be prompted to create your first admin user.
 
 ![admin-user](https://user-images.githubusercontent.com/6153188/231865420-5f03a90f-b893-4057-9634-9632920a7d97.gif)
 
-Great. You now have your project running. Let's add some data.
+## Available Scripts
+
+- `npm run dev`: Start both frontend and backend applications
+- `npm run frontend`: Start only the frontend application
+- `npm run backend`: Start only the backend application
+- `npm run cleanup`: Clean frontend build artifacts
+- `npm run lint`: Run linting across all applications
+- `npm test`: Run tests across all applications
+- `npm run test:watch`: Run tests in watch mode
+- `npm run test:coverage`: Run tests with coverage reporting
+- `npm run e2e`: Run end-to-end tests
+- `npm run prune`: Clean all node_modules and reinstall dependencies
 
 ## Seeding The Data
 
-We are going to use our DEITS feature which will alow to easily import data into your project.
+We are going to use our DEITS feature which will allow to easily import data into your project.
 
 You can learn more about it in our documentation [here](https://docs.strapi.io/dev-docs/data-management).
 
 In the backend directory we have our `seed-data.tar.gz` file. We will use it to seed our data.
 
-1. If in the `backend` folder, run the following command to seed your data:
+1. Navigate to the `apps/backend` folder and run the following command to seed your data:
 
 ```bash
-  nx seed
+npm run seed
 ```
-
-2. If in the `root` folder, run:
-
-```bash
-  nx seed backend
-```
-
-![after-import](https://user-images.githubusercontent.com/6153188/231865491-05cb5818-a0d0-49ce-807e-a879f7e3070c.gif)
 
 This will import your data locally. Log back into your admin panel to see the newly imported data.
 
 ## Setting Up The Frontend
 
-Next we need to switch to our `/frontend` directory and create our `.env` file and paste in the following.
+Next we need to switch to our `/apps/frontend` directory and create our `.env` file and paste in the following.
 
 ```bash
 NEXT_PUBLIC_STRAPI_API_TOKEN=your-api-token
 NEXT_PUBLIC_PAGE_LIMIT=6
 NEXT_PUBLIC_STRAPI_FORM_SUBMISSION_TOKEN=your-form-submission-token
 NEXT_PUBLIC_STRAPI_API_URL=http://localhost:1337
-
 ```
 
 Before starting our Next JS app we need to go inside our Strapi Admin and create two tokens that we will be using for **form submission** and displaying our **content**.
@@ -114,56 +122,37 @@ In Permissions lets give the following access.
 
 Add your token to your `NEXT_PUBLIC_STRAPI_FORM_SUBMISSION_TOKEN` variable name in the `.env` file.
 
-Once your environment variables are set you can start your frontend application by running `nx dev`.
+Once your environment variables are set you can start your frontend application by running `npm run frontend`.
 
 You should now see your Next JS frontend.
 
 ![frontend](https://user-images.githubusercontent.com/6153188/231865662-d870051f-4503-4a01-bc6b-635c7c5ca40d.png)
 
-## Start Both Projects Concurrently
-
-We can also start both projects with one command using the `concurrently` package.
-
-You can find the setting inside the `package.json` file inside the root folder.
-
-```json
-{
-  "scripts": {
-    "frontend": "nx dev frontend",
-    "backend": "nx dev backend",
-    "clear": "nx clear frontend",
-    "setup": "yarn install",
-    "dev": "yarn clear && concurrently \"yarn frontend\" \"yarn backend\""
-  },
-  "dependencies": {
-    "concurrently": "latest"
-  }
-}
-```
-
-Go to the root folder and install the package, `yarn`
-You can start both apps by running `nx dev`.
-
-## Installing dependencies from root into projects
+## Installing Dependencies
 
 If you want to install external package, use:
 
 ```bash
-  yarn add <package> --cwd <project name>
+npm install <package> --prefix apps/<project name>
 ```
 
 for example:
 
 ```bash
-  yarn add react-router-dom --cwd frontend
+npm install react-router-dom --prefix apps/frontend
 ```
 
 If your dependency is being **shared** by the projects, make sure to install it into the `root` directly!
 
 ## More docs:
 
-- Frontend [docs](./docs/frontend.md)
+- Frontend [docs](./docs/frontend/index.md)
 
 ---
 
 > note: This project was started with love by [Trecia](https://github.com/TreciaKS), [Daniel](https://github.com/malgamves) and [Paul](https://github.com/PaulBratslavsky). You can find the original [here](https://github.com/strapi/nextjs-corporate-starter/).
+
+## Buy me coffee
+This is an open-source side project. It is progressing slowly, and I'm pretty tired ☕️.
+
+[Buy me a coffee here](https://buymeacoffee.com/magdazelena)
