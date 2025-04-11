@@ -6,7 +6,7 @@
 This is a monorepo supported by Turborepo, containing the following applications:
 - `apps/frontend`: Next.js 14 frontend application
 - `apps/backend`: Strapi backend application
-- `apps/docs`: Documentation
+- `docs`: Documentation
 
 ## Getting Started
 
@@ -146,7 +146,7 @@ If your dependency is being **shared** by the projects, make sure to install it 
 
 ## More docs:
 
-- Frontend [docs](./apps/docs/frontend/index.md)
+- Frontend [docs](./docs/frontend/index.md)
 
 ---
 
