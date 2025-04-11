@@ -1,26 +1,19 @@
 'use strict';
 
 const skuGenerator = require('../sku-generator');
-const { createStrapiInstance } = require('../../../../test/helpers/strapi');
-const fs = require('fs');
-const path = require('path');
 
 describe('SKU Generator Service', () => {
-  let strapi;
+
   const mockProductName = 'Test Product';
   const mockSKU = 'SKU10001';
-  const testDir = path.join(__dirname, '../../../../../test');
+  let strapi;
 
   beforeAll(async () => {
-    try {
-      strapi = await createStrapiInstance();
-    } catch (error) {
-      console.error('Failed to initialize Strapi:', error);
-      throw error;
-    }
-  }, 30000);
+    strapi = await global.testStrapi
+  })
 
-  beforeEach(async () => {
+
+  afterEach(async () => {
     if (!strapi) {
       console.warn('Strapi instance not available for cleanup');
       return;
@@ -41,24 +34,7 @@ describe('SKU Generator Service', () => {
     }
   }, 10000);
 
-  afterAll(async () => {
-    if (strapi) {
-      try {
-        await strapi.destroy();
-      } catch (error) {
-        console.error('Failed to destroy Strapi instance:', error);
-      }
-    }
-
-    if (fs.existsSync(testDir)) {
-      try {
-        fs.rmSync(testDir, { recursive: true, force: true });
-      } catch (error) {
-        console.error('Failed to remove test directory:', error);
-      }
-    }
-  }, 30000);
-
+ 
   describe('generateUniqueSKU', () => {
     it('should generate a SKU in the correct format', async () => {
       const count = await strapi.db.query('api::product.product').count();

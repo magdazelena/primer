@@ -6,7 +6,8 @@ module.exports = {
     enabled: true,
     resolve: './src/plugins/status-manager'
   },
-  slugify: {
-    enabled: false,
-  },
+  'product-actions': {
+    enabled: true,
+    resolve: './src/plugins/product-actions'
+  }
 }; 

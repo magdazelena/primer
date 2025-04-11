@@ -1,0 +1,15 @@
+{
+    "id": 1,
+    "attributes": {
+      "name": "Test Series",
+      "slug": "test-series",
+      "shortDescription": "This is a test series description",
+      "coverImage": {
+        "data": {
+          "attributes": {
+            "url": "/uploads/test-cover.jpg"
+          }
+        }
+      }
+    }
+} 

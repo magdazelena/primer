@@ -12,7 +12,6 @@ import {
 import { draggable, dropTargetForElements, monitorForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import { combine } from '@atlaskit/pragmatic-drag-and-drop/combine';
 import { attachClosestEdge, extractClosestEdge } from '@atlaskit/pragmatic-drag-and-drop-hitbox/closest-edge';
-import { getReorderDestinationIndex } from '@atlaskit/pragmatic-drag-and-drop-hitbox/util/get-reorder-destination-index';
 import { reorder } from '@atlaskit/pragmatic-drag-and-drop/reorder';
 import { setCustomNativeDragPreview } from '@atlaskit/pragmatic-drag-and-drop/element/set-custom-native-drag-preview';
 import { pointerOutsideOfPreview } from '@atlaskit/pragmatic-drag-and-drop/element/pointer-outside-of-preview';
@@ -286,10 +285,10 @@ const StatusManager = () => {
       </Flex>
 
       {/* Status List */}
-      <Box marginTop={4}>
+      <Box key={statuses.length} marginTop={4}>
         {statuses.map((status) => (
           <Flex
-            key={status.documentId}
+            key={`status-${status.id}`}
             data-status-id={status.id}
             alignItems="center"
             gap={2}
@@ -303,6 +302,7 @@ const StatusManager = () => {
             }}
           >
             <Box 
+              key={`dragHandle-${status.id}`}
               data-drag-handle
               style={{ 
                 cursor: 'grab',
@@ -346,7 +346,7 @@ const StatusManager = () => {
                       {statuses
                         .filter((s) => s.id !== statusToDelete.id)
                         .map((s) => (
-                          <SingleSelectOption key={s.id} value={s.name}>
+                          <SingleSelectOption key={`statusChoice-${s.id}`} value={s.name}>
                             {s.name}
                           </SingleSelectOption>
                         ))}

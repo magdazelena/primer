@@ -1,5 +1,6 @@
-import React from 'react';
-import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
+import '@testing-library/jest-dom'
+import React, {act} from 'react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import StatusManager from '../StatusManager';
 import { useFetchClient } from '@strapi/strapi/admin';
@@ -32,7 +33,7 @@ describe('StatusManager', () => {
   });
 
   it('renders the component and fetches statuses', async () => {
-    await act(async () => {
+    await React.act(async () => {
       render(<StatusManager />);
     });
 
@@ -52,7 +53,7 @@ describe('StatusManager', () => {
     const newStatus = 'New Status';
     mockFetchClient.post.mockResolvedValue({ data: { id: 3, name: newStatus, published: false } });
 
-    await act(async () => {
+    await React.act(async () => {
       render(<StatusManager />);
     });
 
@@ -61,7 +62,7 @@ describe('StatusManager', () => {
     });
 
     const input = screen.getByPlaceholderText('Enter a status...');
-    await act(async () => {
+    await React.act(async () => {
       await userEvent.type(input, newStatus);
       fireEvent.click(screen.getByText('Add Status'));
     });
@@ -77,7 +78,7 @@ describe('StatusManager', () => {
   it('validates input for non-Latin characters', async () => {
     const alertSpy = jest.spyOn(window, 'alert').mockImplementation();
 
-    await act(async () => {
+    await React.act(async () => {
       render(<StatusManager />);
     });
 
@@ -86,7 +87,7 @@ describe('StatusManager', () => {
     });
 
     const input = screen.getByPlaceholderText('Enter a status...');
-    await act(async () => {
+    await React.act(async () => {
       await userEvent.type(input, 'Статус');
       fireEvent.click(screen.getByText('Add Status'));
     });
@@ -98,7 +99,7 @@ describe('StatusManager', () => {
   it('toggles status publication', async () => {
     mockFetchClient.put.mockResolvedValue({ data: { ...mockStatuses[0], published: false } });
 
-    await act(async () => {
+    await React.act(async () => {
       render(<StatusManager />);
     });
 
@@ -107,7 +108,7 @@ describe('StatusManager', () => {
     });
 
     const publishButton = screen.getByText('Published');
-    await act(async () => {
+    await React.act(async () => {
       fireEvent.click(publishButton);
     });
 
@@ -122,7 +123,7 @@ describe('StatusManager', () => {
     mockFetchClient.patch.mockResolvedValue({ data: { message: 'Status deleted successfully' } });
     const alertSpy = jest.spyOn(window, 'alert').mockImplementation();
 
-    await act(async () => {
+    await React.act(async () => {
       render(<StatusManager />);
     });
 
@@ -131,7 +132,7 @@ describe('StatusManager', () => {
     });
 
     const deleteButtons = screen.getAllByText('Delete');
-    await act(async () => {
+    await React.act(async () => {
       fireEvent.click(deleteButtons[0]);
     });
 
@@ -140,12 +141,12 @@ describe('StatusManager', () => {
     });
 
     const selectOptions = screen.getAllByText('Pending');
-    await act(async () => {
+    await React.act(async () => {
       fireEvent.click(selectOptions[0]);
     });
 
     const confirmButton = screen.getAllByText('Yes, delete');
-    await act(async () => {
+    await React.act(async () => {
       fireEvent.click(confirmButton[1]);
     });
 

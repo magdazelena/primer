@@ -1,0 +1,14 @@
+{
+    "version": "0.0.0",
+    "strapi": {
+      "kind": "plugin",
+      "name": "primer-product-actions",
+      "displayName": "Product Actions",
+      "description": "Enables more actions for products"
+    },
+    "name": "@primer/product-actions",
+    "description": "Enables more actions for products",
+    "license": "MIT",
+    "author": "Magda Odrowaz-Zelezik <magda.zelezik@gmail.com>"
+  }
+  

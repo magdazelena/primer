@@ -1,4 +1,3 @@
-const { createStrapiInstance } = require('../../../../../../test/helpers/strapi');
 
 describe('Status Controller', () => {
   let strapi;
@@ -8,7 +7,7 @@ describe('Status Controller', () => {
   let mockProduct;
 
   beforeAll(async () => {
-    strapi = await createStrapiInstance();
+    strapi = await global.testStrapi;
     statusController = strapi.plugin('status-manager').controller('status');
     
     // Create mock statuses
@@ -50,8 +49,7 @@ describe('Status Controller', () => {
       where: { id: mockReplacementStatus.id },
     });
     
-    // Clean up Strapi instance
-    await strapi.destroy();
+
   });
 
   describe('find', () => {

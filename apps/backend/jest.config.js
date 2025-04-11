@@ -66,6 +66,6 @@ module.exports = {
   moduleDirectories: ['node_modules', '<rootDir>'],
   testPathIgnorePatterns: ['/node_modules/'],
   transformIgnorePatterns: [
-    '/node_modules/(?!(@strapi/strapi|@strapi/helper-plugin|@strapi/plugin-users-permissions|@strapi/plugin-seo|strapi-plugin-slugify)/)',
+    '/node_modules/(?!(@strapi/strapi|@strapi/helper-plugin|@strapi/plugin-users-permissions|@strapi/plugin-seo)/)',
   ],
 }; 

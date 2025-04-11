@@ -9,8 +9,7 @@ export default function componentResolver(
   // Component names do look like 'category.component-name' => lowercase and kebap case
   const names: string[] = section.__component.split(".");
 
-  // Get category name
-  const category = names[0];
+
 
   // Get component name
   const component = names[1];
@@ -36,11 +35,11 @@ export default function componentResolver(
   // See https://webpack.js.org/api/module-methods/#import-1
 
   // Use react lazy loading to import the module. By convention: The file name needs to match the name of the component (what is a good idea)
-  let module = lazy(
+  let componentModule = lazy(
     () => import(`@/components/${path ? `${path}/` : ""}${componentName}`)
   );
   // Create react element. The 'type' argument needs to be a FunctionComponent, not a string
-  const reactElement = createElement(module, { data: section, key: index });
+  const reactElement = createElement(componentModule, { data: section, key: index });
 
   return (
     <Suspense fallback={<Loader />} key={index}>

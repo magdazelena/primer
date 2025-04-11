@@ -76,6 +76,12 @@
       "target": "api::product.product",
       "mappedBy": "creator"
     },
+    "productSeries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product-series.product-series",
+      "mappedBy": "creator"
+    },
     "seo": {
       "type": "component",
       "repeatable": false,

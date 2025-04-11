@@ -55,6 +55,12 @@
       "target": "api::product.product",
       "mappedBy": "category"
     },
+    "productSeries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product-series.product-series",
+      "mappedBy": "category"
+    },
     "description": {
       "pluginOptions": {
         "i18n": {

@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { SingleSelect, SingleSelectOption, Box, Typography } from '@strapi/design-system';
 import { useFetchClient, unstable_useContentManagerContext as useContentManagerContext } from '@strapi/strapi/admin';
 
-const ProductStatusField = ({  
-    document, 
-}) => {
-  const productId = document?.documentId;
+const ProductStatusField = ({ document }) => {
+  const {
+    model
+  } = useContentManagerContext();
+  if (model !== 'api::product.product') return null;
   const [statuses, setStatuses] = useState([]);
   const [currentStatus, setCurrentStatus] = useState('')
   const [message, setMessage] = useState('')
   const { get, put } = useFetchClient();
-  const {
-    model,
-  } = useContentManagerContext();
+
+  const productId = document?.documentId;
   useEffect(() => {
     async function fetchCurrentStatus(){
         try {
@@ -58,7 +58,7 @@ const ProductStatusField = ({
       console.error("Error updating status:", error);
     }
   };
-  if (model !== 'api::product.product') return null;
+
   return {
     title: "Status",
     content: (

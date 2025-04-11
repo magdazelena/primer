@@ -12,7 +12,8 @@ export async function getProductBySlug(slug: string): Promise<Product[]> {
           populate: "*",
         },
         category: { fields: ["name", "slug"] },
-        creator: CREATOR_QUERY
+        creator: CREATOR_QUERY,
+        series: { fields: ["name", "slug"] },
       },
     };
     const response = await fetchAPI(path, urlParamsObject);
