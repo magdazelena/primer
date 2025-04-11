@@ -16,6 +16,7 @@ export default function ProductView({data}: {data: Product} ) {
       <div className="col-span-12">
         {creator && <CreatorThumbnail creator={creator} />}
       </div>
+      
     </article>
   );
 }

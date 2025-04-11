@@ -21,6 +21,7 @@ interface Product {
     url: string;
   };
   category: ProductCategory;
+  series?: Product;
 }
 
 interface ProductCategory {
