@@ -13,7 +13,7 @@ This is a monorepo supported by Turborepo, containing the following applications
 2. Run `setup` command to install dependencies:
 
 ```bash
-yarn setup
+npm run setup
 ```
 
 3. Next, navigate to your `/apps/backend` directory and set up your `.env` file. You can use the `.env.example` file as reference:
@@ -31,7 +31,7 @@ TRANSFER_TOKEN_SALT=tobemodified
 4. Start your project by running the following command:
 
 ```bash
-yarn dev
+npm run dev
 ```
 
 This will start both the frontend and backend applications concurrently.
@@ -42,16 +42,16 @@ You will be prompted to create your first admin user.
 
 ## Available Scripts
 
-- `yarn dev`: Start both frontend and backend applications
-- `yarn frontend`: Start only the frontend application
-- `yarn backend`: Start only the backend application
-- `yarn cleanup`: Clean frontend build artifacts
-- `yarn lint`: Run linting across all applications
-- `yarn test`: Run tests across all applications
-- `yarn test:watch`: Run tests in watch mode
-- `yarn test:coverage`: Run tests with coverage reporting
-- `yarn e2e`: Run end-to-end tests
-- `yarn prune`: Clean all node_modules and reinstall dependencies
+- `npm run dev`: Start both frontend and backend applications
+- `npm run frontend`: Start only the frontend application
+- `npm run backend`: Start only the backend application
+- `npm run cleanup`: Clean frontend build artifacts
+- `npm run lint`: Run linting across all applications
+- `npm test`: Run tests across all applications
+- `npm run test:watch`: Run tests in watch mode
+- `npm run test:coverage`: Run tests with coverage reporting
+- `npm run e2e`: Run end-to-end tests
+- `npm run prune`: Clean all node_modules and reinstall dependencies
 
 ## Seeding The Data
 
@@ -64,7 +64,7 @@ In the backend directory we have our `seed-data.tar.gz` file. We will use it to 
 1. Navigate to the `apps/backend` folder and run the following command to seed your data:
 
 ```bash
-yarn seed
+npm run seed
 ```
 
 This will import your data locally. Log back into your admin panel to see the newly imported data.
@@ -120,7 +120,7 @@ In Permissions lets give the following access.
 
 Add your token to your `NEXT_PUBLIC_STRAPI_FORM_SUBMISSION_TOKEN` variable name in the `.env` file.
 
-Once your environment variables are set you can start your frontend application by running `yarn frontend`.
+Once your environment variables are set you can start your frontend application by running `npm run frontend`.
 
 You should now see your Next JS frontend.
 
@@ -131,13 +131,13 @@ You should now see your Next JS frontend.
 If you want to install external package, use:
 
 ```bash
-yarn add <package> --cwd apps/<project name>
+npm install <package> --prefix apps/<project name>
 ```
 
 for example:
 
 ```bash
-yarn add react-router-dom --cwd apps/frontend
+npm install react-router-dom --prefix apps/frontend
 ```
 
 If your dependency is being **shared** by the projects, make sure to install it into the `root` directly!
