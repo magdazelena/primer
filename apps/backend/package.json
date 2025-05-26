@@ -18,17 +18,12 @@
   "dependencies": {
     "@atlaskit/pragmatic-drag-and-drop": "^1.5.2",
     "@atlaskit/pragmatic-drag-and-drop-hitbox": "^1.0.3",
-    "@strapi/plugin-seo": "^2.0.8",
-    "@strapi/plugin-users-permissions": "^5.12.0",
-    "@strapi/strapi": "^5.12.0",
+    "@strapi/plugin-users-permissions": "^5.13.1",
+    "@strapi/strapi": "^5.13.1",
     "better-sqlite3": "^11.9.1",
-    "classnames": "^2.5.1",
-    "negotiator": "^1.0.0",
-    "qs": "^6.14.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.30.0",
-    "remark-gfm": "^4.0.1",
     "styled-components": "^6.1.16"
   },
   "devDependencies": {

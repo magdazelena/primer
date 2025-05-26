@@ -1,7 +1,4 @@
 module.exports = ({ env }) => ({
-  seo: {
-    enabled: true,
-  },
   'status-manager': {
     enabled: true,
     resolve: './src/plugins/status-manager'
@@ -10,5 +7,4 @@ module.exports = ({ env }) => ({
     enabled: true,
     resolve: './src/plugins/product-actions'
   }
- 
 });
