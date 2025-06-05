@@ -2,7 +2,7 @@ const { createStrapi } = require('@strapi/strapi');
 const fs = require('fs');
 const path = require('path');
 
-async function createStrapiInstance() {
+async function createStrapiInstance(): Promise<void> {
   try {
     // Get the correct app directory path
     const appDir = path.join(__dirname, '..', '..', '..');

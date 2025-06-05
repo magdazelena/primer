@@ -1,5 +1,8 @@
-const status = ({ strapi }) => ({
-  async find(ctx) {
+
+import type { Core } from '@strapi/strapi';
+import { Context } from 'koa';
+const status = ({ strapi }: { strapi: Core.Strapi }) => ({
+  async find(ctx: Context) {
     try {
       const statuses = await strapi
         .plugin('status-manager')
@@ -8,9 +11,9 @@ const status = ({ strapi }) => ({
   
       return ctx.send(statuses);
     } catch (err) {
-      ctx.throw(500, err);
+      ctx.throw(err as string, 500);
     }
-  },  async findOne(ctx) {
+  },  async findOne(ctx: Context) {
     try {
       const { id } = ctx.params;
       const status = await strapi.entityService.findOne('plugin::status-manager.status', id);
@@ -21,10 +24,10 @@ const status = ({ strapi }) => ({
       
       return ctx.send(status);
     } catch (err) {
-      ctx.throw(500, err);
+      ctx.throw(err as string, 500);
     }
   },
-  async create(ctx) {
+  async create(ctx: Context) {
     try {
       const { name, published = false } = ctx.request.body;
 
@@ -45,15 +48,15 @@ const status = ({ strapi }) => ({
       const newStatus = await strapi.plugin('status-manager').service('status').createStatus({
         name,
         published,
-        order: maxOrder + 1, // New status goes at the bottom
+        order: maxOrder ? maxOrder + 1 : 0, // New status goes at the bottom
       });
 
       return ctx.send(newStatus);
     } catch (error) {
-      ctx.internalServerError("Error adding status", error);
+      ctx.internalServerError(`Error adding status: ${error}`);
     }
   },
-  async reorder(ctx) {
+  async reorder(ctx: Context) {
     try {
       const { statuses } = ctx.request.body; // Expecting [{id: 1, order: 0}, {id: 2, order: 1}, ...]
 
@@ -70,10 +73,10 @@ const status = ({ strapi }) => ({
 
       ctx.send({ message: "Order updated successfully" });
     } catch (error) {
-      ctx.internalServerError("Error updating order", error);
+      ctx.internalServerError(`Error updating order: ${error}`);
     }
   },
-  async publish(ctx) {
+  async publish(ctx: Context) {
     const { id } = ctx.request.params;
     const { published } = ctx.request.body
     try {
@@ -83,10 +86,10 @@ const status = ({ strapi }) => ({
       })
       ctx.send({ message: "Un/published successfully successfully" });
     } catch (error) {
-      ctx.internalServerError("Error publishing", error);
+      ctx.internalServerError(`Error publishing: ${error}`);
     }
   },
-  async delete(ctx) {
+  async delete(ctx: Context) {
     try {
       const { statusId, replacementId } = ctx.request.body;
 
@@ -97,7 +100,7 @@ const status = ({ strapi }) => ({
       
       return ctx.send(result);
     } catch (error) {
-      ctx.internalServerError("Error deleting status.", error);
+      ctx.internalServerError(`Error deleting status: ${error}`);
     }
   },
 });

@@ -1,5 +1,5 @@
-const statusService = require('./status');
+import statusService from './status';
 
-module.exports = {
+export default {
   status: statusService
 };

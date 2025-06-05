@@ -1,14 +1,17 @@
 'use strict';
-module.exports = ({ strapi }) => ({
+
+import { Core } from "@strapi/types";
+
+export default ({ strapi }: { strapi: Core.Strapi }) => ({
   async find() {
-    return await strapi.entityService.findMany(
-      'plugin::status-manager.status', { orderBy: { order: 'asc' } }
+    return await strapi.documents(
+      'plugin::status-manager.status').findMany({ sort: { order: 'asc' } }
     );
   },
 
   async createStatus(data) {
     try {
-      const newStatus = await strapi.entityService.create('plugin::status-manager.status', { data });
+      const newStatus = await strapi.documents('plugin::status-manager.status').create( { data });
       return newStatus;
     } catch (error) {
       strapi.log.error("Error creating status:", error);
@@ -49,7 +52,7 @@ module.exports = ({ strapi }) => ({
       });
 
       const remainingStatuses = await strapi.entityService.findMany('plugin::status-manager.status', {
-        orderBy: { order: 'asc' },
+        sort: { order: 'asc' },
       });
 
       await Promise.all(
