@@ -26,8 +26,7 @@ const SeriesProductActions = ({ document }: { document: any }) => {
   const documentId = document?.documentId;
   const [productCount, setProductCount] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-  const [fieldsToUpdate, setFieldsToUpdate] = useState([]);
-
+  const [fieldsToUpdate, setFieldsToUpdate] = useState<string[]>([]);
   const { post, put } = useFetchClient();
 
   const handleCreateProducts = async () => {
@@ -40,11 +39,10 @@ const SeriesProductActions = ({ document }: { document: any }) => {
         },
       );
 
-      if (!response.ok) {
+      if (!response.data) {
         throw new Error("Failed to create products");
       }
 
-      setIsCreateDialogOpen(false);
       setProductCount(1);
     } catch (error) {
     } finally {
@@ -62,11 +60,10 @@ const SeriesProductActions = ({ document }: { document: any }) => {
         },
       );
 
-      if (!response.ok) {
+      if (!response.data) {
         throw new Error("Failed to update products");
       }
 
-      setIsUpdateDialogOpen(false);
     } catch (error) {
     } finally {
       setIsLoading(false);
@@ -76,7 +73,7 @@ const SeriesProductActions = ({ document }: { document: any }) => {
     title: "Series Product Actions",
     content: (
       <Box>
-        <Box spacing={2}>
+        <Box>
           <Typography variant="delta" fontWeight="bold">
             {formatMessage({ id: "product-series.actions.label" })}
           </Typography>
@@ -103,18 +100,16 @@ const SeriesProductActions = ({ document }: { document: any }) => {
               </Dialog.Trigger>
               <Dialog.Content>
                 <Dialog.Body>
-                  <Box spacing={2}>
+                  <Box >
                     <Typography>
                       {formatMessage({
                         id: "product-series.actions.createDialogTitle",
                       })}
                     </Typography>
                     <NumberInput
-                      label={formatMessage({
-                        id: "product-series.actions.productCount",
-                      })}
+                
                       value={productCount}
-                      onValueChange={setProductCount}
+                      onValueChange={(value) => setProductCount(value || 1)}
                       min={1}
                       max={100}
                     ></NumberInput>
@@ -154,7 +149,7 @@ const SeriesProductActions = ({ document }: { document: any }) => {
                 </Button>
               </Dialog.Trigger>
               <Dialog.Content>
-                <Dialog.Body display={"flex"} flexDirection={"column"} gap={2} justifyContent={"center"} alignItems={"center"} width={"100%"} >
+                <Dialog.Body display={"flex"} direction={"column"} gap={2} justifyContent={"center"} alignItems={"center"} width={"100%"} >
                   <Typography variant="delta" fontWeight="bold">
                     {formatMessage({
                       id: "product-series.actions.updateDialogTitle",
@@ -166,13 +161,11 @@ const SeriesProductActions = ({ document }: { document: any }) => {
                     })}
                   </Typography>
                   <MultiSelect 
-                    minWidth={"100%"}
                     withTags={true}
                     value={fieldsToUpdate}
                     onClear={() => setFieldsToUpdate([])}
-                    onChange={(value) => setFieldsToUpdate(value)}
+                    onChange={(value: string[]) => setFieldsToUpdate(value)}
                     required={true}
-                    size="large"
                     placeholder={formatMessage({ id: "product-series.actions.selectFields" })}
                     >
                     {valuesToUpdate.map(field => <MultiSelectOption key={field} value={field}>{field}</MultiSelectOption>)}

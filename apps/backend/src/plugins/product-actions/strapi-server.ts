@@ -2,7 +2,7 @@
 
 import * as controllers from './server/controllers/index';
 import * as routes from './server/routes/product-series';
-import * as services from './server/services/index';
+import * as services from './server/services';
 
 console.log('🚀 Product Actions Plugin Loaded!');
 

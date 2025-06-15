@@ -1,9 +1,9 @@
-import { Core } from '@strapi/strapi';
+import { Core} from '@strapi/strapi';
 
 export default ({ strapi }: { strapi: Core.Strapi }) => ({
   async createProductsFromSeries(seriesId: string, count = 1) {
     const series = await getSeries(strapi, seriesId);
-    const products = [];
+    const products: any[] = [];
     const startIndex = series.products?.length || 0;
 
     for (let i = 0; i < count; i++) {
@@ -15,16 +15,15 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
           name: `${series.name} #${index + 1}`,
           slug: `${series.slug}-${index + 1}`,
           series: {
-            connect: [{ documentId: seriesId }]
-          },
+            set: [{ documentId: seriesId }]
+          } as any,
           seriesIndex: index,
           category: {
-            connect: [{ documentId: series.category?.documentId }]
-          },
+            set: [{ documentId: series.category?.documentId }]
+          } as any,
           creator: {
-            connect: [{ documentId: series.creator?.documentId }]
-          },
-          statusName: null,
+            set: [{ documentId: series.creator?.documentId }]
+          } as any,
           publishedAt: undefined,
           // Copy all required fields from series
           description: series.description,
@@ -35,7 +34,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
           totalCost: series.totalCost,
           wholesalePrice: series.wholesalePrice,
           retailPrice: series.retailPrice
-        }
+        } as any
       });
 
       products.push(product);

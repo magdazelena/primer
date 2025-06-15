@@ -1,5 +1,5 @@
-const productSeries = require('./product-series');
+import productSeries from './product-series';
 
-module.exports = {
+export default {
   productSeries,
 };
