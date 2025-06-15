@@ -1,6 +1,7 @@
 
 import type { Core } from '@strapi/strapi';
 import { Context } from 'koa';
+
 const status = ({ strapi }: { strapi: Core.Strapi }) => ({
   async find(ctx: Context) {
     try {
@@ -16,7 +17,7 @@ const status = ({ strapi }: { strapi: Core.Strapi }) => ({
   },  async findOne(ctx: Context) {
     try {
       const { id } = ctx.params;
-      const status = await strapi.entityService.findOne('plugin::status-manager.status', id);
+      const status = await strapi.documents('plugin::status-manager.status' as any).findOne(id);
       
       if (!status) {
         return ctx.notFound('Status not found');
@@ -37,8 +38,8 @@ const status = ({ strapi }: { strapi: Core.Strapi }) => ({
       }
 
       // Get the highest current order
-      const existingStatuses = await strapi.entityService.findMany('plugin::status-manager.status', {
-        orderBy: { order: 'desc' },
+      const existingStatuses = await strapi.documents('plugin::status-manager.status' as any).findMany({
+        sort: 'desc' ,
         limit: 1
       });
 
@@ -66,8 +67,8 @@ const status = ({ strapi }: { strapi: Core.Strapi }) => ({
 
       // Update each status with new order
       await Promise.all(
-        statuses.map(({ id, order }) =>
-          strapi.entityService.update('plugin::status-manager.status', id, { data: { order } })
+        statuses.map(({ documentId, order }) =>
+          strapi.documents('plugin::status-manager.status' as any ).update({ documentId, data: { order } })
         )
       );
 
@@ -76,7 +77,7 @@ const status = ({ strapi }: { strapi: Core.Strapi }) => ({
       ctx.internalServerError(`Error updating order: ${error}`);
     }
   },
-  async publish(ctx: Context) {
+  async publish(ctx) {
     const { id } = ctx.request.params;
     const { published } = ctx.request.body
     try {

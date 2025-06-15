@@ -1,4 +1,5 @@
 import type { Schema, Struct } from '@strapi/strapi';
+import type { PluginStatusManagerStatus } from '../../src/plugins/status-manager/server/src/types/contentTypes';
 
 export interface AdminApiToken extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_api_tokens';
@@ -1287,54 +1288,6 @@ export interface PluginReviewWorkflowsWorkflowStage
   };
 }
 
-export interface PluginStatusManagerStatus extends Struct.CollectionTypeSchema {
-  collectionName: 'status';
-  info: {
-    description: 'Status name';
-    displayName: 'Status parameter';
-    pluralName: 'statuses';
-    singularName: 'status';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: true;
-    };
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'plugin::status-manager.status'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMax<
-        {
-          max: 50;
-          min: 1;
-        },
-        number
-      >;
-    order: Schema.Attribute.Integer;
-    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
-    published: Schema.Attribute.Boolean;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Struct.CollectionTypeSchema {
   collectionName: 'files';
   info: {
@@ -1621,7 +1574,6 @@ declare module '@strapi/strapi' {
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::review-workflows.workflow': PluginReviewWorkflowsWorkflow;
       'plugin::review-workflows.workflow-stage': PluginReviewWorkflowsWorkflowStage;
-      'plugin::status-manager.status': PluginStatusManagerStatus;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;

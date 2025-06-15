@@ -2,8 +2,8 @@ export default {
   kind: 'collectionType',
   collectionName: 'status',
   info: {
-    singularName: 'status', // kebab-case mandatory
-    pluralName: 'statuses', // kebab-case mandatory
+    singularName: 'status',
+    pluralName: 'statuses',
     displayName: 'Status parameter',
     description: 'Status name',
   },
@@ -21,22 +21,25 @@ export default {
   attributes: {
     name: {
       type: 'string',
-      min: 1,
-      max: 50,
-      configurable: false,
-      required: true
+      minLength: 1,
+      maxLength: 50,
+      required: true,
+      configurable: false
     },
     published: {
       type: 'boolean',
+      default: false
     },
     order: {
-      type: 'integer'
+      type: 'integer',
+      default: 0
     },
     products: {
       type: 'relation',
       relation: 'oneToMany',
       target: 'api::product.product',
-      mappedBy: 'statusName'
+      mappedBy: 'statusName',
+      configurable: false
     }
   }
 };
