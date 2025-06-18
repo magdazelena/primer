@@ -1,0 +1,37 @@
+{
+  "extends": "@strapi/typescript-utils/tsconfigs/server",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": ".",
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "lib": ["DOM"],
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "allowJs": true, //enables the build without .ts files
+    "types": [
+      "./src/types/generated/contentTypes.d.ts",
+      "./src/types/generated/components.d.ts",
+      "./src/plugins/status-manager/server/src/types/contentTypes.d.ts"
+    ]
+  },
+  "include": [
+    "./",
+    "src/**/*.json",
+    "./src/types/generated/*",
+    "src/plugins/*/server/**/*",
+    "src/plugins/*/strapi-server.ts"
+  ],
+  "exclude": [
+    "node_modules/",
+    "build/",
+    "dist/",
+    ".cache/",
+    ".tmp/",
+    "src/admin/",
+    "src/plugins/*/admin/**/*",
+    "src/plugins/*/strapi-admin.ts",
+    "**/*.test.ts",
+    "**/*.test.js"
+  ]
+}

@@ -1,4 +1,5 @@
 import type { Schema, Struct } from '@strapi/strapi';
+import type { PluginStatusManagerStatus } from '../../src/plugins/status-manager/server/src/types/contentTypes';
 
 export interface AdminApiToken extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_api_tokens';
@@ -1024,6 +1025,10 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    statusName: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::status-manager.status'
+    >;
     totalCost: Schema.Attribute.Integer &
       Schema.Attribute.Required &
       Schema.Attribute.Private &

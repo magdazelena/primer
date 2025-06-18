@@ -1,21 +1,22 @@
-import js from "@eslint/js";
 import globals from "globals";
 import react from "eslint-plugin-react";
+import tseslint from "typescript-eslint";
 
 export default [
   {
-    files: ["**/config/**/*.js", "**/*.js"],
+    files: ["**/*.{js,ts,tsx}"],
     ignores: [
       "**/.strapi/client/**",
       "**/*.example.js",
       ".cache",
       "build",
       "**/node_modules/**",
-      "**/jest.setup.js"
+      "**/jest.setup.js",
+      "dist/**"
     ],
     languageOptions: {
       ecmaVersion: 2022,
-      sourceType: "script",
+      sourceType: "module",
       globals: {
         ...globals.node,
         module: "readonly",
@@ -23,11 +24,30 @@ export default [
         __dirname: "readonly",
         strapi: "readonly",
         document: "readonly"
+      },
+      parser: tseslint.parser,
+      parserOptions: {
+        project: "./tsconfig.json",
+        tsconfigRootDir: "."
       }
+    },
+    plugins: {
+      "@typescript-eslint": tseslint.plugin
+    },
+    rules: {
+      ...tseslint.configs.recommended.rules,
+      ...tseslint.configs.strictTypeChecked.rules,
+      ...tseslint.configs.stylisticTypeChecked.rules,
+      "no-console": "off",
+      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_?(strapi|config)?" }],
+      "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/explicit-function-return-type": "warn",
+      "@typescript-eslint/no-floating-promises": "error",
+      "@typescript-eslint/no-misused-promises": "error"
     }
   },
   {
-    files: ["**/.strapi/client/**/*.js", "**/*.mjs", "**/jest.setup.js"],
+    files: ["**/.strapi/client/**/*.{js,ts,tsx}", "**/*.mjs", "**/jest.setup.js"],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: "module",
@@ -49,17 +69,9 @@ export default [
     }
   },
   {
-    ignores: ["**/*.example.js"],
-    rules: {
-      ...js.configs.recommended.rules,
-      "no-console": "off",
-      "no-unused-vars": ["warn", { argsIgnorePattern: "^_?(strapi|config)?" }]
-    }
-  },
-  {
     files: [
-      "**/src/plugins/*/strapi-server.js",
-      "**/src/plugins/*/server/**/*.js"
+      "**/src/plugins/*/strapi-server.{js,ts}",
+      "**/src/plugins/*/server/**/*.{js,ts}"
     ],
     languageOptions: {
       ecmaVersion: 2022,
@@ -75,9 +87,8 @@ export default [
   },
   {
     files: [
-      "**/src/plugins/*/strapi-admin.js",
-      "**/src/plugins/*/admin/**/*.js|jsx",
-      "**/src/plugins/*/admin/**/*.js"
+      "**/src/plugins/*/strapi-admin.{js,ts}",
+      "**/src/plugins/*/admin/**/*.{js,ts,jsx,tsx}"
     ],
     languageOptions: {
       ecmaVersion: 2022,
