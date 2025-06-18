@@ -23,12 +23,6 @@
 			"private": false,
 			"readOnly": true
 		},
-		"statusName": {
-			"type": "relation",
-			"relation": "manyToOne",
-			"target": "plugin::status-manager.status",
-			"inversedBy": "products"
-		},
 		"series": {
 			"type": "relation",
 			"relation": "manyToOne",
