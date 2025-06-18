@@ -1,3 +1,5 @@
+import statusParam from './status';
+
 export default {
-  // Add your content types here
+  'status': { schema: statusParam }
 }; 

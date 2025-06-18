@@ -1,8 +1,6 @@
 import type { Core } from '@strapi/types';
 'use strict';
 
-const productSkuMiddleware = require("./api/product/middlewares/product-sku-middleware");
-
 export default {
   /**
    * An asynchronous register function that runs before
@@ -11,7 +9,8 @@ export default {
    * This gives you an opportunity to extend code.
    */
   register({ strapi }: { strapi: Core.Strapi }): void {
-    strapi.documents.use(productSkuMiddleware);
+    // Removed incorrect middleware registration
+    // strapi.documents.use() is not the correct way to register middlewares in Strapi v5
   },
 
   /**

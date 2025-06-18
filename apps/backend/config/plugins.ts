@@ -1,5 +1,5 @@
 export default ({ env }: { env: any }) => ({
-  'status-manager': {
+  'primer-status-manager': {
     enabled: true,
     config: {
       // Add your plugin configuration here

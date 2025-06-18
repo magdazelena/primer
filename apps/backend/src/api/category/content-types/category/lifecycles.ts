@@ -1,6 +1,7 @@
 import type { ServiceInstance } from '@strapi/types/dist/modules/documents/service-instance';
 import type { ID } from '@strapi/types/dist/modules/documents';
 import type { RelationInputValue } from '@strapi/types/dist/modules/documents/params/attributes/relations';
+import { DocumentID} from '@strapi/types/dist/modules/documents/params/attributes/id';
 
 interface Category {
   id: number;
@@ -53,12 +54,12 @@ export default {
       });
       if (parent) {
         const childrenSet: RelationInputValue<'oneToMany'> = {
-          set: parent.children?.filter((child: { id: number }) => child.id !== result.id).map((child: { id: number }) => ({ id: child.id.toString() })) || [],
+          set: parent.children?.filter((child) => child.id !== result.id).map((child) => ({ documentId: child.documentId })) || [],
         };
         await categoryService.update({
-          documentId: parent.id.toString() as ID,
+          documentId: parent.documentId.toString() as DocumentID,
           data: {
-            children: { set: parent.children?.filter((child: { id: number }) => child.id !== result.id).map((child: { id: number }) => ({ id: child.id.toString() })) || [] },
+            children: { set: parent.children?.filter((child) => child.id !== result.id).map((child) => ({ id: child.id.toString() })) || [] },
           } as any,
         });
       }
@@ -74,7 +75,7 @@ async function updateParentWithChild(category: Category) {
       populate: ['children'],
     });
     if (parent) {
-      const existingChildren = parent.children?.map((child: { id: number }) => ({ id: child.id.toString() })) || [];
+      const existingChildren = parent.children?.map((child) => ({ id: child.id.toString() })) || [];
       if (!existingChildren.some((child: { id: string }) => child.id === category.id.toString())) {
         await categoryService.update({
           documentId: parent.id.toString() as ID,

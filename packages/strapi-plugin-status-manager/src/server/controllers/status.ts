@@ -1,4 +1,3 @@
-
 import type { Core } from '@strapi/strapi';
 import { Context } from 'koa';
 
@@ -68,7 +67,7 @@ const status = ({ strapi }: { strapi: Core.Strapi }) => ({
       // Update each status with new order
       await Promise.all(
         statuses.map(({ documentId, order }) =>
-          strapi.documents('plugin::status-manager.status' as any ).update({ documentId, data: { order } })
+          strapi.documents('plugin::status-manager.status' as any ).update({ documentId, data: { order } as any })
         )
       );
 
@@ -106,4 +105,4 @@ const status = ({ strapi }: { strapi: Core.Strapi }) => ({
   },
 });
   
-export default status;
+export default status; 

@@ -13,6 +13,7 @@ export default () => {
     controllers,
     routes,
     services,
+    middlewares: {},
     bootstrap() {}
   };
 };

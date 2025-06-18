@@ -1,3 +1,4 @@
+//@ts-ignore
 import { Page } from '@strapi/strapi/admin';
 import { Routes, Route } from 'react-router-dom';
 import { DesignSystemProvider, lightTheme } from '@strapi/design-system';
@@ -16,4 +17,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default App; 

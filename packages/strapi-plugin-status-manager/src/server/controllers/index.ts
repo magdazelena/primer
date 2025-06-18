@@ -1,3 +1,5 @@
+import status from './status';
+
 export default {
-  // Add your controllers here
+  status
 }; 

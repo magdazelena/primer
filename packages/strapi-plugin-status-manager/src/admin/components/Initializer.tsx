@@ -15,4 +15,4 @@ const Initializer = ({ setPlugin }: { setPlugin: (id: string) => void }) => {
   return null;
 };
 
-export { Initializer };
+export { Initializer }; 

@@ -16,6 +16,7 @@ import { reorder } from '@atlaskit/pragmatic-drag-and-drop/reorder';
 import { setCustomNativeDragPreview } from '@atlaskit/pragmatic-drag-and-drop/element/set-custom-native-drag-preview';
 import { pointerOutsideOfPreview } from '@atlaskit/pragmatic-drag-and-drop/element/pointer-outside-of-preview';
 import { Plus, Trash, Drag } from "@strapi/icons";
+//@ts-ignore
 import { useFetchClient } from '@strapi/strapi/admin';
 
 const StatusManager = () => {
@@ -235,7 +236,6 @@ const StatusManager = () => {
 
   // Open delete dialog
   const confirmDelete = (status) => {
-
     setStatusToDelete(status);
   };
 
@@ -383,4 +383,4 @@ const StatusManager = () => {
   );
 };
 
-export default StatusManager;
+export default StatusManager; 

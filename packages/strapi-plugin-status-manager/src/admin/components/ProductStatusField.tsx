@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { SingleSelect, SingleSelectOption, Box, Typography } from '@strapi/design-system';
+//@ts-ignore
 import { useFetchClient, unstable_useContentManagerContext as useContentManagerContext } from '@strapi/strapi/admin';
 
 const ProductStatusField = ({ document }) => {
@@ -79,4 +80,4 @@ const ProductStatusField = ({ document }) => {
   } 
 };
 
-export default ProductStatusField;
+export default ProductStatusField; 

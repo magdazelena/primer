@@ -42,4 +42,4 @@ export default {
       configurable: false
     }
   }
-};
+}; 

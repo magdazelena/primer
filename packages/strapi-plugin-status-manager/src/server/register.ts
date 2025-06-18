@@ -1,4 +1,6 @@
-export default ({ strapi }: { strapi: any }) => {
-  // Add your registration logic here
-  console.log('🚀 Status Manager Plugin Registered!');
+import { PLUGIN_ID } from "../pluginId";
+
+export default ({ strapi }: { strapi: any }): void => {
+  console.log('🔌 Registering Status Manager Server Plugin...', PLUGIN_ID);
+
 }; 

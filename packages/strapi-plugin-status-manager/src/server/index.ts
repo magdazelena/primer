@@ -1,10 +1,12 @@
 import bootstrap from './bootstrap';
-import config from './config';
-import contentTypes from './content-types';
-import controllers from './controllers';
+import config from './config/index';
+import contentTypes from './content-types/index';
+import controllers from './controllers/index';
+import destroy from './destroy';
+import middlewares from './middlewares/index';
 import register from './register';
-import routes from './routes';
-import services from './services';
+import routes from './routes/index';
+import services from './services/index';
 
 export default () => {
   return {
@@ -14,7 +16,9 @@ export default () => {
     contentTypes,
     routes,
     services,
+    middlewares,
     policies() {},
     bootstrap,
+    destroy
   };
 }; 

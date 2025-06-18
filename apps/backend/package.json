@@ -19,7 +19,7 @@
   "dependencies": {
     "@atlaskit/pragmatic-drag-and-drop": "^1.5.2",
     "@atlaskit/pragmatic-drag-and-drop-hitbox": "^1.0.3",
-    "@primer/strapi-plugin-status-manager": "file:../../packages/strapi-plugin-status-manager",
+    "@primer/strapi-plugin-status-manager": "*",
     "@strapi/plugin-users-permissions": "^5.13.1",
     "@strapi/strapi": "^5.13.1",
     "better-sqlite3": "^11.9.1",

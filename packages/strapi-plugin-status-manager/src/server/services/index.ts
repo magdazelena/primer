@@ -1,3 +1,5 @@
+import statusService from './status';
+
 export default {
-  // Add your services here
+  status: statusService
 }; 

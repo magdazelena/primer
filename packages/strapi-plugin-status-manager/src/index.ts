@@ -1,7 +1,7 @@
-import server from './server';
-import admin from './admin';
+import server from './server/index';
+import admin from './admin/index';
 
 export default {
-  server,
-  admin,
+  'strapi-server': server,
+  'strapi-admin': admin,
 }; 
