@@ -1,0 +1,53 @@
+{
+  "name": "@primer/strapi-plugin-status-manager",
+  "version": "0.0.1",
+  "description": "Enables more status variations for Strapi",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "admin",
+    "server"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "strapi",
+    "plugin",
+    "status",
+    "manager"
+  ],
+  "author": "Magda Odrowaz-Zelezik <magda.zelezik@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/primer.git",
+    "directory": "packages/strapi-plugin-status-manager"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/primer/issues"
+  },
+  "homepage": "https://github.com/your-username/primer/tree/main/packages/strapi-plugin-status-manager#readme",
+  "peerDependencies": {
+    "@strapi/strapi": "^5.0.0"
+  },
+  "devDependencies": {
+    "@strapi/strapi": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "kind": "plugin",
+    "name": "status-manager",
+    "displayName": "Status Manager",
+    "description": "Enables more status variations"
+  }
+} 

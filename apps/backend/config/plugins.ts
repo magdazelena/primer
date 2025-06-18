@@ -1,7 +1,9 @@
 export default ({ env }: { env: any }) => ({
   'status-manager': {
     enabled: true,
-    resolve: './src/plugins/status-manager'
+    config: {
+      // Add your plugin configuration here
+    }
   },
   'product-actions': {
     enabled: true,
