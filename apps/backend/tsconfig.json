@@ -3,17 +3,24 @@
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": ".",
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "lib": ["DOM"],
+    "module": "CommonJS",
+    "moduleResolution": "node",
     "allowJs": true, //enables the build without .ts files
     "types": [
-      "./types/generated/contentTypes.d.ts",
-      "./types/generated/components.d.ts",
-      "./src/plugins/status-manager/server/src/types/contentTypes.ts"
+      "./src/types/generated/contentTypes.d.ts",
+      "./src/types/generated/components.d.ts",
+      "./src/plugins/status-manager/server/src/types/contentTypes.d.ts"
     ]
   },
   "include": [
     "./",
     "src/**/*.json",
-    "./types/generated/*",
+    "./src/types/generated/*",
+    "src/plugins/*/server/**/*",
+    "src/plugins/*/strapi-server.ts"
   ],
   "exclude": [
     "node_modules/",
@@ -22,7 +29,9 @@
     ".cache/",
     ".tmp/",
     "src/admin/",
+    "src/plugins/*/admin/**/*",
+    "src/plugins/*/strapi-admin.ts",
     "**/*.test.ts",
-    "src/plugins/**"
+    "**/*.test.js"
   ]
 }

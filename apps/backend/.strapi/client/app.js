@@ -3,14 +3,10 @@
  * Any modifications made will be discarded.
  */
 import usersPermissions from "@strapi/plugin-users-permissions/strapi-admin";
-import statusManager from "../../src/plugins/status-manager/strapi-admin";
-import productActions from "../../src/plugins/product-actions/strapi-admin";
 import { renderAdmin } from "@strapi/strapi/admin";
 
 renderAdmin(document.getElementById("strapi"), {
   plugins: {
     "users-permissions": usersPermissions,
-    "status-manager": statusManager,
-    "product-actions": productActions,
   },
 });

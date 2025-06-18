@@ -115,7 +115,7 @@ const StatusManager = () => {
 
       // Setup draggable
       const draggableCleanup = draggable({
-        element: dragHandle,
+        element: dragHandle as HTMLElement,
         getInitialData: () => ({
           statusId,
           index,
@@ -125,8 +125,8 @@ const StatusManager = () => {
           setCustomNativeDragPreview({
             nativeSetDragImage,
             getOffset: pointerOutsideOfPreview({
-              x: 16,
-              y: 8,
+              x: '16px',
+              y: '8px',
             }),
             render({ container }) {
               const preview = document.createElement('div');
@@ -145,7 +145,7 @@ const StatusManager = () => {
 
       // Setup drop target
       const dropTargetCleanup = dropTargetForElements({
-        element,
+        element: element as HTMLElement,
         canDrop: ({ source }) => source.data.instanceId === instanceId,
         getData: ({ input }) => {
           return attachClosestEdge(
@@ -162,7 +162,7 @@ const StatusManager = () => {
           if (isSource) return;
 
           const closestEdge = extractClosestEdge(self.data);
-          const sourceIndex = source.data.index;
+          const sourceIndex = Number(source.data.index);
        
           
           const isItemBeforeSource = index === sourceIndex - 1;
@@ -175,13 +175,13 @@ const StatusManager = () => {
           if (isDropIndicatorHidden) return;
 
           // Add visual feedback for drop target
-          element.style.background = `linear-gradient(${closestEdge === 'top' ? 180 : 0}deg, rgba(136,131,214,0.4) 0%, rgba(255,255,255,0) 50%)`;
+          (element as HTMLElement).style.background = `linear-gradient(${closestEdge === 'top' ? 180 : 0}deg, rgba(136,131,214,0.4) 0%, rgba(255,255,255,0) 50%)`;
         },
         onDragLeave: () => {
-          element.style.background = '';
+          (element as HTMLElement).style.background = '';
         },
         onDrop: ({ source, self }) => {
-          element.style.background = '';
+          (element as HTMLElement).style.background = '';
           
           const sourceData = source.data;
           const targetData = self.data;
@@ -340,7 +340,7 @@ const StatusManager = () => {
                       Choose a replacement status before deleting:
                     </Typography>
                     <SingleSelect
-                      onChange={setReplacementStatus}
+                      onChange={(value) => setReplacementStatus(value as string)}
                       placeholder="Select replacement"
                     >
                       {statuses
