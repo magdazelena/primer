@@ -2,36 +2,38 @@
   "name": "@primer/strapi-plugin-status-manager",
   "version": "0.0.1",
   "description": "Enables more status variations for Strapi",
-  "type": "module",
   "exports": {
     "./strapi-admin": {
-      "source": "./admin/index.ts",
-      "import": "./dist/admin/index.js",
+      "source": "./admin/src/index.ts",
+      "import": "./dist/admin/index.mjs",
       "require": "./dist/admin/index.js",
       "default": "./dist/admin/index.js"
     },
     "./strapi-server": {
-      "source": "./server/index.ts",
-      "import": "./dist/server/index.js",
+      "source": "./server/src/index.ts",
+      "import": "./dist/server/index.mjs",
       "require": "./dist/server/index.js",
       "default": "./dist/server/index.js"
     },
     "./package.json": "./package.json"
   },
   "files": [
-    "dist",
-    "admin",
-    "server"
+    "dist/",
+    "strapi-server.js"
   ],
   "scripts": {
-    "build": "npm run build:server && npm run build:admin",
-    "build:server": "tsc --project server/tsconfig.build.json",
-    "build:admin": "tsc --project admin/tsconfig.build.json",
-    "dev": "npm run dev:server & npm run dev:admin",
-    "dev:server": "tsc --project server/tsconfig.json --watch",
-    "dev:admin": "tsc --project admin/tsconfig.json --watch",
-    "clean": "rm -rf dist",
-    "prepublishOnly": "npm run clean && npm run build"
+    "build": "npm-run-all clean --parallel build:code build:types",
+    "build:code": "rollup -c",
+    "build:types": "run-p build:types:server build:types:admin",
+    "build:types:server": "tsc -p server/tsconfig.build.json ",
+    "build:types:admin": "tsc -p admin/tsconfig.build.json ",
+    "clean": "rimraf ./dist",
+    "lint": "eslint .",
+    "test:front": "cross-env IS_EE=true jest --config ./jest.config.front.js",
+    "test:ts:front": "tsc -p admin/tsconfig.json",
+    "test:unit": "jest",
+    "test:unit:watch": "jest --watch",
+    "watch": "rollup -c -w"
   },
   "keywords": [
     "strapi",
@@ -56,13 +58,24 @@
   "devDependencies": {
     "@atlaskit/pragmatic-drag-and-drop": "^1.5.2",
     "@atlaskit/pragmatic-drag-and-drop-hitbox": "^1.0.3",
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-dynamic-import-vars": "^2.1.5",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-swc": "^0.4.0",
+    "@strapi/admin": "5.16.0",
+    "@strapi/content-manager": "5.16.0",
+    "@strapi/types": "5.16.0",
     "@types/node": "^20.0.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "typescript": "^5.0.0",
-    "@strapi/admin": "5.16.0",
-    "@strapi/content-manager": "5.16.0",
-    "@strapi/types": "5.16.0"
+    "cross-env": "^7.0.3",
+    "eslint": "^8.0.0",
+    "jest": "^29.0.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^5.0.0",
+    "rollup": "^4.44.0",
+    "typescript": "^5.0.0"
   },
   "engines": {
     "node": ">=18.0.0",

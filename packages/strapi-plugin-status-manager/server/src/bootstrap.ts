@@ -8,12 +8,6 @@ export default ({ strapi }: { strapi: any } ) => {
   
   // Register permissions for the plugin
   try {
-    strapi.admin.services.permission.actionProvider.register({
-      section: 'plugins',
-      displayName: 'Status Manager',
-      uid: 'primer-status-manager',
-      pluginName: 'primer-status-manager',
-    });
 
     // Register specific permissions
     const permissions = [
@@ -27,8 +21,8 @@ export default ({ strapi }: { strapi: any } ) => {
     permissions.forEach(permission => {
       strapi.admin.services.permission.actionProvider.register({
         section: 'plugins',
-        displayName: permission,
-        uid: permission,
+        displayName: permission.split('.').pop(),
+        uid: permission.toLowerCase().replace('plugin::', ''),
         pluginName: 'primer-status-manager',
       });
     });
