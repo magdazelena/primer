@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import {
   TextInput,
@@ -31,7 +32,7 @@ const StatusManager = () => {
   useEffect(() => {
     const loadStatuses = async () => {
       try {
-        const { data } = await get('/status-manager/statuses');
+        const { data } = await get('/admin/primer-status-manager/statuses');
         setStatuses(data);
       } catch (error) {
         console.error("Error fetching statuses:", error);
@@ -48,7 +49,7 @@ const StatusManager = () => {
     if (!newStatus || !validateInput(newStatus))
       return alert("Only Latin characters allowed!");
     try {
-      const { data } = await post('/status-manager/statuses', {
+      const { data } = await post('/admin/primer-status-manager/statuses', {
         name: newStatus,
         published: false,
       });
@@ -89,11 +90,11 @@ const StatusManager = () => {
 
         // Send new order to API
         const orderedIds = reordered.map((status, index) => ({
-          id: status.id,
+          documentId: status.documentId,
           order: index,
         }));
         
-        put('/status-manager/statuses/reorder', { statuses: orderedIds })
+        put('/admin/primer-status-manager/statuses/reorder', { statuses: orderedIds })
           .catch(error => console.error("Error updating order:", error));
 
         return reordered;
@@ -109,7 +110,7 @@ const StatusManager = () => {
     
     statusElements.forEach((element) => {
       const statusId = element.getAttribute('data-status-id');
-      const index = statuses.findIndex(s => s.id == statusId);
+      const index = statuses.findIndex(s => s.documentId == statusId);
       const dragHandle = element.querySelector('[data-drag-handle]');
       
       if (!dragHandle) return;
@@ -186,7 +187,7 @@ const StatusManager = () => {
           
           const sourceData = source.data;
           const targetData = self.data;
-          const indexOfTarget = statuses.findIndex(s => s.id == targetData.statusId);
+          const indexOfTarget = statuses.findIndex(s => s.documentId == targetData.statusId);
           if (indexOfTarget < 0) return;
 
           const closestEdgeOfTarget = extractClosestEdge(targetData);
@@ -214,7 +215,7 @@ const StatusManager = () => {
         const sourceData = source.data;
         const targetData = target.data;
         
-        const indexOfTarget = statuses.findIndex(s => s.id === targetData.statusId);
+        const indexOfTarget = statuses.findIndex(s => s.documentId == targetData.statusId);
         if (indexOfTarget < 0) return;
 
         const closestEdgeOfTarget = extractClosestEdge(targetData);
@@ -243,23 +244,28 @@ const StatusManager = () => {
   const deleteStatus = async () => {
     if (!replacementStatus) return alert("Select a replacement status!");
 
-    const statusId = statuses.find(s => s.name === replacementStatus).documentId;
+    const replacementStatusObj = statuses.find(s => s.name === replacementStatus);
+    if (!replacementStatusObj) return alert("Replacement status not found!");
 
     try {
-      await put('/status-manager/statuses/delete', {
+      await put('/admin/primer-status-manager/statuses/delete', {
         statusId: statusToDelete.documentId,
-        replacementId: statusId
+        replacementId: replacementStatusObj.documentId
       });
+      
+      // Remove the deleted status from the list
+      setStatuses(statuses.filter((s) => s.documentId !== statusToDelete.documentId));
+      setStatusToDelete(null);
+      setReplacementStatus("");
     } catch (error) {
       console.error("Error deleting status:", error);
     }
-    setStatuses(statuses.filter((s) => s.id !== statusToDelete.id));
   };
 
   // Toggle publish status
   const togglePublish = async (id, published) => {
     try {
-      await put(`/status-manager/statuses/${id}`, { published: !published });
+      await put(`/admin/primer-status-manager/statuses/${id}`, { published: !published });
       setStatuses(
         statuses.map((s) => (s.documentId === id ? { ...s, published: !published } : s)),
       );
@@ -288,8 +294,8 @@ const StatusManager = () => {
       <Box key={statuses.length} marginTop={4}>
         {statuses.map((status) => (
           <Flex
-            key={`status-${status.id}`}
-            data-status-id={status.id}
+            key={`status-${status.documentId}`}
+            data-status-id={status.documentId}
             alignItems="center"
             gap={2}
             marginBottom={2}
@@ -302,7 +308,7 @@ const StatusManager = () => {
             }}
           >
             <Box 
-              key={`dragHandle-${status.id}`}
+              key={`dragHandle-${status.documentId}`}
               data-drag-handle
               style={{ 
                 cursor: 'grab',
@@ -344,9 +350,9 @@ const StatusManager = () => {
                       placeholder="Select replacement"
                     >
                       {statuses
-                        .filter((s) => s.id !== statusToDelete.id)
+                        .filter((s) => s.documentId !== statusToDelete.documentId)
                         .map((s) => (
-                          <SingleSelectOption key={`statusChoice-${s.id}`} value={s.name}>
+                          <SingleSelectOption key={`statusChoice-${s.documentId}`} value={s.name}>
                             {s.name}
                           </SingleSelectOption>
                         ))}

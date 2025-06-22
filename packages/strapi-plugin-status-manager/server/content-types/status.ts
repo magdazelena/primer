@@ -4,8 +4,8 @@ export default {
   info: {
     singularName: 'status',
     pluralName: 'statuses',
-    displayName: 'Status parameter',
-    description: 'Status name',
+    displayName: 'Status',
+    description: 'Status for products',
   },
   options: {
     draftAndPublish: false,
@@ -15,8 +15,8 @@ export default {
       visible: false,
     },
     'content-type-builder': {
-      visible: true,
-    }
+      visible: false,
+    },
   },
   attributes: {
     name: {
@@ -24,22 +24,15 @@ export default {
       minLength: 1,
       maxLength: 50,
       required: true,
-      configurable: false
+      configurable: false,
     },
     published: {
       type: 'boolean',
-      default: false
+      default: false,
     },
     order: {
       type: 'integer',
-      default: 0
+      default: 0,
     },
-    products: {
-      type: 'relation',
-      relation: 'oneToMany',
-      target: 'api::product.product',
-      mappedBy: 'statusName',
-      configurable: false
-    }
-  }
+  },
 }; 

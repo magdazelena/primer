@@ -3,38 +3,33 @@
   "version": "0.0.1",
   "description": "Enables more status variations for Strapi",
   "type": "module",
-  "main": "./dist/index.cjs",
-  "types": "dist/index.d.ts",
+  "exports": {
+    "./strapi-admin": {
+      "source": "./admin/index.ts",
+      "import": "./dist/admin/index.js",
+      "require": "./dist/admin/index.js",
+      "default": "./dist/admin/index.js"
+    },
+    "./strapi-server": {
+      "source": "./server/index.ts",
+      "import": "./dist/server/index.js",
+      "require": "./dist/server/index.js",
+      "default": "./dist/server/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
     "dist",
     "admin",
     "server"
   ],
-  "exports": {
-    ".": {
-      "source": "./src/index.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
-      "default": "./dist/index.js"
-    },
-    "./strapi-admin": {
-      "source": "./src/admin/index.ts",
-      "import": "./dist/admin/index.js",
-      "require": "./dist/admin/index.cjs",
-      "default": "./dist/admin/index.js"
-    },
-    "./strapi-server": {
-      "source": "./src/server/index.ts",
-      "import": "./dist/server/index.js",
-      "require": "./dist/server/index.cjs",
-      "default": "./dist/server/index.js"
-    },
-    "./package.json": "./package.json"
-  },
   "scripts": {
-    "build": "tsc",
-    "build:strapi": "strapi-plugin build",
-    "dev": "tsc --watch",
+    "build": "npm run build:server && npm run build:admin",
+    "build:server": "tsc --project server/tsconfig.build.json",
+    "build:admin": "tsc --project admin/tsconfig.build.json",
+    "dev": "npm run dev:server & npm run dev:admin",
+    "dev:server": "tsc --project server/tsconfig.json --watch",
+    "dev:admin": "tsc --project admin/tsconfig.json --watch",
     "clean": "rm -rf dist",
     "prepublishOnly": "npm run clean && npm run build"
   },
@@ -61,11 +56,13 @@
   "devDependencies": {
     "@atlaskit/pragmatic-drag-and-drop": "^1.5.2",
     "@atlaskit/pragmatic-drag-and-drop-hitbox": "^1.0.3",
-    "@strapi/sdk-plugin": "^5.3.2",
     "@types/node": "^20.0.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "@strapi/admin": "5.16.0",
+    "@strapi/content-manager": "5.16.0",
+    "@strapi/types": "5.16.0"
   },
   "engines": {
     "node": ">=18.0.0",
@@ -78,11 +75,12 @@
     "description": "Enables more status variations"
   },
   "dependencies": {
-    "@strapi/design-system": "^1.19.0",
-    "@strapi/icons": "^1.19.0",
+    "@strapi/design-system": "2.0.0-rc.26",
+    "@strapi/icons": "2.0.0-rc.26",
+    "@strapi/utils": "5.16.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "6.30",
-    "styled-components": "^5.3.11"
+    "react-router-dom": "6.22.3",
+    "styled-components": "6.1.8"
   }
 }

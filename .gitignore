@@ -11,5 +11,9 @@ apps/frontend/cypress/screenshots
 apps/frontend/cypress/videos
 apps/frontend/cypress/downloads
 
+tsconfig.tsbuildinfo
+tsconfig.server.tsbuildinfo
+tsconfig.admin.tsbuildinfo
+
 .tmp
 .strapi-updater.json

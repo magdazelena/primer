@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useEffect, useState } from 'react';
 import { SingleSelect, SingleSelectOption, Box, Typography } from '@strapi/design-system';
 //@ts-ignore
