@@ -1,5 +1,5 @@
 import status from './status';
 
 export default {
-  status
+  status_controller: status
 }; 

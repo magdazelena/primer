@@ -1,15 +1,12 @@
 import type { Core } from '@strapi/strapi';
 import { Context } from 'koa';
 
-const status = ({ strapi }: { strapi: Core.Strapi }) => ({
-  async find(ctx: Context) {
-    console.log('🎯 Status controller: find method called');
+const status = ({ strapi }: { strapi: Core.Strapi }): Core.Controller => ({
+  async listStatuses(ctx: Context) {
     try {
-      const statuses = await strapi.db.query('plugin::primer-status-manager.status').findMany({
+      const statuses = await strapi.documents('plugin::primer-status-manager.status').findMany({
         orderBy: { order: 'asc' },
       });
-  
-      console.log('🎯 Status controller: found statuses:', statuses);
       return ctx.send(statuses);
     } catch (err) {
       console.error('❌ Status controller: find error:', err);
@@ -18,7 +15,6 @@ const status = ({ strapi }: { strapi: Core.Strapi }) => ({
   },
 
   async create(ctx: Context) {
-    console.log('🎯 Status controller: create method called');
     try {
       const { name, published = false } = ctx.request.body;
 
@@ -28,7 +24,7 @@ const status = ({ strapi }: { strapi: Core.Strapi }) => ({
       }
 
       // Get the highest order value
-      const existingStatuses = await strapi.db.query('plugin::primer-status-manager.status').findMany({
+      const existingStatuses = await strapi.documents('plugin::primer-status-manager.status').findMany({
         orderBy: { order: 'desc' },
         limit: 1,
       });
@@ -36,7 +32,7 @@ const status = ({ strapi }: { strapi: Core.Strapi }) => ({
       const newOrder = existingStatuses.length > 0 ? existingStatuses[0].order + 1 : 0;
 
       // Create status
-      const newStatus = await strapi.db.query('plugin::primer-status-manager.status').create({
+      const newStatus = await strapi.documents('plugin::primer-status-manager.status').create({
         data: {
           name,
           published,
@@ -44,7 +40,6 @@ const status = ({ strapi }: { strapi: Core.Strapi }) => ({
         },
       });
 
-      console.log('Status controller: created new status:', newStatus);
       return ctx.send(newStatus);
     } catch (error) {
       console.error('Status controller: create error:', error);
@@ -53,7 +48,6 @@ const status = ({ strapi }: { strapi: Core.Strapi }) => ({
   },
 
   async reorder(ctx: Context) {
-    console.log('Status controller: reorder method called');
     try {
       const { statuses } = ctx.request.body;
 
@@ -64,7 +58,7 @@ const status = ({ strapi }: { strapi: Core.Strapi }) => ({
       // Update each status with new order
       await Promise.all(
         statuses.map(({ documentId, order }) =>
-          strapi.db.query('plugin::primer-status-manager.status').update({
+          strapi.documents('plugin::primer-status-manager.status').update({
             where: { documentId },
             data: { order }
           })
@@ -79,12 +73,11 @@ const status = ({ strapi }: { strapi: Core.Strapi }) => ({
   },
 
   async publish(ctx: Context) {
-    console.log('Status controller: publish method called');
     try {
       const { id } = ctx.params;
       const { published } = ctx.request.body;
       
-      await strapi.db.query('plugin::primer-status-manager.status').update({
+      await strapi.documents('plugin::primer-status-manager.status').update({
         where: { documentId: id },
         data: { published }
       });
@@ -97,7 +90,6 @@ const status = ({ strapi }: { strapi: Core.Strapi }) => ({
   },
 
   async delete(ctx: Context) {
-    console.log('Status controller: delete method called');
     try {
       const { statusId, replacementId } = ctx.request.body;
 
@@ -106,7 +98,7 @@ const status = ({ strapi }: { strapi: Core.Strapi }) => ({
       }
 
       // Delete the status
-      await strapi.db.query('plugin::primer-status-manager.status').delete({
+      await strapi.documents('plugin::primer-status-manager.status').delete({
         where: { documentId: statusId }
       });
       

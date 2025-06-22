@@ -31,12 +31,10 @@ const StatusManager = () => {
   // Fetch statuses
   useEffect(() => {
     const loadStatuses = async () => {
-      try {
-        const { data } = await get('/admin/primer-status-manager/statuses');
+
+        const { data } = await get('primer-status-manager/statuses');
         setStatuses(data);
-      } catch (error) {
-        console.error("Error fetching statuses:", error);
-      }
+
     };
     loadStatuses();
   }, [get]);
@@ -49,7 +47,7 @@ const StatusManager = () => {
     if (!newStatus || !validateInput(newStatus))
       return alert("Only Latin characters allowed!");
     try {
-      const { data } = await post('/admin/primer-status-manager/statuses', {
+      const { data } = await post('primer-status-manager/status', {
         name: newStatus,
         published: false,
       });
@@ -94,7 +92,7 @@ const StatusManager = () => {
           order: index,
         }));
         
-        put('/admin/primer-status-manager/statuses/reorder', { statuses: orderedIds })
+        put('/primer-status-manager/statuses/reorder', { statuses: orderedIds })
           .catch(error => console.error("Error updating order:", error));
 
         return reordered;
@@ -248,7 +246,7 @@ const StatusManager = () => {
     if (!replacementStatusObj) return alert("Replacement status not found!");
 
     try {
-      await put('/admin/primer-status-manager/statuses/delete', {
+      await put('/primer-status-manager/statuses/delete', {
         statusId: statusToDelete.documentId,
         replacementId: replacementStatusObj.documentId
       });
@@ -265,7 +263,7 @@ const StatusManager = () => {
   // Toggle publish status
   const togglePublish = async (id, published) => {
     try {
-      await put(`/admin/primer-status-manager/statuses/${id}`, { published: !published });
+      await put(`/primer-status-manager/statuses/${id}`, { published: !published });
       setStatuses(
         statuses.map((s) => (s.documentId === id ? { ...s, published: !published } : s)),
       );

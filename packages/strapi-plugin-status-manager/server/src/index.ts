@@ -1,29 +1,18 @@
 import bootstrap from './bootstrap';
-import config from './config/index';
 import contentTypes from './content-types/index';
-import controllers from './controllers/index';
-import destroy from './destroy';
-import middlewares from './middlewares/index';
+import controllers from './controllers';
 import register from './register';
 import routes from './routes';
 import services from './services/index';
 
 export default () => {
-  console.log('🔧 ========================================');
-  console.log('🔧 Status Manager Plugin: Loading server components...');
-  
   try {
     const plugin = {
       register,
-      config,
       controllers,
       contentTypes,
       routes,
-      services,
-      middlewares,
-      policies() {},
       bootstrap,
-      destroy
     };
     
     console.log('✅ Server components loaded successfully');

@@ -6,10 +6,6 @@ export default [
     config: {
         policies: [
           'admin::isAuthenticatedAdmin',
-          {
-            name: 'plugin::content-manager.hasPermissions',
-            config: { actions: ['plugin::status-manager.status.read'] },
-          },
         ],
     },
     description: 'Get all statuses',
