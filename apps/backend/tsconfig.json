@@ -12,7 +12,6 @@
     "types": [
       "./src/types/generated/contentTypes.d.ts",
       "./src/types/generated/components.d.ts",
-      "./src/plugins/status-manager/server/src/types/contentTypes.d.ts"
     ]
   },
   "include": [

@@ -28,7 +28,7 @@ async function updateParentWithChild(category: Category): Promise<void> {
       documentId: parent.id.toString() as ID,
       populate: ['children'],
     });
-    const addChildIfNone = (p: Category, new_child: number): { set: { id: string }[] } => {
+    const addChildIfNone = (p: any, new_child: number): { set: { id: string }[] } => {
       const children = p.children?.map((child) => ({ id: child.id.toString() })) || [];
       if (p.children?.some((child) => child.id === category.id)) {
         return { set: children };

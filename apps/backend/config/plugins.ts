@@ -1,7 +1,6 @@
 export default ({ env }: { env: any }) => ({
-  'status-manager': {
+  'primer-status-manager': {
     enabled: true,
-    resolve: './src/plugins/status-manager'
   },
   'product-actions': {
     enabled: true,

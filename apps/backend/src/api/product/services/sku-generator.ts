@@ -35,11 +35,10 @@ const isSKUUnique = async (sku: string): Promise<boolean> => {
   return !existingProduct;
 };
 
-const generateUniqueSKU = async (): Promise<string> => {
+export const generateUniqueSKU = async (): Promise<string> => {
   let sku = await generateSKU();
   let isUnique = await isSKUUnique(sku);
   let count = 0;
-  console.log("I'm being called");
   while (!isUnique) {
     sku = await generateSKU();
     isUnique = await isSKUUnique(sku);
@@ -52,6 +51,3 @@ const generateUniqueSKU = async (): Promise<string> => {
   return sku;
 };
 
-module.exports = {
-  generateUniqueSKU
-}; 
