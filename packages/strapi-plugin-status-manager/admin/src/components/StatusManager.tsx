@@ -58,8 +58,7 @@ const StatusManager = () => {
     }
   };
 
-  const reorderItem = useCallback(
-    ({
+  const reorderItem = async ({
       startIndex,
       indexOfTarget,
       closestEdgeOfTarget,
@@ -79,28 +78,21 @@ const StatusManager = () => {
         return;
       }
 
-      setStatuses((currentStatuses) => {
-        const reordered = reorder({
-          list: currentStatuses,
-          startIndex,
-          finishIndex,
-        });
-
-        // Send new order to API
-        const orderedIds = reordered.map((status, index) => ({
-          documentId: status.documentId,
-          order: index,
-        }));
-        
-        put('/primer-status-manager/statuses/reorder', { statuses: orderedIds })
-          .catch(error => console.error("Error updating order:", error));
-
-        return reordered;
+      const reordered = reorder({
+        list: statuses,
+        startIndex,
+        finishIndex,
       });
-    },
-    [put]
-  );
+      // Send new order to API
+      const orderedIds = reordered.map((status, index) => ({
+        documentId: status.documentId,
+        order: index,
+      }));
 
+      await put('/primer-status-manager/statuses/reorder', { statuses: orderedIds })
+            setStatuses(reordered);
+
+    }
   // Setup drag and drop
   useEffect(() => {
     const statusElements = document.querySelectorAll('[data-status-id]');
