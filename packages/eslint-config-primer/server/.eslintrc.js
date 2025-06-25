@@ -7,37 +7,17 @@ module.exports = {
     },
     plugins: ['@typescript-eslint'],
     rules: {
-        'node/no-unpublished-require': 'off',
-        'node/no-extraneous-require': 'off',
-        'node/exports-style': ['error', 'module.exports'],
-        'node/no-new-require': 'error',
-        'node/no-path-concat': 'error',
-        'node/no-callback-literal': 'error',
-        'node/handle-callback-err': 'error',
-        'no-restricted-syntax': 'off',
         'no-await-in-loop': 'off',
         'no-console': 'off',
-        'no-shadow': 'off',
-    'no-use-before-define': [
-      'error',
-      {
-        functions: false,
-        classes: true,
-        variables: true,
-        allowNamedExports: false,
-      },
-    ],
-    'consistent-return': 'off',
-      '@typescript-eslint/comma-dangle': [
-        'error',
-        {
-          arrays: 'always-multiline',
-          objects: 'always-multiline',
-          imports: 'always-multiline',
-          exports: 'always-multiline',
-          functions: 'never',
-        },
-      ],
+        'no-use-before-define': [
+          'error',
+          {
+            functions: false,
+            classes: true,
+            variables: true,
+            allowNamedExports: false,
+          },
+        ],
       // @see: https://github.com/typescript-eslint/typescript-eslint/issues/1824
       '@typescript-eslint/indent': 'off',
       /**
