@@ -14,7 +14,7 @@
     "frontend": "turbo dev --filter=frontend",
     "lint": "turbo lint",
     "setup": "yarn install",
-    "prune": "rm -rf node_modules/ && rm -rf dist/ && rm .turbo/ && yarn install",
+    "prune": "rm -rf node_modules/ && rm -rf dist/ && rm -rf .turbo/ && rm -rf package-lock.json",
     "test": "turbo test -- --passWithNoTests",
     "test:watch": "turbo test --watch",
     "test:coverage": "turbo test --coverage",
@@ -22,7 +22,8 @@
   },
   "devDependencies": {
     "npm-check-updates": "^17.1.16",
-    "turbo": "latest"
+    "turbo": "latest",
+    "typescript": "^5.4.4"
   },
   "packageManager": "npm@10.8.2",
   "engines": {

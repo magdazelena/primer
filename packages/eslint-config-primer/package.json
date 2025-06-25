@@ -1,0 +1,44 @@
+{
+  "name": "eslint-config-primer",
+  "version": "1.0.0",
+  "description": "Configuration for eslint, ts and jest for primer",
+  "main": "index.js",
+  "exports": {
+    "./server": "./server/index.js",
+    "./base": "./base/index.js",
+    "./client": "./client/index.js"
+  },
+  "files": [
+    "server/index.js",
+    "base/index.js",
+    "client/index.js"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.25.1",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-config-prettier": "^8.7.0",
+    "eslint-import-resolver-typescript": "^3.5.5",
+    "eslint-plugin-check-file": "^2.5.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jest-dom": "^4.0.3",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.33.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-testing-library": "^5.10.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.4.4"
+  },
+  "peerDependencies": {
+    "eslint": "^8.57.1"
+  }
+}
