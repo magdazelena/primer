@@ -1,3 +1,5 @@
+import { factories } from "@strapi/strapi";
 
-import { factories } from '@strapi/strapi';
-export default factories.createCoreService('api::lead-form-submission.lead-form-submission');
+export default factories.createCoreService(
+  "api::lead-form-submission.lead-form-submission",
+);

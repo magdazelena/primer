@@ -26,15 +26,15 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.30.0",
-    "styled-components": "^6.1.16"
+    "styled-components": "^6.1.16",
+    "@testing-library/dom": "^8.20.1",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
     "@strapi/types": "^5.14.0",
-    "@testing-library/dom": "^8.20.1",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^14.4.3",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.13.13",
     "eslint": "^8.0.0",

@@ -16,6 +16,7 @@
   },
   "include": [
     "./",
+    ".eslintrc.js",
     "src/**/*.json",
     "./src/types/generated/*",
     "src/plugins/*/server/**/*",

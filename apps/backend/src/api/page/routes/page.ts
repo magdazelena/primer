@@ -1,12 +1,12 @@
+import { factories } from "@strapi/strapi";
 
-import { factories } from '@strapi/strapi';
-export default factories.createCoreRouter('api::page.page', {
+export default factories.createCoreRouter("api::page.page", {
   config: {
     find: {
-      middlewares: ['api::page.page-populate-middleware'],
+      middlewares: ["api::page.page-populate-middleware"],
     },
     findOne: {
-      middlewares: ['api::page.page-populate-middleware'],
+      middlewares: ["api::page.page-populate-middleware"],
     },
   },
 });

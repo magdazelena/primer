@@ -1,5 +1,5 @@
-import type { Context } from 'koa';
-import type { Core } from '@strapi/types';
+import type { Context } from "koa";
+import type { Core } from "@strapi/types";
 
 interface Config {
   // Add config properties if needed
@@ -28,4 +28,4 @@ module.exports = (config: Config, { strapi }: { strapi: Core.Strapi }) => {
 
     await next();
   };
-}; 
+};

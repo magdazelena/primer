@@ -1,4 +1,4 @@
-import { Core} from '@strapi/strapi';
+import type { Core } from "@strapi/strapi";
 
 export default ({ strapi }: { strapi: Core.Strapi }) => ({
   async createProductsFromSeries(seriesId: string, count = 1) {
@@ -8,21 +8,21 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
 
     for (let i = 0; i < count; i++) {
       const index = startIndex + i;
-      
+
       // Create product with series data
-      const product = await strapi.documents('api::product.product').create({
+      const product = await strapi.documents("api::product.product").create({
         data: {
           name: `${series.name} #${index + 1}`,
           slug: `${series.slug}-${index + 1}`,
           series: {
-            set: [{ documentId: seriesId }]
+            set: [{ documentId: seriesId }],
           } as any,
           seriesIndex: index,
           category: {
-            set: [{ documentId: series.category?.documentId }]
+            set: [{ documentId: series.category?.documentId }],
           } as any,
           creator: {
-            set: [{ documentId: series.creator?.documentId }]
+            set: [{ documentId: series.creator?.documentId }],
           } as any,
           publishedAt: undefined,
           // Copy all required fields from series
@@ -33,8 +33,8 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
           seo: series.seo,
           totalCost: series.totalCost,
           wholesalePrice: series.wholesalePrice,
-          retailPrice: series.retailPrice
-        } as any
+          retailPrice: series.retailPrice,
+        } as any,
       });
 
       products.push(product);
@@ -46,76 +46,85 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
   async updateSeriesProducts(seriesId: string, updateData: any) {
     const series = await getSeries(strapi, seriesId);
 
-    const fieldsToUpdate = updateData.fieldsToUpdate;
+    const { fieldsToUpdate } = updateData;
 
     const dataToUpdate = {} as any;
 
-    if (fieldsToUpdate.includes('description')) {
+    if (fieldsToUpdate.includes("description")) {
       dataToUpdate.description = series.description;
     }
 
-    if (fieldsToUpdate.includes('shortDescription')) {
+    if (fieldsToUpdate.includes("shortDescription")) {
       dataToUpdate.shortDescription = series.shortDescription;
     }
 
-    if (fieldsToUpdate.includes('media')) {
+    if (fieldsToUpdate.includes("media")) {
       dataToUpdate.media = series.media;
     }
 
-    if (fieldsToUpdate.includes('coverImage')) {
+    if (fieldsToUpdate.includes("coverImage")) {
       dataToUpdate.coverImage = series.coverImage;
     }
 
-    if (fieldsToUpdate.includes('seo')) {
+    if (fieldsToUpdate.includes("seo")) {
       dataToUpdate.seo = series.seo;
     }
 
-    if (fieldsToUpdate.includes('totalCost')) {
+    if (fieldsToUpdate.includes("totalCost")) {
       dataToUpdate.totalCost = series.totalCost;
     }
 
-    if (fieldsToUpdate.includes('wholesalePrice')) {
+    if (fieldsToUpdate.includes("wholesalePrice")) {
       dataToUpdate.wholesalePrice = series.wholesalePrice;
     }
 
-    if (fieldsToUpdate.includes('retailPrice')) {
+    if (fieldsToUpdate.includes("retailPrice")) {
       dataToUpdate.retailPrice = series.retailPrice;
     }
 
-    if (fieldsToUpdate.includes('category')) {
+    if (fieldsToUpdate.includes("category")) {
       dataToUpdate.category = {
-        set: [series.category?.documentId]
+        set: [series.category?.documentId],
       };
     }
 
-    if (fieldsToUpdate.includes('creator')) {
+    if (fieldsToUpdate.includes("creator")) {
       dataToUpdate.creator = {
-        set: [series.creator?.documentId]
+        set: [series.creator?.documentId],
       };
     }
 
-    const updatePromises = series.products.map(product =>
-      strapi.documents('api::product.product').update({
+    const updatePromises = series.products.map((product) =>
+      strapi.documents("api::product.product").update({
         documentId: product.documentId,
         data: {
           ...dataToUpdate,
-        }
-      })
+        },
+      }),
     );
 
     await Promise.all(updatePromises);
     return true;
-  }
+  },
 });
 
 async function getSeries(strapi, seriesId) {
-  const series = await strapi.db.query('api::product-series.product-series').findOne({
-    where: { documentId: seriesId },
-    populate: ['products', 'category', 'creator', 'media', 'coverImage', 'seo']
-  });
+  const series = await strapi.db
+    .query("api::product-series.product-series")
+    .findOne({
+      where: { documentId: seriesId },
+      populate: [
+        "products",
+        "category",
+        "creator",
+        "media",
+        "coverImage",
+        "seo",
+      ],
+    });
 
   if (!series) {
-    throw new Error('Series not found');
+    throw new Error("Series not found");
   }
   return series;
 }

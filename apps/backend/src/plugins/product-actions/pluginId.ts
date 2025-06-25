@@ -1,1 +1,1 @@
-export const PLUGIN_ID = 'product-actions';
+export const PLUGIN_ID = "product-actions";

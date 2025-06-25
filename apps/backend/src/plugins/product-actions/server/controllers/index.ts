@@ -1,4 +1,4 @@
-import { productSeries } from './product-series';
+import { productSeries } from "./product-series";
 
 export default {
   productSeries,
