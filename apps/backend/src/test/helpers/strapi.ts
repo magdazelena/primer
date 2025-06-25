@@ -61,4 +61,4 @@ async function createStrapiInstance(): Promise<void> {
   }
 }
 
-export { createStrapiInstance };
+export default { createStrapiInstance };

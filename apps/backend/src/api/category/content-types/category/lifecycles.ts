@@ -64,12 +64,7 @@ export default {
         await categoryService.update({
           documentId: parent.documentId.toString() as DocumentID,
           data: {
-            children: {
-              set:
-                parent.children
-                  ?.filter((child) => child.id !== result.id)
-                  .map((child) => ({ id: child.id.toString() })) || [],
-            },
+            children: childrenSet,
           } as any,
         });
       }
