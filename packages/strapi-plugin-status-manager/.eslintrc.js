@@ -1,5 +1,5 @@
 module.exports = {
     extends: [
-        'eslint-config-primer/server'
+        'eslint-config-primer/base'
     ]
 }

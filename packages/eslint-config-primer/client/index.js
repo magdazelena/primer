@@ -1,1 +1,1 @@
-module.exports = require('./eslint.config.mjs'); 
+module.exports = require('./.eslintrc.js'); 
