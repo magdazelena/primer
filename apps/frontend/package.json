@@ -36,6 +36,7 @@
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.2",
     "autoprefixer": "^10.4.21",
+    "classnames": "^2.5.1",
     "cypress": "^14.2.0",
     "husky": "^9.1.7",
     "identity-obj-proxy": "^3.0.0",
