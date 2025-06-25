@@ -1,3 +1,5 @@
+import { factories } from "@strapi/strapi";
 
-import { factories } from '@strapi/strapi';
-export default factories.createCoreService('api::product-series.product-series');
+export default factories.createCoreService(
+  "api::product-series.product-series",
+);

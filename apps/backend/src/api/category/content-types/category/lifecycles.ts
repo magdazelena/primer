@@ -1,7 +1,7 @@
-import type { ServiceInstance } from '@strapi/types/dist/modules/documents/service-instance';
-import type { ID } from '@strapi/types/dist/modules/documents';
-import type { RelationInputValue } from '@strapi/types/dist/modules/documents/params/attributes/relations';
-import { DocumentID} from '@strapi/types/dist/modules/documents/params/attributes/id';
+import type { ServiceInstance } from "@strapi/types/dist/modules/documents/service-instance";
+import type { ID } from "@strapi/types/dist/modules/documents";
+import type { RelationInputValue } from "@strapi/types/dist/modules/documents/params/attributes/relations";
+import type { DocumentID } from "@strapi/types/dist/modules/documents/params/attributes/id";
 
 interface Category {
   id: number;
@@ -23,7 +23,7 @@ export default {
   async beforeCreate(event: LifecycleEvent) {
     const { data } = event.params;
     if (data.name) {
-      data.slug = data.name.toLowerCase().replace(/\s+/g, '-');
+      data.slug = data.name.toLowerCase().replace(/\s+/g, "-");
     }
   },
 
@@ -35,7 +35,7 @@ export default {
   async beforeUpdate(event: LifecycleEvent) {
     const { data } = event.params;
     if (data.name) {
-      data.slug = data.name.toLowerCase().replace(/\s+/g, '-');
+      data.slug = data.name.toLowerCase().replace(/\s+/g, "-");
     }
   },
 
@@ -47,19 +47,29 @@ export default {
   async afterDelete(event: LifecycleEvent) {
     const { result } = event;
     if (result.parent) {
-      const categoryService = strapi.documents('api::category.category') as unknown as ServiceInstance<'api::category.category'>;
+      const categoryService = strapi.documents(
+        "api::category.category",
+      ) as unknown as ServiceInstance<"api::category.category">;
       const parent = await categoryService.findOne({
         documentId: result.parent.id.toString() as ID,
-        populate: ['children'],
+        populate: ["children"],
       });
       if (parent) {
-        const childrenSet: RelationInputValue<'oneToMany'> = {
-          set: parent.children?.filter((child) => child.id !== result.id).map((child) => ({ documentId: child.documentId })) || [],
+        const childrenSet: RelationInputValue<"oneToMany"> = {
+          set:
+            parent.children
+              ?.filter((child) => child.id !== result.id)
+              .map((child) => ({ documentId: child.documentId })) || [],
         };
         await categoryService.update({
           documentId: parent.documentId.toString() as DocumentID,
           data: {
-            children: { set: parent.children?.filter((child) => child.id !== result.id).map((child) => ({ id: child.id.toString() })) || [] },
+            children: {
+              set:
+                parent.children
+                  ?.filter((child) => child.id !== result.id)
+                  .map((child) => ({ id: child.id.toString() })) || [],
+            },
           } as any,
         });
       }
@@ -69,21 +79,30 @@ export default {
 
 async function updateParentWithChild(category: Category) {
   if (category.parent) {
-    const categoryService = strapi.documents('api::category.category') as unknown as ServiceInstance<'api::category.category'>;
+    const categoryService = strapi.documents(
+      "api::category.category",
+    ) as unknown as ServiceInstance<"api::category.category">;
     const parent = await categoryService.findOne({
       documentId: category.parent.id.toString() as ID,
-      populate: ['children'],
+      populate: ["children"],
     });
     if (parent) {
-      const existingChildren = parent.children?.map((child) => ({ id: child.id.toString() })) || [];
-      if (!existingChildren.some((child: { id: string }) => child.id === category.id.toString())) {
+      const existingChildren =
+        parent.children?.map((child) => ({ id: child.id.toString() })) || [];
+      if (
+        !existingChildren.some(
+          (child: { id: string }) => child.id === category.id.toString(),
+        )
+      ) {
         await categoryService.update({
           documentId: parent.id.toString() as ID,
           data: {
-            children: { set: [...existingChildren, { id: category.id.toString() }] },
+            children: {
+              set: [...existingChildren, { id: category.id.toString() }],
+            },
           } as any,
         });
       }
     }
   }
-} 
+}

@@ -1,5 +1,4 @@
-import type { Core } from '@strapi/types';
-'use strict';
+import type { Core } from "@strapi/types";
 
 export default {
   /**
@@ -8,7 +7,7 @@ export default {
    *
    * This gives you an opportunity to extend code.
    */
-  register({ strapi }: { strapi: Core.Strapi }): void {
+  register(): void {
     // Removed incorrect middleware registration
     // strapi.documents.use() is not the correct way to register middlewares in Strapi v5
   },
@@ -20,5 +19,5 @@ export default {
    * This gives you an opportunity to set up your data model,
    * run jobs, or perform some special logic.
    */
-  bootstrap(/*{ strapi }: { strapi: Core.Strapi }*/): void {},
-}; 
+  bootstrap(/* { strapi }: { strapi: Core.Strapi } */): void {},
+};

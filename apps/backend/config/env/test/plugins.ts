@@ -2,12 +2,12 @@ export default {
   seo: {
     enabled: false,
   },
-  'status-manager': {
+  "status-manager": {
     enabled: true,
-    resolve: './src/plugins/status-manager'
+    resolve: "./src/plugins/status-manager",
   },
-  'product-actions': {
+  "product-actions": {
     enabled: true,
-    resolve: './src/plugins/product-actions'
-  }
-}; 
+    resolve: "./src/plugins/product-actions",
+  },
+};
