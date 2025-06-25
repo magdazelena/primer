@@ -1,7 +1,8 @@
-import { Creator } from "@/types/creator";
 import { getStrapiMedia } from "@/api/api-helpers";
 import Image from "next/image";
 import Link from "next/link";
+
+import type { Creator } from "@/types/creator";
 
 const CreatorThumbnail = ({ creator }: { creator: Creator }) => {
   const { avatar, name, slug, lead } = creator;

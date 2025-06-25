@@ -1,11 +1,13 @@
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import {
   isImageFitCover,
   isImageSlide,
-  Slide,
   useLightboxProps,
   useLightboxState,
 } from "yet-another-react-lightbox";
+
+import type { StaticImageData } from "next/image";
+import type { Slide } from "yet-another-react-lightbox";
 
 function isNextJsImage(slide: Slide) {
   return (
@@ -40,8 +42,8 @@ const NextJsImage = ({ slide, offset, rect }: NextJsImage) => {
     ? Math.round(
         Math.min(
           rect.width,
-          (rect.height / (slideHeight || 1)) * (slideWidth || 0)
-        )
+          (rect.height / (slideHeight || 1)) * (slideWidth || 0),
+        ),
       )
     : rect.width;
 
@@ -49,8 +51,8 @@ const NextJsImage = ({ slide, offset, rect }: NextJsImage) => {
     ? Math.round(
         Math.min(
           rect.height,
-          (rect.width / (slideWidth || 1)) * (slideHeight || 0)
-        )
+          (rect.width / (slideWidth || 1)) * (slideHeight || 0),
+        ),
       )
     : rect.height;
 

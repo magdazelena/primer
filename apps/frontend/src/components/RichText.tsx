@@ -1,4 +1,6 @@
-import { BlocksContent, BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+
+import type { BlocksContent } from "@strapi/blocks-react-renderer";
 
 interface RichText {
   data: {

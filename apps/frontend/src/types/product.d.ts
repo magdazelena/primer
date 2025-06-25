@@ -1,7 +1,8 @@
-import { BlocksContent } from "@strapi/blocks-react-renderer";
-import { Image } from "./image";
 import { RichTextModule } from "./richtext";
-import { Creator } from "./creator";
+
+import type { Creator } from "./creator";
+import type { Image } from "./image";
+import type { BlocksContent } from "@strapi/blocks-react-renderer";
 
 interface Product {
   id: number;
@@ -33,4 +34,4 @@ interface ProductCategory {
   topLevel: boolean;
 }
 
-export { Product, ProductCategory };
+export type { Product, ProductCategory };

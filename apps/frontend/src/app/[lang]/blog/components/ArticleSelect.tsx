@@ -1,7 +1,9 @@
-import { Article, Category } from "@/types/article";
 import { CategoryThumbnail } from "@/app/[lang]/creators/components/CategoryThumbnail";
 import { findParentCategory } from "@/utils/find-parent-category";
+
 import { ArticleCarousel } from "./ArticleCarousel";
+
+import type { Article, Category } from "@/types/article";
 
 export default function ArticleSelect({
   categories,
@@ -38,9 +40,7 @@ export default function ArticleSelect({
             categoryName={`${
               parentCategory ? parentCategory.name : "All posts"
             }`}
-            categorySlug={`${
-              parentCategory ? parentCategory.slug : ""
-            }`}
+            categorySlug={`${parentCategory ? parentCategory.slug : ""}`}
             selected="filter"
             basePath="/blog"
           />

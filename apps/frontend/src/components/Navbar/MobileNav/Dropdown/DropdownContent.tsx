@@ -1,8 +1,10 @@
 "use client";
-import { Category } from "@/types/article";
-import { ProductCategory } from "@/types/product";
-import { NavLink } from "@/components/NavLink";
 import React from "react";
+
+import { NavLink } from "@/components/NavLink";
+
+import type { Category } from "@/types/article";
+import type { ProductCategory } from "@/types/product";
 
 type MenuCategory = Category | ProductCategory;
 

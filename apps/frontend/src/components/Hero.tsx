@@ -1,8 +1,9 @@
-import Link from "next/link";
-import Image from "next/image";
-import HighlightedText from "./HighlightedText";
 import { getStrapiMedia } from "@/api/api-helpers";
 import { renderButtonStyle } from "@/utils/render-button-style";
+import Image from "next/image";
+import Link from "next/link";
+
+import HighlightedText from "./HighlightedText";
 
 interface Button {
   id: string;
@@ -13,12 +14,10 @@ interface Button {
 }
 
 interface Picture {
-    id: string;
-      url: string;
-      name: string;
-      alternativeText: string;
-
-  
+  id: string;
+  url: string;
+  name: string;
+  alternativeText: string;
 }
 
 interface HeroProps {
@@ -78,9 +77,7 @@ export default function Hero({ data }: HeroProps) {
           <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
             <Image
               src={imgUrl || ""}
-              alt={
-                data.picture.alternativeText || "none provided"
-              }
+              alt={data.picture.alternativeText || "none provided"}
               className="object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 "
               width={600}
               height={600}

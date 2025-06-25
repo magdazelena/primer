@@ -1,12 +1,11 @@
-import PageHeader from "@/components/PageHeader";
-import BlogList from "../views/article-list";
 import { fetchPostsByCategory } from "@/api/categories-fetch";
+import PageHeader from "@/components/PageHeader";
 
-export default async function CategoryRoute(
-  props: {
-    params: Promise<{ category: string }>;
-  }
-) {
+import BlogList from "../views/article-list";
+
+export default async function CategoryRoute(props: {
+  params: Promise<{ category: string }>;
+}) {
   const params = await props.params;
   const filter = params.category;
   const data = await fetchPostsByCategory("/articles", "/categories", filter);
@@ -19,10 +18,7 @@ export default async function CategoryRoute(
 
   return (
     <div>
-      <PageHeader
-        heading={category.name}
-        text={category.description}
-      />
+      <PageHeader heading={category.name} text={category.description} />
       <BlogList data={posts.data} />
     </div>
   );

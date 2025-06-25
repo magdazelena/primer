@@ -1,26 +1,19 @@
-import { ArticleCarousel } from "@/app/[lang]/blog/components/ArticleCarousel";
-import { ProductCarousel } from "@/app/[lang]/products/components/ProductCarousel";
 import { fetchCreationsData } from "@/api/requests/get-creations-list";
 import { getCreatorsSlugList } from "@/api/requests/get-creators-list";
+import { ArticleCarousel } from "@/app/[lang]/blog/components/ArticleCarousel";
+import { ProductCarousel } from "@/app/[lang]/products/components/ProductCarousel";
 
-
-export default async function LayoutRoute(
-  props: {
-    children: React.ReactNode;
-    params: Promise<{
-      slug: string;
-    }>;
-  }
-) {
+export default async function LayoutRoute(props: {
+  children: React.ReactNode;
+  params: Promise<{
+    slug: string;
+  }>;
+}) {
   const params = await props.params;
 
-  const {
-    children
-  } = props;
+  const { children } = props;
 
-  const { articles, products } = await fetchCreationsData(
-    params.slug
-  );
+  const { articles, products } = await fetchCreationsData(params.slug);
   return (
     <section className="container p-8 mx-auto space-y-6 sm:space-y-12">
       <div>{children}</div>
@@ -31,7 +24,5 @@ export default async function LayoutRoute(
 }
 
 export async function generateStaticParams() {
-  return (await getCreatorsSlugList())
+  return await getCreatorsSlugList();
 }
-
-

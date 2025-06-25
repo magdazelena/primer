@@ -1,9 +1,10 @@
 // pages/[lang]/products/[productCategory]/[slug]/index.tsx
 
-import { GetStaticPaths, GetStaticProps } from "next";
 import LayoutRoute, {
   generateStaticParams,
 } from "@/app/[lang]/products/[product-category]/[slug]/layout";
+
+import type { GetStaticPaths, GetStaticProps } from "next";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await generateStaticParams();

@@ -1,44 +1,44 @@
 export const lookupCategoryTree = (filter: string) => {
-    return {
-        $or: [
-            {
-                category: {
-                    slug: filter,
-                },
+  return {
+    $or: [
+      {
+        category: {
+          slug: filter,
+        },
+      },
+      {
+        category: {
+          parent: {
+            slug: filter,
+          },
+        },
+      },
+      {
+        category: {
+          parent: {
+            parent: {
+              slug: filter,
             },
-            {
-                category: {
-                    parent: {
-                        slug: filter,
-                    },
-                },
-            },
-            {
-                category: {
-                    parent: {
-                        parent: {
-                            slug: filter,
-                        },
-                    },
-                },
-            },
-        ]
-    }
-}
+          },
+        },
+      },
+    ],
+  };
+};
 
 export const CATEGORY_THREE_QUERY = {
-    category: {
+  category: {
+    populate: {
+      parent: {
         populate: {
-            parent: {
-                populate: {
-                    parent: {
-                        fields: ["slug"],
-                    },
-                },
-                fields: ["slug"],
-            },
-            children: { fields: ["slug"] },
+          parent: {
+            fields: ["slug"],
+          },
         },
         fields: ["slug"],
+      },
+      children: { fields: ["slug"] },
     },
-}
+    fields: ["slug"],
+  },
+};

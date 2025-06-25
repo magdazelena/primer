@@ -12,6 +12,7 @@ module.exports = {
     sourceType: 'module',
   },
   extends: [
+    '../base/.eslintrc.js',
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
@@ -44,11 +45,6 @@ module.exports = {
   settings: {
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx'],
-    },
-    'import/resolver': {
-      typescript: {
-        alwaysTryTypes: true,
-      },
     },
     react: {
       version: 'detect',
@@ -134,7 +130,7 @@ module.exports = {
      * export { Apple }
      * ```
      */
-    'import/no-default-export': 'error',
+    'import/no-default-export': 'warn',
     /**
      * Enforce file location for particular types of files.
      */
@@ -145,29 +141,10 @@ module.exports = {
       },
     ],
     /**
-     * No index files – flatter structure.
-     * Edge cases can disable the eslint rule.
-     */
-    'check-file/no-index': 'error',
-    /**
-     * Enforce naming convention for files,
-     * all JSX component files must be PascalCase.
-     * All other files must be camelCase.
-     *
-     * no dashes, no underscores and definitely no spaces.
-     */
-    'check-file/filename-naming-convention': [
-      'error',
-      { '**/*.{js,ts}': 'CAMEL_CASE', '**/*.{jsx,tsx}': 'PASCAL_CASE' },
-      { ignoreMiddleExtensions: true },
-    ],
-    /**
      * These are turned off because, typescript.
      */
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
     'react/require-default-props': 'off',
-    'no-duplicate-imports': 'off',
-    'no-unused-vars': 'off',
   },
 };

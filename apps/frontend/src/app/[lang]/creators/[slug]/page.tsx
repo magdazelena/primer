@@ -1,17 +1,16 @@
-import type { Metadata } from "next";
-import { CreatorView } from "../views/creator";
-import { getSEOData } from "@/api/requests/getSEOData";
 import { getCreatorBySlug } from "@/api/requests/get-creator-by-slug";
+import { getSEOData } from "@/api/requests/getSEOData";
+
 import { getCreatorsSlugList } from "../../../../api/requests/get-creators-list";
+import { CreatorView } from "../views/creator";
 
-export async function generateMetadata(
-  props: {
-    params: Promise<{ slug: string }>;
-  }
-): Promise<Metadata> {
+import type { Metadata } from "next";
+
+export async function generateMetadata(props: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
   const params = await props.params;
-  const seoData = await getSEOData('/creators', params.slug);
-
+  const seoData = await getSEOData("/creators", params.slug);
 
   return {
     title: seoData.metaTitle,
@@ -19,11 +18,9 @@ export async function generateMetadata(
   };
 }
 
-export default async function CreatorRoute(
-  props: {
-    params: Promise<{ slug: string }>;
-  }
-) {
+export default async function CreatorRoute(props: {
+  params: Promise<{ slug: string }>;
+}) {
   const params = await props.params;
   const { slug } = params;
   const data = await getCreatorBySlug(slug);
@@ -32,5 +29,5 @@ export default async function CreatorRoute(
 }
 
 export async function generateStaticParams() {
-  return (await getCreatorsSlugList());
+  return await getCreatorsSlugList();
 }

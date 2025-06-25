@@ -1,5 +1,6 @@
 export function renderButtonStyle(type: string) {
-  const defaultString =  "px-8 py-3 text-lg font-semibold rounded bg-accentBright text-dark hover:bg-accentBright/70 border-accentBright border border-2 hover:text-dark hover:no-underline";
+  const defaultString =
+    "px-8 py-3 text-lg font-semibold rounded bg-accentBright text-dark hover:bg-accentBright/70 border-accentBright border border-2 hover:text-dark hover:no-underline";
 
   switch (type) {
     case "primary":

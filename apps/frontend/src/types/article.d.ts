@@ -1,4 +1,4 @@
-import { Creator } from "./creator";
+import type { Creator } from "./creator";
 
 interface ArticleBase {
   id: number;
@@ -6,7 +6,6 @@ interface ArticleBase {
   slug: string;
 }
 interface ArticleFull {
-
   description: string;
   createdAt: string;
   updatedAt: string;
@@ -20,7 +19,6 @@ interface ArticleFull {
     slug: string;
   };
   creator: Creator;
-
 }
 interface Category {
   id: number;
@@ -29,9 +27,7 @@ interface Category {
   children?: Category[];
   topLevel: boolean;
   articles: Array<{}>;
-
-
 }
 
 type Article = ArticleBase & ArticleFull;
-export { ArticleBase, Article, Category };
+export type { ArticleBase, Article, Category };

@@ -1,18 +1,17 @@
-import PageHeader from "@/components/PageHeader";
-import List from "../views/product-list";
 import { fetchPostsByCategory } from "@/api/categories-fetch";
+import PageHeader from "@/components/PageHeader";
 
-export default async function ProductCategoryRoute(
-  props: {
-    params: Promise<{ "product-category": string }>;
-  }
-) {
+import List from "../views/product-list";
+
+export default async function ProductCategoryRoute(props: {
+  params: Promise<{ "product-category": string }>;
+}) {
   const params = await props.params;
   const filter = params["product-category"];
   const data = await fetchPostsByCategory(
     "/products",
     "/product-categories",
-    filter
+    filter,
   );
 
   //TODO: CREATE A COMPONENT FOR THIS
@@ -22,10 +21,7 @@ export default async function ProductCategoryRoute(
   const { category, posts } = data;
   return (
     <div>
-      <PageHeader
-        heading={category.name}
-        text={category.description}
-      />
+      <PageHeader heading={category.name} text={category.description} />
       <List products={posts.data} />
     </div>
   );

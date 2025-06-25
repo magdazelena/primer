@@ -1,8 +1,7 @@
-import { fetchArticlesSideMenuData } from "@/api/requests/get-articles-side-menu-data";
-import ArticleSelect from "../../components/ArticleSelect";
 import { getArticlesSlugAndCategoryList } from "@/api/requests/get-articles-list";
+import { fetchArticlesSideMenuData } from "@/api/requests/get-articles-side-menu-data";
 
-
+import ArticleSelect from "../../components/ArticleSelect";
 
 export default async function LayoutRoute(props: {
   children: React.ReactNode;
@@ -16,7 +15,7 @@ export default async function LayoutRoute(props: {
   const { children } = props;
 
   const { category } = params;
-  const { categories, articles } = await fetchArticlesSideMenuData(category)
+  const { categories, articles } = await fetchArticlesSideMenuData(category);
 
   return (
     <section className="container p-8 mx-auto space-y-6 sm:space-y-12">
@@ -34,5 +33,5 @@ export default async function LayoutRoute(props: {
 }
 
 export async function generateStaticParams() {
-  return (await getArticlesSlugAndCategoryList())
+  return await getArticlesSlugAndCategoryList();
 }

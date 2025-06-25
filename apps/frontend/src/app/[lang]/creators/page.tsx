@@ -2,10 +2,13 @@
 
 import Loader from "@/components/Loader";
 import PageHeader from "@/components/PageHeader";
-import { Creator } from "@/types/creator";
-import { CreatorThumbnailListItem } from "./components/CreatorThumbnailItem";
+
 import { getCreatorsList } from "../../../api/requests/get-creators-list";
 import { usePaginatedFetch } from "../../../hooks/usePagination";
+
+import { CreatorThumbnailListItem } from "./components/CreatorThumbnailItem";
+
+import type { Creator } from "@/types/creator";
 
 export default function Creators() {
   const {

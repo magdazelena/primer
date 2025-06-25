@@ -1,9 +1,8 @@
-import ProductSelect from "../../components/ProductSelect";
-import { findParentCategory } from "@/utils/find-parent-category";
-import { fetchSideMenuData } from "@/api/requests/get-side-menu-data";
 import { getProductSlugAndCategoryList } from "@/api/requests/get-product-list";
+import { fetchSideMenuData } from "@/api/requests/get-side-menu-data";
+import { findParentCategory } from "@/utils/find-parent-category";
 
-
+import ProductSelect from "../../components/ProductSelect";
 
 export default async function LayoutRoute(props: {
   children: React.ReactNode;
@@ -18,9 +17,7 @@ export default async function LayoutRoute(props: {
 
   const productCategory = params["product-category"];
 
-  const { categories, products } = await fetchSideMenuData(
-    productCategory
-  );
+  const { categories, products } = await fetchSideMenuData(productCategory);
   const filteredProducts = products.filter((product) => {
     return product.slug.trim() !== params.slug.trim();
   });
@@ -28,7 +25,7 @@ export default async function LayoutRoute(props: {
     const parentCategory = findParentCategory(categories, productCategory);
     if (parentCategory) {
       const { products: otherProducts } = await fetchSideMenuData(
-        parentCategory.slug
+        parentCategory.slug,
       );
       return (
         <section className="container p-8 mx-auto space-y-6 sm:space-y-12">
@@ -60,13 +57,13 @@ export default async function LayoutRoute(props: {
 }
 
 export async function generateStaticParams() {
-  const params = await getProductSlugAndCategoryList()
+  const params = await getProductSlugAndCategoryList();
   return params;
 }
 export async function getStaticPaths() {
-  const paths = await generateStaticParams(); 
+  const paths = await generateStaticParams();
   return {
     paths,
-    fallback: false, 
+    fallback: false,
   };
 }

@@ -1,6 +1,7 @@
-import { Category } from "@/types/article";
-import { ProductCategory } from "@/types/product";
 import { NavLink } from "@/components/NavLink";
+
+import type { Category } from "@/types/article";
+import type { ProductCategory } from "@/types/product";
 
 interface DesktopDropdownProps {
   title: string;
@@ -28,7 +29,7 @@ const DesktopDropdown = ({
           <ul className="relative w-full hidden group-hover:block">
             {category.children.map(
               (childCategory: Category | ProductCategory) =>
-                renderMenu(childCategory)
+                renderMenu(childCategory),
             )}
           </ul>
         ) : null}
@@ -46,7 +47,7 @@ const DesktopDropdown = ({
         <ul className="fixed left-0 p-5 w-full hidden group-hover:flex top-level bg-light shadow-lg">
           <span className="block h-[2px] w-full bg-dark mb-5"></span>
           {categories.map((category: Category | ProductCategory) =>
-            renderMenu(category)
+            renderMenu(category),
           )}
         </ul>
       )}

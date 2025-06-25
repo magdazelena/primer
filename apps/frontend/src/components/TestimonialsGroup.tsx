@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { getStrapiMedia } from "@/api/api-helpers";
+import Image from "next/image";
 
 interface Testimonial {
   text: string;
@@ -19,7 +19,7 @@ interface TestimonialsProps {
   testimonials: Testimonial[];
 }
 
-function Testimonial({ text, authorName, picture }: Readonly<Testimonial>) {
+const Testimonial = ({ text, authorName, picture }: Readonly<Testimonial>) => {
   const imageUrl = getStrapiMedia(picture.url);
   return (
     <div className="flex flex-col items-center mx-12 lg:mx-0">
@@ -59,9 +59,9 @@ function Testimonial({ text, authorName, picture }: Readonly<Testimonial>) {
       <p>{authorName}</p>
     </div>
   );
-}
+};
 
-export default function Testimonials( data : TestimonialsProps) {
+export default function Testimonials(data: TestimonialsProps) {
   return (
     <section className="bg-accentDarkDark text-dark  m:py-12 lg:py-24">
       <div className="container mx-auto py-4 space-y-2 text-center">

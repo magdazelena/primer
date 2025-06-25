@@ -1,11 +1,11 @@
 "use client";
 
+import { getArticlesList } from "@/api/requests/get-articles-list";
 import Loader from "@/components/Loader";
-import Blog from "./views/article-list";
 import PageHeader from "@/components/PageHeader";
 import { usePaginatedFetch } from "@/hooks/usePagination";
-import { getArticlesList } from "@/api/requests/get-articles-list";
 
+import Blog from "./views/article-list";
 
 export default function Profile() {
   const {

@@ -1,9 +1,12 @@
 "use client";
-import { Category } from "@/types/article";
-import { ProductCategory } from "@/types/product";
-import { NavLink } from "@/components/NavLink";
 import React, { useState, useEffect } from "react";
+
+import { NavLink } from "@/components/NavLink";
+
 import DropdownContent from "./DropdownContent";
+
+import type { Category } from "@/types/article";
+import type { ProductCategory } from "@/types/product";
 
 type MenuCategory = Category | ProductCategory;
 
@@ -63,7 +66,7 @@ const Dropdown = ({
         }}
       >
         {category.children?.map((childCategory: MenuCategory) =>
-          renderMenu(childCategory, newPath)
+          renderMenu(childCategory, newPath),
         )}
       </DropdownContent>
     );
@@ -84,7 +87,7 @@ const Dropdown = ({
   };
 
   const toggleSubmenu = (
-    e: React.MouseEvent<HTMLSpanElement | HTMLAnchorElement, MouseEvent>
+    e: React.MouseEvent<HTMLSpanElement | HTMLAnchorElement, MouseEvent>,
   ) => {
     e.preventDefault();
     if (!menuOpen || activeMenu !== basePath) {
@@ -118,8 +121,7 @@ const Dropdown = ({
         } `}
       >
         {categories?.map((category: MenuCategory) => {
-          if (category.topLevel)
-            return renderMenu(category, [basePath]);
+          if (category.topLevel) return renderMenu(category, [basePath]);
           return null;
         })}
       </div>

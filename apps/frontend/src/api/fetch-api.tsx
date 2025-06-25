@@ -1,6 +1,10 @@
 import qs from "qs";
+
+import { i18n } from "../../i18n-config";
+
 import { getStrapiURL } from "./api-helpers";
-import { i18n, Locale } from "../../i18n-config";
+
+import type { Locale } from "../../i18n-config";
 
 export interface URLParamsObject {
   populate?: unknown;
@@ -11,7 +15,7 @@ export interface URLParamsObject {
   pagination?: {
     start: number;
     limit: number;
-  }
+  };
   locale?: string;
 }
 export async function fetchAPI(
@@ -19,10 +23,9 @@ export async function fetchAPI(
   urlParamsObject: URLParamsObject = {
     locale: i18n.defaultLocale,
   },
-  options = {}
+  options = {},
 ) {
-
-    const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
+  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 
   try {
     // Merge default and user options
@@ -30,17 +33,20 @@ export async function fetchAPI(
       next: { revalidate: 60 },
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}` 
+        Authorization: `Bearer ${token}`,
       },
       ...options,
     };
 
     // Build request URL
     const queryString = qs.stringify(urlParamsObject);
-    if (!urlParamsObject.locale || !i18n.locales.includes(urlParamsObject.locale as Locale))
+    if (
+      !urlParamsObject.locale ||
+      !i18n.locales.includes(urlParamsObject.locale as Locale)
+    )
       urlParamsObject.locale = i18n.defaultLocale;
     const requestUrl = `${getStrapiURL(
-      `/api${path}${queryString ? `?${queryString}` : ""}`
+      `/api${path}${queryString ? `?${queryString}` : ""}`,
     )}`;
 
     // Trigger API call
@@ -50,7 +56,7 @@ export async function fetchAPI(
   } catch (error) {
     console.error(error);
     throw new Error(
-      `Please check if your server is running and you set all the required tokens.`
+      `Please check if your server is running and you set all the required tokens.`,
     );
   }
 }

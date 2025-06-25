@@ -12,7 +12,7 @@ export default function HighlightedText({
   color,
 }: HighlightedTextProps) {
   const tempText = text.split(" ");
-  let result = [];
+  const result = [];
 
   result.push(`<${tag} class="${className ? className : ""}">`);
 
@@ -20,7 +20,7 @@ export default function HighlightedText({
     if (word.includes("[")) {
       const highlight = word.replace("[", "").replace("]", "");
       result.push(
-        `<span key=${index} class="${color ? color : ""}">${highlight}</span> `
+        `<span key=${index} class="${color ? color : ""}">${highlight}</span> `,
       );
     } else result.push(word + " ");
   });

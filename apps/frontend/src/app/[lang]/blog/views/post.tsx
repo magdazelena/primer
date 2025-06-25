@@ -1,16 +1,15 @@
 import { formatDate, getStrapiMedia } from "@/api/api-helpers";
-import Image from "next/image";
-import componentResolver from "@/utils/component-resolver";
-import { Article } from "@/types/article";
 import { CreatorThumbnail } from "@/app/[lang]/creators/components/CreatorThumbnail";
+import componentResolver from "@/utils/component-resolver";
+import Image from "next/image";
+
+import type { Article } from "@/types/article";
 
 export default function Post({ data }: { data: Article }) {
   const { title, description, publishedAt, coverImage, creator } = data;
 
   const imageUrl = getStrapiMedia(coverImage.url);
-  const creatorImgUrl = getStrapiMedia(
-    creator.avatar.url
-  );
+  const creatorImgUrl = getStrapiMedia(creator.avatar.url);
 
   return (
     <article className="space-y-8 text-dark">
@@ -48,7 +47,7 @@ export default function Post({ data }: { data: Article }) {
       <div className="text-dark max-w-[1000px] pb-5">
         {data.blocks &&
           data.blocks.map((section: any, index: number) =>
-            componentResolver(section, index)
+            componentResolver(section, index),
           )}
       </div>
       <div className="col-span-12">

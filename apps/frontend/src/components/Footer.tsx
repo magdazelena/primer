@@ -1,10 +1,11 @@
 "use client";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
-import Logo from "./Logo";
+import { usePathname } from "next/navigation";
+import { AiFillTwitterCircle, AiFillYoutube } from "react-icons/ai";
 import { CgWebsite } from "react-icons/cg";
 import { FaDiscord } from "react-icons/fa";
-import { AiFillTwitterCircle, AiFillYoutube } from "react-icons/ai";
+
+import Logo from "./Logo";
 
 interface FooterLink {
   id: number;
@@ -22,7 +23,7 @@ interface CategoryLink {
   };
 }
 
-function FooterLink({ url, text }: FooterLink) {
+const FooterLink = ({ url, text }: FooterLink) => {
   const path = usePathname();
   return (
     <li className="flex">
@@ -36,17 +37,17 @@ function FooterLink({ url, text }: FooterLink) {
       </Link>
     </li>
   );
-}
+};
 
-function CategoryLink({ attributes }: CategoryLink) {
+const CategoryLink = ({ attributes }: CategoryLink) => {
   return (
     <li className="flex">
       <Link href={`/blog/${attributes.slug}`}>{attributes.name}</Link>
     </li>
   );
-}
+};
 
-function RenderSocialIcon({ social }: { social: string | undefined }) {
+const RenderSocialIcon = ({ social }: { social: string | undefined }) => {
   switch (social) {
     case "WEBSITE":
       return <CgWebsite />;
@@ -59,7 +60,7 @@ function RenderSocialIcon({ social }: { social: string | undefined }) {
     default:
       return null;
   }
-}
+};
 
 export default function Footer({
   logoUrl,

@@ -34,7 +34,8 @@
     "src/components/ErrorBoundry.jsx",
     "src/components/ErrorBoundary.tsx",
     "src/app/global-error.tsx",
-    "postcss.config.mjs"
+    "postcss.config.mjs",
+    ".eslintrc.js"
   ],
   "exclude": ["node_modules"]
 }

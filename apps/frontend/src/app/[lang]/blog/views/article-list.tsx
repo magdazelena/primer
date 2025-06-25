@@ -1,5 +1,6 @@
-import { Article } from "@/types/article";
 import { ArticleThumbnail } from "../components/ArticleThumbnail";
+
+import type { Article } from "@/types/article";
 
 export default function PostList({
   data: articles,

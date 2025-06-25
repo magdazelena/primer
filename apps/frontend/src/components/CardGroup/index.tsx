@@ -1,5 +1,6 @@
-import { Image } from "@/types/image";
 import componentResolver from "../../utils/component-resolver";
+
+import type { Image } from "@/types/image";
 
 interface CardGroup {
   data: {

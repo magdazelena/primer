@@ -1,5 +1,6 @@
-import { ProductCategory } from "@/types/product";
 import { fetchAPI } from "./fetch-api";
+
+import type { ProductCategory } from "@/types/product";
 
 async function fetchAllChildCategories(path: string, slug: string) {
   try {
@@ -26,10 +27,7 @@ async function fetchAllChildCategories(path: string, slug: string) {
 const collectAllSlugs = (category: ProductCategory) => {
   const slugs = [category.slug];
 
-  if (
-    category.children &&
-    category.children.length > 0
-  ) {
+  if (category.children && category.children.length > 0) {
     category.children.forEach((child) => {
       slugs.push(...collectAllSlugs(child));
     });
@@ -40,7 +38,7 @@ const collectAllSlugs = (category: ProductCategory) => {
 export async function fetchPostsByCategory(
   path: string,
   categoryPath: string,
-  filter: string
+  filter: string,
 ) {
   const parentCategory = await fetchAllChildCategories(categoryPath, filter);
   try {

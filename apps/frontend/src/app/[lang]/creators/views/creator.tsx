@@ -1,7 +1,8 @@
-import { Creator } from "@/types/creator";
 import { getStrapiMedia } from "@/api/api-helpers";
-import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import Image from "next/image";
+
+import type { Creator } from "@/types/creator";
 
 const CreatorView = ({ creator }: { creator: Creator }) => {
   const { avatar, name, bio, lead, email } = creator;

@@ -1,11 +1,12 @@
 "use client";
 
-import Loader from "@/components/Loader";
-import List from "./views/product-list";
-import PageHeader from "@/components/PageHeader";
 import { getProductList } from "@/api/requests/get-product-list";
+import Loader from "@/components/Loader";
+import PageHeader from "@/components/PageHeader";
+
 import { usePaginatedFetch } from "../../../hooks/usePagination";
 
+import List from "./views/product-list";
 
 export default function Products() {
   const {

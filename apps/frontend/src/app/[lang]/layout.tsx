@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
+
 import "./globals.css";
 import { getStrapiMedia, getStrapiURL } from "@/api/api-helpers";
 import { fetchAPI } from "@/api/fetch-api";
-
-import { i18n } from "../../../i18n-config";
+import { GLOBAL_LAYOUT_QUERY } from "@/api/shared-params";
 import Banner from "@/components/Banner";
-import Footer from "@/components/Footer";
-import { FALLBACK_SEO } from "@/utils/constants";
 import Body from "@/components/Body";
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { NotFound } from "@/components/NotFound";
-import { GLOBAL_LAYOUT_QUERY } from "@/api/shared-params";
+import { FALLBACK_SEO } from "@/utils/constants";
+
+import { i18n } from "../../../i18n-config";
 import { getCategories } from "../../api/requests/get-all-categories";
 
 async function getGlobal(lang: string): Promise<any> {
@@ -28,8 +29,6 @@ async function getGlobal(lang: string): Promise<any> {
   };
   return await fetchAPI(path, urlParamsObject, options);
 }
-
-
 
 export async function generateMetadata(props: {
   params: Promise<{ lang: string }>;
@@ -81,13 +80,9 @@ export default async function RootLayout(props: {
 
   const { notificationBanner, navbar, footer } = global.data;
 
-  const navbarLogoUrl = getStrapiMedia(
-    navbar.navbarLogo.logoImg.url
-  );
+  const navbarLogoUrl = getStrapiMedia(navbar.navbarLogo.logoImg.url);
 
-  const footerLogoUrl = getStrapiMedia(
-    footer.footerLogo.logoImg.url
-  );
+  const footerLogoUrl = getStrapiMedia(footer.footerLogo.logoImg.url);
 
   return (
     <html lang={params.lang}>

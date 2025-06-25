@@ -1,7 +1,9 @@
-import { ProductCategory, Product } from "@/types/product";
 import { CategoryThumbnail } from "@/app/[lang]/creators/components/CategoryThumbnail";
 import { findParentCategory } from "@/utils/find-parent-category";
+
 import { ProductCarousel } from "./ProductCarousel";
+
+import type { ProductCategory, Product } from "@/types/product";
 
 export default function ProductSelect({
   categories,
@@ -17,7 +19,7 @@ export default function ProductSelect({
 }) {
   const parentCategory = findParentCategory(
     categories,
-    params["product-category"]
+    params["product-category"],
   );
   return (
     <div className="p-4 rounded-lg  min-h-[365px] relative">
@@ -28,8 +30,7 @@ export default function ProductSelect({
       <div>
         <div className="flex flex-wrap py-6 space-x-2 border-accentDark">
           {categories.map((productCategory: ProductCategory) => {
-            if (productCategory.products.length === 0)
-              return null;
+            if (productCategory.products.length === 0) return null;
             return (
               <CategoryThumbnail
                 key={productCategory.id}
@@ -44,9 +45,7 @@ export default function ProductSelect({
             categoryName={`${
               parentCategory ? parentCategory.name : "All products"
             }`}
-            categorySlug={`${
-              parentCategory ? parentCategory.slug : ""
-            }`}
+            categorySlug={`${parentCategory ? parentCategory.slug : ""}`}
             selected="filter"
             basePath="/products"
           />

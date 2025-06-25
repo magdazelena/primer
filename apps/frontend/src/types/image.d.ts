@@ -1,10 +1,9 @@
 interface Image {
-      alternativeText: string | null;
-      caption: string | null;
-      url: string;
-      width: number;
-      height: number;
-    
-  }
+  alternativeText: string | null;
+  caption: string | null;
+  url: string;
+  width: number;
+  height: number;
+}
 
-export { Image}
+export type { Image };

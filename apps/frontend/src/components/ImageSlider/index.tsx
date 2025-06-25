@@ -1,14 +1,17 @@
 "use client";
 import * as React from "react";
-import Lightbox, { SlideImage } from "yet-another-react-lightbox";
-import Inline from "yet-another-react-lightbox/plugins/inline";
 
-import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
-import { NextJsImage } from "@/components/Image";
-import { Image } from "@/types/image";
 import { getStrapiURL } from "@/api/api-helpers";
-import { Icons } from "./Icons";
+import { NextJsImage } from "@/components/Image";
 import useDeviceSize from "@/hooks/useDeviceSize";
+import Lightbox from "yet-another-react-lightbox";
+import Inline from "yet-another-react-lightbox/plugins/inline";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+
+import { Icons } from "./Icons";
+
+import type { Image } from "@/types/image";
+import type { SlideImage } from "yet-another-react-lightbox";
 
 const ImageSlider = ({ images }: { images: Image[] }) => {
   const [open, setOpen] = React.useState(false);

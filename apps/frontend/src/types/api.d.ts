@@ -1,19 +1,18 @@
 export interface APIResponse {
-    data: unknown[];
-    meta: Meta
+  data: unknown[];
+  meta: Meta;
 }
-export interface Pagination{
-    start: number;
-    limit: number;
-    total: number;
+export interface Pagination {
+  start: number;
+  limit: number;
+  total: number;
 }
 export interface PaginationPerPage {
-	page: number;
-	pageSize: number;
-	pageCount: number;
-	
+  page: number;
+  pageSize: number;
+  pageCount: number;
 }
 
 export interface Meta {
-	pagination: Pagination;
+  pagination: Pagination;
 }

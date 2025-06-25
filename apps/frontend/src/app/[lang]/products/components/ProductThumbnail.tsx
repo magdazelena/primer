@@ -1,12 +1,11 @@
-import { Product } from "@/types/product";
-import Link from "next/link";
-import Image from "next/image";
 import { getStrapiMedia } from "@/api/api-helpers";
+import Image from "next/image";
+import Link from "next/link";
+
+import type { Product } from "@/types/product";
 
 const ProductThumbnail = ({ product }: { product: Product }) => {
-  const imageUrl = getStrapiMedia(
-    product.coverImage?.url
-  );
+  const imageUrl = getStrapiMedia(product.coverImage?.url);
 
   const category = product.category;
 
@@ -32,9 +31,7 @@ const ProductThumbnail = ({ product }: { product: Product }) => {
         </h3>
 
         <div className="flex justify-between items-center">
-          <h4 className="font-bold">
-            {product.retailPrice.toFixed(2)}
-          </h4>
+          <h4 className="font-bold">{product.retailPrice.toFixed(2)}</h4>
         </div>
         <p>{product.shortDescription}</p>
       </div>

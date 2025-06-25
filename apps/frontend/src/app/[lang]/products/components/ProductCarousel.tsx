@@ -1,5 +1,6 @@
-import { Product } from "@/types/product";
 import { ProductThumbnail } from "./ProductThumbnail";
+
+import type { Product } from "@/types/product";
 
 const ProductCarousel = ({ products }: { products: Product[] }) => {
   return (

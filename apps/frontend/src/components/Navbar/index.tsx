@@ -1,7 +1,9 @@
 import Logo from "../Logo";
-import { NavLink } from "../NavLink";
+
 import { DesktopNav } from "./DesktopNav";
 import { MobileNav } from "./MobileNav";
+
+import type { NavLink } from "../NavLink";
 
 export default function Navbar({
   links,
