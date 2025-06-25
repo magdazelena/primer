@@ -1,5 +1,3 @@
-import { factories } from "@strapi/strapi";
-
 export default (config: any, { strapi }: { strapi: any }) => {
   return async (ctx: any, next: () => Promise<void>) => {
     const isAdmin =

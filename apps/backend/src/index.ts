@@ -1,5 +1,3 @@
-import type { Core } from "@strapi/types";
-
 export default {
   /**
    * An asynchronous register function that runs before

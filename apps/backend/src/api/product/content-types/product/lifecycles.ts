@@ -1,4 +1,4 @@
-import { generateUniqueSKU } from "../../services/sku-generator";
+import { generateUniqueSKU } from "./sku-generator";
 
 export default {
   async beforeCreate(event: any) {

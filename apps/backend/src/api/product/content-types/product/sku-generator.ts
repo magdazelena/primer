@@ -40,7 +40,7 @@ const isSKUUnique = async (sku: string): Promise<boolean> => {
   return !existingProduct;
 };
 
-const generateUniqueSKU = async (): Promise<string> => {
+export const generateUniqueSKU = async (): Promise<string> => {
   let sku = await generateSKU();
   let isUnique = await isSKUUnique(sku);
   let count = 0;
@@ -54,8 +54,4 @@ const generateUniqueSKU = async (): Promise<string> => {
   }
 
   return sku;
-};
-
-export default {
-  generateUniqueSKU,
 };

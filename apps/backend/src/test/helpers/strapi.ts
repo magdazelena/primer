@@ -1,8 +1,9 @@
-import { createStrapi } from "@strapi/strapi";
+//@ts-nocheck
+import { createStrapi} from "@strapi/strapi";
 import fs from "fs";
 import path from "path";
 
-async function createStrapiInstance(): Promise<void> {
+async function createStrapiInstance() {
   try {
     // Get the correct app directory path
     const appDir = path.join(__dirname, "..", "..", "..");
@@ -26,7 +27,6 @@ async function createStrapiInstance(): Promise<void> {
     const app = await createStrapi({
       appDir,
       distDir: appDir,
-      env: "test",
       autoReload: false,
       database: {
         client: "sqlite",

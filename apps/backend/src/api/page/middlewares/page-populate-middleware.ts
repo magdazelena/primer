@@ -1,9 +1,4 @@
 import type { Context } from "koa";
-import type { Core } from "@strapi/types";
-
-interface Config {
-  // Add config properties if needed
-}
 
 interface QueryParams {
   populate?: unknown;
@@ -17,7 +12,7 @@ interface QueryParams {
  * `page-populate-middleware` middleware
  */
 
-module.exports = (config: Config, { strapi }: { strapi: Core.Strapi }) => {
+export default () => {
   return async (ctx: Context, next: () => Promise<void>): Promise<void> => {
     const query = ctx.query as QueryParams;
     ctx.query = {

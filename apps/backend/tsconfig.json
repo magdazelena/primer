@@ -10,15 +10,15 @@
     "moduleResolution": "node",
     "allowJs": true, //enables the build without .ts files
     "types": [
-      "./src/types/generated/contentTypes.d.ts",
-      "./src/types/generated/components.d.ts",
+      "./types/generated/contentTypes.d.ts",
+      "./types/generated/components.d.ts",
     ]
   },
   "include": [
     "./",
     ".eslintrc.js",
     "src/**/*.json",
-    "./src/types/generated/*",
+    "./types/generated/*",
     "src/plugins/*/server/**/*",
     "src/plugins/*/strapi-server.ts"
   ],
@@ -32,6 +32,7 @@
     "src/plugins/*/admin/**/*",
     "src/plugins/*/strapi-admin.ts",
     "**/*.test.ts",
-    "**/*.test.js"
+    "**/*.test.js",
+    "src/test/**/*"
   ]
 }
