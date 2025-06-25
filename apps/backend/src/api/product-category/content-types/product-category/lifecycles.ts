@@ -36,14 +36,14 @@ async function updateParentWithChild(category: Category): Promise<void> {
     });
     const addChildIfNone = (
       p: any,
-      new_child: number,
+      newChild: number,
     ): { set: { id: string }[] } => {
       const children =
         p.children?.map((child) => ({ id: child.id.toString() })) || [];
       if (p.children?.some((child) => child.id === category.id)) {
         return { set: children };
       }
-      return { set: [...children, { id: new_child.toString() }] };
+      return { set: [...children, { id: newChild.toString() }] };
     };
     await categoryService.update({
       documentId: parent.id.toString() as ID,

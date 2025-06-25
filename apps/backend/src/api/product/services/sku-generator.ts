@@ -15,7 +15,7 @@ const generateSKU = async (): Promise<string> => {
       parseInt(p.sku?.replace("SKU", "") || "0", 10),
     );
     skuNumbers.forEach((n) => {
-      if (isNaN(n)) {
+      if (Number.isNaN(n)) {
         throw new Error(
           `SKU ${n} is not a number, product: ${products.find((p) => p.sku === n.toString())?.toString()}`,
         );
