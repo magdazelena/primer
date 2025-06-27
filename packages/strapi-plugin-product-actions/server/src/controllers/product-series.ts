@@ -1,3 +1,5 @@
+import type { Context } from "koa";
+
 export const productSeries = {
   async createProducts(ctx: Context) {
     try {

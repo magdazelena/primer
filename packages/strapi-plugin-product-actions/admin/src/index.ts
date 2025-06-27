@@ -1,10 +1,11 @@
-import { PLUGIN_ID } from '../../pluginId';
+import { PLUGIN_ID } from './pluginId';
 import { Initializer } from './components/Initializer';
-import { PluginIcon } from './components/PluginIcon'; 
+import { SeriesProductActions } from './components/SeriesProductActions';
+
 
 /** @type import('@strapi/strapi/admin').PluginDefinition */
 export default {
-  register(app) {
+  register(app: any) {
 
     app.registerPlugin({
       id: PLUGIN_ID,
@@ -15,8 +16,8 @@ export default {
     console.log('🚀 Product Actions Plugin Loaded!');
   },
 
-  bootstrap(app) {
-    app.getPlugin('content-manager').apis.addEditViewSidePanel((panels) => {
+  bootstrap(app: any) {
+    app.getPlugin('content-manager').apis.addEditViewSidePanel((panels: any) => {
       return [...panels, SeriesProductActions];
     });
   },

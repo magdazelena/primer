@@ -197,4 +197,4 @@ const SeriesProductActions = ({ document }: { document: any }) => {
   };
 };
 
-export default SeriesProductActions;
+export { SeriesProductActions };
