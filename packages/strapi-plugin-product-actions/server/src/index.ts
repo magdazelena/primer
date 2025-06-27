@@ -1,6 +1,6 @@
-import * as controllers from "./server/controllers/index";
-import * as routes from "./server/routes/product-series";
-import * as services from "./server/services";
+import * as controllers from "./controllers/index";
+import * as routes from "./routes/product-series";
+import * as services from "./services";
 
 console.log("🚀 Product Actions Plugin Loaded!");
 

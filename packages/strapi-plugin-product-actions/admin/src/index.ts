@@ -1,6 +1,8 @@
-import { PLUGIN_ID } from './pluginId';
-import {Initializer} from './admin/components/Initializer';
-import SeriesProductActions from './admin/components/SeriesProductActions';
+import { PLUGIN_ID } from '../../pluginId';
+import { Initializer } from './components/Initializer';
+import { PluginIcon } from './components/PluginIcon'; 
+
+/** @type import('@strapi/strapi/admin').PluginDefinition */
 export default {
   register(app) {
 
