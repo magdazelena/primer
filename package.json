@@ -23,7 +23,7 @@
   "devDependencies": {
     "npm-check-updates": "^17.1.16",
     "turbo": "latest",
-    "typescript": "^5.4.4"
+    "typescript": "^5.8.2"
   },
   "packageManager": "npm@10.8.2",
   "engines": {
