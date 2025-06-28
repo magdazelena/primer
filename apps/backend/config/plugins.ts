@@ -3,6 +3,6 @@ export default () => ({
     enabled: true,
   },
   "primer-product-actions": {
-    enabled: true
+    enabled: true,
   },
 });
