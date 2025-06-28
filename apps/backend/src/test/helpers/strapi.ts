@@ -1,9 +1,11 @@
-//@ts-nocheck
-import { createStrapi} from "@strapi/strapi";
+import { createStrapi } from "@strapi/strapi";
 import fs from "fs";
 import path from "path";
 
-async function createStrapiInstance() {
+// Strapi type is not exported from @strapi/strapi, so use 'any' for now
+type Strapi = any;
+
+async function createStrapiInstance(): Promise<Strapi> {
   try {
     // Get the correct app directory path
     const appDir = path.join(__dirname, "..", "..", "..");

@@ -4,8 +4,8 @@ module.exports = {
   },
   extends: [
     "eslint:recommended",
-    "plugin:prettier/recommended",
     "plugin:import/recommended",
+    "plugin:prettier/recommended",
   ],
   env: {
     es6: true,
@@ -22,6 +22,19 @@ module.exports = {
         extensions: [".js", ".jsx", ".ts", ".tsx", ".d.ts"],
       },
     },
+  
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "trailingComma": "all",
+        "printWidth": 120,
+        "tabWidth": 2,
+        "useTabs": false,
+        "semi": false,
+      }
+    ]
+    
   },
   rules: {
     strict: ["error", "global"],

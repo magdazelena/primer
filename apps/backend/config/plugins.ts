@@ -2,8 +2,7 @@ export default () => ({
   "primer-status-manager": {
     enabled: true,
   },
-  "product-actions": {
+  "primer-product-actions": {
     enabled: true,
-    resolve: "./src/plugins/product-actions",
   },
 });

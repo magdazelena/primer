@@ -1,7 +1,7 @@
 {
-  "name": "@primer/strapi-plugin-status-manager",
+  "name": "@primer/strapi-plugin-product-actions",
   "version": "0.0.1",
-  "description": "Enables more status variations for Strapi",
+  "description": "Enables product actions for Strapi",
   "exports": {
     "./strapi-admin": {
       "source": "./admin/src/index.ts",
@@ -38,20 +38,20 @@
   "keywords": [
     "strapi",
     "plugin",
-    "status",
-    "manager"
+    "product",
+    "actions"
   ],
   "author": "Magda Odrowaz-Zelezik <magda.zelezik@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/your-username/primer.git",
-    "directory": "packages/strapi-plugin-status-manager"
+    "directory": "packages/strapi-plugin-product-actions"
   },
   "bugs": {
     "url": "https://github.com/your-username/primer/issues"
   },
-  "homepage": "https://github.com/your-username/primer/tree/main/packages/strapi-plugin-status-manager#readme",
+  "homepage": "https://github.com/your-username/primer/tree/main/packages/strapi-plugin-product-actions#readme",
   "peerDependencies": {
     "@strapi/strapi": "^5.13.1"
   },
@@ -83,9 +83,9 @@
   },
   "strapi": {
     "kind": "plugin",
-    "name": "primer-status-manager",
-    "displayName": "Status Manager",
-    "description": "Enables more status variations"
+    "name": "primer-product-actions",
+    "displayName": "Product Actions",
+    "description": "Enables product actions"
   },
   "dependencies": {
     "@strapi/design-system": "2.0.0-rc.26",

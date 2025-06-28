@@ -1,4 +1,4 @@
-{
+const en: Record<string, string> = {
   "plugin.name": "Product Series",
   "plugin.description": "Manage product series and their products",
   "product-series.actions.label": "Product Actions",
@@ -18,3 +18,5 @@
   "product-series.actions.selectFields": "Select fields to update",
   "product-series.actions.noDocumentId": "Save the series first before creating products"
 } 
+
+export { en };

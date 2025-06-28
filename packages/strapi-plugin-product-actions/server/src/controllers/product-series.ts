@@ -1,5 +1,7 @@
-export const productSeries = {
-  async createProducts(ctx: any) {
+import type { Context } from "koa";
+
+const productSeries = {
+  async createProducts(ctx: Context) {
     try {
       const { id } = ctx.params;
       const { count = 1 } = ctx.request.body;
@@ -15,7 +17,7 @@ export const productSeries = {
     }
   },
 
-  async updateProducts(ctx: any) {
+  async updateProducts(ctx: Context) {
     try {
       const { id } = ctx.params;
       const updateData = ctx.request.body;
@@ -31,3 +33,5 @@ export const productSeries = {
     }
   },
 };
+
+export default productSeries;

@@ -9,13 +9,13 @@ import {
   MultiSelect,
   MultiSelectOption,
 } from "@strapi/design-system";
-import en from "../../translations/en.json";
+import { en } from "../../translations";
 import {
   useFetchClient,
   unstable_useContentManagerContext as useContentManagerContext,
 } from "@strapi/strapi/admin";
 
-const formatMessage = (arg: { id: string }) => {
+const formatMessage = (arg: { id: string }): string => {
   return en[arg.id];
 };
 
@@ -197,4 +197,4 @@ const SeriesProductActions = ({ document }: { document: any }) => {
   };
 };
 
-export default SeriesProductActions;
+export { SeriesProductActions };

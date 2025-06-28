@@ -2,6 +2,8 @@ module.exports = {
   extends: ["eslint-config-primer/server"],
   ignorePatterns: [
     "node_modules",
+    "dist",
+    "build",
     "src/plugins/**",
     "types/generated/**",
     "test/**",
