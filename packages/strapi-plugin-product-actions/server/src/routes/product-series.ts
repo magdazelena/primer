@@ -1,29 +1,38 @@
-export default {
-  admin: {
+export default  {
     type: "admin",
     routes: [
       {
         method: "POST",
-        path: "/product-series/:id/create-products",
-        handler: "productSeries.createProducts",
+        path: "/:id/create-products",
+        handler: "productActions.createProducts",
         config: {
-          policies: [],
-          auth: {
-            type: "admin",
-          },
-        },
+          policies: [
+              {
+                  name: 'admin::hasPermissions',
+                  config: {
+                  actions: ['plugin::primer-product-actions.product-series.create'],
+                  },
+              },
+          ],
+          
+      },
       },
       {
         method: "PUT",
-        path: "/product-series/:id/update-products",
-        handler: "productSeries.updateProducts",
+        path: "/:id/update-products",
+        handler: "productActions.updateProducts",
         config: {
-          policies: [],
-          auth: {
-            type: "admin",
-          },
-        },
+          policies: [
+              {
+                  name: 'admin::hasPermissions',
+                  config: {
+                  actions: ['plugin::primer-product-actions.product-series.update'],
+                  },
+              },
+          ],
+          
+      },
       },
     ],
-  },
-};
+  }
+

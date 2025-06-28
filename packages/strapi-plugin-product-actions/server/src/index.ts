@@ -1,17 +1,19 @@
-import * as controllers from "./controllers/index";
-import * as routes from "./routes/product-series";
-import * as services from "./services";
+import controllers from "./controllers";
+import routes from "./routes";
+import services from "./services";
+import register from "./register";
+import bootstrap from "./bootstrap";
 
 console.log("🚀 Product Actions Plugin Loaded!");
 
 export default () => {
   return {
-    register() {},
+    register,
 
     controllers,
     routes,
     services,
     middlewares: {},
-    bootstrap() {},
+    bootstrap
   };
 };

@@ -1,6 +1,6 @@
 import type { Context } from "koa";
 
-export const productSeries = {
+const productSeries = {
   async createProducts(ctx: Context) {
     try {
       const { id } = ctx.params;
@@ -33,3 +33,5 @@ export const productSeries = {
     }
   },
 };
+
+export default productSeries;
