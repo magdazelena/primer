@@ -21,7 +21,7 @@
     "e2e": "turbo e2e"
   },
   "devDependencies": {
-    "npm-check-updates": "^17.1.16",
+    "npm-check-updates": "^18.0.1",
     "turbo": "latest",
     "typescript": "^5.8.2"
   },
