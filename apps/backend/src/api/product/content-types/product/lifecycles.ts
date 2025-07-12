@@ -1,6 +1,6 @@
 import { generateUniqueSKU } from "./sku-generator";
-import { Lifecycle } from "@strapi/strapi";
-  
+import type { Lifecycle } from "@strapi/strapi";
+
 export default {
   async beforeCreate(event: Lifecycle.BeforeCreate) {
     const { data } = event.params;

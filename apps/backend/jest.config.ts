@@ -19,9 +19,7 @@ module.exports = {
   },
   moduleFileExtensions: ["js", "jsx", "ts", "tsx", "json"],
   coverageDirectory: "../../coverage/apps/backend",
-  collectCoverageFrom: [
-    "src/**/*.{ts,tsx}",
-  ],
+  collectCoverageFrom: ["src/**/*.{ts,tsx}"],
   testEnvironmentOptions: {
     url: "http://localhost:1337",
   },

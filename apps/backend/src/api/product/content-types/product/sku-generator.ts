@@ -1,4 +1,4 @@
-import { Core } from "@strapi/strapi";
+import type { Core } from "@strapi/strapi";
 /**
  * Fetch the highest SKU from the database
  * @returns The highest SKU or null if no products exist
@@ -14,7 +14,6 @@ const fetchHighestSKU = async (strapi: Core.Strapi): Promise<string | null> => {
 };
 
 const generateSKU = (previousSKU: string | null): string => {
-
   let nextNumber = 10000;
   if (previousSKU) {
     const skuNumber = previousSKU.replace("SKU", "");
@@ -27,7 +26,10 @@ const generateSKU = (previousSKU: string | null): string => {
   return `SKU${nextNumber}`;
 };
 
-const isSKUUnique = async (sku: string, strapi: Core.Strapi): Promise<boolean> => {
+const isSKUUnique = async (
+  sku: string,
+  strapi: Core.Strapi,
+): Promise<boolean> => {
   const existingProduct = await strapi.db
     .query("api::product.product")
     .findOne({
@@ -38,7 +40,9 @@ const isSKUUnique = async (sku: string, strapi: Core.Strapi): Promise<boolean> =
   return !existingProduct;
 };
 
-export const generateUniqueSKU = async (strapi: Core.Strapi): Promise<string> => {
+export const generateUniqueSKU = async (
+  strapi: Core.Strapi,
+): Promise<string> => {
   const previousSKU = await fetchHighestSKU(strapi);
   const sku = await generateSKU(previousSKU);
   const isUnique = await isSKUUnique(sku, strapi);
