@@ -593,6 +593,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
         };
       }>;
     footer: Schema.Attribute.Component<'layout.footer', false> &
+      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -608,6 +609,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
         };
       }>;
     navbar: Schema.Attribute.Component<'layout.navbar', false> &
+      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -717,7 +719,6 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::page.page'>;
     publishedAt: Schema.Attribute.DateTime;
     seo: Schema.Attribute.Component<'shared.seo', false> &
-      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

@@ -1,5 +1,15 @@
 import { generateUniqueSKU } from "./sku-generator";
-import type { Lifecycle } from "@strapi/strapi";
+import type { Core } from "@strapi/strapi";
+namespace Lifecycle {
+  export type BeforeCreate = {
+    params: { data: { sku: string } };
+    context: { strapi: Core.Strapi };
+  }
+  export type BeforeCreateMany = {
+    params: { data: { sku: string }[] };
+    context: { strapi: Core.Strapi };
+  }
+};
 
 export default {
   async beforeCreate(event: Lifecycle.BeforeCreate) {

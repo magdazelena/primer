@@ -8,23 +8,24 @@
   "attributes": {
     "footerLogo": {
       "type": "component",
-      "repeatable": false,
-      "component": "layout.logo"
+      "component": "layout.logo",
+      "repeatable": false
     },
     "menuLinks": {
       "type": "component",
+      "component": "links.link",
       "repeatable": true,
-      "component": "links.link"
+      "required": true
     },
     "legalLinks": {
       "type": "component",
-      "repeatable": true,
-      "component": "links.link"
+      "component": "links.link",
+      "repeatable": true
     },
     "socialLinks": {
       "type": "component",
-      "repeatable": true,
-      "component": "links.social-link"
+      "component": "links.social-link",
+      "repeatable": true
     },
     "categories": {
       "type": "relation",

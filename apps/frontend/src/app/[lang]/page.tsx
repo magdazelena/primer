@@ -1,8 +1,8 @@
 import { getPageBySlug } from "@/api/requests/get-page-by-slug";
 import { PAGE_CONTENT_SECTIONS_QUERY } from "@/api/shared-params";
-import componentResolver from "@/utils/component-resolver";
+import { componentResolver } from "@/utils/component-resolver";
 
-import LangRedirect from "../../components/LangRedirect";
+import { LangRedirect } from "../../components/LangRedirect";
 
 export const RootRoute = async (props: {
   params: Promise<{ lang: string }>;
@@ -27,3 +27,5 @@ export const RootRoute = async (props: {
     componentResolver(section, index),
   );
 };
+
+export default RootRoute;

@@ -27,6 +27,11 @@
     },
     "contentSections": {
       "type": "dynamiczone",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "components": [
         "sections.hero",
         "sections.bottom-actions",
@@ -36,48 +41,43 @@
         "sections.lead-form",
         "sections.heading",
         "sections.card-group"
-      ],
+      ]
+    },
+    "slug": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "regex": "^$|^[a-zA-Z/-]+$"
+    },
+    "heading": {
+      "type": "string",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       }
     },
-    "slug": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "type": "string",
-      "regex": "^$|^[a-zA-Z/-]+$"
-    },
-    "heading": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string"
-    },
     "description": {
+      "type": "string",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      },
-      "type": "string"
+      }
     },
     "seo": {
       "type": "component",
-      "repeatable": false,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
       "component": "shared.seo",
-      "required": true
+      "repeatable": false,
+      "required": false
     }
   }
 }

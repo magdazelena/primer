@@ -80,9 +80,9 @@ export const RootLayout = async (props: {
 
   const { notificationBanner, navbar, footer } = global.data;
 
-  const navbarLogoUrl = getStrapiMedia(navbar.navbarLogo.logoImg.url);
+  const navbarLogoUrl = getStrapiMedia(navbar.navbarLogo?.logoImg?.url);
 
-  const footerLogoUrl = getStrapiMedia(footer.footerLogo.logoImg.url);
+  const footerLogoUrl = getStrapiMedia(footer.footerLogo?.logoImg?.url);
 
   return (
     <html lang={params.lang}>
@@ -91,7 +91,7 @@ export const RootLayout = async (props: {
           links={navbar.menuItems}
           categories={categories}
           logoUrl={navbarLogoUrl}
-          logoText={navbar.navbarLogo.logoText}
+          logoText={navbar.navbarLogo?.logoText}
         />
 
         <main className="text-dark min-h-screen">{children}</main>
@@ -100,7 +100,7 @@ export const RootLayout = async (props: {
 
         <Footer
           logoUrl={footerLogoUrl}
-          logoText={footer.footerLogo.logoText}
+          logoText={footer.footerLogo?.logoText}
           menuLinks={footer.menuLinks}
           categoryLinks={footer.categories}
           legalLinks={footer.legalLinks}
@@ -114,3 +114,5 @@ export const RootLayout = async (props: {
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
 }
+
+export default RootLayout;

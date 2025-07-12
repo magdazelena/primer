@@ -19,57 +19,59 @@
   "attributes": {
     "metadata": {
       "type": "component",
-      "repeatable": false,
-      "component": "meta.metadata",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
+      "component": "meta.metadata",
+      "repeatable": false,
       "required": true
     },
     "favicon": {
       "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ],
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "notificationBanner": {
-      "type": "component",
-      "repeatable": false,
-      "component": "elements.notification-banner",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "navbar": {
-      "type": "component",
-      "repeatable": false,
-      "component": "layout.navbar",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "footer": {
-      "type": "component",
-      "repeatable": false,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "component": "layout.footer"
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "notificationBanner": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "elements.notification-banner",
+      "repeatable": false
+    },
+    "navbar": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "layout.navbar",
+      "repeatable": false,
+      "required": true
+    },
+    "footer": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "layout.footer",
+      "repeatable": false,
+      "required": true
     }
   }
 }
