@@ -1,6 +1,11 @@
 import type { Context } from "koa";
+import type { Core } from "@strapi/strapi";
 
-const productSeries = {
+declare global {
+  const strapi: Core.Strapi;
+}
+
+export const productSeries = {
   async createProducts(ctx: Context) {
     try {
       const { id } = ctx.params;
@@ -33,5 +38,3 @@ const productSeries = {
     }
   },
 };
-
-export default productSeries;

@@ -22,19 +22,18 @@ module.exports = {
         extensions: [".js", ".jsx", ".ts", ".tsx", ".d.ts"],
       },
     },
-  
+
     "prettier/prettier": [
       "error",
       {
-        "singleQuote": true,
-        "trailingComma": "all",
-        "printWidth": 120,
-        "tabWidth": 2,
-        "useTabs": false,
-        "semi": false,
-      }
-    ]
-    
+        singleQuote: true,
+        trailingComma: "all",
+        printWidth: 120,
+        tabWidth: 2,
+        useTabs: false,
+        semi: false,
+      },
+    ],
   },
   rules: {
     strict: ["error", "global"],
@@ -47,4 +46,5 @@ module.exports = {
     "default-param-last": "warn",
     "no-template-curly-in-string": "warn",
   },
+  ignorePatterns: [".eslintrc.js", "dist/**", "node_modules/**"],
 };

@@ -1,15 +1,17 @@
-import type { Core } from '@strapi/strapi';
-import { Context } from 'koa';
+import type { Core } from "@strapi/strapi";
+import type { Context } from "koa";
 
 const status = ({ strapi }: { strapi: Core.Strapi }): Core.Controller => ({
   async listStatuses(ctx: Context) {
     try {
-      const statuses = await strapi.documents('plugin::primer-status-manager.status').findMany({
-        orderBy: { order: 'asc' },
-      });
+      const statuses = await strapi
+        .documents("plugin::primer-status-manager.status")
+        .findMany({
+          orderBy: { order: "asc" },
+        });
       return ctx.send(statuses);
     } catch (err) {
-      console.error('❌ Status controller: find error:', err);
+      console.error("❌ Status controller: find error:", err);
       ctx.throw(500, err as string);
     }
   },
@@ -20,29 +22,36 @@ const status = ({ strapi }: { strapi: Core.Strapi }): Core.Controller => ({
 
       // Validate name (only Latin characters)
       if (!/^[a-zA-Z\s]+$/.test(name)) {
-        return ctx.badRequest("Status name must contain only Latin characters.");
+        return ctx.badRequest(
+          "Status name must contain only Latin characters.",
+        );
       }
 
       // Get the highest order value
-      const existingStatuses = await strapi.documents('plugin::primer-status-manager.status').findMany({
-        orderBy: { order: 'desc' },
-        limit: 1,
-      });
-      
-      const newOrder = existingStatuses.length > 0 ? existingStatuses[0].order + 1 : 0;
+      const existingStatuses = await strapi
+        .documents("plugin::primer-status-manager.status")
+        .findMany({
+          orderBy: { order: "desc" },
+          limit: 1,
+        });
+
+      const newOrder =
+        existingStatuses.length > 0 ? existingStatuses[0].order + 1 : 0;
 
       // Create status
-      const newStatus = await strapi.documents('plugin::primer-status-manager.status').create({
-        data: {
-          name,
-          published,
-          order: newOrder,
-        },
-      });
+      const newStatus = await strapi
+        .documents("plugin::primer-status-manager.status")
+        .create({
+          data: {
+            name,
+            published,
+            order: newOrder,
+          },
+        });
 
       return ctx.send(newStatus);
     } catch (error) {
-      console.error('Status controller: create error:', error);
+      console.error("Status controller: create error:", error);
       ctx.internalServerError(`Error adding status: ${error}`);
     }
   },
@@ -58,16 +67,16 @@ const status = ({ strapi }: { strapi: Core.Strapi }): Core.Controller => ({
       // Update each status with new order
       await Promise.all(
         statuses.map(({ documentId, order }) =>
-          strapi.documents('plugin::primer-status-manager.status').update({
+          strapi.documents("plugin::primer-status-manager.status").update({
             where: { documentId },
-            data: { order }
-          })
-        )
+            data: { order },
+          }),
+        ),
       );
 
       ctx.send({ message: "Order updated successfully" });
     } catch (error) {
-      console.error('Status controller: reorder error:', error);
+      console.error("Status controller: reorder error:", error);
       ctx.internalServerError(`Error updating order: ${error}`);
     }
   },
@@ -76,15 +85,15 @@ const status = ({ strapi }: { strapi: Core.Strapi }): Core.Controller => ({
     try {
       const { id } = ctx.params;
       const { published } = ctx.request.body;
-      
-      await strapi.documents('plugin::primer-status-manager.status').update({
+
+      await strapi.documents("plugin::primer-status-manager.status").update({
         where: { documentId: id },
-        data: { published }
+        data: { published },
       });
-      
+
       ctx.send({ message: "Status updated successfully" });
     } catch (error) {
-      console.error('Status controller: publish error:', error);
+      console.error("Status controller: publish error:", error);
       ctx.internalServerError(`Error updating status: ${error}`);
     }
   },
@@ -98,16 +107,16 @@ const status = ({ strapi }: { strapi: Core.Strapi }): Core.Controller => ({
       }
 
       // Delete the status
-      await strapi.documents('plugin::primer-status-manager.status').delete({
-        where: { documentId: statusId }
+      await strapi.documents("plugin::primer-status-manager.status").delete({
+        where: { documentId: statusId },
       });
-      
+
       return ctx.send({ message: "Status deleted successfully" });
     } catch (error) {
-      console.error('Status controller: delete error:', error);
+      console.error("Status controller: delete error:", error);
       ctx.internalServerError(`Error deleting status: ${error}`);
     }
   },
 });
-  
-export default status; 
+
+export default status;

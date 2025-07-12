@@ -1,13 +1,13 @@
-import { PLUGIN_ID } from './pluginId';
-import { Initializer } from './components/Initializer';
-import { PluginIcon } from './components/PluginIcon';
-import ProductStatusField from './components/ProductStatusField';
+import { Initializer } from "./components/Initializer";
+import { PluginIcon } from "./components/PluginIcon";
+import ProductStatusField from "./components/ProductStatusField";
+import { PLUGIN_ID } from "./pluginId";
 
 /** @type import('@strapi/strapi/admin').PluginDefinition */
 export default {
   register(app: any) {
-    console.log('🔌 Registering Status Manager Admin Plugin...', PLUGIN_ID);
-    
+    console.log("🔌 Registering Status Manager Admin Plugin...", PLUGIN_ID);
+
     app.registerPlugin({
       id: PLUGIN_ID,
       initializer: Initializer,
@@ -20,18 +20,20 @@ export default {
       icon: PluginIcon,
       intlLabel: {
         id: `${PLUGIN_ID}.plugin.name`,
-        defaultMessage: 'Status manager',
+        defaultMessage: "Status manager",
       },
-      Component: () => import('./pages/App.js')
+      Component: () => import("./pages/App.js"),
     });
-    
-    console.log('✅ Status Manager Admin Plugin registered successfully');
+
+    console.log("✅ Status Manager Admin Plugin registered successfully");
   },
   bootstrap(app: any) {
-    console.log('🚀 Bootstrapping Status Manager Admin Plugin...');
-    
-    app.getPlugin('content-manager').apis.addEditViewSidePanel([ProductStatusField]);
-    
-    console.log('✅ Status Manager Admin Plugin bootstrapped successfully');
-  }
-}; 
+    console.log("🚀 Bootstrapping Status Manager Admin Plugin...");
+
+    app
+      .getPlugin("content-manager")
+      .apis.addEditViewSidePanel([ProductStatusField]);
+
+    console.log("✅ Status Manager Admin Plugin bootstrapped successfully");
+  },
+};

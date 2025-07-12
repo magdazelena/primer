@@ -1,5 +1,5 @@
-import status from './status';
+import status from "./status";
 
 export default {
-  status_controller: status
-}; 
+  status_controller: status,
+};

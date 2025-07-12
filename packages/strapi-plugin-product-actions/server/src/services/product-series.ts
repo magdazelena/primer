@@ -1,9 +1,47 @@
 import type { Core } from "@strapi/strapi";
 
-export default ({ strapi }: { strapi: Core.Strapi }) => ({
+interface Series {
+  name: string;
+  slug: string;
+  products?: Array<{ documentId: string }>;
+  category?: { documentId: string };
+  creator?: { documentId: string };
+  description: unknown;
+  shortDescription: string;
+  media: unknown;
+  coverImage: unknown;
+  seo: unknown;
+  totalCost: number;
+  wholesalePrice: number;
+  retailPrice: number;
+}
+
+interface UpdateData {
+  fieldsToUpdate: string[];
+}
+
+interface ProductData {
+  name: string;
+  slug: string;
+  series: { set: Array<{ documentId: string }> };
+  seriesIndex: number;
+  category: { set: Array<{ documentId: string }> };
+  creator: { set: Array<{ documentId: string }> };
+  publishedAt: undefined;
+  description: unknown;
+  shortDescription: string;
+  media: unknown;
+  coverImage: unknown;
+  seo: unknown;
+  totalCost: number;
+  wholesalePrice: number;
+  retailPrice: number;
+}
+
+export const productSeriesService = ({ strapi }: { strapi: Core.Strapi }) => ({
   async createProductsFromSeries(seriesId: string, count = 1) {
     const series = await getSeries(strapi, seriesId);
-    const products: any[] = [];
+    const products: unknown[] = [];
     const startIndex = series.products?.length || 0;
 
     for (let i = 0; i < count; i++) {
@@ -16,14 +54,14 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
           slug: `${series.slug}-${index + 1}`,
           series: {
             set: [{ documentId: seriesId }],
-          } as any,
+          },
           seriesIndex: index,
           category: {
             set: [{ documentId: series.category?.documentId }],
-          } as any,
+          },
           creator: {
             set: [{ documentId: series.creator?.documentId }],
-          } as any,
+          },
           publishedAt: undefined,
           // Copy all required fields from series
           description: series.description,
@@ -34,7 +72,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
           totalCost: series.totalCost,
           wholesalePrice: series.wholesalePrice,
           retailPrice: series.retailPrice,
-        } as any,
+        } as ProductData,
       });
 
       products.push(product);
@@ -43,12 +81,12 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
     return products;
   },
 
-  async updateSeriesProducts(seriesId: string, updateData: any) {
+  async updateSeriesProducts(seriesId: string, updateData: UpdateData) {
     const series = await getSeries(strapi, seriesId);
 
     const { fieldsToUpdate } = updateData;
 
-    const dataToUpdate = {} as any;
+    const dataToUpdate: Record<string, unknown> = {};
 
     if (fieldsToUpdate.includes("description")) {
       dataToUpdate.description = series.description;
@@ -94,7 +132,7 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       };
     }
 
-    const updatePromises = series.products.map((product) =>
+    const updatePromises = series.products?.map((product) =>
       strapi.documents("api::product.product").update({
         documentId: product.documentId,
         data: {
@@ -103,12 +141,17 @@ export default ({ strapi }: { strapi: Core.Strapi }) => ({
       }),
     );
 
-    await Promise.all(updatePromises);
+    if (updatePromises) {
+      await Promise.all(updatePromises);
+    }
     return true;
   },
 });
 
-async function getSeries(strapi, seriesId) {
+async function getSeries(
+  strapi: Core.Strapi,
+  seriesId: string,
+): Promise<Series> {
   const series = await strapi.db
     .query("api::product-series.product-series")
     .findOne({
@@ -126,5 +169,5 @@ async function getSeries(strapi, seriesId) {
   if (!series) {
     throw new Error("Series not found");
   }
-  return series;
+  return series as Series;
 }

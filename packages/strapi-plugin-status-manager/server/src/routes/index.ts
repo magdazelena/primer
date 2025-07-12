@@ -1,7 +1,5 @@
+import admin from "./admin";
 
-import admin from './admin';
+const routes = { admin };
 
-const routes = { admin }
-
-
-export default routes; 
+export default routes;

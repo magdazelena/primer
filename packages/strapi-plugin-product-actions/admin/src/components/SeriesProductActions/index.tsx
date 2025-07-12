@@ -33,14 +33,20 @@ const valuesToUpdate = [
   "category",
   "creator",
 ];
-const SeriesProductActions = ({ document }: { document: any }) => {
+
+interface Document {
+  documentId?: string;
+}
+
+const SeriesProductActions = ({ document }: { document: Document }) => {
   const { model } = useContentManagerContext();
-  if (model !== "api::product-series.product-series") return null;
   const documentId = document?.documentId;
   const [productCount, setProductCount] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [fieldsToUpdate, setFieldsToUpdate] = useState<string[]>([]);
   const { post, put } = useFetchClient();
+
+  if (model !== "api::product-series.product-series") return null;
 
   const handleCreateProducts = async () => {
     try {
@@ -58,6 +64,7 @@ const SeriesProductActions = ({ document }: { document: any }) => {
 
       setProductCount(1);
     } catch (error) {
+      console.error("Error creating products:", error);
     } finally {
       setIsLoading(false);
     }
@@ -77,6 +84,7 @@ const SeriesProductActions = ({ document }: { document: any }) => {
         throw new Error("Failed to update products");
       }
     } catch (error) {
+      console.error("Error updating products:", error);
     } finally {
       setIsLoading(false);
     }
