@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 
 import { NavLink } from "@/components/NavLink";
 
-import DropdownContent from "./DropdownContent";
+import { DropdownContent } from "./DropdownContent";
 
 import type { Category } from "@/types/article";
 import type { ProductCategory } from "@/types/product";

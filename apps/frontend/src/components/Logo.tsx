@@ -2,11 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const Logo = ({
-  logoUrl,
-  logoText,
+  src,
+  children,
 }: {
-  logoUrl: string | null;
-  logoText: string | null;
+  src: string | null;
+  children?: React.ReactNode;
 }) => {
   return (
     <Link

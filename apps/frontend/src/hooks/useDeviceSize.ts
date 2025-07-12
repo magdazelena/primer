@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useDeviceSize = () => {
+export const useDeviceSize = () => {
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
 
@@ -19,5 +19,3 @@ const useDeviceSize = () => {
 
   return [width, height];
 };
-
-export default useDeviceSize;

@@ -2,10 +2,10 @@ import "./globals.css";
 import { getStrapiMedia, getStrapiURL } from "@/api/api-helpers";
 import { fetchAPI } from "@/api/fetch-api";
 import { GLOBAL_LAYOUT_QUERY } from "@/api/shared-params";
-import Banner from "@/components/Banner";
-import Body from "@/components/Body";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
+import { Banner } from "@/components/Banner";
+import { Body } from "@/components/Body";
+import { Footer } from "@/components/Footer";
+import { Navbar } from "@/components/Navbar";
 import { NotFound } from "@/components/NotFound";
 import { FALLBACK_SEO } from "@/utils/constants";
 

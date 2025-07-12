@@ -14,6 +14,6 @@ export default () => {
     routes,
     services,
     middlewares: {},
-    bootstrap
+    bootstrap,
   };
 };

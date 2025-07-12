@@ -1,4 +1,4 @@
-import componentResolver from "../../utils/component-resolver";
+import { componentResolver } from "../../utils/component-resolver";
 
 import type { Image } from "@/types/image";
 
