@@ -1,27 +1,20 @@
 import statusActions from "./permissions";
 
-export default async ({ strapi }: { strapi: any }) => {
-  console.log("🚀 ========================================");
-  console.log("🚀 Status Manager Server Plugin Bootstrap");
-  console.log("🚀 Plugin ID: primer-status-manager");
-  console.log("🚀 Strapi instance:", !!strapi);
-  console.log("🚀 Database connection:", !!strapi?.db);
-  console.log(
-    "🚀 Available content types:",
-    Object.keys(strapi?.contentTypes || {}),
-  );
+interface StrapiInstance {
+  db?: unknown;
+  contentTypes?: Record<string, unknown>;
+  service: (name: string) => {
+    actionProvider: { registerMany: (actions: unknown) => Promise<void> };
+  };
+}
 
+export const bootstrap = async ({ strapi }: { strapi: StrapiInstance }) => {
   // Register permissions for the plugin
   try {
     await strapi
       .service("admin::permission")
       .actionProvider.registerMany(statusActions.actions);
-    console.log("✅ Permissions registered successfully");
   } catch (error) {
-    console.error("❌ Error registering permissions:", error);
+    // Handle error silently or log to proper logging service
   }
-
-  // bootstrap phase
-  console.log("✅ Bootstrap phase completed");
-  console.log("🚀 ========================================");
 };

@@ -1,4 +1,4 @@
-//@ts-ignore
+// @ts-expect-error - Strapi admin types not available
 import { DesignSystemProvider, lightTheme } from "@strapi/design-system";
 import { Page } from "@strapi/strapi/admin";
 import { Routes, Route } from "react-router-dom";
@@ -16,4 +16,4 @@ const App = () => {
   );
 };
 
-export default App;
+export { App };

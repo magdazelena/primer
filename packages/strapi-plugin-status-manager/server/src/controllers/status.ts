@@ -100,7 +100,7 @@ const status = ({ strapi }: { strapi: Core.Strapi }): Core.Controller => ({
 
   async delete(ctx: Context) {
     try {
-      const { statusId, replacementId } = ctx.request.body;
+      const { statusId } = ctx.request.body;
 
       if (!statusId) {
         return ctx.badRequest("Status ID is required.");
@@ -119,4 +119,4 @@ const status = ({ strapi }: { strapi: Core.Strapi }): Core.Controller => ({
   },
 });
 
-export default status;
+export { status };

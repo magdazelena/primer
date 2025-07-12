@@ -1,6 +1,6 @@
 import { Main, Flex, Typography, Box } from "@strapi/design-system";
 
-import StatusManager from "../components/StatusManager";
+import { StatusManager } from "../components/StatusManager";
 
 const HomePage = () => {
   return (

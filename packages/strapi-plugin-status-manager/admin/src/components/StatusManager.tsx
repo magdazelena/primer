@@ -1,5 +1,4 @@
-//@ts-nocheck
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import { combine } from "@atlaskit/pragmatic-drag-and-drop/combine";
 import {
@@ -25,15 +24,27 @@ import {
   SingleSelectOption,
 } from "@strapi/design-system";
 import { Plus, Trash, Drag } from "@strapi/icons";
-//@ts-ignore
+// @ts-expect-error - Strapi admin types not available
 import { useFetchClient } from "@strapi/strapi/admin";
 
+interface Status {
+  documentId: string;
+  name: string;
+  published: boolean;
+}
+
+interface ReorderParams {
+  startIndex: number;
+  indexOfTarget: number;
+  closestEdgeOfTarget: string;
+}
+
 const StatusManager = () => {
-  const [statuses, setStatuses] = useState([]);
+  const [statuses, setStatuses] = useState<Status[]>([]);
   const [newStatus, setNewStatus] = useState("");
-  const [statusToDelete, setStatusToDelete] = useState(null);
+  const [statusToDelete, setStatusToDelete] = useState<Status | null>(null);
   const [replacementStatus, setReplacementStatus] = useState("");
-  const { get, post, put, del } = useFetchClient();
+  const { get, post, put } = useFetchClient();
   const [instanceId] = useState(() => Symbol("instance-id"));
 
   // Fetch statuses
@@ -46,7 +57,7 @@ const StatusManager = () => {
   }, [get]);
 
   // Validate input (Latin characters only)
-  const validateInput = (value) => /^[a-zA-Z\s]+$/.test(value);
+  const validateInput = (value: string): boolean => /^[a-zA-Z\s]+$/.test(value);
 
   // Add new status
   const addStatus = async () => {
@@ -64,50 +75,54 @@ const StatusManager = () => {
     }
   };
 
-  const reorderItem = async ({
-    startIndex,
-    indexOfTarget,
-    closestEdgeOfTarget,
-  }) => {
-    // Calculate the final index based on the target position and edge
-    let finishIndex = indexOfTarget;
-    if (closestEdgeOfTarget === "bottom") {
-      finishIndex = indexOfTarget + 1;
-    }
-
-    // If moving an item down, we need to adjust for the removed item
-    if (startIndex < finishIndex) {
-      finishIndex--;
-    }
-
-    if (finishIndex === startIndex) {
-      return;
-    }
-
-    const reordered = reorder({
-      list: statuses,
+  const reorderItem = useCallback(
+    async ({
       startIndex,
-      finishIndex,
-    });
-    // Send new order to API
-    const orderedIds = reordered.map((status, index) => ({
-      documentId: status.documentId,
-      order: index,
-    }));
+      indexOfTarget,
+      closestEdgeOfTarget,
+    }: ReorderParams) => {
+      // Calculate the final index based on the target position and edge
+      let finishIndex = indexOfTarget;
+      if (closestEdgeOfTarget === "bottom") {
+        finishIndex = indexOfTarget + 1;
+      }
 
-    await put("/primer-status-manager/statuses/reorder", {
-      statuses: orderedIds,
-    });
-    setStatuses(reordered);
-  };
+      // If moving an item down, we need to adjust for the removed item
+      if (startIndex < finishIndex) {
+        finishIndex--;
+      }
+
+      if (finishIndex === startIndex) {
+        return;
+      }
+
+      const reordered = reorder({
+        list: statuses,
+        startIndex,
+        finishIndex,
+      });
+      // Send new order to API
+      const orderedIds = reordered.map((status, index) => ({
+        documentId: status.documentId,
+        order: index,
+      }));
+
+      await put("/primer-status-manager/statuses/reorder", {
+        statuses: orderedIds,
+      });
+      setStatuses(reordered);
+    },
+    [statuses, put],
+  );
+
   // Setup drag and drop
   useEffect(() => {
     const statusElements = document.querySelectorAll("[data-status-id]");
-    const cleanupFunctions = [];
+    const cleanupFunctions: (() => void)[] = [];
 
     statusElements.forEach((element) => {
       const statusId = element.getAttribute("data-status-id");
-      const index = statuses.findIndex((s) => s.documentId == statusId);
+      const index = statuses.findIndex((s) => s.documentId === statusId);
       const dragHandle = element.querySelector("[data-drag-handle]");
 
       if (!dragHandle) return;
@@ -134,8 +149,9 @@ const StatusManager = () => {
               preview.style.border = "1px solid #ccc";
               preview.style.borderRadius = "4px";
               preview.style.boxShadow = "0 2px 4px rgba(0,0,0,0.1)";
-              preview.textContent =
-                element.querySelector("[data-status-name]").textContent;
+              const statusNameElement =
+                element.querySelector("[data-status-name]");
+              preview.textContent = statusNameElement?.textContent || "";
               container.appendChild(preview);
               return () => container.removeChild(preview);
             },
@@ -186,7 +202,7 @@ const StatusManager = () => {
           const sourceData = source.data;
           const targetData = self.data;
           const indexOfTarget = statuses.findIndex(
-            (s) => s.documentId == targetData.statusId,
+            (s) => s.documentId === targetData.statusId,
           );
           if (indexOfTarget < 0) return;
 
@@ -216,7 +232,7 @@ const StatusManager = () => {
         const targetData = target.data;
 
         const indexOfTarget = statuses.findIndex(
-          (s) => s.documentId == targetData.statusId,
+          (s) => s.documentId === targetData.statusId,
         );
         if (indexOfTarget < 0) return;
 
@@ -238,7 +254,7 @@ const StatusManager = () => {
   }, [statuses, reorderItem, instanceId]);
 
   // Open delete dialog
-  const confirmDelete = (status) => {
+  const confirmDelete = (status: Status) => {
     setStatusToDelete(status);
   };
 
@@ -253,13 +269,13 @@ const StatusManager = () => {
 
     try {
       await put("/primer-status-manager/statuses/delete", {
-        statusId: statusToDelete.documentId,
+        statusId: statusToDelete?.documentId,
         replacementId: replacementStatusObj.documentId,
       });
 
       // Remove the deleted status from the list
       setStatuses(
-        statuses.filter((s) => s.documentId !== statusToDelete.documentId),
+        statuses.filter((s) => s.documentId !== statusToDelete?.documentId),
       );
       setStatusToDelete(null);
       setReplacementStatus("");
@@ -269,7 +285,7 @@ const StatusManager = () => {
   };
 
   // Toggle publish status
-  const togglePublish = async (id, published) => {
+  const togglePublish = async (id: string, published: boolean) => {
     try {
       await put(`/primer-status-manager/statuses/${id}`, {
         published: !published,
@@ -406,4 +422,4 @@ const StatusManager = () => {
   );
 };
 
-export default StatusManager;
+export { StatusManager };
