@@ -10,6 +10,7 @@
     "moduleResolution": "node",
     "allowJs": true, //enables the build without .ts files
     "types": [
+      "jest",
       "./types/generated/contentTypes.d.ts",
       "./types/generated/components.d.ts",
     ]
