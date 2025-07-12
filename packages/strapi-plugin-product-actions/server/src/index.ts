@@ -1,12 +1,10 @@
-import controllers from "./controllers";
-import routes from "./routes";
-import services from "./services";
-import register from "./register";
-import bootstrap from "./bootstrap";
+import { productSeries as controllers } from "./controllers";
+import { productSeriesRoutes as routes } from "./routes";
+import { productSeriesService as services } from "./services";
+import { register } from "./register";
+import { bootstrap } from "./bootstrap";
 
-console.log("🚀 Product Actions Plugin Loaded!");
-
-export default () => {
+export const plugin = () => {
   return {
     register,
 
@@ -14,6 +12,6 @@ export default () => {
     routes,
     services,
     middlewares: {},
-    bootstrap
+    bootstrap,
   };
 };

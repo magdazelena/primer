@@ -3,13 +3,12 @@ import { useState } from "react";
 
 import { getStrapiURL } from "@/api/api-helpers";
 
-export default function FormSubmit({
-  placeholder,
-  text,
-}: {
+interface FormSubmitProps {
   placeholder: string;
   text: string;
-}) {
+}
+
+export const FormSubmit = (props: FormSubmitProps) => {
   const [email, setEmail] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -58,7 +57,7 @@ export default function FormSubmit({
             <>
               <input
                 type="email"
-                placeholder={errorMessage || placeholder}
+                placeholder={errorMessage || props.placeholder}
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
                 className={"w-3/5 p-3 rounded-l-lg sm:w-2/3 text-dark"}
@@ -68,7 +67,7 @@ export default function FormSubmit({
                 className="w-2/5 p-3 font-semibold rounded-r-lg sm:w-1/3 bg-accentDark text-light"
                 onClick={handleSubmit}
               >
-                {text}
+                {props.text}
               </button>
             </>
           )}
@@ -82,4 +81,4 @@ export default function FormSubmit({
       </div>
     </div>
   );
-}
+};

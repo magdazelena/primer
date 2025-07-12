@@ -42,4 +42,4 @@ const fetchProductsAndSeries = async (series: string) => {
   return { productSeries, products };
 };
 
-export default fetchProductsAndSeries;
+export { fetchProductsAndSeries };

@@ -3,7 +3,7 @@ interface PageHeaderProps {
   text?: string;
 }
 
-export default function PageHeader({ heading, text }: PageHeaderProps) {
+export const PageHeader = ({ heading, text }: PageHeaderProps) => {
   return (
     <div className="my-16 w-full text-center">
       {text && <span className="text-dark font-bold">{text}</span>}
@@ -12,4 +12,4 @@ export default function PageHeader({ heading, text }: PageHeaderProps) {
       </h2>
     </div>
   );
-}
+};

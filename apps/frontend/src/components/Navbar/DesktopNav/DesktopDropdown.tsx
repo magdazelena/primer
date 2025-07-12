@@ -10,14 +10,9 @@ interface DesktopDropdownProps {
   url?: string;
 }
 
-const DesktopDropdown = ({
-  title,
-  categories,
-  basePath,
-  url,
-}: DesktopDropdownProps) => {
+export const DesktopDropdown = (props: DesktopDropdownProps) => {
   const renderMenu = (category: Category | ProductCategory) => {
-    const url = `${basePath}/${category.slug}`;
+    const url = `${props.basePath}/${category.slug}`;
     return (
       <li key={category.id} className="relative group">
         <NavLink
@@ -39,14 +34,14 @@ const DesktopDropdown = ({
   return (
     <li className="relative group">
       <NavLink
-        url={url || basePath}
-        text={title}
+        url={props.url || props.basePath}
+        text={props.title}
         className="block px-4 py-2 hover:bg-gray-200"
       />
-      {categories?.length > 0 && (
+      {props.categories?.length > 0 && (
         <ul className="fixed left-0 p-5 w-full hidden group-hover:flex top-level bg-light shadow-lg">
           <span className="block h-[2px] w-full bg-dark mb-5"></span>
-          {categories.map((category: Category | ProductCategory) =>
+          {props.categories.map((category: Category | ProductCategory) =>
             renderMenu(category),
           )}
         </ul>
@@ -54,5 +49,3 @@ const DesktopDropdown = ({
     </li>
   );
 };
-
-export default DesktopDropdown;

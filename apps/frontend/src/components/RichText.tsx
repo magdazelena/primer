@@ -8,11 +8,11 @@ interface RichText {
   };
 }
 
-export default function RichText({ data }: RichText) {
+export const RichText = ({ data }: RichText) => {
   const { content } = data;
   return (
     <div className="rich-text">
       <BlocksRenderer content={content} />
     </div>
   );
-}
+};

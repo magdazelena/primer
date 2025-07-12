@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Logo({
+export const Logo = ({
   src,
   children,
 }: {
   src: string | null;
   children?: React.ReactNode;
-}) {
+}) => {
   return (
     <Link
       href="/"
@@ -18,4 +18,4 @@ export default function Logo({
       <div className="ml-2">{children}</div>
     </Link>
   );
-}
+};

@@ -7,7 +7,7 @@ import { usePaginatedFetch } from "@/hooks/usePagination";
 
 import Blog from "./views/article-list";
 
-export default function Profile() {
+export const Profile = () => {
   const {
     data: articles,
     hasMore,
@@ -39,4 +39,4 @@ export default function Profile() {
       </Blog>
     </div>
   );
-}
+};

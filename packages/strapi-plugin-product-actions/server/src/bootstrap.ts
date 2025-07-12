@@ -1,25 +1,20 @@
-import productActions from './permissions';
+import { permissions } from "./permissions";
 
-export default async ({ strapi }: { strapi: any } ) => {
-  console.log('🚀 ========================================');
-  console.log('🚀 Product Actions Server Plugin Bootstrap');
-  console.log('🚀 Plugin ID: primer-product-actions');
-  console.log('🚀 Strapi instance:', !!strapi);
-  console.log('🚀 Database connection:', !!strapi?.db);
-  console.log('🚀 Available content types:', Object.keys(strapi?.contentTypes || {}));
-  
+interface StrapiInstance {
+  db?: unknown;
+  contentTypes?: Record<string, unknown>;
+  service: (name: string) => {
+    actionProvider: { registerMany: (actions: unknown) => Promise<void> };
+  };
+}
+
+export const bootstrap = async ({ strapi }: { strapi: StrapiInstance }) => {
   // Register permissions for the plugin
   try {
     await strapi
-    .service('admin::permission')
-    .actionProvider.registerMany(productActions.actions);
-    console.log('✅ Permissions registered successfully');
-    
+      .service("admin::permission")
+      .actionProvider.registerMany(permissions.actions);
   } catch (error) {
-    console.error('❌ Error registering permissions:', error);
+    // Handle error silently or log to proper logging service
   }
-  
-  // bootstrap phase
-  console.log('✅ Bootstrap phase completed');
-  console.log('🚀 ========================================');
-}; 
+};

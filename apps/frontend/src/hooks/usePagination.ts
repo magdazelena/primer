@@ -6,24 +6,24 @@ interface PaginationMeta {
   total: number;
 }
 
-interface UsePaginatedFetchOptions {
+interface UsePaginatedFetchOptions<T> {
   initialLimit?: number;
   fetchFunction: (
     start: number,
     limit: number,
-  ) => Promise<{ data: any[]; meta: { pagination: PaginationMeta } }>;
+  ) => Promise<{ data: T[]; meta: { pagination: PaginationMeta } }>;
 }
 
-export function usePaginatedFetch({
+export function usePaginatedFetch<T>({
   initialLimit = Number(process.env.NEXT_PUBLIC_PAGE_LIMIT),
   fetchFunction,
-}: UsePaginatedFetchOptions) {
+}: UsePaginatedFetchOptions<T>) {
   const initalPagination = {
     start: 0,
     limit: initialLimit,
     total: initialLimit,
   };
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<T[]>([]);
   const [pagination, setPagination] =
     useState<PaginationMeta>(initalPagination);
   const [isLoading, setLoading] = useState<boolean>(true);

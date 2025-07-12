@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import {
   Box,
   Button,
@@ -9,25 +10,43 @@ import {
   MultiSelect,
   MultiSelectOption,
 } from "@strapi/design-system";
-import { en } from "../../translations";
 import {
   useFetchClient,
   unstable_useContentManagerContext as useContentManagerContext,
 } from "@strapi/strapi/admin";
 
+import { en } from "../../translations";
+
 const formatMessage = (arg: { id: string }): string => {
   return en[arg.id];
 };
 
-const valuesToUpdate = ['description', 'shortDescription', 'media', 'coverImage', 'seo', 'totalCost', 'wholesalePrice', 'retailPrice', 'category', 'creator'];
-const SeriesProductActions = ({ document }: { document: any }) => {
+const valuesToUpdate = [
+  "description",
+  "shortDescription",
+  "media",
+  "coverImage",
+  "seo",
+  "totalCost",
+  "wholesalePrice",
+  "retailPrice",
+  "category",
+  "creator",
+];
+
+interface Document {
+  documentId?: string;
+}
+
+const SeriesProductActions = ({ document }: { document: Document }) => {
   const { model } = useContentManagerContext();
-  if (model !== "api::product-series.product-series") return null;
   const documentId = document?.documentId;
   const [productCount, setProductCount] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [fieldsToUpdate, setFieldsToUpdate] = useState<string[]>([]);
   const { post, put } = useFetchClient();
+
+  if (model !== "api::product-series.product-series") return null;
 
   const handleCreateProducts = async () => {
     try {
@@ -45,6 +64,7 @@ const SeriesProductActions = ({ document }: { document: any }) => {
 
       setProductCount(1);
     } catch (error) {
+      console.error("Error creating products:", error);
     } finally {
       setIsLoading(false);
     }
@@ -56,15 +76,15 @@ const SeriesProductActions = ({ document }: { document: any }) => {
       const response = await put(
         `/product-actions/product-series/${documentId}/update-products`,
         {
-          fieldsToUpdate: fieldsToUpdate
+          fieldsToUpdate,
         },
       );
 
       if (!response.data) {
         throw new Error("Failed to update products");
       }
-
     } catch (error) {
+      console.error("Error updating products:", error);
     } finally {
       setIsLoading(false);
     }
@@ -100,14 +120,13 @@ const SeriesProductActions = ({ document }: { document: any }) => {
               </Dialog.Trigger>
               <Dialog.Content>
                 <Dialog.Body>
-                  <Box >
+                  <Box>
                     <Typography>
                       {formatMessage({
                         id: "product-series.actions.createDialogTitle",
                       })}
                     </Typography>
                     <NumberInput
-                
                       value={productCount}
                       onValueChange={(value) => setProductCount(value || 1)}
                       min={1}
@@ -122,7 +141,7 @@ const SeriesProductActions = ({ document }: { document: any }) => {
                     </Button>
                   </Dialog.Cancel>
                   <Dialog.Action>
-                  <Button
+                    <Button
                       onClick={handleCreateProducts}
                       variant="default"
                       loading={isLoading}
@@ -131,7 +150,6 @@ const SeriesProductActions = ({ document }: { document: any }) => {
                     </Button>
                   </Dialog.Action>
                 </Dialog.Footer>
-      
               </Dialog.Content>
             </Dialog.Root>
 
@@ -149,7 +167,14 @@ const SeriesProductActions = ({ document }: { document: any }) => {
                 </Button>
               </Dialog.Trigger>
               <Dialog.Content>
-                <Dialog.Body display={"flex"} direction={"column"} gap={2} justifyContent={"center"} alignItems={"center"} width={"100%"} >
+                <Dialog.Body
+                  display={"flex"}
+                  direction={"column"}
+                  gap={2}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                  width={"100%"}
+                >
                   <Typography variant="delta" fontWeight="bold">
                     {formatMessage({
                       id: "product-series.actions.updateDialogTitle",
@@ -160,15 +185,21 @@ const SeriesProductActions = ({ document }: { document: any }) => {
                       id: "product-series.actions.updateDialogDescription",
                     })}
                   </Typography>
-                  <MultiSelect 
+                  <MultiSelect
                     withTags={true}
                     value={fieldsToUpdate}
                     onClear={() => setFieldsToUpdate([])}
                     onChange={(value: string[]) => setFieldsToUpdate(value)}
                     required={true}
-                    placeholder={formatMessage({ id: "product-series.actions.selectFields" })}
-                    >
-                    {valuesToUpdate.map(field => <MultiSelectOption key={field} value={field}>{field}</MultiSelectOption>)}
+                    placeholder={formatMessage({
+                      id: "product-series.actions.selectFields",
+                    })}
+                  >
+                    {valuesToUpdate.map((field) => (
+                      <MultiSelectOption key={field} value={field}>
+                        {field}
+                      </MultiSelectOption>
+                    ))}
                   </MultiSelect>
                 </Dialog.Body>
                 <Dialog.Footer>
@@ -178,7 +209,7 @@ const SeriesProductActions = ({ document }: { document: any }) => {
                     </Button>
                   </Dialog.Cancel>
                   <Dialog.Action>
-                  <Button
+                    <Button
                       onClick={handleUpdateProducts}
                       variant="default"
                       loading={isLoading}
@@ -187,7 +218,6 @@ const SeriesProductActions = ({ document }: { document: any }) => {
                     </Button>
                   </Dialog.Action>
                 </Dialog.Footer>
-            
               </Dialog.Content>
             </Dialog.Root>
           </Flex>

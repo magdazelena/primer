@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import type { Article } from "@/types/article";
 
-export default function Post({ data }: { data: Article }) {
+export const Post = ({ data }: { data: Article }) => {
   const { title, description, publishedAt, coverImage, creator } = data;
 
   const imageUrl = getStrapiMedia(coverImage.url);
@@ -46,7 +46,7 @@ export default function Post({ data }: { data: Article }) {
 
       <div className="text-dark max-w-[1000px] pb-5">
         {data.blocks &&
-          data.blocks.map((section: any, index: number) =>
+          data.blocks.map((section: unknown, index: number) =>
             componentResolver(section, index),
           )}
       </div>
@@ -55,4 +55,4 @@ export default function Post({ data }: { data: Article }) {
       </div>
     </article>
   );
-}
+};

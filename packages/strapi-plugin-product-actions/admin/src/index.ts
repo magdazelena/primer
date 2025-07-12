@@ -1,24 +1,33 @@
-import { PLUGIN_ID } from './pluginId';
-import { Initializer } from './components/Initializer';
-import { SeriesProductActions } from './components/SeriesProductActions';
+import { Initializer } from "./components/Initializer";
+import { SeriesProductActions } from "./components/SeriesProductActions";
+import { PLUGIN_ID } from "./pluginId";
 
+interface App {
+  registerPlugin: (plugin: unknown) => void;
+  getPlugin: (name: string) => {
+    apis: {
+      addEditViewSidePanel: (
+        callback: (panels: unknown[]) => unknown[],
+      ) => void;
+    };
+  };
+}
 
-/** @type import('@strapi/strapi/admin').PluginDefinition */
-export default {
-  register(app: any) {
-
+export const plugin = {
+  register(app: App) {
     app.registerPlugin({
       id: PLUGIN_ID,
       initializer: Initializer,
       isReady: false,
       name: PLUGIN_ID,
     });
-    console.log('🚀 Product Actions Plugin Loaded!');
   },
 
-  bootstrap(app: any) {
-    app.getPlugin('content-manager').apis.addEditViewSidePanel((panels: any) => {
-      return [...panels, SeriesProductActions];
-    });
+  bootstrap(app: App) {
+    app
+      .getPlugin("content-manager")
+      .apis.addEditViewSidePanel((panels: unknown[]) => {
+        return [...panels, SeriesProductActions];
+      });
   },
-}; 
+};

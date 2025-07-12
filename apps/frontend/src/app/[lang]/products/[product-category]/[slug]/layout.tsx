@@ -2,15 +2,15 @@ import { getProductSlugAndCategoryList } from "@/api/requests/get-product-list";
 import { fetchSideMenuData } from "@/api/requests/get-side-menu-data";
 import { findParentCategory } from "@/utils/find-parent-category";
 
-import ProductSelect from "../../components/ProductSelect";
+import { ProductSelect } from "../../components/ProductSelect";
 
-export default async function LayoutRoute(props: {
+export const LayoutRoute = async (props: {
   children: React.ReactNode;
   params: Promise<{
     slug: string;
     ["product-category"]: string;
   }>;
-}) {
+}) => {
   const params = await props.params;
 
   const { children } = props;
@@ -54,7 +54,7 @@ export default async function LayoutRoute(props: {
       </div>
     </section>
   );
-}
+};
 
 export async function generateStaticParams() {
   const params = await getProductSlugAndCategoryList();

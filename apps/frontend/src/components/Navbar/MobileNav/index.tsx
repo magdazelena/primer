@@ -1,18 +1,23 @@
 "use client";
-import { Fragment, useState } from "react";
+import { useState, Fragment } from "react";
 
 import { NavLink } from "@/components/NavLink";
 
-import Dropdown from "./Dropdown";
-import HamburgerIcon from "./HamburgerIcon";
+import { Dropdown } from "./Dropdown";
+import { HamburgerIcon } from "./HamburgerIcon";
 
-const MobileNav = ({
-  links,
-  categories,
-}: {
-  links: Array<NavLink>;
-  categories: { productCategories: Array<any>; blogCategories: Array<any> };
-}) => {
+import type { Category } from "@/types/article";
+import type { ProductCategory } from "@/types/product";
+
+interface MobileNavProps {
+  links: Array<{ id: number; url: string; text: string; newTab: boolean }>;
+  categories: {
+    productCategories: Array<ProductCategory>;
+    blogCategories: Array<Category>;
+  };
+}
+
+const MobileNav = ({ links, categories }: MobileNavProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState("");
 

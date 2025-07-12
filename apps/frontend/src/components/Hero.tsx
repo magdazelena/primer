@@ -3,7 +3,7 @@ import { renderButtonStyle } from "@/utils/render-button-style";
 import Image from "next/image";
 import Link from "next/link";
 
-import HighlightedText from "./HighlightedText";
+import { HighlightedText } from "./HighlightedText";
 
 interface Button {
   id: string;
@@ -32,7 +32,7 @@ interface HeroProps {
   };
 }
 
-export default function Hero({ data }: HeroProps) {
+export const Hero = ({ data }: HeroProps) => {
   const imgUrl = getStrapiMedia(data.picture.url) || "";
 
   return (
@@ -87,4 +87,4 @@ export default function Hero({ data }: HeroProps) {
       </div>
     </section>
   );
-}
+};

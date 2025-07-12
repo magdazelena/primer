@@ -1,33 +1,37 @@
-import Logo from "../Logo";
+import { Logo } from "../Logo";
 
 import { DesktopNav } from "./DesktopNav";
 import { MobileNav } from "./MobileNav";
 
 import type { NavLink } from "../NavLink";
+import type { Category } from "@/types/article";
+import type { ProductCategory } from "@/types/product";
 
-export default function Navbar({
-  links,
-  logoUrl,
-  logoText,
-  categories,
-}: {
+interface NavbarProps {
   links: Array<NavLink>;
   logoUrl: string | null;
   logoText: string | null;
-  categories: { productCategories: Array<any>; blogCategories: Array<any> };
-}) {
+  categories: {
+    productCategories: Array<ProductCategory>;
+    blogCategories: Array<Category>;
+  };
+}
+
+export const Navbar = (props: NavbarProps) => {
   return (
     <div className={`p-4 text-dark fixed top-0 left-0 w-full nav`}>
       <div className="container flex justify-between h-16 mx-auto px-0 sm:px-6">
-        <Logo src={logoUrl}>
-          {logoText && (
-            <h2 className="text-2xl text-dark font-display">{logoText}</h2>
+        <Logo src={props.logoUrl}>
+          {props.logoText && (
+            <h2 className="text-2xl text-dark font-display">
+              {props.logoText}
+            </h2>
           )}
         </Logo>
 
-        <DesktopNav links={links} categories={categories} />
-        <MobileNav links={links} categories={categories} />
+        <DesktopNav links={props.links} categories={props.categories} />
+        <MobileNav links={props.links} categories={props.categories} />
       </div>
     </div>
   );
-}
+};

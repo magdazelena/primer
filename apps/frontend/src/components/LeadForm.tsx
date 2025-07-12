@@ -1,4 +1,4 @@
-import FormSubmit from "./FormSubmit";
+import { FormSubmit } from "./FormSubmit";
 
 interface EmailProps {
   id: string;
@@ -11,7 +11,7 @@ interface EmailProps {
   };
 }
 
-export default function Email({ data }: { data: EmailProps }) {
+export const Email = ({ data }: { data: EmailProps }) => {
   return (
     <section className="py-6 bg-dark text-gray-50">
       <div className="container mx-auto flex flex-col justify-center p-4 space-y-8 md:p-10 lg:space-y-0 lg:space-x-12 lg:justify-between lg:flex-row">
@@ -26,4 +26,4 @@ export default function Email({ data }: { data: EmailProps }) {
       </div>
     </section>
   );
-}
+};

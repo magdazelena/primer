@@ -1,4 +1,4 @@
-import componentResolver from "../../utils/component-resolver";
+import { componentResolver } from "../../utils/component-resolver";
 
 import type { Image } from "@/types/image";
 
@@ -19,7 +19,7 @@ export interface Card {
     text: string;
   };
 }
-export default function CardGroup({ data }: CardGroup) {
+export const CardGroup = ({ data }: CardGroup) => {
   const { title, type, cards } = data;
   return (
     <div className="w-full text-center p-10">
@@ -35,4 +35,4 @@ export default function CardGroup({ data }: CardGroup) {
       </div>
     </div>
   );
-}
+};

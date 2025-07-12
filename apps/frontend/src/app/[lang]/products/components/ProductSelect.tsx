@@ -5,7 +5,7 @@ import { ProductCarousel } from "./ProductCarousel";
 
 import type { ProductCategory, Product } from "@/types/product";
 
-export default function ProductSelect({
+export const ProductSelect = ({
   categories,
   products,
   params,
@@ -16,7 +16,7 @@ export default function ProductSelect({
     slug: string;
     ["product-category"]: string;
   };
-}) {
+}) => {
   const parentCategory = findParentCategory(
     categories,
     params["product-category"],
@@ -55,4 +55,4 @@ export default function ProductSelect({
       </div>
     </div>
   );
-}
+};

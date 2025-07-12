@@ -18,16 +18,16 @@ export async function generateMetadata(props: {
   };
 }
 
-export default async function CreatorRoute(props: {
+export const CreatorRoute = async (props: {
   params: Promise<{ slug: string }>;
-}) {
+}) => {
   const params = await props.params;
   const { slug } = params;
   const data = await getCreatorBySlug(slug);
   if (data.length === 0) return <h2>no creators found</h2>;
   return <CreatorView creator={data[0]} />;
-}
+};
 
 export async function generateStaticParams() {
-  return await getCreatorsSlugList();
+  return getCreatorsSlugList();
 }

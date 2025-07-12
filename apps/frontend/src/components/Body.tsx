@@ -2,7 +2,7 @@
 
 import { useScrollDirection } from "@/hooks/useScrollDirection";
 
-const Body = ({ children }: { children?: React.ReactNode }) => {
+export const Body = ({ children }: { children: React.ReactNode }) => {
   const scrollDir = useScrollDirection();
   return (
     <body
@@ -12,4 +12,3 @@ const Body = ({ children }: { children?: React.ReactNode }) => {
     </body>
   );
 };
-export default Body;

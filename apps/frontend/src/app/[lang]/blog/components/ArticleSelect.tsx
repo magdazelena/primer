@@ -5,7 +5,7 @@ import { ArticleCarousel } from "./ArticleCarousel";
 
 import type { Article, Category } from "@/types/article";
 
-export default function ArticleSelect({
+export const ArticleSelect = ({
   categories,
   articles,
   params,
@@ -16,7 +16,7 @@ export default function ArticleSelect({
     slug: string;
     category: string;
   };
-}) {
+}) => {
   const parentCategory = findParentCategory(categories, params["category"]);
   return (
     <div className="col-span-12 p-4 min-h-[365px] relative">
@@ -50,4 +50,4 @@ export default function ArticleSelect({
       </div>
     </div>
   );
-}
+};

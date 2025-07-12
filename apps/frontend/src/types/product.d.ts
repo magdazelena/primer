@@ -1,5 +1,3 @@
-import { RichTextModule } from "./richtext";
-
 import type { Creator } from "./creator";
 import type { Image } from "./image";
 import type { BlocksContent } from "@strapi/blocks-react-renderer";

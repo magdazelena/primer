@@ -19,7 +19,7 @@ const getEmbedUrl = (videoUrl: string): string | null => {
   return null;
 };
 
-export default function VideoEmbed({ data }: { data: VideoEmbedProps }) {
+export const VideoEmbed = ({ data }: { data: VideoEmbedProps }) => {
   const embedUrl = getEmbedUrl(data.url);
 
   if (!embedUrl) return <div>Invalid video URL</div>;
@@ -37,4 +37,4 @@ export default function VideoEmbed({ data }: { data: VideoEmbedProps }) {
       />
     </div>
   );
-}
+};

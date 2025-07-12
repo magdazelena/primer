@@ -8,21 +8,17 @@ import type { ProductCategory } from "@/types/product";
 
 type MenuCategory = Category | ProductCategory;
 
-const DropdownContent = ({
-  url,
-  category,
-  children,
-  isActive,
-  onToggle,
-  onLinkClick,
-}: {
+interface DropdownContentProps {
   url: string;
   category: MenuCategory;
   children?: React.JSX.Element[];
   isActive: boolean;
   onToggle: (e: React.MouseEvent) => void;
   onLinkClick: () => void;
-}) => {
+}
+
+export const DropdownContent = (props: DropdownContentProps) => {
+  const { url, category, children, isActive, onToggle, onLinkClick } = props;
   return (
     <div
       className={`dropdown space-y-2 ${
@@ -65,4 +61,3 @@ const DropdownContent = ({
     </div>
   );
 };
-export default DropdownContent;

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 
 import { NavLink } from "@/components/NavLink";
 
-import DropdownContent from "./DropdownContent";
+import { DropdownContent } from "./DropdownContent";
 
 import type { Category } from "@/types/article";
 import type { ProductCategory } from "@/types/product";
@@ -19,14 +19,7 @@ interface DropdownProps {
   onMobileClose?: () => void;
 }
 
-const Dropdown = ({
-  categories,
-  basePath,
-  title,
-  activeMenu,
-  onSetActiveMenu,
-  onMobileClose,
-}: DropdownProps) => {
+export const Dropdown = (props: DropdownProps) => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [activePath, setActivePath] = useState<string[]>([]);
 
@@ -36,7 +29,7 @@ const Dropdown = ({
   };
 
   const renderMenu = (category: MenuCategory, path: string[] = []) => {
-    const url = `${basePath}/${category.slug}`;
+    const url = `${props.basePath}/${category.slug}`;
     const newPath = [...path, category.slug];
 
     const isActive = activePath.join("/") === newPath.join("/");
@@ -61,8 +54,8 @@ const Dropdown = ({
         onToggle={handleToggle}
         onLinkClick={() => {
           resetMenu();
-          onSetActiveMenu("");
-          if (onMobileClose) onMobileClose();
+          props.onSetActiveMenu("");
+          if (props.onMobileClose) props.onMobileClose();
         }}
       >
         {category.children?.map((childCategory: MenuCategory) =>
@@ -73,26 +66,26 @@ const Dropdown = ({
   };
 
   useEffect(() => {
-    if (activeMenu !== basePath) {
+    if (props.activeMenu !== props.basePath) {
       resetMenu(); // Close this menu if another menu becomes active
     } else {
       setMenuOpen(true); // Ensure the menu stays open if it's the active one
     }
-  }, [activeMenu, basePath]);
+  }, [props.activeMenu, props.basePath]);
 
   const closeSubmenu = () => {
     setMenuOpen(false);
-    onSetActiveMenu(""); // Close the menu if it's already open
-    if (onMobileClose) onMobileClose();
+    props.onSetActiveMenu(""); // Close the menu if it's already open
+    if (props.onMobileClose) props.onMobileClose();
   };
 
   const toggleSubmenu = (
     e: React.MouseEvent<HTMLSpanElement | HTMLAnchorElement, MouseEvent>,
   ) => {
     e.preventDefault();
-    if (!menuOpen || activeMenu !== basePath) {
-      setActivePath([basePath]);
-      onSetActiveMenu(basePath); // Set this menu as active
+    if (!menuOpen || props.activeMenu !== props.basePath) {
+      setActivePath([props.basePath]);
+      props.onSetActiveMenu(props.basePath); // Set this menu as active
     } else {
       closeSubmenu();
     }
@@ -102,8 +95,8 @@ const Dropdown = ({
     <div className="dropdown relative space-y-2">
       <div className="flex">
         <NavLink
-          url={basePath}
-          text={title}
+          url={props.basePath}
+          text={props.title}
           onTouchEnd={closeSubmenu}
           onClick={toggleSubmenu}
         />
@@ -120,13 +113,11 @@ const Dropdown = ({
           menuOpen ? "active" : "hidden"
         } `}
       >
-        {categories?.map((category: MenuCategory) => {
-          if (category.topLevel) return renderMenu(category, [basePath]);
+        {props.categories?.map((category: MenuCategory) => {
+          if (category.topLevel) return renderMenu(category, [props.basePath]);
           return null;
         })}
       </div>
     </div>
   );
 };
-
-export default Dropdown;

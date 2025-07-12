@@ -1,15 +1,12 @@
-import type { ReactElement } from "react";
 import { lazy, createElement, Suspense } from "react";
 
-import Loader from "@/components/Loader";
+import { Loader } from "@/components/Loader";
 
-export default function componentResolver(
-  section: any,
-  index: number,
-  path?: string,
-): ReactElement {
+export const componentResolver = (section: unknown, index: number) => {
   // Component names do look like 'category.component-name' => lowercase and kebap case
-  const names: string[] = section.__component.split(".");
+  const names: string[] = (
+    section as { __component: string }
+  ).__component.split(".");
 
   // Get component name
   const component = names[1];
@@ -35,9 +32,7 @@ export default function componentResolver(
   // See https://webpack.js.org/api/module-methods/#import-1
 
   // Use react lazy loading to import the module. By convention: The file name needs to match the name of the component (what is a good idea)
-  const componentModule = lazy(
-    () => import(`@/components/${path ? `${path}/` : ""}${componentName}`),
-  );
+  const componentModule = lazy(() => import(`@/components/${componentName}`));
   // Create react element. The 'type' argument needs to be a FunctionComponent, not a string
   const reactElement = createElement(componentModule, {
     data: section,
@@ -49,7 +44,7 @@ export default function componentResolver(
       {reactElement}
     </Suspense>
   );
-}
+};
 
 function capitalizeFirstLetter(s: string) {
   return s.charAt(0).toUpperCase() + s.slice(1);

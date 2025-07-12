@@ -1,38 +1,38 @@
 export default {
-  kind: 'collectionType',
-  collectionName: 'status',
+  kind: "collectionType",
+  collectionName: "status",
   info: {
-    singularName: 'status',
-    pluralName: 'statuses',
-    displayName: 'Status',
-    description: 'Status for products',
+    singularName: "status",
+    pluralName: "statuses",
+    displayName: "Status",
+    description: "Status for products",
   },
   options: {
     draftAndPublish: false,
   },
   pluginOptions: {
-    'content-manager': {
+    "content-manager": {
       visible: false,
     },
-    'content-type-builder': {
+    "content-type-builder": {
       visible: false,
     },
   },
   attributes: {
     name: {
-      type: 'string',
+      type: "string",
       minLength: 1,
       maxLength: 50,
       required: true,
       configurable: false,
     },
     published: {
-      type: 'boolean',
+      type: "boolean",
       default: false,
     },
     order: {
-      type: 'integer',
+      type: "integer",
       default: 0,
     },
   },
-}; 
+};

@@ -1,7 +1,7 @@
-import status from './status';
+import status from "./status";
 
 export default {
-  'status': {
+  status: {
     schema: status,
-  }
-}; 
+  },
+};

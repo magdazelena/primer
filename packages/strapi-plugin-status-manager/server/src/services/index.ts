@@ -1,5 +1,5 @@
-import statusService from './status';
+import { statusService } from "./status";
 
-export default {
-  status: statusService
-}; 
+export const services = {
+  status: statusService,
+};

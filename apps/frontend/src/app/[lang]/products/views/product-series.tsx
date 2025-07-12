@@ -7,16 +7,15 @@ import List from "./product-list";
 
 import type { Product } from "@/types/product";
 
-export default function ProductSeriesView({
-  series,
-  products,
-}: {
+interface ProductSeriesViewProps {
   series: Product;
   products: Product[];
-}) {
-  const { name, description, media, shortDescription, creator } = series;
+}
+
+export const ProductSeriesView = (props: ProductSeriesViewProps) => {
+  const { name, description, media, shortDescription, creator } = props.series;
   const getRetailRange = () => {
-    const prices = products.map((product) => product.retailPrice);
+    const prices = props.products.map((product) => product.retailPrice);
     const min = Math.min(...prices);
     const max = Math.max(...prices);
     if (min === max) {
@@ -41,11 +40,11 @@ export default function ProductSeriesView({
       </div>
       <div className="container p-8 mx-auto space-y-6 sm:space-y-12">
         <h2 className="text-2xl font-bold">
-          {products.length} product{products.length > 1 ? "s" : ""} available in
-          this series:
+          {props.products.length} product{props.products.length > 1 ? "s" : ""}{" "}
+          available in this series:
         </h2>
-        <List products={products} />
+        <List products={props.products} />
       </div>
     </article>
   );
-}
+};

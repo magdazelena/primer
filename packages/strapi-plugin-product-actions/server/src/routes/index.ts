@@ -1,5 +1,5 @@
-import admin from './product-series';
+import admin from "./product-series";
 
 const routes = { admin };
 
-export default routes; 
+export default routes;

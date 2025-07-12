@@ -1,4 +1,8 @@
-const HamburgerIcon = ({ isOpen }: { isOpen: boolean }) => {
+interface HamburgerIconProps {
+  isOpen: boolean;
+}
+
+export const HamburgerIcon = ({ isOpen }: HamburgerIconProps) => {
   return (
     <div
       id="menu-icon"
@@ -12,5 +16,3 @@ const HamburgerIcon = ({ isOpen }: { isOpen: boolean }) => {
     </div>
   );
 };
-
-export default HamburgerIcon;

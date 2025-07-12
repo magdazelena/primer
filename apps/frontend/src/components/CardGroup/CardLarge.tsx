@@ -4,8 +4,12 @@ import Link from "next/link";
 
 import type { Card } from ".";
 
-const CardLarge = ({ data }: { data: Card }) => {
-  const { title, link, lead, coverImage } = data;
+interface CardLargeProps {
+  data: Card;
+}
+
+export const CardLarge = (props: CardLargeProps) => {
+  const { title, link, lead, coverImage } = props.data;
   const imgUrl = getStrapiMedia(coverImage.url);
   return (
     <div className="mr-5 even:mr-0 lg:max-w-[50vw] mb-10">
@@ -26,5 +30,3 @@ const CardLarge = ({ data }: { data: Card }) => {
     </div>
   );
 };
-
-export default CardLarge;
