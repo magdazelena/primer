@@ -3,13 +3,9 @@ import { lazy, createElement, Suspense } from "react";
 
 import Loader from "@/components/Loader";
 
-export default function componentResolver(
-  section: any,
-  index: number,
-  path?: string,
-): ReactElement {
+export const componentResolver = (section: unknown, index: number) => {
   // Component names do look like 'category.component-name' => lowercase and kebap case
-  const names: string[] = section.__component.split(".");
+  const names: string[] = (section as any).__component.split(".");
 
   // Get component name
   const component = names[1];
@@ -49,7 +45,7 @@ export default function componentResolver(
       {reactElement}
     </Suspense>
   );
-}
+};
 
 function capitalizeFirstLetter(s: string) {
   return s.charAt(0).toUpperCase() + s.slice(1);

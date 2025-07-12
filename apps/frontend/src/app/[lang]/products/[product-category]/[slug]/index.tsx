@@ -1,6 +1,7 @@
 // pages/[lang]/products/[productCategory]/[slug]/index.tsx
 
-import LayoutRoute, {
+import {
+  LayoutRoute,
   generateStaticParams,
 } from "@/app/[lang]/products/[product-category]/[slug]/layout";
 

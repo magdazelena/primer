@@ -4,8 +4,12 @@ import Link from "next/link";
 
 import type { Card } from ".";
 
-const CardMedium = ({ data }: { data: Card }) => {
-  const { title, link, coverImage } = data;
+interface CardMediumProps {
+  data: Card;
+}
+
+export const CardMedium = (props: CardMediumProps) => {
+  const { title, link, coverImage } = props.data;
   const imgUrl = getStrapiMedia(coverImage.url);
   return (
     <div className="lg:mr-5 [&:nth-last-child(4n)]:mr-0 lg:max-w-[300px] pb-10">
@@ -26,5 +30,3 @@ const CardMedium = ({ data }: { data: Card }) => {
     </div>
   );
 };
-
-export default CardMedium;

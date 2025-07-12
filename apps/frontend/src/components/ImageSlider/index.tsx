@@ -4,11 +4,11 @@ import * as React from "react";
 import { getStrapiURL } from "@/api/api-helpers";
 import { NextJsImage } from "@/components/Image";
 import useDeviceSize from "@/hooks/useDeviceSize";
-import Lightbox from "yet-another-react-lightbox";
 import Inline from "yet-another-react-lightbox/plugins/inline";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 
 import { Icons } from "./Icons";
+import { Lightbox } from "./Lightbox";
 
 import type { Image } from "@/types/image";
 import type { SlideImage } from "yet-another-react-lightbox";

@@ -5,7 +5,7 @@ import { AiFillTwitterCircle, AiFillYoutube } from "react-icons/ai";
 import { CgWebsite } from "react-icons/cg";
 import { FaDiscord } from "react-icons/fa";
 
-import Logo from "./Logo";
+import { Logo } from "./Logo";
 
 interface FooterLink {
   id: number;

@@ -1,7 +1,7 @@
 import { getArticlesSlugAndCategoryList } from "@/api/requests/get-articles-list";
 import { fetchArticlesSideMenuData } from "@/api/requests/get-articles-side-menu-data";
 
-import ArticleSelect from "../../components/ArticleSelect";
+import { ArticleSelect } from "../../components/ArticleSelect";
 
 export const LayoutRoute = async (props: {
   children: React.ReactNode;

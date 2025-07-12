@@ -6,7 +6,7 @@ import { ProductSide } from "./Product/ProductSide";
 
 import type { Product } from "@/types/product";
 
-export default function ProductView({ data }: { data: Product }) {
+export const ProductView = ({ data }: { data: Product }) => {
   const { name, description, media, retailPrice, shortDescription, creator } =
     data;
   return (
@@ -23,4 +23,4 @@ export default function ProductView({ data }: { data: Product }) {
       </div>
     </article>
   );
-}
+};

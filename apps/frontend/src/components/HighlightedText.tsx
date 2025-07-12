@@ -5,7 +5,12 @@ interface HighlightedTextProps {
   color?: string;
 }
 
-export const HighlightedText = ({ children }: { children: React.ReactNode }) => {
+export const HighlightedText = ({
+  text,
+  tag,
+  className,
+  color,
+}: HighlightedTextProps) => {
   const tempText = text.split(" ");
   const result = [];
 

@@ -2,7 +2,7 @@ import { getProductSlugAndCategoryList } from "@/api/requests/get-product-list";
 import { fetchSideMenuData } from "@/api/requests/get-side-menu-data";
 import { findParentCategory } from "@/utils/find-parent-category";
 
-import ProductSelect from "../../components/ProductSelect";
+import { ProductSelect } from "../../components/ProductSelect";
 
 export const LayoutRoute = async (props: {
   children: React.ReactNode;

@@ -1,9 +1,7 @@
-const NotFound = ({ params }: { params: { lang: string } }) => {
+export const NotFound = () => {
   return (
-    <body>
-      <main className="text-dark min-h-screen">Oh no!</main>
-    </body>
+    <div className="container mx-auto p-8">
+      <h2>Page not found</h2>
+    </div>
   );
 };
-
-export { NotFound };

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import HighlightedText from "./HighlightedText";
 
-export default function LangRedirect() {
+export const LangRedirect = () => {
   return (
     <section className="bg-dark text-light">
       <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
@@ -34,4 +34,4 @@ export default function LangRedirect() {
       </div>
     </section>
   );
-}
+};

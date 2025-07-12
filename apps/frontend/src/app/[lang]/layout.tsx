@@ -1,5 +1,3 @@
-import type { Metadata } from "next";
-
 import "./globals.css";
 import { getStrapiMedia, getStrapiURL } from "@/api/api-helpers";
 import { fetchAPI } from "@/api/fetch-api";
@@ -13,6 +11,8 @@ import { FALLBACK_SEO } from "@/utils/constants";
 
 import { i18n } from "../../../i18n-config";
 import { getCategories } from "../../api/requests/get-all-categories";
+
+import type { Metadata } from "next";
 
 async function getGlobal(lang: string): Promise<unknown> {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;

@@ -2,7 +2,7 @@ import { getArticlesSlugAndCategoryList } from "@/api/requests/get-articles-list
 import { getPostBySlug } from "@/api/requests/get-post-by-slug";
 import { getSEOData } from "@/api/requests/getSEOData";
 
-import Post from "../../views/post";
+import { Post } from "../../views/post";
 
 import type { Metadata } from "next";
 

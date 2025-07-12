@@ -28,7 +28,7 @@ interface BannerProps {
   } | null;
 }
 
-export default function Banner({ data }: BannerProps) {
+export const Banner = ({ data }: BannerProps) => {
   if (!data) return null;
   const { heading, text, type, show, link } = data;
   if (!show) return null;
@@ -53,4 +53,4 @@ export default function Banner({ data }: BannerProps) {
       </div>
     </div>
   );
-}
+};

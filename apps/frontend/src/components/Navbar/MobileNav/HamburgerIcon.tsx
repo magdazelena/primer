@@ -1,4 +1,4 @@
-const HamburgerIcon = ({ isOpen }: { isOpen: boolean }) => {
+export const HamburgerIcon = (props: HamburgerIconProps) => {
   return (
     <div
       id="menu-icon"
@@ -12,5 +12,3 @@ const HamburgerIcon = ({ isOpen }: { isOpen: boolean }) => {
     </div>
   );
 };
-
-export default HamburgerIcon;
