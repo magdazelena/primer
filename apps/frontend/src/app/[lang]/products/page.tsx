@@ -8,7 +8,7 @@ import { usePaginatedFetch } from "../../../hooks/usePagination";
 
 import List from "./views/product-list";
 
-export default function Products() {
+export const Products = () => {
   const {
     data: products,
     hasMore,
@@ -40,4 +40,4 @@ export default function Products() {
       </List>
     </div>
   );
-}
+};

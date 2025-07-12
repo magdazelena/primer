@@ -10,7 +10,7 @@ import { CreatorThumbnailListItem } from "./components/CreatorThumbnailItem";
 
 import type { Creator } from "@/types/creator";
 
-export default function Creators() {
+export const Creators = () => {
   const {
     data: creators,
     hasMore,
@@ -47,4 +47,4 @@ export default function Creators() {
       </section>
     </div>
   );
-}
+};

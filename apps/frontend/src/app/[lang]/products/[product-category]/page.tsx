@@ -3,9 +3,9 @@ import PageHeader from "@/components/PageHeader";
 
 import List from "../views/product-list";
 
-export default async function ProductCategoryRoute(props: {
+export const ProductCategoryRoute = async (props: {
   params: Promise<{ "product-category": string }>;
-}) {
+}) => {
   const params = await props.params;
   const filter = params["product-category"];
   const data = await fetchPostsByCategory(
@@ -25,7 +25,7 @@ export default async function ProductCategoryRoute(props: {
       <List products={posts.data} />
     </div>
   );
-}
+};
 
 export async function generateStaticParams() {
   return [];

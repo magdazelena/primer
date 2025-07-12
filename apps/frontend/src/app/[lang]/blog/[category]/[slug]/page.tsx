@@ -17,17 +17,16 @@ export async function generateMetadata(props: {
   };
 }
 
-export default async function PostRoute(props: {
+export const PostRoute = async (props: {
   params: Promise<{ slug: string }>;
-}) {
+}) => {
   const params = await props.params;
   const { slug } = params;
   const data = await getPostBySlug(slug);
-  console.log(data);
   if (data.length === 0) return <h2>no post found</h2>;
   return <Post data={data[0]} />;
-}
+};
 
 export async function generateStaticParams() {
-  return await getArticlesSlugAndCategoryList();
+  return getArticlesSlugAndCategoryList();
 }

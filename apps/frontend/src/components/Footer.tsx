@@ -62,21 +62,23 @@ const RenderSocialIcon = ({ social }: { social: string | undefined }) => {
   }
 };
 
-export default function Footer({
-  logoUrl,
-  logoText,
-  menuLinks,
-  categoryLinks,
-  legalLinks,
-  socialLinks,
-}: {
+interface FooterProps {
   logoUrl: string | null;
   logoText: string | null;
   menuLinks: Array<FooterLink>;
   categoryLinks: Array<CategoryLink>;
   legalLinks: Array<FooterLink>;
   socialLinks: Array<FooterLink>;
-}) {
+}
+
+export const Footer = ({
+  logoUrl,
+  logoText,
+  menuLinks,
+  categoryLinks,
+  legalLinks,
+  socialLinks,
+}: FooterProps) => {
   return (
     <footer className="py-6 text-dark">
       <div className="container px-6 mx-auto space-y-6 divide-y divide-dark md:space-y-12 divide-opacity-50">
@@ -140,4 +142,4 @@ export default function Footer({
       </div>
     </footer>
   );
-}
+};

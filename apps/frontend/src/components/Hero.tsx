@@ -32,7 +32,7 @@ interface HeroProps {
   };
 }
 
-export default function Hero({ data }: HeroProps) {
+export const Hero = ({ data }: HeroProps) => {
   const imgUrl = getStrapiMedia(data.picture.url) || "";
 
   return (
@@ -87,4 +87,4 @@ export default function Hero({ data }: HeroProps) {
       </div>
     </section>
   );
-}
+};

@@ -3,12 +3,12 @@ import { getCreatorsSlugList } from "@/api/requests/get-creators-list";
 import { ArticleCarousel } from "@/app/[lang]/blog/components/ArticleCarousel";
 import { ProductCarousel } from "@/app/[lang]/products/components/ProductCarousel";
 
-export default async function LayoutRoute(props: {
+export const LayoutRoute = async (props: {
   children: React.ReactNode;
   params: Promise<{
     slug: string;
   }>;
-}) {
+}) => {
   const params = await props.params;
 
   const { children } = props;
@@ -21,8 +21,8 @@ export default async function LayoutRoute(props: {
       {products.length > 0 && <ProductCarousel products={products} />}
     </section>
   );
-}
+};
 
 export async function generateStaticParams() {
-  return await getCreatorsSlugList();
+  return getCreatorsSlugList();
 }

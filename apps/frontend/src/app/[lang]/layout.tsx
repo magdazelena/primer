@@ -14,7 +14,7 @@ import { FALLBACK_SEO } from "@/utils/constants";
 import { i18n } from "../../../i18n-config";
 import { getCategories } from "../../api/requests/get-all-categories";
 
-async function getGlobal(lang: string): Promise<any> {
+async function getGlobal(lang: string): Promise<unknown> {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 
   if (!token)
@@ -27,7 +27,7 @@ async function getGlobal(lang: string): Promise<any> {
     ...GLOBAL_LAYOUT_QUERY,
     locale: lang,
   };
-  return await fetchAPI(path, urlParamsObject, options);
+  return fetchAPI(path, urlParamsObject, options);
 }
 
 export async function generateMetadata(props: {
@@ -55,10 +55,10 @@ export async function generateMetadata(props: {
   };
 }
 
-export default async function RootLayout(props: {
+export const RootLayout = async (props: {
   readonly children: React.ReactNode;
   readonly params: Promise<{ lang: string }>;
-}) {
+}) => {
   let params = { lang: "en" };
   try {
     params = await props.params;
@@ -109,7 +109,7 @@ export default async function RootLayout(props: {
       </Body>
     </html>
   );
-}
+};
 
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));

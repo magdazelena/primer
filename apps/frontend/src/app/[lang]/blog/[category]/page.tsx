@@ -3,9 +3,9 @@ import PageHeader from "@/components/PageHeader";
 
 import BlogList from "../views/article-list";
 
-export default async function CategoryRoute(props: {
+export const CategoryRoute = async (props: {
   params: Promise<{ category: string }>;
-}) {
+}) => {
   const params = await props.params;
   const filter = params.category;
   const data = await fetchPostsByCategory("/articles", "/categories", filter);
@@ -22,7 +22,7 @@ export default async function CategoryRoute(props: {
       <BlogList data={posts.data} />
     </div>
   );
-}
+};
 
 export async function generateStaticParams() {
   return [];

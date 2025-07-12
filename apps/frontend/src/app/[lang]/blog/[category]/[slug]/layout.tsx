@@ -3,13 +3,13 @@ import { fetchArticlesSideMenuData } from "@/api/requests/get-articles-side-menu
 
 import ArticleSelect from "../../components/ArticleSelect";
 
-export default async function LayoutRoute(props: {
+export const LayoutRoute = async (props: {
   children: React.ReactNode;
   params: Promise<{
     slug: string;
     category: string;
   }>;
-}) {
+}) => {
   const params = await props.params;
 
   const { children } = props;
@@ -30,8 +30,8 @@ export default async function LayoutRoute(props: {
       </div>
     </section>
   );
-}
+};
 
 export async function generateStaticParams() {
-  return await getArticlesSlugAndCategoryList();
+  return getArticlesSlugAndCategoryList();
 }

@@ -1,4 +1,4 @@
-export default function Loader() {
+export const Loader = () => {
   return (
     <div className="absolute inset-0 flex items-center justify-center z-50  bg-opacity-40 bg-accentDarkDark-500">
       <div role="status">
@@ -22,4 +22,4 @@ export default function Loader() {
       </div>
     </div>
   );
-}
+};

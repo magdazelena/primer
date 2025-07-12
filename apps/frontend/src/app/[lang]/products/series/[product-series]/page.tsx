@@ -1,11 +1,11 @@
-import fetchProductsAndSeries from "@/api/requests/get-products-by-series";
+import { fetchProductsAndSeries } from "@/api/requests/get-products-by-series";
 import PageHeader from "@/components/PageHeader";
 
 import ProductSeriesView from "../../views/product-series";
 
-export default async function ProductSeriesRoute(props: {
+export const ProductSeriesRoute = async (props: {
   params: Promise<{ "product-series": string }>;
-}) {
+}) => {
   const params = await props.params;
   const filter = params["product-series"];
   const data = await fetchProductsAndSeries(filter);
@@ -23,7 +23,7 @@ export default async function ProductSeriesRoute(props: {
       <ProductSeriesView series={productSeries} products={products} />
     </div>
   );
-}
+};
 
 export async function generateStaticParams() {
   return [];

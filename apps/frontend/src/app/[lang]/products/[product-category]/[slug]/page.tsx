@@ -1,6 +1,6 @@
 import { getProductBySlug } from "@/api/requests/get-product-by-slug";
 import { getProductSlugAndCategoryList } from "@/api/requests/get-product-list";
-import fetchProductsAndSeries from "@/api/requests/get-products-by-series";
+import { fetchProductsAndSeries } from "@/api/requests/get-products-by-series";
 import { getSEOData } from "@/api/requests/getSEOData";
 
 import ProductView from "../../views/product";
@@ -21,9 +21,9 @@ export async function generateMetadata(props: {
   };
 }
 
-export default async function ProductRoute(props: {
+export const ProductRoute = async (props: {
   params: Promise<{ slug: string }>;
-}) {
+}) => {
   const params = await props.params;
   const { slug } = params;
   const products = await getProductBySlug(slug);
@@ -47,10 +47,10 @@ export default async function ProductRoute(props: {
       </div>
     </>
   );
-}
+};
 
 export async function generateStaticParams() {
-  return await getProductSlugAndCategoryList();
+  return getProductSlugAndCategoryList();
 }
 
 async function getOtherProductsOfSeries(product: Product): Promise<Product[]> {

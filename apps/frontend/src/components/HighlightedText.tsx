@@ -5,12 +5,7 @@ interface HighlightedTextProps {
   color?: string;
 }
 
-export default function HighlightedText({
-  text,
-  tag,
-  className,
-  color,
-}: HighlightedTextProps) {
+export const HighlightedText = ({ children }: { children: React.ReactNode }) => {
   const tempText = text.split(" ");
   const result = [];
 
@@ -28,4 +23,4 @@ export default function HighlightedText({
   result.push(`</${tag}>`);
 
   return <div dangerouslySetInnerHTML={{ __html: result.join("") }} />;
-}
+};

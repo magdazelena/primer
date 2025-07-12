@@ -27,4 +27,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 
-export default LayoutRoute;
+export { LayoutRoute };
