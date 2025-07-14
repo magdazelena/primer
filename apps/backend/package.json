@@ -32,7 +32,7 @@
     "styled-components": "^6.1.16"
   },
   "devDependencies": {
-    "@jest/globals": "^29.7.0",
+    "@jest/globals": "^30.0.4",
     "@strapi/types": "5.16.0",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.13.13",
