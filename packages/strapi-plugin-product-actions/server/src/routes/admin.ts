@@ -1,10 +1,10 @@
-export const productSeriesRoutes = {
+export default {
   type: "admin",
   routes: [
     {
       method: "POST",
-      path: "/:id/create-products",
-      handler: "productActions.createProducts",
+      path: "/create-products",
+      handler: "productSeries.createProducts",
       config: {
         policies: [
           {
@@ -18,8 +18,8 @@ export const productSeriesRoutes = {
     },
     {
       method: "PUT",
-      path: "/:id/update-products",
-      handler: "productActions.updateProducts",
+      path: "/update-products",
+      handler: "productSeries.updateProducts",
       config: {
         policies: [
           {

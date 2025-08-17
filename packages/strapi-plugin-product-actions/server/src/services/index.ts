@@ -1,5 +1,5 @@
-import productSeries from "./product-series";
+import { productSeriesService } from "./product-series";
 
-export default {
-  productSeries,
+export const services = {
+  productSeries: productSeriesService,
 };

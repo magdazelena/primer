@@ -1,18 +1,17 @@
-import type { Context } from "koa";
 import type { Core } from "@strapi/strapi";
+import type { Context } from "koa";
 
-declare global {
-  const strapi: Core.Strapi;
-}
-
-export const productSeries = {
+const productSeries = ({
+  strapi,
+}: {
+  strapi: Core.Strapi;
+}): Core.Controller => ({
   async createProducts(ctx: Context) {
     try {
-      const { id } = ctx.params;
-      const { count = 1 } = ctx.request.body;
+      const { id, count = 1 } = ctx.request.body;
 
       const products = await strapi
-        .plugin("product-actions")
+        .plugin("primer-product-actions")
         .service("productSeries")
         .createProductsFromSeries(id, count);
 
@@ -28,7 +27,7 @@ export const productSeries = {
       const updateData = ctx.request.body;
 
       await strapi
-        .plugin("product-actions")
+        .plugin("primer-product-actions")
         .service("productSeries")
         .updateSeriesProducts(id, updateData);
 
@@ -37,4 +36,5 @@ export const productSeries = {
       ctx.throw(500, error);
     }
   },
-};
+});
+export default productSeries;

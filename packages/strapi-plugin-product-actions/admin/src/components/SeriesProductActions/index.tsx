@@ -51,12 +51,10 @@ const SeriesProductActions = ({ document }: { document: Document }) => {
   const handleCreateProducts = async () => {
     try {
       setIsLoading(true);
-      const response = await post(
-        `/product-actions/product-series/${documentId}/create-products`,
-        {
-          count: productCount,
-        },
-      );
+      const response = await post(`primer-product-actions/create-products`, {
+        count: productCount,
+        id: documentId,
+      });
 
       if (!response.data) {
         throw new Error("Failed to create products");

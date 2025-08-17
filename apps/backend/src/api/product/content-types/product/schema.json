@@ -18,10 +18,9 @@
 	"attributes": {
 		"sku": {
 			"type": "string",
-			"required": true,
 			"unique": true,
 			"private": false,
-			"readOnly": true
+			"configurable": false
 		},
 		"series": {
 			"type": "relation",

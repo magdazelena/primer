@@ -2,19 +2,10 @@ import { Initializer } from "./components/Initializer";
 import { SeriesProductActions } from "./components/SeriesProductActions";
 import { PLUGIN_ID } from "./pluginId";
 
-interface App {
-  registerPlugin: (plugin: unknown) => void;
-  getPlugin: (name: string) => {
-    apis: {
-      addEditViewSidePanel: (
-        callback: (panels: unknown[]) => unknown[],
-      ) => void;
-    };
-  };
-}
+import type { PanelComponent } from "@strapi/content-manager/strapi-admin";
 
-export const plugin = {
-  register(app: App) {
+const plugin = {
+  register(app: any) {
     app.registerPlugin({
       id: PLUGIN_ID,
       initializer: Initializer,
@@ -23,11 +14,14 @@ export const plugin = {
     });
   },
 
-  bootstrap(app: App) {
+  bootstrap(app: any) {
+    console.log("🚀 ~ bootstrap ~ app:", app);
     app
       .getPlugin("content-manager")
-      .apis.addEditViewSidePanel((panels: unknown[]) => {
+      .apis.addEditViewSidePanel((panels: any): PanelComponent[] => {
         return [...panels, SeriesProductActions];
       });
   },
 };
+
+export default plugin;

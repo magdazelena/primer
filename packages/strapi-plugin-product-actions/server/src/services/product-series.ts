@@ -23,10 +23,10 @@ interface UpdateData {
 interface ProductData {
   name: string;
   slug: string;
-  series: { set: Array<{ documentId: string }> };
+  series: { set: string };
   seriesIndex: number;
-  category: { set: Array<{ documentId: string }> };
-  creator: { set: Array<{ documentId: string }> };
+  category: { set: string };
+  creator: { set: string };
   publishedAt: undefined;
   description: unknown;
   shortDescription: string;
@@ -41,6 +41,7 @@ interface ProductData {
 export const productSeriesService = ({ strapi }: { strapi: Core.Strapi }) => ({
   async createProductsFromSeries(seriesId: string, count = 1) {
     const series = await getSeries(strapi, seriesId);
+
     const products: unknown[] = [];
     const startIndex = series.products?.length || 0;
 
@@ -53,15 +54,19 @@ export const productSeriesService = ({ strapi }: { strapi: Core.Strapi }) => ({
           name: `${series.name} #${index + 1}`,
           slug: `${series.slug}-${index + 1}`,
           series: {
-            set: [{ documentId: seriesId }],
+            set: seriesId,
           },
           seriesIndex: index,
-          category: {
-            set: [{ documentId: series.category?.documentId }],
-          },
-          creator: {
-            set: [{ documentId: series.creator?.documentId }],
-          },
+          category: series.category
+            ? {
+                set: series.category.documentId,
+              }
+            : null,
+          creator: series.creator
+            ? {
+                set: series.creator?.documentId,
+              }
+            : null,
           publishedAt: undefined,
           // Copy all required fields from series
           description: series.description,
@@ -74,7 +79,6 @@ export const productSeriesService = ({ strapi }: { strapi: Core.Strapi }) => ({
           retailPrice: series.retailPrice,
         } as ProductData,
       });
-
       products.push(product);
     }
 
