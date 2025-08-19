@@ -64,7 +64,7 @@
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-swc": "^0.4.0",
     "@strapi/admin": "5.16.1",
-    "@strapi/content-manager": "5.16.1",
+    "@strapi/content-manager": "5.22.0",
     "@strapi/types": "5.16.1",
     "@types/node": "^22.13.13",
     "@types/react": "^18.0.0",
