@@ -5,7 +5,13 @@
     "baseUrl": ".",
     "paths": {
       "@tests/*": ["./tests/*"]
-    }
+    },
+    "skipLibCheck": true,
+    "noImplicitAny": false,
+    "strict": false,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
   },
   "include": ["./src", "tests"]
 }

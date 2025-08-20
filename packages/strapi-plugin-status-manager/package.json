@@ -24,6 +24,7 @@
   "scripts": {
     "build": "npm-run-all clean --parallel build:code build:types",
     "build:code": "rollup -c",
+    "build:dev": "rollup -c rollup.config.dev.mjs",
     "build:types": "run-p build:types:server build:types:admin",
     "build:types:server": "tsc -p server/tsconfig.build.json ",
     "build:types:admin": "tsc -p admin/tsconfig.build.json ",
@@ -33,7 +34,9 @@
     "test:ts:front": "tsc -p admin/tsconfig.json",
     "test:unit": "jest",
     "test:unit:watch": "jest --watch",
-    "watch": "rollup -c -w"
+    "watch": "rollup -c -w",
+    "dev": "NODE_ENV=development DEBUG=true rollup -c rollup.config.dev.mjs -w",
+    "test:debug": "NODE_ENV=development DEBUG=true node test-debug.js"
   },
   "keywords": [
     "strapi",
@@ -53,9 +56,14 @@
   },
   "homepage": "https://github.com/your-username/primer/tree/main/packages/strapi-plugin-status-manager#readme",
   "peerDependencies": {
-    "@strapi/strapi": "^5.13.1"
+    "@strapi/strapi": "^5.0.0",
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0",
+    "react-router-dom": "^6.0.0",
+    "styled-components": "^6.0.0"
   },
   "devDependencies": {
+    "@strapi/strapi": "5.16.1",
     "@atlaskit/pragmatic-drag-and-drop": "^1.5.2",
     "@atlaskit/pragmatic-drag-and-drop-hitbox": "^1.0.3",
     "@rollup/plugin-commonjs": "^28.0.6",
@@ -91,9 +99,9 @@
     "@strapi/design-system": "^2.0.0-rc.27",
     "@strapi/icons": "^2.0.0-rc.27",
     "@strapi/utils": "5.16.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
     "react-router-dom": "6.22.3",
-    "styled-components": "^6.1.16"
+    "styled-components": "6.1.8"
   }
 }
