@@ -7,7 +7,7 @@ const status = ({ strapi }: { strapi: Core.Strapi }): Core.Controller => ({
       const statuses = await strapi
         .documents("plugin::primer-status-manager.status")
         .findMany({
-          orderBy: { order: "asc" },
+          sort: { order: "asc" },
         });
       return ctx.send(statuses);
     } catch (err) {
@@ -68,7 +68,7 @@ const status = ({ strapi }: { strapi: Core.Strapi }): Core.Controller => ({
       await Promise.all(
         statuses.map(({ documentId, order }) =>
           strapi.documents("plugin::primer-status-manager.status").update({
-            where: { documentId },
+            documentId,
             data: { order },
           }),
         ),
@@ -87,7 +87,7 @@ const status = ({ strapi }: { strapi: Core.Strapi }): Core.Controller => ({
       const { published } = ctx.request.body;
 
       await strapi.documents("plugin::primer-status-manager.status").update({
-        where: { documentId: id },
+        documentId: id,
         data: { published },
       });
 
@@ -108,7 +108,7 @@ const status = ({ strapi }: { strapi: Core.Strapi }): Core.Controller => ({
 
       // Delete the status
       await strapi.documents("plugin::primer-status-manager.status").delete({
-        where: { documentId: statusId },
+        documentId: statusId,
       });
 
       return ctx.send({ message: "Status deleted successfully" });

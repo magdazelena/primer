@@ -40,14 +40,11 @@ const ProductStatusField = ({ document }: { document: Document }) => {
         (s) => s.documentId === newStatus,
       )?.name;
       try {
-        await put(
-          `/content-manager/collection-types/api::product.product/${productId}`,
-          {
-            statusName: {
-              set: [{ documentId: newStatus }],
-            },
-          },
-        );
+        await put(`primer-status-manager/update-content`, {
+          contentTypeId: "api::product.product",
+          contentItemId: productId,
+          statusId: newStatus,
+        });
         setMessage(`Status updated from ${currentStatus} to ${newStatusName}`);
         setCurrentStatus(newStatusName || "");
       } catch (error) {
@@ -62,7 +59,7 @@ const ProductStatusField = ({ document }: { document: Document }) => {
     async function fetchCurrentStatus() {
       try {
         const { data: productData } = await get(
-          `/content-manager/collection-types/api::product.product/${productId}?populate[statusName][populate]=*`,
+          `primer-status-manager/get-content-status?contentItemId=${productId}&contentTypeId=api::product.product`,
         );
         const status = productData.data.statusName;
         if (status && status.name) return setCurrentStatus(status.name);
@@ -73,12 +70,12 @@ const ProductStatusField = ({ document }: { document: Document }) => {
     }
     if (productId) fetchCurrentStatus();
     if (!productId && statuses.length) setCurrentStatus(statuses[0].name);
-  }, [productId, statuses, get, handleStatusChange]);
+  }, [productId, statuses, get]);
 
   useEffect(() => {
     async function fetchStatuses() {
       try {
-        const { data } = await get("/status-manager/statuses");
+        const { data } = await get("primer-status-manager/statuses");
         setStatuses(data);
       } catch (error) {
         console.error("Error fetching statuses:", error);

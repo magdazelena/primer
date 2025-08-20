@@ -13,7 +13,7 @@ interface App {
   };
 }
 
-export const plugin = {
+const plugin = {
   register(app: App) {
     app.registerPlugin({
       id: PLUGIN_ID,
@@ -38,3 +38,5 @@ export const plugin = {
       .apis.addEditViewSidePanel([ProductStatusField]);
   },
 };
+
+export default plugin;
