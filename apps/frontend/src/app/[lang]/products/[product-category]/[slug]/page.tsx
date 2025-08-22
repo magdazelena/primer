@@ -21,9 +21,7 @@ export async function generateMetadata(props: {
   };
 }
 
-const ProductRoute = async (props: {
-  params: Promise<{ slug: string }>;
-}) => {
+const ProductRoute = async (props: { params: Promise<{ slug: string }> }) => {
   const params = await props.params;
   const { slug } = params;
   const products = await getProductBySlug(slug);

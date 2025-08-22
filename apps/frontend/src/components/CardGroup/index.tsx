@@ -1,7 +1,8 @@
-import type { Image } from "@/types/image";
-import { CardMedium } from "./CardMedium";
 import { CardLarge } from "./CardLarge";
+import { CardMedium } from "./CardMedium";
 import { CardSmall } from "./CardSmall";
+
+import type { Image } from "@/types/image";
 
 interface CardGroup {
   data: {
@@ -27,7 +28,7 @@ export const CardGroup = ({ data }: CardGroup) => {
       {title && <h2 className="font-bold text-2xl">{title}</h2>}
       <div className="flex justify-evenly pt-10 flex-wrap">
         {cards.map((card) => {
-          switch(type) {
+          switch (type) {
             case "large":
               return <CardLarge key={card.id} data={card} />;
             case "medium":

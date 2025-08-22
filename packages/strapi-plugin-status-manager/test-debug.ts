@@ -9,8 +9,13 @@ console.log('Testing Status Manager Plugin Debug Tools...\n');
 const isDevelopment = process.env.NODE_ENV === 'development';
 const isDebug = process.env.DEBUG === 'true' || isDevelopment;
 
+
 class DebugLogger {
-  constructor(context, options = {}) {
+  private context: string;
+  private options: any;
+
+  constructor(context: string, options:any = {}
+  ) {
     this.context = context;
     this.options = {
       showTimestamp: true,
@@ -22,7 +27,7 @@ class DebugLogger {
   }
 
   private formatMessage(message, data) {
-    const parts = [];
+    const parts: any[] = [];
     
     if (this.options.showTimestamp) {
       parts.push(`[${new Date().toISOString()}]`);
@@ -57,7 +62,7 @@ class DebugLogger {
     return '';
   }
 
-  log(message, data) {
+  log(message, data = {}) {
     if (!isDebug) return;
     
     const formattedMessage = this.formatMessage(message, data);

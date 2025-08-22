@@ -12,8 +12,8 @@ import { FALLBACK_SEO } from "@/utils/constants";
 import { i18n } from "../../../i18n-config";
 import { getCategories } from "../../api/requests/get-all-categories";
 
-import type { Metadata } from "next";
 import type { Global } from "@/types/global";
+import type { Metadata } from "next";
 
 async function getGlobal(lang: string): Promise<Global> {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
@@ -97,12 +97,11 @@ const RootLayout = async (props: {
 
         <main className="text-dark min-h-screen">{children}</main>
 
-
         <Footer
           logoUrl={footerLogoUrl}
           logoText={footer.footerLogo?.logoText || null}
-          menuLinks={footer.menuLinks }
-          categoryLinks={footer.categories }
+          menuLinks={footer.menuLinks}
+          categoryLinks={footer.categories}
           legalLinks={footer.legalLinks}
           socialLinks={footer.socialLinks}
         />

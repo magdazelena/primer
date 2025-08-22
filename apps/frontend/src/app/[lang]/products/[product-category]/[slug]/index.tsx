@@ -1,7 +1,6 @@
 // pages/[lang]/products/[productCategory]/[slug]/index.tsx
 
-import LayoutRoute from "./layout";
-import { generateStaticParams } from "./layout";
+import LayoutRoute, { generateStaticParams } from "./layout";
 
 import type { GetStaticPaths, GetStaticProps } from "next";
 

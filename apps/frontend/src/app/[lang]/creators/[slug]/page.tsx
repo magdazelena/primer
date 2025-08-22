@@ -18,9 +18,7 @@ export async function generateMetadata(props: {
   };
 }
 
-const CreatorRoute = async (props: {
-  params: Promise<{ slug: string }>;
-}) => {
+const CreatorRoute = async (props: { params: Promise<{ slug: string }> }) => {
   const params = await props.params;
   const { slug } = params;
   const data = await getCreatorBySlug(slug);

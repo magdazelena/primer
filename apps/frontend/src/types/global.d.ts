@@ -1,6 +1,3 @@
-
-
-
 // Global configuration interfaces
 interface ImageFormat {
   name: string;

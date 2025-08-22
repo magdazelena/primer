@@ -3,10 +3,10 @@
 import { getProductList } from "@/api/requests/get-product-list";
 import { Loader } from "@/components/Loader";
 import { PageHeader } from "@/components/PageHeader";
-
 import { usePaginatedFetch } from "@/hooks/usePagination";
 
 import { ProductList } from "./views/product-list";
+
 import type { Product } from "@/types/product";
 
 const Products = () => {

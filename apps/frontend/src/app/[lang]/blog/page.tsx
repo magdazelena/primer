@@ -6,6 +6,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { usePaginatedFetch } from "@/hooks/usePagination";
 
 import { PostList } from "./views/article-list";
+
 import type { Article } from "@/types/article";
 
 const Profile = () => {

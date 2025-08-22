@@ -46,7 +46,7 @@ module.exports = {
     "default-param-last": "warn",
     "no-template-curly-in-string": "warn",
     "no-console": "warn",
-    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-explicit-any": "off",
   },
   ignorePatterns: [".eslintrc.js", "dist/**", "node_modules/**"],
 };
