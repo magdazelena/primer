@@ -1,14 +1,15 @@
 "use client";
 
 import { getProductList } from "@/api/requests/get-product-list";
-import Loader from "@/components/Loader";
-import PageHeader from "@/components/PageHeader";
+import { Loader } from "@/components/Loader";
+import { PageHeader } from "@/components/PageHeader";
 
-import { usePaginatedFetch } from "../../../hooks/usePagination";
+import { usePaginatedFetch } from "@/hooks/usePagination";
 
-import List from "./views/product-list";
+import { ProductList } from "./views/product-list";
+import type { Product } from "@/types/product";
 
-export const Products = () => {
+const Products = () => {
   const {
     data: products,
     hasMore,
@@ -25,7 +26,7 @@ export const Products = () => {
   return (
     <div>
       <PageHeader heading="Products" text="Checkout Something Cool" />
-      <List products={products}>
+      <ProductList products={products as Product[]}>
         {hasMore && (
           <div className="flex justify-center">
             <button
@@ -37,7 +38,9 @@ export const Products = () => {
             </button>
           </div>
         )}
-      </List>
+      </ProductList>
     </div>
   );
 };
+
+export default Products;

@@ -5,9 +5,9 @@ import Loader from "@/components/Loader";
 import PageHeader from "@/components/PageHeader";
 import { usePaginatedFetch } from "@/hooks/usePagination";
 
-import Blog from "./views/article-list";
+import { PostList } from "./views/article-list";
 
-export const Profile = () => {
+const Profile = () => {
   const {
     data: articles,
     hasMore,
@@ -24,7 +24,7 @@ export const Profile = () => {
   return (
     <div>
       <PageHeader heading="Our Blog" text="Checkout Something Cool" />
-      <Blog data={articles}>
+      <PostList data={articles}>
         {hasMore && (
           <div className="flex justify-center">
             <button
@@ -36,7 +36,9 @@ export const Profile = () => {
             </button>
           </div>
         )}
-      </Blog>
+      </PostList>
     </div>
   );
 };
+
+export default Profile;

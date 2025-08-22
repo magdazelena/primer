@@ -1,9 +1,7 @@
 // pages/[lang]/products/[productCategory]/[slug]/index.tsx
 
-import {
-  LayoutRoute,
-  generateStaticParams,
-} from "@/app/[lang]/products/[product-category]/[slug]/layout";
+import LayoutRoute from "./layout";
+import { generateStaticParams } from "./layout";
 
 import type { GetStaticPaths, GetStaticProps } from "next";
 
@@ -28,4 +26,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 
-export { LayoutRoute };
+export default LayoutRoute;

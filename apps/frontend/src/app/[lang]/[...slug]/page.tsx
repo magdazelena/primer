@@ -1,5 +1,5 @@
 import { getPageBySlug } from "@/api/requests/get-page-by-slug";
-import componentResolver from "@/utils/component-resolver";
+import { componentResolver } from "@/utils/component-resolver";
 import { FALLBACK_SEO } from "@/utils/constants";
 
 import type { Metadata } from "next";
@@ -34,3 +34,5 @@ export const PageRoute = async (props: Props) => {
     componentResolver(section, index),
   );
 };
+
+export default PageRoute;

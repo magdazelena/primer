@@ -1,7 +1,7 @@
 import { fetchPostsByCategory } from "@/api/categories-fetch";
-import PageHeader from "@/components/PageHeader";
+import { PageHeader } from "@/components/PageHeader";
 
-import BlogList from "../views/article-list";
+import { PostList } from "../views/article-list";
 
 export const CategoryRoute = async (props: {
   params: Promise<{ category: string }>;
@@ -19,7 +19,7 @@ export const CategoryRoute = async (props: {
   return (
     <div>
       <PageHeader heading={category.name} text={category.description} />
-      <BlogList data={posts.data} />
+      <PostList data={posts.data} />
     </div>
   );
 };
@@ -27,3 +27,5 @@ export const CategoryRoute = async (props: {
 export async function generateStaticParams() {
   return [];
 }
+
+export default CategoryRoute;

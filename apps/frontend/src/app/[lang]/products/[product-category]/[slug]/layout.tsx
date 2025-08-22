@@ -4,7 +4,7 @@ import { findParentCategory } from "@/utils/find-parent-category";
 
 import { ProductSelect } from "../../components/ProductSelect";
 
-export const LayoutRoute = async (props: {
+const LayoutRoute = async (props: {
   children: React.ReactNode;
   params: Promise<{
     slug: string;
@@ -67,3 +67,5 @@ export async function getStaticPaths() {
     fallback: false,
   };
 }
+
+export default LayoutRoute;

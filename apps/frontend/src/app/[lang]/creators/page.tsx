@@ -1,7 +1,7 @@
 "use client";
 
-import Loader from "@/components/Loader";
-import PageHeader from "@/components/PageHeader";
+import { Loader } from "@/components/Loader";
+import { PageHeader } from "@/components/PageHeader";
 
 import { getCreatorsList } from "../../../api/requests/get-creators-list";
 import { usePaginatedFetch } from "../../../hooks/usePagination";
@@ -10,7 +10,7 @@ import { CreatorThumbnailListItem } from "./components/CreatorThumbnailItem";
 
 import type { Creator } from "@/types/creator";
 
-export const Creators = () => {
+const Creators = () => {
   const {
     data: creators,
     hasMore,
@@ -48,3 +48,5 @@ export const Creators = () => {
     </div>
   );
 };
+
+export default Creators;

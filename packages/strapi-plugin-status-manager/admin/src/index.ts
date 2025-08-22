@@ -1,5 +1,3 @@
-import { defaultLogger } from "../../server/src/utils/debug";
-
 import { Initializer } from "./components/Initializer";
 import { PluginIcon } from "./components/PluginIcon";
 import { ProductStatusField } from "./components/ProductStatusField";

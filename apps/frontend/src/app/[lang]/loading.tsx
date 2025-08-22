@@ -1,6 +1,6 @@
 import { Loader } from "@/components/Loader";
 
-export const RootLoading = () => {
+const RootLoading = () => {
   return <Loader />;
 };
 

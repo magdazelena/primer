@@ -4,7 +4,7 @@ import { componentResolver } from "@/utils/component-resolver";
 
 import { LangRedirect } from "../../components/LangRedirect";
 
-export const RootRoute = async (props: {
+const RootRoute = async (props: {
   params: Promise<{ lang: string }>;
 }) => {
   const params = await props.params;

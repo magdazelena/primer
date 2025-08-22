@@ -3,7 +3,7 @@ import { getCreatorsSlugList } from "@/api/requests/get-creators-list";
 import { ArticleCarousel } from "@/app/[lang]/blog/components/ArticleCarousel";
 import { ProductCarousel } from "@/app/[lang]/products/components/ProductCarousel";
 
-export const LayoutRoute = async (props: {
+const LayoutRoute = async (props: {
   children: React.ReactNode;
   params: Promise<{
     slug: string;
@@ -26,3 +26,5 @@ export const LayoutRoute = async (props: {
 export async function generateStaticParams() {
   return getCreatorsSlugList();
 }
+
+export default LayoutRoute;

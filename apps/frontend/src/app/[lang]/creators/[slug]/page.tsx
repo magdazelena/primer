@@ -18,7 +18,7 @@ export async function generateMetadata(props: {
   };
 }
 
-export const CreatorRoute = async (props: {
+const CreatorRoute = async (props: {
   params: Promise<{ slug: string }>;
 }) => {
   const params = await props.params;
@@ -31,3 +31,5 @@ export const CreatorRoute = async (props: {
 export async function generateStaticParams() {
   return getCreatorsSlugList();
 }
+
+export default CreatorRoute;
