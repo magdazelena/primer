@@ -3,7 +3,7 @@ import { PageHeader } from "@/components/PageHeader";
 
 import { ProductList } from "../views/product-list";
 
-export const ProductCategoryRoute = async (props: {
+const ProductCategoryRoute = async (props: {
   params: Promise<{ "product-category": string }>;
 }) => {
   const params = await props.params;
@@ -30,3 +30,5 @@ export const ProductCategoryRoute = async (props: {
 export async function generateStaticParams() {
   return [];
 }
+
+export default ProductCategoryRoute;

@@ -10,7 +10,7 @@ import type { Category } from "@/types/article";
 import type { ProductCategory } from "@/types/product";
 
 interface MobileNavProps {
-  links: Array<{ id: number; url: string; text: string; newTab: boolean }>;
+  links: Array<NavLink>;
   categories: {
     productCategories: Array<ProductCategory>;
     blogCategories: Array<Category>;

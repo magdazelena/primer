@@ -1,11 +1,12 @@
 "use client";
 
 import { getArticlesList } from "@/api/requests/get-articles-list";
-import Loader from "@/components/Loader";
-import PageHeader from "@/components/PageHeader";
+import { Loader } from "@/components/Loader";
+import { PageHeader } from "@/components/PageHeader";
 import { usePaginatedFetch } from "@/hooks/usePagination";
 
 import { PostList } from "./views/article-list";
+import type { Article } from "@/types/article";
 
 const Profile = () => {
   const {
@@ -24,7 +25,7 @@ const Profile = () => {
   return (
     <div>
       <PageHeader heading="Our Blog" text="Checkout Something Cool" />
-      <PostList data={articles}>
+      <PostList data={articles as Article[]}>
         {hasMore && (
           <div className="flex justify-center">
             <button
