@@ -23,6 +23,7 @@ const RootRoute = async (props: {
 
   const contentSections = page.data[0].contentSections;
   if (!contentSections || contentSections.length === 0) return null;
+
   return contentSections.map((section: unknown, index: number) =>
     componentResolver(section, index),
   );

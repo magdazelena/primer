@@ -1,6 +1,7 @@
-import { componentResolver } from "../../utils/component-resolver";
-
 import type { Image } from "@/types/image";
+import { CardMedium } from "./CardMedium";
+import { CardLarge } from "./CardLarge";
+import { CardSmall } from "./CardSmall";
 
 interface CardGroup {
   data: {
@@ -26,13 +27,18 @@ export const CardGroup = ({ data }: CardGroup) => {
       {title && <h2 className="font-bold text-2xl">{title}</h2>}
       <div className="flex justify-evenly pt-10 flex-wrap">
         {cards.map((card) => {
-          const extendedCard = {
-            __component: `elements.card-${type}`,
-            ...card,
-          };
-          return componentResolver(extendedCard, card.id, "CardGroup");
+          switch(type) {
+            case "large":
+              return <CardLarge key={card.id} data={card} />;
+            case "medium":
+              return <CardMedium key={card.id} data={card} />;
+            case "small":
+              return <CardSmall key={card.id} data={card} />;
+          }
         })}
       </div>
     </div>
   );
 };
+
+export default CardGroup;
