@@ -16,10 +16,6 @@ interface Series {
   retailPrice: number;
 }
 
-interface UpdateData {
-  fieldsToUpdate: string[];
-}
-
 interface ProductData {
   name: string;
   slug: string;
@@ -85,10 +81,8 @@ export const productSeriesService = ({ strapi }: { strapi: Core.Strapi }) => ({
     return products;
   },
 
-  async updateSeriesProducts(seriesId: string, updateData: UpdateData) {
+  async updateSeriesProducts(seriesId: string, fieldsToUpdate: string[]) {
     const series = await getSeries(strapi, seriesId);
-
-    const { fieldsToUpdate } = updateData;
 
     const dataToUpdate: Record<string, unknown> = {};
 
@@ -156,10 +150,10 @@ async function getSeries(
   strapi: Core.Strapi,
   seriesId: string,
 ): Promise<Series> {
-  const series = await strapi.db
-    .query("api::product-series.product-series")
+  const series = await strapi
+    .documents("api::product-series.product-series")
     .findOne({
-      where: { documentId: seriesId },
+      documentId: seriesId,
       populate: [
         "products",
         "category",
@@ -173,5 +167,5 @@ async function getSeries(
   if (!series) {
     throw new Error("Series not found");
   }
-  return series as Series;
+  return series as unknown as Series;
 }

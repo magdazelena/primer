@@ -71,12 +71,10 @@ const SeriesProductActions = ({ document }: { document: Document }) => {
   const handleUpdateProducts = async () => {
     try {
       setIsLoading(true);
-      const response = await put(
-        `/product-actions/product-series/${documentId}/update-products`,
-        {
-          fieldsToUpdate,
-        },
-      );
+      const response = await put(`/primer-product-actions/update-products`, {
+        seriesId: documentId,
+        fieldsToUpdate,
+      });
 
       if (!response.data) {
         throw new Error("Failed to update products");

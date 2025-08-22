@@ -23,13 +23,12 @@ const productSeries = ({
 
   async updateProducts(ctx: Context) {
     try {
-      const { id } = ctx.params;
-      const updateData = ctx.request.body;
+      const { seriesId, fieldsToUpdate } = ctx.request.body;
 
       await strapi
         .plugin("primer-product-actions")
         .service("productSeries")
-        .updateSeriesProducts(id, updateData);
+        .updateSeriesProducts(seriesId, fieldsToUpdate);
 
       return { success: true };
     } catch (error) {
