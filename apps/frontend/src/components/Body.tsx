@@ -12,3 +12,5 @@ export const Body = ({ children }: { children: React.ReactNode }) => {
     </body>
   );
 };
+
+export default Body;

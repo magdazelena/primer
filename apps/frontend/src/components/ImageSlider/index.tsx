@@ -85,4 +85,4 @@ const ImageSlider = ({ images }: { images: Image[] }) => {
   );
 };
 
-export { ImageSlider };
+export default ImageSlider;

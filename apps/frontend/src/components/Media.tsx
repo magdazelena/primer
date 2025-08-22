@@ -10,7 +10,7 @@ interface MediaProps {
   };
 }
 
-export const Media = ({ data }: { data: MediaProps }) => {
+const Media = ({ data }: { data: MediaProps }) => {
   const imgUrl = getStrapiMedia(data.file.url);
   return (
     <div className="flex items-center justify-center mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
@@ -24,3 +24,5 @@ export const Media = ({ data }: { data: MediaProps }) => {
     </div>
   );
 };
+
+export default Media;

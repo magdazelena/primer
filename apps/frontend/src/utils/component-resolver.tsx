@@ -39,7 +39,6 @@ export const componentResolver = (section: unknown, index: number) => {
     data: section,
     key: index,
   });
-
   return (
     <Suspense fallback={<Loader />} key={index}>
       {reactElement}

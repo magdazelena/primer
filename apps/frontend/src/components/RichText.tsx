@@ -2,13 +2,13 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 import type { BlocksContent } from "@strapi/blocks-react-renderer";
 
-interface RichText {
+interface RichTextProps {
   data: {
     content: BlocksContent;
   };
 }
 
-export const RichText = ({ data }: RichText) => {
+const RichText = ({ data }: RichTextProps) => {
   const { content } = data;
   return (
     <div className="rich-text">
@@ -16,3 +16,5 @@ export const RichText = ({ data }: RichText) => {
     </div>
   );
 };
+
+export default RichText;
