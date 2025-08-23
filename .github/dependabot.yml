@@ -14,45 +14,15 @@ updates:
       - "root"
       - "dependencies"
     reviewers:
-      - "dkMagOdr"
+      - "magdazelena"
     assignees:
-      - "dkMagOdr"
+      - "magdazelena"
     commit-message:
       prefix: "chore"
       include: "scope"
     open-pull-requests-limit: 10
 
-  # Frontend app dependencies
-  - package-ecosystem: "npm"
-    directory: "/apps/frontend"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "09:00"
-    target-branch: "main"
-    labels:
-      - "npm dependencies"
-      - "frontend"
-      - "dependencies"
-    reviewers:
-      - "dkMagOdr"
-    assignees:
-      - "dkMagOdr"
-    commit-message:
-      prefix: "chore"
-      include: "scope"
-    open-pull-requests-limit: 10
-    # Group React-related updates together
-    groups:
-      react-dependencies:
-        patterns:
-          - "react*"
-          - "@types/react*"
-        update-types:
-          - "minor"
-          - "patch"
-
-  # Backend app dependencies
+  # backend dependencies
   - package-ecosystem: "npm"
     directory: "/apps/backend"
     schedule:
@@ -65,14 +35,49 @@ updates:
       - "backend"
       - "dependencies"
     reviewers:
-      - "dkMagOdr"
+      - "magdazelena"
     assignees:
-      - "dkMagOdr"
+      - "magdazelena"
     commit-message:
       prefix: "chore"
       include: "scope"
     open-pull-requests-limit: 10
-    # Group React-related updates together but exclude major versions
+    # Ignore restricted dependencies to maintain version consistency
+    ignore:
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "react-router-dom"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "styled-components"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "@types/react"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "@types/react-dom"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+
+  # frontend dependencies
+  - package-ecosystem: "npm"
+    directory: "/apps/frontend"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    target-branch: "main"
+    labels:
+      - "npm dependencies"
+      - "frontend"
+      - "dependencies"
+    reviewers:
+      - "magdazelena"
+    assignees:
+      - "magdazelena"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    open-pull-requests-limit: 10
+    # Group React-related updates together (exempted from restrictions)
     groups:
       react-dependencies:
         patterns:
@@ -81,20 +86,113 @@ updates:
         update-types:
           - "minor"
           - "patch"
-      strapi-dependencies:
-        patterns:
-          - "@strapi/*"
-        update-types:
-          - "minor"
-          - "patch"
-    # Ignore major React updates for backend
+
+  # eslint-config-primer dependencies
+  - package-ecosystem: "npm"
+    directory: "/packages/eslint-config-primer"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    target-branch: "main"
+    labels:
+      - "npm dependencies"
+      - "eslint-config-primer"
+      - "dependencies"
+    reviewers:
+      - "magdazelena"
+    assignees:
+      - "magdazelena"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    open-pull-requests-limit: 10
+    # Ignore restricted dependencies to maintain version consistency
     ignore:
       - dependency-name: "react"
-        update-types: ["version-update:semver-major"]
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
       - dependency-name: "react-dom"
-        update-types: ["version-update:semver-major"]
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "react-router-dom"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "styled-components"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "@types/react"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "@types/react-dom"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
 
-  # CLI dependencies
+  # strapi-plugin-product-actions dependencies
+  - package-ecosystem: "npm"
+    directory: "/packages/strapi-plugin-product-actions"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    target-branch: "main"
+    labels:
+      - "npm dependencies"
+      - "strapi-plugin-product-actions"
+      - "dependencies"
+    reviewers:
+      - "magdazelena"
+    assignees:
+      - "magdazelena"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    open-pull-requests-limit: 10
+    # Ignore restricted dependencies to maintain version consistency
+    ignore:
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "react-router-dom"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "styled-components"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "@types/react"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "@types/react-dom"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+
+  # strapi-plugin-status-manager dependencies
+  - package-ecosystem: "npm"
+    directory: "/packages/strapi-plugin-status-manager"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    target-branch: "main"
+    labels:
+      - "npm dependencies"
+      - "strapi-plugin-status-manager"
+      - "dependencies"
+    reviewers:
+      - "magdazelena"
+    assignees:
+      - "magdazelena"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    open-pull-requests-limit: 10
+    # Ignore restricted dependencies to maintain version consistency
+    ignore:
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "react-router-dom"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "styled-components"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "@types/react"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "@types/react-dom"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+
+  # cli dependencies
   - package-ecosystem: "npm"
     directory: "/cli"
     schedule:
@@ -107,91 +205,27 @@ updates:
       - "cli"
       - "dependencies"
     reviewers:
-      - "dkMagOdr"
+      - "magdazelena"
     assignees:
-      - "dkMagOdr"
+      - "magdazelena"
     commit-message:
       prefix: "chore"
       include: "scope"
     open-pull-requests-limit: 10
-
-  # Shared packages dependencies
-  - package-ecosystem: "npm"
-    directory: "/packages/eslint-config-primer"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "09:00"
-    target-branch: "main"
-    labels:
-      - "npm dependencies"
-      - "eslint-config"
-      - "dependencies"
-    reviewers:
-      - "dkMagOdr"
-    assignees:
-      - "dkMagOdr"
-    commit-message:
-      prefix: "chore"
-      include: "scope"
-    open-pull-requests-limit: 10
-
-  - package-ecosystem: "npm"
-    directory: "/packages/strapi-plugin-product-actions"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "09:00"
-    target-branch: "main"
-    labels:
-      - "npm dependencies"
-      - "strapi-plugin"
-      - "dependencies"
-    reviewers:
-      - "dkMagOdr"
-    assignees:
-      - "dkMagOdr"
-    commit-message:
-      prefix: "chore"
-      include: "scope"
-    open-pull-requests-limit: 10
-    # Group Strapi dependencies together
-    groups:
-      strapi-dependencies:
-        patterns:
-          - "@strapi/*"
-        update-types:
-          - "minor"
-          - "patch"
-
-  - package-ecosystem: "npm"
-    directory: "/packages/strapi-plugin-status-manager"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "09:00"
-    target-branch: "main"
-    labels:
-      - "npm dependencies"
-      - "strapi-plugin"
-      - "dependencies"
-    reviewers:
-      - "dkMagOdr"
-    assignees:
-      - "dkMagOdr"
-    commit-message:
-      prefix: "chore"
-      include: "scope"
-    open-pull-requests-limit: 10
-    # Group Strapi dependencies together
-    groups:
-      strapi-dependencies:
-        patterns:
-          - "@strapi/*"
-        update-types:
-          - "minor"
-          - "patch"
-
+    # Ignore restricted dependencies to maintain version consistency
+    ignore:
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "react-router-dom"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "styled-components"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "@types/react"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+      - dependency-name: "@types/react-dom"
+        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
   # GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -204,9 +238,9 @@ updates:
       - "github-actions"
       - "dependencies"
     reviewers:
-      - "dkMagOdr"
+      - "magdazelena"
     assignees:
-      - "dkMagOdr"
+      - "magdazelena"
     commit-message:
       prefix: "ci"
       include: "scope"
