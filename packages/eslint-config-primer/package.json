@@ -23,7 +23,7 @@
     "eslint": "9.33.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-alias": "^1.1.2",
-    "eslint-import-resolver-typescript": "^3.5.5",
+    "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-check-file": "^2.5.0",
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
