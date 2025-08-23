@@ -1,27 +1,212 @@
 version: 2
 
 updates:
+  # Root workspace dependencies
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
+      day: "monday"
+      time: "09:00"
     target-branch: "main"
     labels:
       - "npm dependencies"
       - "root"
+      - "dependencies"
+    reviewers:
+      - "dkMagOdr"
+    assignees:
+      - "dkMagOdr"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    open-pull-requests-limit: 10
+
+  # Frontend app dependencies
   - package-ecosystem: "npm"
     directory: "/apps/frontend"
     schedule:
       interval: "weekly"
+      day: "monday"
+      time: "09:00"
     target-branch: "main"
     labels:
       - "npm dependencies"
       - "frontend"
+      - "dependencies"
+    reviewers:
+      - "dkMagOdr"
+    assignees:
+      - "dkMagOdr"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    open-pull-requests-limit: 10
+    # Group React-related updates together
+    groups:
+      react-dependencies:
+        patterns:
+          - "react*"
+          - "@types/react*"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # Backend app dependencies
   - package-ecosystem: "npm"
     directory: "/apps/backend"
     schedule:
       interval: "weekly"
+      day: "monday"
+      time: "09:00"
     target-branch: "main"
     labels:
       - "npm dependencies"
       - "backend"
+      - "dependencies"
+    reviewers:
+      - "dkMagOdr"
+    assignees:
+      - "dkMagOdr"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    open-pull-requests-limit: 10
+    # Group React-related updates together but exclude major versions
+    groups:
+      react-dependencies:
+        patterns:
+          - "react*"
+          - "@types/react*"
+        update-types:
+          - "minor"
+          - "patch"
+      strapi-dependencies:
+        patterns:
+          - "@strapi/*"
+        update-types:
+          - "minor"
+          - "patch"
+    # Ignore major React updates for backend
+    ignore:
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major"]
+
+  # CLI dependencies
+  - package-ecosystem: "npm"
+    directory: "/cli"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    target-branch: "main"
+    labels:
+      - "npm dependencies"
+      - "cli"
+      - "dependencies"
+    reviewers:
+      - "dkMagOdr"
+    assignees:
+      - "dkMagOdr"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    open-pull-requests-limit: 10
+
+  # Shared packages dependencies
+  - package-ecosystem: "npm"
+    directory: "/packages/eslint-config-primer"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    target-branch: "main"
+    labels:
+      - "npm dependencies"
+      - "eslint-config"
+      - "dependencies"
+    reviewers:
+      - "dkMagOdr"
+    assignees:
+      - "dkMagOdr"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    open-pull-requests-limit: 10
+
+  - package-ecosystem: "npm"
+    directory: "/packages/strapi-plugin-product-actions"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    target-branch: "main"
+    labels:
+      - "npm dependencies"
+      - "strapi-plugin"
+      - "dependencies"
+    reviewers:
+      - "dkMagOdr"
+    assignees:
+      - "dkMagOdr"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    open-pull-requests-limit: 10
+    # Group Strapi dependencies together
+    groups:
+      strapi-dependencies:
+        patterns:
+          - "@strapi/*"
+        update-types:
+          - "minor"
+          - "patch"
+
+  - package-ecosystem: "npm"
+    directory: "/packages/strapi-plugin-status-manager"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    target-branch: "main"
+    labels:
+      - "npm dependencies"
+      - "strapi-plugin"
+      - "dependencies"
+    reviewers:
+      - "dkMagOdr"
+    assignees:
+      - "dkMagOdr"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    open-pull-requests-limit: 10
+    # Group Strapi dependencies together
+    groups:
+      strapi-dependencies:
+        patterns:
+          - "@strapi/*"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    target-branch: "main"
+    labels:
+      - "github-actions"
+      - "dependencies"
+    reviewers:
+      - "dkMagOdr"
+    assignees:
+      - "dkMagOdr"
+    commit-message:
+      prefix: "ci"
+      include: "scope"

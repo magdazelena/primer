@@ -1,0 +1,107 @@
+name: Dependency Management
+
+on:
+  schedule:
+    # Run every Monday at 9 AM UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'Action to perform'
+        required: true
+        default: 'check'
+        type: choice
+        options:
+          - check
+          - update
+          - install
+
+jobs:
+  dependency-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check dependency versions
+        run: node scripts/manage-deps.js check
+
+      - name: Create issue for version mismatches
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: ['dependencies', 'version-mismatch']
+            });
+            
+            if (issues.length === 0) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: '🔍 Dependency Version Mismatch Detected',
+                body: 'A dependency version mismatch was detected during the scheduled check.\n\n**Action Required:**\nPlease review the dependency versions across workspaces and align them where possible.\n\n**Next Steps:**\n1. Run `node scripts/manage-deps.js check` locally to see details\n2. Update shared dependencies using `node scripts/manage-deps.js update`\n3. Test the changes thoroughly\n4. Commit and push the updates\n\n**Note:** React dependencies are intentionally kept at different versions:\n- Frontend: React 19 (latest)\n- Backend: React 18.3.1 (Strapi compatibility)',
+                labels: ['dependencies', 'version-mismatch', 'automated']
+              });
+            }
+
+  dependency-update:
+    runs-on: ubuntu-latest
+    if: github.event.inputs.action == 'update' || github.event.inputs.action == 'install'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Update dependencies
+        if: github.event.inputs.action == 'update'
+        run: node scripts/manage-deps.js update
+
+      - name: Install all dependencies
+        if: github.event.inputs.action == 'install'
+        run: node scripts/manage-deps.js install
+
+      - name: Create Pull Request
+        if: github.event.inputs.action == 'update'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore(deps): update shared dependencies across monorepo'
+          title: '🔄 Update Shared Dependencies'
+          body: |
+            This PR updates shared dependencies across the monorepo to maintain version consistency.
+            
+            **Changes:**
+            - Updated shared development dependencies
+            - Maintained React version differences (Frontend: 19, Backend: 18.3.1)
+            - Aligned TypeScript, ESLint, Jest, and other tooling versions
+            
+            **Testing:**
+            - [ ] All tests pass
+            - [ ] Build succeeds
+            - [ ] No breaking changes introduced
+            
+            **Note:** React dependencies are intentionally kept at different versions for compatibility reasons.
+          branch: 'chore/update-dependencies'
+          delete-branch: true
+          labels: 'dependencies,automated'
