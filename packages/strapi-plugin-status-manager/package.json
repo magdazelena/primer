@@ -56,24 +56,21 @@
   },
   "homepage": "https://github.com/your-username/primer/tree/main/packages/strapi-plugin-status-manager#readme",
   "peerDependencies": {
-    "@strapi/strapi": "^5.0.0",
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0",
-    "react-router-dom": "^6.0.0",
-    "styled-components": "^6.0.0"
+    "@strapi/strapi": "^5.22.0"
   },
   "devDependencies": {
-    "@strapi/strapi": "5.16.1",
     "@atlaskit/pragmatic-drag-and-drop": "^1.5.2",
     "@atlaskit/pragmatic-drag-and-drop-hitbox": "^1.0.3",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.34.0",
     "@rollup/plugin-commonjs": "^28.0.6",
     "@rollup/plugin-dynamic-import-vars": "^2.1.5",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-swc": "^0.4.0",
-    "@strapi/admin": "5.16.1",
-    "@strapi/content-manager": "5.22.0",
-    "@strapi/types": "5.16.1",
+    "@strapi/admin": "^5.22.0",
+    "@strapi/content-manager": "^5.22.0",
+    "@strapi/types": "^5.22.0",
     "@types/node": "^22.13.13",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
@@ -83,7 +80,7 @@
     "npm-run-all": "^4.1.5",
     "rimraf": "^5.0.0",
     "rollup": "^4.44.0",
-    "typescript": "^5.8.2"
+    "typescript": "^5.3.3"
   },
   "engines": {
     "node": ">=18.0.0",
@@ -93,15 +90,15 @@
     "kind": "plugin",
     "name": "primer-status-manager",
     "displayName": "Status Manager",
-    "description": "Enables more status variations"
+    "description": "Manages content statuses"
   },
   "dependencies": {
     "@strapi/design-system": "^2.0.0-rc.27",
     "@strapi/icons": "^2.0.0-rc.27",
-    "@strapi/utils": "5.16.1",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
+    "@strapi/utils": "^5.22.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-router-dom": "6.22.3",
-    "styled-components": "6.1.8"
+    "styled-components": "^6.1.16"
   }
 }
