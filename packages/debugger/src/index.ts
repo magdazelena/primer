@@ -1,4 +1,4 @@
-import { isDebug } from "../config/dev";
+import { isDebug } from "./config/dev";
 
 export interface DebugOptions {
   showTimestamp?: boolean;
@@ -22,7 +22,7 @@ export class DebugLogger {
     };
   }
 
-  private formatMessage(message: string): string {
+  private formatMessage(message: string, data: any = {}): string {
     const parts: string[] = [];
 
     if (this.options.showTimestamp) {
@@ -31,6 +31,11 @@ export class DebugLogger {
 
     parts.push(`[${this.context}]`);
     parts.push(message);
+
+    if (data.length > 0) {
+      parts.push(" Data: ");
+      parts.push(JSON.stringify(data));
+    }
 
     return parts.join(" ");
   }
@@ -63,7 +68,7 @@ export class DebugLogger {
   log(message: string, data?: any): void {
     if (!isDebug) return;
 
-    const formattedMessage = this.formatMessage(message, data);
+    const formattedMessage = this.formatMessage(message);
     const location = this.getLocation();
 
     console.log(formattedMessage + location);
@@ -79,7 +84,7 @@ export class DebugLogger {
   warn(message: string, data?: any): void {
     if (!isDebug) return;
 
-    const formattedMessage = this.formatMessage(message, data);
+    const formattedMessage = this.formatMessage(message);
     const location = this.getLocation();
 
     console.warn(formattedMessage + location);
