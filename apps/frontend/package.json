@@ -41,7 +41,10 @@
     "classnames": "^2.5.1",
     "cypress": "^14.2.0",
     "eslint": "9.33.0",
+<<<<<<< HEAD
     "eslint-config-next": "^15.5.0",
+=======
+>>>>>>> f98e4a2 (chore: convert frontend lint config)
     "eslint-config-primer": "*",
     "husky": "^9.1.7",
     "identity-obj-proxy": "^3.0.0",
