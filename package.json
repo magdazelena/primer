@@ -20,7 +20,8 @@
     "test:coverage": "turbo test --coverage",
     "e2e": "turbo e2e",
     "deps:check": "turbo run deps:check",
-    "deps:update": "turbo run deps:update"
+    "deps:update": "turbo run deps:update",
+    "dependabot:config": "node scripts/dependabot-config.js"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
