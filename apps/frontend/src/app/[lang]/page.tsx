@@ -1,12 +1,10 @@
 import { getPageBySlug } from "@/api/requests/get-page-by-slug";
 import { PAGE_CONTENT_SECTIONS_QUERY } from "@/api/shared-params";
-import componentResolver from "@/utils/component-resolver";
+import { componentResolver } from "@/utils/component-resolver";
 
-import LangRedirect from "../../components/LangRedirect";
+import { LangRedirect } from "../../components/LangRedirect";
 
-export const RootRoute = async (props: {
-  params: Promise<{ lang: string }>;
-}) => {
+const RootRoute = async (props: { params: Promise<{ lang: string }> }) => {
   const params = await props.params;
   const page = await getPageBySlug(
     "home",
@@ -23,7 +21,10 @@ export const RootRoute = async (props: {
 
   const contentSections = page.data[0].contentSections;
   if (!contentSections || contentSections.length === 0) return null;
+
   return contentSections.map((section: unknown, index: number) =>
     componentResolver(section, index),
   );
 };
+
+export default RootRoute;

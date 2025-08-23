@@ -30,6 +30,7 @@ module.exports = {
       files: ['**/src/index.[jt]s?(x)'],
       rules: {
         'check-file/no-index': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
       },
     },
     {
@@ -38,7 +39,8 @@ module.exports = {
       plugins: ['jest-dom', '@typescript-eslint'],
       rules: {
         'testing-library/prefer-screen-queries': 'off',
-        'testing-library/render-result-naming-convention': 'off'
+        'testing-library/render-result-naming-convention': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
       },
     },
   ],
@@ -51,11 +53,6 @@ module.exports = {
     },
   },
   rules: {
-    /**
-     * You can warn or error, but a normal log is not allowed in the FE codebase,
-     * this helps us catch "stragglers" whilst debugging issues.
-     */
-    'no-console': ['error', { allow: ['warn', 'error'] }],
     /**
      * This is useful for refs especially when you know the
      * element will exist on mount within the component.
@@ -130,7 +127,7 @@ module.exports = {
      * export { Apple }
      * ```
      */
-    'import/no-default-export': 'warn',
+    'import/no-default-export': 'off',
     /**
      * Enforce file location for particular types of files.
      */

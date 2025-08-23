@@ -1,9 +1,9 @@
 import { fetchProductsAndSeries } from "@/api/requests/get-products-by-series";
-import PageHeader from "@/components/PageHeader";
+import { PageHeader } from "@/components/PageHeader";
 
-import ProductSeriesView from "../../views/product-series";
+import { ProductSeriesView } from "../../views/product-series";
 
-export const ProductSeriesRoute = async (props: {
+const ProductSeriesRoute = async (props: {
   params: Promise<{ "product-series": string }>;
 }) => {
   const params = await props.params;
@@ -28,3 +28,5 @@ export const ProductSeriesRoute = async (props: {
 export async function generateStaticParams() {
   return [];
 }
+
+export default ProductSeriesRoute;

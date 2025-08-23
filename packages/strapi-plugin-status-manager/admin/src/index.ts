@@ -3,18 +3,10 @@ import { PluginIcon } from "./components/PluginIcon";
 import { ProductStatusField } from "./components/ProductStatusField";
 import { PLUGIN_ID } from "./pluginId";
 
-interface App {
-  registerPlugin: (plugin: unknown) => void;
-  addMenuLink: (link: unknown) => void;
-  getPlugin: (name: string) => {
-    apis: {
-      addEditViewSidePanel: (panels: unknown[]) => void;
-    };
-  };
-}
+import type { StrapiApp } from "@strapi/admin/strapi-admin";
 
-export const plugin = {
-  register(app: App) {
+const plugin = {
+  register(app: StrapiApp) {
     app.registerPlugin({
       id: PLUGIN_ID,
       initializer: Initializer,
@@ -29,12 +21,42 @@ export const plugin = {
         id: `${PLUGIN_ID}.plugin.name`,
         defaultMessage: "Status manager",
       },
-      Component: () => import("./pages/App"),
+      permissions: [],
+      Component: () =>
+        import("./pages/HomePage").then((module) => ({
+          default: module.HomePage,
+        })),
+    });
+
+    app.customFields.register({
+      name: "statusName",
+      pluginId: PLUGIN_ID,
+      type: "string",
+      icon: PluginIcon,
+      intlLabel: {
+        id: `${PLUGIN_ID}.plugin.name`,
+        defaultMessage: "Status",
+      },
+      intlDescription: {
+        id: `${PLUGIN_ID}.plugin.description`,
+        defaultMessage: "Select any status",
+      },
+      components: {
+        Input: () =>
+          import("./components/ProductStatusField").then((module) => ({
+            default: module.ProductStatusField,
+          })),
+      },
     });
   },
-  bootstrap(app: App) {
+  bootstrap(app: StrapiApp) {
     app
       .getPlugin("content-manager")
-      .apis.addEditViewSidePanel([ProductStatusField]);
+      .injectComponent("editView", "right-links", {
+        name: "Status",
+        Component: ProductStatusField,
+      });
   },
 };
+
+export default plugin;

@@ -29,3 +29,5 @@ export const HighlightedText = ({
 
   return <div dangerouslySetInnerHTML={{ __html: result.join("") }} />;
 };
+
+export default HighlightedText;

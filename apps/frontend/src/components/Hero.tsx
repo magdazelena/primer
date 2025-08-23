@@ -88,3 +88,5 @@ export const Hero = ({ data }: HeroProps) => {
     </section>
   );
 };
+
+export default Hero;

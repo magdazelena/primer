@@ -6,7 +6,7 @@ interface QuoteProps {
   };
 }
 
-export const Quote = ({ data }: QuoteProps) => {
+const Quote = ({ data }: QuoteProps) => {
   const { title, body, author } = data;
 
   return (
@@ -38,3 +38,5 @@ export const Quote = ({ data }: QuoteProps) => {
     </div>
   );
 };
+
+export default Quote;

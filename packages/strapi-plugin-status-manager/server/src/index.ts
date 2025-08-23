@@ -5,7 +5,7 @@ import { register } from "./register";
 import { routes } from "./routes";
 import { services } from "./services";
 
-export const plugin = () => {
+const plugin = () => {
   const pluginConfig = {
     register,
     controllers,
@@ -17,3 +17,5 @@ export const plugin = () => {
 
   return pluginConfig;
 };
+
+export default plugin;

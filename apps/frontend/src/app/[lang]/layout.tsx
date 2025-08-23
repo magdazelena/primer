@@ -12,9 +12,10 @@ import { FALLBACK_SEO } from "@/utils/constants";
 import { i18n } from "../../../i18n-config";
 import { getCategories } from "../../api/requests/get-all-categories";
 
+import type { Global } from "@/types/global";
 import type { Metadata } from "next";
 
-async function getGlobal(lang: string): Promise<unknown> {
+async function getGlobal(lang: string): Promise<Global> {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 
   if (!token)
@@ -42,8 +43,8 @@ export async function generateMetadata(props: {
     return {};
   }
 
-  if (!global.data?.meta) return FALLBACK_SEO;
-  const { metadata, favicon } = global.data.meta;
+  if (!global.data) return FALLBACK_SEO;
+  const { metadata, favicon } = global.data;
   const { url } = favicon;
 
   return {
@@ -55,7 +56,7 @@ export async function generateMetadata(props: {
   };
 }
 
-export const RootLayout = async (props: {
+const RootLayout = async (props: {
   readonly children: React.ReactNode;
   readonly params: Promise<{ lang: string }>;
 }) => {
@@ -73,16 +74,16 @@ export const RootLayout = async (props: {
     global = await getGlobal(params.lang);
   } catch (error) {
     console.error("Layout.tsx: ", error);
-    return <NotFound params={params} />;
+    return <NotFound />;
   }
-  if (!global.data) return <NotFound params={params} />;
+  if (!global.data) return <NotFound />;
   const categories = await getCategories(params.lang);
 
-  const { notificationBanner, navbar, footer } = global.data;
+  const { navbar, footer } = global.data;
 
-  const navbarLogoUrl = getStrapiMedia(navbar.navbarLogo.logoImg.url);
+  const navbarLogoUrl = getStrapiMedia(navbar.navbarLogo?.logoImg?.url);
 
-  const footerLogoUrl = getStrapiMedia(footer.footerLogo.logoImg.url);
+  const footerLogoUrl = getStrapiMedia(footer.footerLogo?.logoImg?.url || null);
 
   return (
     <html lang={params.lang}>
@@ -91,16 +92,14 @@ export const RootLayout = async (props: {
           links={navbar.menuItems}
           categories={categories}
           logoUrl={navbarLogoUrl}
-          logoText={navbar.navbarLogo.logoText}
+          logoText={navbar.navbarLogo?.logoText}
         />
 
         <main className="text-dark min-h-screen">{children}</main>
 
-        <Banner data={notificationBanner} />
-
         <Footer
           logoUrl={footerLogoUrl}
-          logoText={footer.footerLogo.logoText}
+          logoText={footer.footerLogo?.logoText || null}
           menuLinks={footer.menuLinks}
           categoryLinks={footer.categories}
           legalLinks={footer.legalLinks}
@@ -114,3 +113,5 @@ export const RootLayout = async (props: {
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
 }
+
+export default RootLayout;

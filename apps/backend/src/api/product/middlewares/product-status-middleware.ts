@@ -8,9 +8,9 @@ export default (config: any, { strapi }: { strapi: any }) => {
       if (!ctx.query) ctx.query = {};
       if (!ctx.query.filters) ctx.query.filters = {};
 
-      ctx.query.filters.statusName = {
-        published: true,
-      };
+      // ctx.query.filters.statusName = {
+      //   published: true,
+      // }; -- issue #339
     }
 
     await next();

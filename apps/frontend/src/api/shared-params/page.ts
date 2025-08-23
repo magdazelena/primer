@@ -24,6 +24,9 @@ export const PAGE_CONTENT_SECTIONS_QUERY = {
 
 export const GLOBAL_LAYOUT_QUERY = {
   populate: {
+    favicon: {
+      populate: "*",
+    },
     metadata: {
       populate: "*",
     },

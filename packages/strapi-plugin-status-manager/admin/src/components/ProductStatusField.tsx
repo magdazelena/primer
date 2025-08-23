@@ -5,80 +5,70 @@ import {
   SingleSelectOption,
   Box,
   Typography,
+  Flex,
 } from "@strapi/design-system";
-// @ts-expect-error - Strapi admin types not available
 import {
   useFetchClient,
   unstable_useContentManagerContext as useContentManagerContext,
 } from "@strapi/strapi/admin";
-
-interface Document {
-  documentId?: string;
-}
 
 interface Status {
   documentId: string;
   name: string;
 }
 
-const ProductStatusField = ({ document }: { document: Document }) => {
-  const { model } = useContentManagerContext();
+const ProductStatusField = () => {
+  const { contentType, id } = useContentManagerContext();
   const [statuses, setStatuses] = useState<Status[]>([]);
   const [currentStatus, setCurrentStatus] = useState("");
   const [message, setMessage] = useState("");
   const { get, put } = useFetchClient();
 
-  const productId = document?.documentId;
-
   const handleStatusChange = useCallback(
     async (newStatus: string) => {
-      if (!productId) {
+      if (!id) {
         setMessage("Save the product first and then change the status");
         return;
       }
-      const newStatusName = statuses.find(
-        (s) => s.documentId === newStatus,
-      )?.name;
       try {
-        await put(
-          `/content-manager/collection-types/api::product.product/${productId}`,
-          {
-            statusName: {
-              set: [{ documentId: newStatus }],
-            },
-          },
+        await put(`primer-status-manager/update-content`, {
+          contentTypeId: "api::product.product",
+          contentItemId: id,
+          statusName: newStatus,
+        });
+        setMessage(
+          `Status updated ${currentStatus ? `from ${currentStatus}` : ""} to ${newStatus}`,
         );
-        setMessage(`Status updated from ${currentStatus} to ${newStatusName}`);
-        setCurrentStatus(newStatusName || "");
+        setCurrentStatus(newStatus || "");
       } catch (error) {
         setMessage("Error updating status");
         console.error("Error updating status:", error);
       }
     },
-    [productId, statuses, currentStatus, put],
+    [id, statuses, currentStatus, put],
   );
 
   useEffect(() => {
     async function fetchCurrentStatus() {
       try {
         const { data: productData } = await get(
-          `/content-manager/collection-types/api::product.product/${productId}?populate[statusName][populate]=*`,
+          `primer-status-manager/get-content-status?contentItemId=${id}&contentTypeId=api::product.product`,
         );
-        const status = productData.data.statusName;
+        const status = productData?.statusName;
         if (status && status.name) return setCurrentStatus(status.name);
-        if (statuses.length) return handleStatusChange(statuses[0].documentId);
+        if (statuses.length) return handleStatusChange(statuses[0].name);
       } catch (error) {
         console.error("Error fetching product status:", error);
       }
     }
-    if (productId) fetchCurrentStatus();
-    if (!productId && statuses.length) setCurrentStatus(statuses[0].name);
-  }, [productId, statuses, get, handleStatusChange]);
+    if (id && !currentStatus.length) fetchCurrentStatus();
+    if (!id && statuses.length) setCurrentStatus(statuses[0].name);
+  }, [id, statuses, get]);
 
   useEffect(() => {
     async function fetchStatuses() {
       try {
-        const { data } = await get("/status-manager/statuses");
+        const { data } = await get("primer-status-manager/statuses");
         setStatuses(data);
       } catch (error) {
         console.error("Error fetching statuses:", error);
@@ -87,28 +77,30 @@ const ProductStatusField = ({ document }: { document: Document }) => {
     fetchStatuses();
   }, [get]);
 
-  if (model !== "api::product.product") return null;
-
-  return {
-    title: "Status",
-    content: (
-      <Box>
-        <SingleSelect placeholder={currentStatus} onChange={handleStatusChange}>
-          {statuses.map((status) => (
-            <SingleSelectOption
-              key={status.documentId}
-              value={status.documentId}
-            >
-              {status.name}
-            </SingleSelectOption>
-          ))}
-        </SingleSelect>
-        <Box padding={2}>
-          <Typography variant="sigma">{message}</Typography>
-        </Box>
+  return (
+    <Flex
+      direction="column"
+      justifyContent="center"
+      alignItems="stretch"
+      width="100%"
+    >
+      <Box padding={2}>
+        <Typography variant="sigma">
+          {contentType?.info.displayName} status
+        </Typography>
       </Box>
-    ),
-  };
+      <SingleSelect placeholder={currentStatus} onChange={handleStatusChange}>
+        {statuses.map((status) => (
+          <SingleSelectOption key={status.documentId} value={status.name}>
+            {status.name}
+          </SingleSelectOption>
+        ))}
+      </SingleSelect>
+      <Box padding={2}>
+        <Typography variant="sigma">{message}</Typography>
+      </Box>
+    </Flex>
+  );
 };
 
 export { ProductStatusField };

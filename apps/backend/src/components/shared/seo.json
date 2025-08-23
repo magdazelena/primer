@@ -10,11 +10,11 @@
   "attributes": {
     "metaTitle": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "metaDescription": {
       "type": "text",
-      "required": true
+      "required": false
     },
     "shareImage": {
       "type": "media",

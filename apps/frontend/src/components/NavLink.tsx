@@ -6,7 +6,8 @@ export interface NavLink extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   url: string;
   text: string;
   closeMenu?: () => void;
-  newtab?: boolean;
+  newtab: boolean;
+  id: any;
 }
 
 export const NavLink = ({

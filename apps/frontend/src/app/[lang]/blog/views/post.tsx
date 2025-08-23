@@ -1,6 +1,6 @@
 import { formatDate, getStrapiMedia } from "@/api/api-helpers";
 import { CreatorThumbnail } from "@/app/[lang]/creators/components/CreatorThumbnail";
-import componentResolver from "@/utils/component-resolver";
+import { componentResolver } from "@/utils/component-resolver";
 import Image from "next/image";
 
 import type { Article } from "@/types/article";

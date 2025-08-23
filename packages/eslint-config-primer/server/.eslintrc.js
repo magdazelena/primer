@@ -8,7 +8,6 @@ module.exports = {
   plugins: ["@typescript-eslint"],
   rules: {
     "no-await-in-loop": "off",
-    "no-console": "off",
     "no-use-before-define": [
       "error",
       {

@@ -593,6 +593,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
         };
       }>;
     footer: Schema.Attribute.Component<'layout.footer', false> &
+      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -608,6 +609,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
         };
       }>;
     navbar: Schema.Attribute.Component<'layout.navbar', false> &
+      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -717,7 +719,6 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::page.page'>;
     publishedAt: Schema.Attribute.DateTime;
     seo: Schema.Attribute.Component<'shared.seo', false> &
-      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1014,11 +1015,16 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    sku: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
+    sku: Schema.Attribute.String & Schema.Attribute.Unique;
     slug: Schema.Attribute.UID<'name'> &
       Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    statusName: Schema.Attribute.String &
+      Schema.Attribute.CustomField<'plugin::primer-status-manager.statusName'> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

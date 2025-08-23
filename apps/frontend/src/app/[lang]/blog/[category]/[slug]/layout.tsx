@@ -35,3 +35,5 @@ export const LayoutRoute = async (props: {
 export async function generateStaticParams() {
   return getArticlesSlugAndCategoryList();
 }
+
+export default LayoutRoute;

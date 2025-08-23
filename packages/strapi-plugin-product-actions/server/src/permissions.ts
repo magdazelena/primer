@@ -17,7 +17,7 @@ export const permissions = {
       aliases: [
         {
           actionId: "plugin::content-manager.explorer.read",
-          subjects: ["plugin::primer-product-actions.product-series"],
+          subjects: ["api::product-series.product-series"],
         },
       ],
     },

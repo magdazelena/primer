@@ -86,7 +86,8 @@ export interface LayoutFooter extends Struct.ComponentSchema {
     >;
     footerLogo: Schema.Attribute.Component<'layout.logo', false>;
     legalLinks: Schema.Attribute.Component<'links.link', true>;
-    menuLinks: Schema.Attribute.Component<'links.link', true>;
+    menuLinks: Schema.Attribute.Component<'links.link', true> &
+      Schema.Attribute.Required;
     socialLinks: Schema.Attribute.Component<'links.social-link', true>;
   };
 }
@@ -98,8 +99,7 @@ export interface LayoutLogo extends Struct.ComponentSchema {
     displayName: 'Logo';
   };
   attributes: {
-    logoImg: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
-      Schema.Attribute.Required;
+    logoImg: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     logoText: Schema.Attribute.String;
   };
 }
@@ -359,8 +359,8 @@ export interface SharedSeo extends Struct.ComponentSchema {
     name: 'Seo';
   };
   attributes: {
-    metaDescription: Schema.Attribute.Text & Schema.Attribute.Required;
-    metaTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    metaDescription: Schema.Attribute.Text;
+    metaTitle: Schema.Attribute.String;
     shareImage: Schema.Attribute.Media<'images'>;
   };
 }

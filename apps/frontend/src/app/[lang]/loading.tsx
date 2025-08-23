@@ -1,5 +1,7 @@
-import Loader from "@/components/Loader";
+import { Loader } from "@/components/Loader";
 
-export const RootLoading = () => {
+const RootLoading = () => {
   return <Loader />;
 };
+
+export default RootLoading;

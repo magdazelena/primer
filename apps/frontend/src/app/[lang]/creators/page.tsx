@@ -1,7 +1,7 @@
 "use client";
 
-import Loader from "@/components/Loader";
-import PageHeader from "@/components/PageHeader";
+import { Loader } from "@/components/Loader";
+import { PageHeader } from "@/components/PageHeader";
 
 import { getCreatorsList } from "../../../api/requests/get-creators-list";
 import { usePaginatedFetch } from "../../../hooks/usePagination";
@@ -10,7 +10,7 @@ import { CreatorThumbnailListItem } from "./components/CreatorThumbnailItem";
 
 import type { Creator } from "@/types/creator";
 
-export const Creators = () => {
+const Creators = () => {
   const {
     data: creators,
     hasMore,
@@ -29,7 +29,7 @@ export const Creators = () => {
       <PageHeader heading="Creators" text="Meet our creators" />
       <section className="container p-6 mx-auto space-y-6 sm:space-y-12">
         <div className="grid justify-center gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {creators.map((creator: Creator) => (
+          {(creators as Creator[]).map((creator: Creator) => (
             <CreatorThumbnailListItem key={creator.id} creator={creator} />
           ))}
         </div>
@@ -48,3 +48,5 @@ export const Creators = () => {
     </div>
   );
 };
+
+export default Creators;

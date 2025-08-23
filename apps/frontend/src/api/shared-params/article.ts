@@ -14,6 +14,15 @@ export const ARTICLE_RICH_QUERY = {
         "sections.rich-text": {
           populate: "*",
         },
+        "shared.media": {
+          populate: "*",
+        },
+        "shared.quote": {
+          populate: "*",
+        },
+        "shared.video-embed": {
+          populate: "*",
+        },
       },
     },
   },

@@ -24,7 +24,6 @@ import {
   SingleSelectOption,
 } from "@strapi/design-system";
 import { Plus, Trash, Drag } from "@strapi/icons";
-// @ts-expect-error - Strapi admin types not available
 import { useFetchClient } from "@strapi/strapi/admin";
 
 interface Status {
@@ -209,7 +208,7 @@ const StatusManager = () => {
           const closestEdgeOfTarget = extractClosestEdge(targetData);
 
           reorderItem({
-            startIndex: sourceData.index,
+            startIndex: sourceData.index as number,
             indexOfTarget,
             closestEdgeOfTarget,
           });
@@ -239,7 +238,7 @@ const StatusManager = () => {
         const closestEdgeOfTarget = extractClosestEdge(targetData);
 
         reorderItem({
-          startIndex: sourceData.index,
+          startIndex: sourceData.index as number,
           indexOfTarget,
           closestEdgeOfTarget,
         });

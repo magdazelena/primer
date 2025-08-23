@@ -30,3 +30,5 @@ export const PostRoute = async (props: {
 export async function generateStaticParams() {
   return getArticlesSlugAndCategoryList();
 }
+
+export default PostRoute;

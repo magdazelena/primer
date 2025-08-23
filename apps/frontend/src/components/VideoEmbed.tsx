@@ -38,3 +38,5 @@ export const VideoEmbed = ({ data }: { data: VideoEmbedProps }) => {
     </div>
   );
 };
+
+export default VideoEmbed;

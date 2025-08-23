@@ -1,9 +1,9 @@
 import { fetchPostsByCategory } from "@/api/categories-fetch";
-import PageHeader from "@/components/PageHeader";
+import { PageHeader } from "@/components/PageHeader";
 
-import List from "../views/product-list";
+import { ProductList } from "../views/product-list";
 
-export const ProductCategoryRoute = async (props: {
+const ProductCategoryRoute = async (props: {
   params: Promise<{ "product-category": string }>;
 }) => {
   const params = await props.params;
@@ -22,7 +22,7 @@ export const ProductCategoryRoute = async (props: {
   return (
     <div>
       <PageHeader heading={category.name} text={category.description} />
-      <List products={posts.data} />
+      <ProductList products={posts.data} />
     </div>
   );
 };
@@ -30,3 +30,5 @@ export const ProductCategoryRoute = async (props: {
 export async function generateStaticParams() {
   return [];
 }
+
+export default ProductCategoryRoute;

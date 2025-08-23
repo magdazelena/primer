@@ -3,8 +3,8 @@ import { getProductSlugAndCategoryList } from "@/api/requests/get-product-list";
 import { fetchProductsAndSeries } from "@/api/requests/get-products-by-series";
 import { getSEOData } from "@/api/requests/getSEOData";
 
-import ProductView from "../../views/product";
-import List from "../../views/product-list";
+import { ProductView } from "../../views/product";
+import { ProductList } from "../../views/product-list";
 
 import type { Product } from "@/types/product";
 import type { Metadata } from "next";
@@ -21,9 +21,7 @@ export async function generateMetadata(props: {
   };
 }
 
-export const ProductRoute = async (props: {
-  params: Promise<{ slug: string }>;
-}) => {
+const ProductRoute = async (props: { params: Promise<{ slug: string }> }) => {
   const params = await props.params;
   const { slug } = params;
   const products = await getProductBySlug(slug);
@@ -43,7 +41,7 @@ export const ProductRoute = async (props: {
           {productsOfSeries.length > 1 ? "s" : ""} available in series{" "}
           {product.series?.name}:
         </h2>
-        <List products={productsOfSeries} />
+        <ProductList products={productsOfSeries} />
       </div>
     </>
   );
@@ -57,3 +55,5 @@ async function getOtherProductsOfSeries(product: Product): Promise<Product[]> {
   const products = await fetchProductsAndSeries(product.series!.slug);
   return products.products.filter((p: Product) => p.id !== product.id);
 }
+
+export default ProductRoute;
