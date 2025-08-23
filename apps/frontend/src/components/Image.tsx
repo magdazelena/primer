@@ -16,7 +16,7 @@ function isNextJsImage(slide: Slide) {
     typeof slide.height === "number"
   );
 }
-interface NextJsImage {
+interface NextJsImageType {
   slide: Slide;
   offset: number;
   rect: {
@@ -25,7 +25,7 @@ interface NextJsImage {
   };
 }
 
-const NextJsImage = ({ slide, offset, rect }: NextJsImage) => {
+const NextJsImage = ({ slide, offset, rect }: NextJsImageType) => {
   const {
     on: { click },
     carousel: { imageFit },

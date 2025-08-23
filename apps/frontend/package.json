@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
@@ -27,6 +27,8 @@
     "yet-another-react-lightbox": "^3.25.0"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.34.0",
     "@next/eslint-plugin-next": "^15.4.6",
     "@testing-library/cypress": "^10.0.3",
     "@testing-library/jest-dom": "^6.6.3",
@@ -38,6 +40,9 @@
     "autoprefixer": "^10.4.21",
     "classnames": "^2.5.1",
     "cypress": "^14.2.0",
+    "eslint": "9.33.0",
+    "eslint-config-next": "^15.5.0",
+    "eslint-config-primer": "*",
     "husky": "^9.1.7",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^30.0.5",
@@ -45,6 +50,6 @@
     "postcss": "^8.5.3",
     "tailwindcss": "^4.0.17",
     "ts-jest": "^29.3.1",
-    "typescript": "^5.8.2"
+    "typescript": "^5.3.3"
   }
 }

@@ -4,13 +4,6 @@ import { CardSmall } from "./CardSmall";
 
 import type { Image } from "@/types/image";
 
-interface CardGroup {
-  data: {
-    title: string;
-    type: "large" | "medium" | "small";
-    cards: Card[];
-  };
-}
 export interface Card {
   id: number;
   title: string;
@@ -21,7 +14,15 @@ export interface Card {
     text: string;
   };
 }
-export const CardGroup = ({ data }: CardGroup) => {
+interface CardGroupType {
+  data: {
+    title: string;
+    type: "large" | "medium" | "small";
+    cards: Card[];
+  };
+}
+
+export const CardGroup = ({ data }: CardGroupType) => {
   const { title, type, cards } = data;
   return (
     <div className="w-full text-center p-10">
