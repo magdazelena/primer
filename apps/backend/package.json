@@ -37,7 +37,7 @@
     "@jest/globals": "^30.0.5",
     "@strapi/types": "^5.22.0",
     "@types/node": "^22.13.13",
-    "eslint": "9.33.0",
+    "eslint": "9.34.0",
     "eslint-config-primer": "*",
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5"
