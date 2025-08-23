@@ -1,6 +1,6 @@
 const { defineConfig } = require("eslint/config");
-const baseConfig = require("../../packages/eslint-config-primer/base/eslint.config.js");
-const serverConfig = require("../../packages/eslint-config-primer/server/eslint.config.js");
+const baseConfig = require("eslint-config-primer/base");
+const serverConfig = require("eslint-config-primer/server");
 
 module.exports = defineConfig([
   ...baseConfig,

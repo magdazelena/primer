@@ -129,6 +129,7 @@ module.exports = defineConfig([
       "**/dist",
       "**/build",
       ".next/**/*",
+      "cypress/**/*", // TODO: remove when e2e is fixed issue #343
       "cypress/videos/**/*",
       "cypress/screenshots/**/*",
       "**/coverage/**/*",

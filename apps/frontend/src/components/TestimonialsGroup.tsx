@@ -1,7 +1,7 @@
 import { getStrapiMedia } from "@/api/api-helpers";
 import Image from "next/image";
 
-interface Testimonial {
+interface TestimonialType {
   text: string;
   authorName: string;
   picture: {
@@ -16,10 +16,10 @@ interface TestimonialsProps {
   id: string;
   title: string;
   description: string;
-  testimonials: Testimonial[];
+  testimonials: TestimonialType[];
 }
 
-const Testimonial = ({ text, authorName, picture }: Readonly<Testimonial>) => {
+const Testimonial = ({ text, authorName, picture }: Readonly<TestimonialType>) => {
   const imageUrl = getStrapiMedia(picture.url);
   return (
     <div className="flex flex-col items-center mx-12 lg:mx-0">
@@ -71,7 +71,7 @@ export const Testimonials = (props: TestimonialsProps) => {
         <p className="mt-4 text-lg text-center">{props.description}</p>
       </div>
       <div className="container mx-auto grid grid-cols-1 gap-8 lg:gap-20 md:px-10 md:pb-10 lg:grid-cols-2">
-        {props.testimonials.map((testimonial: Testimonial, index: number) => (
+        {props.testimonials.map((testimonial: TestimonialType, index: number) => (
           <Testimonial key={index} {...testimonial} />
         ))}
       </div>

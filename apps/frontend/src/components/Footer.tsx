@@ -7,7 +7,7 @@ import { FaDiscord } from "react-icons/fa";
 
 import { Logo } from "./Logo";
 
-interface FooterLink {
+interface FooterLinkType {
   id: number;
   url: string;
   newTab: boolean;
@@ -15,7 +15,7 @@ interface FooterLink {
   social?: string;
 }
 
-interface CategoryLink {
+interface CategoryLinkType {
   id: string;
   attributes: {
     name: string;
@@ -23,7 +23,7 @@ interface CategoryLink {
   };
 }
 
-const FooterLink = ({ url, text }: FooterLink) => {
+const FooterLink = ({ url, text }: FooterLinkType) => {
   const path = usePathname();
   return (
     <li className="flex">
@@ -39,7 +39,7 @@ const FooterLink = ({ url, text }: FooterLink) => {
   );
 };
 
-const CategoryLink = ({ attributes }: CategoryLink) => {
+const CategoryLink = ({ attributes }: CategoryLinkType) => {
   return (
     <li className="flex">
       <Link href={`/blog/${attributes.slug}`}>{attributes.name}</Link>
@@ -65,10 +65,10 @@ const RenderSocialIcon = ({ social }: { social: string | undefined }) => {
 interface FooterProps {
   logoUrl: string | null;
   logoText: string | null;
-  menuLinks: Array<FooterLink>;
-  categoryLinks: Array<CategoryLink>;
-  legalLinks: Array<FooterLink>;
-  socialLinks: Array<FooterLink>;
+  menuLinks: Array<FooterLinkType>;
+  categoryLinks: Array<CategoryLinkType>;
+  legalLinks: Array<FooterLinkType>;
+  socialLinks: Array<FooterLinkType>;
 }
 
 export const Footer = ({
@@ -103,7 +103,7 @@ export const Footer = ({
           <div className="col-span-6 text-center md:text-left md:col-span-3">
             <p className="pb-1 text-lg font-medium">Menu</p>
             <ul>
-              {menuLinks.map((link: FooterLink) => (
+              {menuLinks.map((link: FooterLinkType) => (
                 <FooterLink key={link.id} {...link} />
               ))}
             </ul>
@@ -115,7 +115,7 @@ export const Footer = ({
               ©{new Date().getFullYear()} All rights reserved
             </span>
             <ul className="flex">
-              {legalLinks.map((link: FooterLink) => (
+              {legalLinks.map((link: FooterLinkType) => (
                 <Link href={link.url} key={link.id}>
                   {link.text}
                 </Link>
@@ -123,7 +123,7 @@ export const Footer = ({
             </ul>
           </div>
           <div className="flex justify-center pt-4 space-x-4 lg:pt-0 lg:col-end-13">
-            {socialLinks.map((link: FooterLink) => {
+            {socialLinks.map((link: FooterLinkType) => {
               return (
                 <a
                   key={link.id}

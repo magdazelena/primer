@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export interface NavLink extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+export interface NavLinkType extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   url: string;
   text: string;
   closeMenu?: () => void;
@@ -16,7 +16,7 @@ export const NavLink = ({
   closeMenu,
   newtab,
   ...props
-}: NavLink) => {
+}: NavLinkType) => {
   const path = usePathname();
   const handleClick = () => {
     if (closeMenu) closeMenu();
