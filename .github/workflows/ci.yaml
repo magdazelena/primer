@@ -26,7 +26,7 @@ jobs:
 
       - name: Cache dependencies
         id: cache-deps
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.npm
@@ -55,7 +55,7 @@ jobs:
           cache: 'npm'
 
       - name: Cache dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.npm
@@ -83,7 +83,7 @@ jobs:
           cache: 'npm'
 
       - name: Cache dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.npm
@@ -111,7 +111,7 @@ jobs:
   #         cache: 'npm'
 
   #     - name: Cache dependencies
-  #       uses: actions/cache@v3
+  #       uses: actions/cache@v4
   #       with:
   #         path: |
   #           ~/.npm
