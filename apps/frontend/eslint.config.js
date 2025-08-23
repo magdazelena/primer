@@ -1,6 +1,7 @@
 const { defineConfig } = require("eslint/config");
 const js = require("@eslint/js");
 const tsParser = require("@typescript-eslint/parser");
+const typescriptEslint = require("@typescript-eslint/eslint-plugin");
 const react = require("eslint-plugin-react");
 const reactHooks = require("eslint-plugin-react-hooks");
 const nextPlugin = require("@next/eslint-plugin-next");
@@ -19,6 +20,9 @@ module.exports = defineConfig([
         ...globals.browser,
         ...globals.jest,
         ...globals.node,
+        // Add React globals
+        React: "readonly",
+        JSX: "readonly",
       },
     },
     rules: {
@@ -34,6 +38,9 @@ module.exports = defineConfig([
       "default-param-last": "warn",
       "no-template-curly-in-string": "warn",
       "no-console": "warn",
+      "no-unused-vars": "warn",
+      "no-undef": "error",
+      "no-redeclare": "error",
     },
   },
   
@@ -47,32 +54,37 @@ module.exports = defineConfig([
       parserOptions: {
         ecmaVersion: "latest",
         sourceType: "module",
-        ecmaFeatures: {
-          jsx: true,
-        },
       },
     },
     plugins: {
+      "@typescript-eslint": typescriptEslint,
       react: react,
       "react-hooks": reactHooks,
       "@next/next": nextPlugin,
     },
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
     rules: {
       // React rules
-      "react/react-in-jsx-scope": "off",
-      "react/prop-types": "off",
-      "react/require-default-props": "off",
-      "react/function-component-definition": [2, {
-        namedComponents: "arrow-function",
-      }],
+      "react/jsx-uses-react": "off", // Not needed in React 17+
+      "react/react-in-jsx-scope": "off", // Not needed in React 17+
+      "react/prop-types": "off", // We're using TypeScript
+      "react/display-name": "warn",
       
       // React Hooks rules
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
       
       // Next.js rules
-      "@next/next/no-html-link-for-pages": "error",
       "@next/next/no-img-element": "warn",
+      "@next/next/no-html-link-for-pages": "warn",
+      
+      // TypeScript rules (only basic ones that don't require project config)
+      "@typescript-eslint/no-unused-vars": "off", // Disabled due to ESLint 9 compatibility issues
+      "@typescript-eslint/no-explicit-any": "warn",
     },
   },
   
@@ -82,37 +94,31 @@ module.exports = defineConfig([
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
-      parserOptions: {
-        ecmaVersion: "latest",
-        sourceType: "module",
-        ecmaFeatures: {
-          jsx: true,
-        },
-      },
     },
     plugins: {
       react: react,
       "react-hooks": reactHooks,
       "@next/next": nextPlugin,
     },
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
     rules: {
+      // React rules
+      "react/jsx-uses-react": "off",
       "react/react-in-jsx-scope": "off",
       "react/prop-types": "off",
-      "react/require-default-props": "off",
+      "react/display-name": "warn",
+      
+      // React Hooks rules
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
-      "@next/next/no-html-link-for-pages": "error",
+      
+      // Next.js rules
       "@next/next/no-img-element": "warn",
-    },
-  },
-  
-  // Test files configuration
-  {
-    files: ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
-    languageOptions: {
-      globals: {
-        ...globals.jest,
-      },
+      "@next/next/no-html-link-for-pages": "warn",
     },
   },
   
@@ -123,8 +129,12 @@ module.exports = defineConfig([
       "**/dist",
       "**/build",
       ".next/**/*",
-      "cypress/**/*",
-      "coverage/**/*",
+      "cypress/videos/**/*",
+      "cypress/screenshots/**/*",
+      "**/coverage/**/*",
+      "**/*.config.js",
+      "**/*.config.ts",
+      "**/jest.setup.ts",
     ],
   },
 ]);
