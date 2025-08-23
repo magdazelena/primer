@@ -25,7 +25,7 @@
     "@strapi/strapi": "^5.22.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/user-event": "^14.4.3",
-    "better-sqlite3": "^11.9.1",
+    "better-sqlite3": "^12.2.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-router-dom": "7.8.2",
