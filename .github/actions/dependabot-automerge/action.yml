@@ -1,5 +1,5 @@
 name: Dependabot auto merge
-description: "Automatically merges Dependabot PRs"
+description: "Automatically merges Dependabot PRs, but requires manual approval for Strapi dependencies"
 
 inputs:
   github-token:
@@ -12,19 +12,37 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Check PR changes
+    - name: Check for Strapi dependency changes
       shell: bash
       run: |
         # Get the list of changed files
         CHANGED_FILES=$(gh pr view "${{ inputs.pr-url }}" --json files --jq '.files[].path')
         
-        # Check if any of the changed files is apps/backend/package.json
-        if echo "$CHANGED_FILES" | grep -q "apps/backend/package.json"; then
-          echo "Changes include apps/backend/package.json. Skipping auto-merge."
-          exit 1
+        # Check if any package.json files were changed
+        if echo "$CHANGED_FILES" | grep -q "package.json"; then
+          echo "Package.json files changed. Checking for Strapi dependencies..."
+          
+          # Get the PR diff for package.json files
+          PR_DIFF=$(gh pr diff "${{ inputs.pr-url }}" --name-only | grep "package.json" || true)
+          
+          if [ -n "$PR_DIFF" ]; then
+            # Check if any of the changes involve @strapi dependencies
+            STRAPI_CHANGES=$(gh pr diff "${{ inputs.pr-url }}" | grep -E "^[+-].*@strapi/" || true)
+            
+            if [ -n "$STRAPI_CHANGES" ]; then
+              echo "Changes include @strapi dependencies. Manual approval required."
+              echo "Strapi changes detected:"
+              echo "$STRAPI_CHANGES"
+              exit 1
+            else
+              echo "No @strapi dependency changes detected. Proceeding with auto-merge."
+            fi
+          else
+            echo "No package.json changes detected. Proceeding with auto-merge."
+          fi
+        else
+          echo "No package.json files changed. Proceeding with auto-merge."
         fi
-        
-        echo "No changes to apps/backend/package.json. Proceeding with auto-merge."
       env:
         PR_URL: ${{ inputs.pr-url }}
         GITHUB_TOKEN: ${{ inputs.github-token }}
