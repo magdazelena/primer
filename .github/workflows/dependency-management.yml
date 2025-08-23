@@ -18,6 +18,9 @@ on:
 
 jobs:
   dependency-check:
+    permissions:
+      contents: read
+      issues: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -58,6 +61,9 @@ jobs:
             }
 
   dependency-update:
+    permissions:
+      contents: read
+      pull-requests: write
     runs-on: ubuntu-latest
     if: github.event.inputs.action == 'update' || github.event.inputs.action == 'install'
     steps:
