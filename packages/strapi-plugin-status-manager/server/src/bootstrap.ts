@@ -1,5 +1,5 @@
 import statusActions from "./permissions";
-import logger from "../../logger";
+import { logger } from "./logger";
 
 interface StrapiInstance {
   db?: unknown;

@@ -1,6 +1,6 @@
 import type { Core } from "@strapi/strapi";
 import type { PluginStatusManagerStatusInput } from "../types/contentTypes";
-import logger from "../../../logger";
+import { logger } from "../logger";
 
 export const statusService = ({ strapi }: { strapi: Core.Strapi }) => ({
   async find() {
