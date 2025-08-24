@@ -6,6 +6,7 @@ import json from "@rollup/plugin-json";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import dynamicImportVars from "@rollup/plugin-dynamic-import-vars";
 import commonjs from "@rollup/plugin-commonjs";
+import dev from "rollup-plugin-dev";
 
 const isExernal = (id) => !path.isAbsolute(id) && !id.startsWith(".");
 
@@ -30,17 +31,17 @@ const basePlugins = () => [
             runtime: "automatic",
           },
         },
-        // Development-specific settings for better debugging
-        keepClassNames: true,
-        keepFunctionNames: true,
-        keepVariableNames: true,
       },
-      // Better source maps for development
       sourceMaps: true,
-      minify: false, // Keep code readable
     },
   }),
   dynamicImportVars({}),
+  dev('dist', {
+    open: true,
+    watch: {
+      usePolling: true,
+    },
+  }),
 ];
 
 const isInput = (id, input) => {
@@ -64,8 +65,16 @@ const baseConfig = (opts = {}) => {
     external: isExernal,
     output: baseOutput({ outDir, rootDir }),
     plugins: basePlugins(),
-    // Development-specific settings
-    treeshake: false, // Keep all code for debugging
+    onLog(level, log, handler) {
+      if (log.code === 'CIRCULAR_DEPENDENCY') {
+        return; // Ignore circular dependency warnings
+      }
+      if (level === 'warn') {
+        handler('error', log); // turn other warnings into errors
+      } else {
+        handler(level, log); // otherwise, just print the log
+      }
+    },
     onwarn(warning, warn) {
       if (warning.code === "MIXED_EXPORTS") {
         // json files are always mixed exports

@@ -165,6 +165,3 @@ export function debugPerformanceAsync<T>(
   const logger = new DebugLogger("Performance");
   return logger.performanceAsync(label, fn);
 }
-
-// Export a default logger instance
-export const defaultLogger = new DebugLogger("StatusManager");
