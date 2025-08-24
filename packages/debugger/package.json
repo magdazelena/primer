@@ -1,0 +1,6 @@
+{
+  "name": "@primer/debugger",
+  "version": "1.0.0",
+  "description": "Debugger for development",
+  "main": "src/index.ts"
+}

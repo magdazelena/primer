@@ -1,11 +1,9 @@
 import { Flex, Typography, Box } from "@strapi/design-system";
 import { Layouts, Page } from "@strapi/strapi/admin";
 
-import { defaultLogger } from "../../../server/src/utils/debug";
 import { StatusManager } from "../components/StatusManager";
 
 const HomePage = () => {
-  defaultLogger.log("HomePage");
   return (
     <Layouts.Root>
       <Page.Title>Status Manager</Page.Title>
