@@ -37,7 +37,7 @@
     "@types/react-dom": "^19.1.2",
     "autoprefixer": "^10.4.21",
     "classnames": "^2.5.1",
-    "cypress": "^15.0.0",
+    "cypress": "^15.1.0",
     "eslint": "9.35.0",
     "eslint-config-next": "^15.5.0",
     "eslint-config-primer": "*",
