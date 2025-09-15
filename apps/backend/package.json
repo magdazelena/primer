@@ -35,7 +35,7 @@
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.34.0",
     "@jest/globals": "^30.0.5",
-    "@strapi/types": "^5.22.0",
+    "@strapi/types": "^5.23.4",
     "@types/node": "^24.3.0",
     "eslint": "9.35.0",
     "eslint-config-primer": "*",
