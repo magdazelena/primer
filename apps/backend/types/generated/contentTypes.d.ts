@@ -1023,13 +1023,6 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    statusName: Schema.Attribute.String &
-      Schema.Attribute.CustomField<'plugin::primer-status-manager.statusName'> &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     totalCost: Schema.Attribute.Integer &
       Schema.Attribute.Required &
       Schema.Attribute.Private &
