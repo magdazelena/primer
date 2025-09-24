@@ -39,7 +39,7 @@
     "classnames": "^2.5.1",
     "cypress": "^15.1.0",
     "eslint": "9.36.0",
-    "eslint-config-next": "^15.5.0",
+    "eslint-config-next": "^15.5.4",
     "eslint-config-primer": "*",
     "husky": "^9.1.7",
     "identity-obj-proxy": "^3.0.0",
