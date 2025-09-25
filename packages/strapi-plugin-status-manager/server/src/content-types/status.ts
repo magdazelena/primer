@@ -34,5 +34,12 @@ export default {
       type: "integer",
       default: 0,
     },
+    links: {
+      type: "relation",
+      relation: "oneToMany",
+      target: "plugin::primer-status-manager.status-link",
+      mappedBy: "status",
+      configurable: false,
+    },
   },
 };
