@@ -2,6 +2,7 @@ import { Initializer } from "./components/Initializer";
 import { PluginIcon } from "./components/PluginIcon";
 import { ProductStatusField } from "./components/ProductStatusField";
 import { PLUGIN_ID } from "./pluginId";
+import { registerListViewExtension } from "./listView/register";
 
 import type { StrapiApp } from "@strapi/admin/strapi-admin";
 
@@ -35,6 +36,9 @@ const plugin = {
         name: "Status",
         Component: ProductStatusField,
       });
+
+    // Register predefined ListView hook during bootstrap
+    registerListViewExtension(app);
   },
 };
 
