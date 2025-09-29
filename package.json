@@ -30,7 +30,7 @@
     "eslint": "9.36.0",
     "jest": "^30.2.0",
     "npm-check-updates": "^18.0.2",
-    "ts-jest": "^29.4.1",
+    "ts-jest": "^29.4.4",
     "turbo": "latest",
     "typescript": "^5.3.3"
   },
