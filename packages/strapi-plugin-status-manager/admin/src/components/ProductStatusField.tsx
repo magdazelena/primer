@@ -54,7 +54,7 @@ const ProductStatusField = () => {
         const { data: productData } = await get(
           `primer-status-manager/content-status?contentDocumentId=${id}&contentTypeUid=api::product.product`,
         );
-        const status = productData?.statusName;
+        const status = productData?.status;
         if (status && status.name) return setCurrentStatus(status.name);
         if (statuses.length) return handleStatusChange(statuses[0].name);
       } catch (error) {
