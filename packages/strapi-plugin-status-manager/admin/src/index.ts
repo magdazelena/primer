@@ -5,6 +5,7 @@ import { PLUGIN_ID } from "./pluginId";
 import { addStatusColumnHook } from "./listView/add-status-column-hook";
 
 import type { StrapiApp } from "@strapi/admin/strapi-admin";
+import { StatusFilter } from "./listView/StatusFilter";
 
 const plugin = {
   register(app: StrapiApp) {
@@ -38,6 +39,12 @@ const plugin = {
       });
 
     app.registerHook('Admin/CM/pages/ListView/inject-column-in-table', addStatusColumnHook);
+
+    const contentManager = app.getPlugin('content-manager');
+    contentManager.injectComponent('listView', 'actions', {
+      name: 'status-filter',
+      Component: StatusFilter,
+    });
   },
 };
 
