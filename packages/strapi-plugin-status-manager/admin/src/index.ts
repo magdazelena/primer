@@ -2,7 +2,7 @@ import { Initializer } from "./components/Initializer";
 import { PluginIcon } from "./components/PluginIcon";
 import { ProductStatusField } from "./components/ProductStatusField";
 import { PLUGIN_ID } from "./pluginId";
-import { registerListViewExtension } from "./listView/register";
+import { addStatusColumnHook } from "./listView/add-status-column-hook";
 
 import type { StrapiApp } from "@strapi/admin/strapi-admin";
 
@@ -37,8 +37,7 @@ const plugin = {
         Component: ProductStatusField,
       });
 
-    // Register predefined ListView hook during bootstrap
-    registerListViewExtension(app);
+    app.registerHook('Admin/CM/pages/ListView/inject-column-in-table', addStatusColumnHook);
   },
 };
 

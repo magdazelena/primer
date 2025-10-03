@@ -12,6 +12,7 @@ interface StrapiInstance {
   service: (name: string) => {
     actionProvider: { registerMany: (actions: unknown) => Promise<void> };
   };
+  use: (middleware: any) => void;
 }
 
 export const bootstrap = async ({ strapi }: { strapi: StrapiInstance }) => {
@@ -34,6 +35,7 @@ export const bootstrap = async ({ strapi }: { strapi: StrapiInstance }) => {
     defaultLogger.error("Failed to register permissions", error);
     throw error; // Re-throw to let Strapi handle the error
   }
+
 
   // Register lifecycles for cleanup of status links
   try {
