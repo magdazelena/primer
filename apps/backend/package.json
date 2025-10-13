@@ -22,7 +22,7 @@
     "@primer/strapi-plugin-product-actions": "*",
     "@primer/strapi-plugin-status-manager": "*",
     "@strapi/plugin-users-permissions": "^5.23.6",
-    "@strapi/strapi": "^5.23.6",
+    "@strapi/strapi": "^5.27.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/user-event": "^14.4.3",
     "better-sqlite3": "^12.2.0",
