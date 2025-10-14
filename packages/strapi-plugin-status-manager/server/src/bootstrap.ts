@@ -1,5 +1,4 @@
 import statusActions from "./permissions";
-import { defaultLogger, debugLog } from "./utils/debug";
 
 interface StrapiInstance {
   db?: {
@@ -16,29 +15,10 @@ interface StrapiInstance {
 }
 
 export const bootstrap = async ({ strapi }: { strapi: StrapiInstance }) => {
-  // Initialize debugging for the plugin
-  debugLog("Bootstrap", "Starting Status Manager Plugin bootstrap");
+  await strapi
+    .service("admin::permission")
+    .actionProvider.registerMany(statusActions.actions);
 
-  // Register permissions for the plugin
-  try {
-    defaultLogger.log("Registering permissions", {
-      actions: statusActions.actions,
-    });
-
-    await strapi
-      .service("admin::permission")
-      .actionProvider.registerMany(statusActions.actions);
-
-    defaultLogger.log("Permissions registered successfully");
-    debugLog("Bootstrap", "Status Manager Plugin bootstrap completed");
-  } catch (error) {
-    defaultLogger.error("Failed to register permissions", error);
-    throw error; // Re-throw to let Strapi handle the error
-  }
-
-
-  // Register lifecycles for cleanup of status links
-  try {
     strapi.db?.lifecycles?.subscribe?.({
       // catch all models
       models: ["*"],
@@ -48,17 +28,9 @@ export const bootstrap = async ({ strapi }: { strapi: StrapiInstance }) => {
         const documentId = deleted?.documentId;
         if (!modelUid || !documentId) return;
 
-        // remove status links pointing to this document
-        try {
-          await (strapi as any).db
-            .query("plugin::primer-status-manager.status-link")
-            .deleteMany({ where: { targetUid: modelUid, targetDocumentId: documentId } });
-        } catch (err) {
-          defaultLogger.error("Failed to cleanup status links on delete", err);
-        }
-      },
-    });
-  } catch (err) {
-    defaultLogger.error("Failed to register lifecycle cleanup for status links", err);
-  }
+        await (strapi as any).db
+          .query("plugin::primer-status-manager.status-link")
+          .deleteMany({ where: { targetUid: modelUid, targetDocumentId: documentId } });
+      }
+  });
 };

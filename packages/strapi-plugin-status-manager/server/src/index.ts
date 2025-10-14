@@ -4,6 +4,7 @@ import { controllers } from "./controllers";
 import { register } from "./register";
 import { routes } from "./routes";
 import { services } from "./services";
+import { middlewares } from "./middlewares";
 
 const plugin = () => {
   const pluginConfig = {
@@ -11,6 +12,7 @@ const plugin = () => {
     controllers,
     contentTypes,
     routes,
+    middlewares,
     services,
     bootstrap,
   };

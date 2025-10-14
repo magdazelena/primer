@@ -1,21 +1,31 @@
 import type { Core } from "@strapi/strapi";
 import type { PluginStatusManagerStatusInput } from "../types/contentTypes";
-import { defaultLogger, debugPerformanceAsync } from "../utils/debug";
 
 export const statusService = ({ strapi }: { strapi: Core.Strapi }) => ({
-  async find() {
-    return debugPerformanceAsync("StatusService.find", async () => {
-      defaultLogger.log("Finding all statuses");
-
-      const result = await strapi.db
+  async isValidStatus(code: string): Promise<boolean> {
+    try {
+      const row = await strapi.db
         .query("plugin::primer-status-manager.status")
-        .findMany({
-          orderBy: { order: "asc" },
-        });
+        .findOne({ where: { name: code }, select: ["id"] } as unknown as never);
+      return !!row;
+    } catch {
+      return false;
+    }
+  },
 
-      defaultLogger.log("Found statuses", { count: result.length });
-      return result;
-    });
+  isStatusEnabledFor(uid: string): boolean {
+    return !!strapi.getModel(uid as unknown as never);
+  },
+  async find() {
+
+    const result = await strapi.db
+      .query("plugin::primer-status-manager.status")
+      .findMany({
+        orderBy: { order: "asc" },
+      });
+
+    return result;
+
   },
 
   async findOne(id: number) {
@@ -28,8 +38,6 @@ export const statusService = ({ strapi }: { strapi: Core.Strapi }) => ({
   },
 
   async createStatus(data: PluginStatusManagerStatusInput) {
-    return debugPerformanceAsync("StatusService.createStatus", async () => {
-      defaultLogger.log("Creating new status", { data });
 
       const result = await strapi.db
         .query("plugin::primer-status-manager.status")
@@ -41,12 +49,7 @@ export const statusService = ({ strapi }: { strapi: Core.Strapi }) => ({
           },
         });
 
-      defaultLogger.log("Status created successfully", {
-        id: result.id,
-        name: result.name,
-      });
       return result;
-    });
   },
 
   async findProductsByStatus(statusId: number) {
