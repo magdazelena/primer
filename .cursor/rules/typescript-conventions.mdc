@@ -1,0 +1,56 @@
+---
+globs: *.ts,*.tsx
+---
+
+# TypeScript Conventions
+
+## Import Organization
+
+Follow strict import ordering as defined in ESLint config:
+
+1. **React imports** (first)
+2. **External libraries** (alphabetical)
+3. **Internal modules** (alphabetical)
+4. **Type imports** (separate group)
+
+```typescript
+import React from 'react';
+import { NextPage } from 'next';
+
+import { Button } from '@/components/common';
+import { apiClient } from '@/lib/api';
+
+import type { Product } from '@/types/product';
+import type { ApiResponse } from '@/types/api';
+```
+
+## Type Definitions
+
+- Use `type` imports for type-only imports
+- Define interfaces for component props
+- Use strict TypeScript configuration
+- Avoid `any` type - use `unknown` or proper typing
+
+## Function Components
+
+Use arrow function syntax for React components:
+
+```typescript
+const MyComponent = ({ prop1, prop2 }: ComponentProps) => {
+  return <div>{prop1}</div>;
+};
+```
+
+## File Naming
+
+- **Components**: PascalCase (`Button.tsx`)
+- **Utilities**: camelCase (`api-helpers.ts`)
+- **Types**: camelCase (`product.ts`)
+- **Constants**: UPPER_SNAKE_CASE (`API_ENDPOINTS.ts`)
+
+## ESLint Rules
+
+- `@typescript-eslint/consistent-type-imports`: Always use type imports
+- `@typescript-eslint/consistent-type-exports`: Always use type exports
+- `@typescript-eslint/no-unused-vars`: Warn on unused vars (ignore `_` prefix)
+- `@typescript-eslint/no-explicit-any`: Warn on `any` usage

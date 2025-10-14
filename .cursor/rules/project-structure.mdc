@@ -1,0 +1,37 @@
+---
+alwaysApply: true
+---
+
+# Primer Project Structure Guide
+
+Primer is a monorepo webshop template with Strapi backend and Next.js frontend.
+
+## Project Architecture
+
+- **Backend**: [apps/backend/](mdc:apps/backend/) - Strapi CMS with custom plugins
+- **Frontend**: [apps/frontend/](mdc:apps/frontend/) - Next.js 14 with App Router
+- **Packages**: [packages/](mdc:packages/) - Shared packages and Strapi plugins
+- **CLI**: [cli/](mdc:cli/) - Command-line tools for project management
+
+## Key Technologies
+
+- **Backend**: Strapi 5, TypeScript, SQLite
+- **Frontend**: Next.js 14, React 19, TypeScript, Tailwind CSS
+- **Monorepo**: Turborepo for build orchestration
+- **Testing**: Jest, Cypress (E2E)
+- **Linting**: ESLint with custom configs
+
+## Workspace Structure
+
+The project uses npm workspaces defined in [package.json](mdc:package.json):
+- `apps/*` - Main applications
+- `packages/*` - Shared packages and plugins
+- `cli` - Command-line interface
+
+## Development Commands
+
+- `yarn dev` - Start all services
+- `yarn backend` - Start only backend
+- `yarn frontend` - Start only frontend
+- `yarn test` - Run all tests
+- `yarn lint` - Lint all packages

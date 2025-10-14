@@ -1,0 +1,54 @@
+---
+globs: apps/frontend/**/*.tsx,apps/frontend/**/*.ts
+---
+
+# Next.js Frontend Conventions
+
+## App Router Structure
+
+Follow Next.js 14 App Router in [apps/frontend/src/app/](mdc:apps/frontend/src/app/):
+
+- **Route Groups**: Use parentheses `(auth)`, `(dashboard)`
+- **Dynamic Routes**: Use brackets `[lang]`, `[id]`
+- **Layouts**: `layout.tsx` for shared layouts
+- **Pages**: `page.tsx` for route components
+
+## Component Organization
+
+Structure components in [apps/frontend/src/components/](mdc:apps/frontend/src/components/):
+
+- **Common**: Shared UI components
+- **Forms**: Form-related components
+- **Layout**: Page layout components
+- Use PascalCase for component files
+
+## API Integration
+
+- **API Helpers**: [apps/frontend/src/api/](mdc:apps/frontend/src/api/)
+- **Types**: [apps/frontend/src/types/](mdc:apps/frontend/src/types/)
+- **Hooks**: [apps/frontend/src/hooks/](mdc:apps/frontend/src/hooks/)
+
+## Styling
+
+- **Tailwind CSS**: Utility-first approach
+- **Responsive**: Mobile-first design
+- **Theme**: Custom configuration in `tailwind.config.js`
+
+## Data Fetching
+
+- Use Server Components for initial data
+- Client Components for interactivity
+- Proper error boundaries and loading states
+- Type-safe API calls with generated types
+
+## Internationalization
+
+- Multi-language support with `[lang]` routes
+- Configuration in [apps/frontend/i18n-config.ts](mdc:apps/frontend/i18n-config.ts)
+- Middleware for language detection
+
+## Testing
+
+- **Unit Tests**: Jest with React Testing Library
+- **E2E Tests**: Cypress in [apps/frontend/cypress/](mdc:apps/frontend/cypress/)
+- **Fixtures**: Test data in `cypress/fixtures/`
