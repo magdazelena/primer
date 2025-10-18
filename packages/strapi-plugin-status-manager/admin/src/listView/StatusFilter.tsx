@@ -40,7 +40,8 @@ const StatusFilter = () => {
   );
 
   useEffect(() => {
-    const selectedStatusName = query.plugins['primer-status-manager'].statusName
+    const selectedStatusName = query.plugins?.['primer-status-manager']?.statusName; 
+    if(!selectedStatusName) return;
     const status = statuses.find((status) => status.name.toLowerCase() === selectedStatusName);
     if (status) {
       setSelected(status.name);
