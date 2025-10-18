@@ -3,7 +3,7 @@ import { errors } from '@strapi/utils';
 import { PLUGIN_ID } from "./pluginId";
 import type { Core } from "@strapi/strapi";
 
-const { ValidationError, NotFoundError } = errors;
+const { ValidationError } = errors;
 
 export const register = ({ strapi }: { strapi: Core.Strapi }): void => {
   strapi.customFields.register({
@@ -35,38 +35,33 @@ export const register = ({ strapi }: { strapi: Core.Strapi }): void => {
 
        if(!desiredStatus || desiredStatus === 'all') return next();
 
-        const isValid = await strapi.plugin('primer-status-manager').service('status').isValidStatus(desiredStatus);
-        if (!isValid) throw new ValidationError(`Invalid status: ${desiredStatus}`);
+       const isValid = await strapi.plugin('primer-status-manager').service('status').isValidStatus(desiredStatus);
+       if (!isValid) throw new ValidationError(`Invalid status: ${desiredStatus}`);
 
-
-       const result = await next();
-
+       // Pre-filter: Get document IDs with the desired status and inject them into the query
        const status = await strapi.plugin('primer-status-manager').service('status').getStatusByName(desiredStatus);
        if (!status) {
-        throw new ValidationError(`Status not found: ${desiredStatus}`);
+         throw new ValidationError(`Status not found: ${desiredStatus}`);
        }
 
+       const statusLinks = await strapi.db.query('plugin::primer-status-manager.status-link').findMany({
+         where: { 
+           targetUid: uid,
+           status: status.id 
+         },
+         select: ['targetDocumentId']
+       });
 
-      const statusLinks = await strapi.db.query('plugin::primer-status-manager.status-link').findMany({
-        where: { 
-          targetUid: uid,
-          status: status.id 
-        },
-        select: ['targetDocumentId']
-      });
+       const allowedDocumentIds = statusLinks.map(link => link.targetDocumentId);
+       
 
-      const allowedDocumentIds = new Set(statusLinks.map(link => link.targetDocumentId));
+        context.params['filters'] = {
+          ...context.params['filters'],
+          documentId: { $in: allowedDocumentIds }
+        };
+       
 
-      if (Array.isArray(result)) {
-        const filtered = result.filter((doc: AnyDocument) => allowedDocumentIds.has(doc.documentId));
-        return filtered;
-      } 
-      if (result && typeof result === 'object' && 'documentId' in result) {
-        if (!allowedDocumentIds.has((result as AnyDocument).documentId)) {
-          throw new NotFoundError(`Document not found for status: ${(result as AnyDocument).documentId}`);
-        }
-      }
-      return result;
+       return next();
     });
   } catch (e) {
     strapi.log.warn("primer-status-manager: failed to register documents middleware");
