@@ -18,31 +18,44 @@ interface Status {
 const StatusFilter = () => {
   const { contentType } = useContentManagerContext();
   const [statuses, setStatuses] = useState<Status[]>([]);
-  const [selected, setSelected] = useState<string | undefined>("all");
+  const [selected, setSelected] = useState<string | undefined>("");
   const { get } = useFetchClient();
   const [{ query }, setQuery] = useQueryParams<{page: number, plugins: { 'primer-status-manager': { statusName: string } } }>();
 
 
   const handleStatusChange = useCallback(
-    (name: string, replace = false) => {
+    (name: string) => {
       setQuery(
         {
           page: 1,
-          plugins: { ...query.plugins, "primer-status-manager": { statusName: name } },
+          plugins: { ...query.plugins, "primer-status-manager": { statusName: name.toLowerCase() } },
 
         },
         'push',
-        replace
+        true
       );
     },
+
     [query.plugins, setQuery]
   );
+
+  useEffect(() => {
+    const selectedStatusName = query.plugins['primer-status-manager'].statusName
+    const status = statuses.find((status) => status.name.toLowerCase() === selectedStatusName);
+    if (status) {
+      setSelected(status.name);
+    }
+  }, [query, statuses]);
 
   useEffect(() => {
     async function fetchStatuses() {
       try {
         const { data } = await get("primer-status-manager/statuses");
-        setStatuses(data);
+        const allStatusesObject = {
+          documentId: "all",
+          name: "All",
+        }
+        setStatuses([allStatusesObject, ...data]);
       } catch (error) {
         console.error("Error fetching statuses:", error);
       }
@@ -50,30 +63,12 @@ const StatusFilter = () => {
    fetchStatuses();
   }, [get]);
 
-//   useEffect(() => {
-//     if (!Array.isArray(statuses)) {
-//       return;
-//     }
-//     /**
-//      * Handle the case where the current locale query param doesn't exist
-//      * in the list of available locales, so we redirect to the default locale.
-//      */
-//     const currentDesiredLocale = query.plugins?.['status-manager']?.status;
-//     const doesLocaleExist = statuses.find((loc) => loc.name === currentDesiredLocale);
-//     if (!doesLocaleExist) {
-//       handleStatusChange('all', true);
-//     }
-//   }, [handleStatusChange, statuses, query.plugins?.['status-manager']?.status]);
-
   return (
     <Flex
       direction="column"
       justifyContent="center"
     >
       <SingleSelect size="S" placeholder={`${contentType?.info.displayName} status`} value={selected} onChange={handleStatusChange}>
-        <SingleSelectOption key="__all__" value={"all"}>
-          All statuses
-        </SingleSelectOption>
         {statuses.map((status) => (
           <SingleSelectOption key={status.documentId} value={status.name}>
             {status.name}
