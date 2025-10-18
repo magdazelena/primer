@@ -16,7 +16,7 @@ export const statusLinkService = ({ strapi }: { strapi: Core.Strapi }) => ({
     targetDocumentId: string,
     statusDocumentId: string,
   ) {
-    console.log(targetUid, targetDocumentId, statusDocumentId);
+    // Create status link
     await strapi.db
       .query("plugin::primer-status-manager.status-link")
       .deleteMany({ where: { targetUid, targetDocumentId } });
