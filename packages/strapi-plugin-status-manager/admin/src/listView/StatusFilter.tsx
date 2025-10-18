@@ -10,7 +10,6 @@ import {
   unstable_useContentManagerContext as useContentManagerContext,
   useQueryParams,
 } from "@strapi/strapi/admin";
-
 interface Status {
   documentId: string;
   name: string;
@@ -21,7 +20,7 @@ const StatusFilter = () => {
   const [statuses, setStatuses] = useState<Status[]>([]);
   const [selected, setSelected] = useState<string | undefined>("all");
   const { get } = useFetchClient();
-  const [{ query }, setQuery] = useQueryParams();
+  const [{ query }, setQuery] = useQueryParams<{page: number, plugins: { 'primer-status-manager': { statusName: string } } }>();
 
 
   const handleStatusChange = useCallback(
@@ -29,7 +28,8 @@ const StatusFilter = () => {
       setQuery(
         {
           page: 1,
-          plugins: { ...query.plugins, "primer-status-manager": { status: name } },
+          plugins: { ...query.plugins, "primer-status-manager": { statusName: name } },
+
         },
         'push',
         replace
@@ -47,7 +47,7 @@ const StatusFilter = () => {
         console.error("Error fetching statuses:", error);
       }
     }
-    fetchStatuses();
+   fetchStatuses();
   }, [get]);
 
 //   useEffect(() => {

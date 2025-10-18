@@ -25,10 +25,10 @@ export const StatusCell = ({ row, uid }: { row: any; uid: string }) => {
     let cancelled = false;
     if (label !== null) return;
 
-    fetchStatuses({ post }, uid, [documentId]).then(() => {
-      if (cancelled) return;
-      setLabel(cache.get(documentId) ?? "");
-    });
+    // fetchStatuses({ post }, uid, [documentId]).then(() => {
+    //   if (cancelled) return;
+    //   setLabel(cache.get(documentId) ?? "");
+    // });
 
     return () => {
       cancelled = true;

@@ -13,6 +13,12 @@ export const statusService = ({ strapi }: { strapi: Core.Strapi }) => ({
     }
   },
 
+  async getStatusByName(name: string) {
+    return strapi.db
+      .query("plugin::primer-status-manager.status")
+      .findOne({ where: { name } });
+  },
+
   isStatusEnabledFor(uid: string): boolean {
     return !!strapi.getModel(uid as unknown as never);
   },

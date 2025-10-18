@@ -27,7 +27,7 @@ export const list = ({ strapi }: { strapi: Core.Strapi }): Core.Controller => ({
     ctx.send({ results: rows });
   },
 
-  // Example list scoping endpoint (if used by admin list view fetchers)
+  // Enhanced list scoping endpoint for content manager integration
   async findManyWithStatus(ctx: Context) {
     const { uid } = ctx.params as { uid: string };
     if (!strapi.getModel(uid as Schema)) return ctx.notFound("Unknown contentTypeUid");
@@ -41,29 +41,76 @@ export const list = ({ strapi }: { strapi: Core.Strapi }): Core.Controller => ({
 
     // If filtering by status, join through status-link mapping
     if (statusFilterEnabled) {
-      const qb = strapi.db.connection;
-      const baseTable = strapi.getModel(uid as Schema)!.collectionName!;
-      const linkTable = strapi.getModel("plugin::primer-status-manager.status-link")!.collectionName!;
-      // const statusTable = strapi.getModel("plugin::primer-status-manager.status")!.collectionName!;
+      try {
+        const qb = strapi.db.connection;
+        const baseTable = strapi.getModel(uid as Schema)!.collectionName!;
+        const linkTable = strapi.getModel("plugin::primer-status-manager.status-link")!.collectionName!;
 
-      // Resolve status name -> id
-      const st = await strapi.db.query("plugin::primer-status-manager.status").findOne({ where: { name: statusParam } } as unknown as never);
-      if (!st) return ctx.send({ results: [], pagination: { page: 1, pageSize: 0, pageCount: 0, total: 0 } });
+        // Resolve status name -> id
+        const status = await strapi.db.query("plugin::primer-status-manager.status").findOne({ where: { name: statusParam } } as unknown as never);
+        if (!status) {
+          console.error(`❌ Status not found: ${statusParam}`);
+          return ctx.send({ results: [], pagination: { page: 1, pageSize: 0, pageCount: 0, total: 0 } });
+        }
 
-      const rows = await qb(baseTable)
-        .select(`${baseTable}.*`)
-        .leftJoin({ sl: linkTable }, function () {
-          this.on("sl.target_uid", qb.raw("?", uid)).andOn("sl.target_document_id", "=", qb.ref(`${baseTable}.document_id`));
-        })
-        .leftJoin("status_links_status_lnk as slj", "sl.id", "slj.status_link_id")
-        .where("slj.status_id", st.id);
+        console.log(`🔍 Filtering ${uid} by status: ${statusParam} (ID: ${status.id})`);
 
-      return ctx.send(rows);
+        // Build query with status filtering
+        const query = qb(baseTable)
+          .select(`${baseTable}.*`)
+          .leftJoin({ sl: linkTable }, function () {
+            this.on("sl.target_uid", qb.raw("?", uid))
+              .andOn("sl.target_document_id", "=", qb.ref(`${baseTable}.document_id`));
+          })
+          .leftJoin("status_links_status_lnk as slj", "sl.id", "slj.status_link_id")
+          .where("slj.status_id", status.id);
+
+        // Apply pagination if present
+        const page = Number(baseQuery.page) || 1;
+        const pageSize = Number(baseQuery.pageSize) || 10;
+        const offset = (page - 1) * pageSize;
+
+        // Get total count
+        const totalQuery = qb(baseTable)
+          .count(`${baseTable}.document_id as count`)
+          .leftJoin({ sl: linkTable }, function () {
+            this.on("sl.target_uid", qb.raw("?", uid))
+              .andOn("sl.target_document_id", "=", qb.ref(`${baseTable}.document_id`));
+          })
+          .leftJoin("status_links_status_lnk as slj", "sl.id", "slj.status_link_id")
+          .where("slj.status_id", status.id);
+
+        const [rows, totalResult] = await Promise.all([
+          query.limit(pageSize).offset(offset),
+          totalQuery.first()
+        ]);
+
+        const total = Number(totalResult?.count) || 0;
+        const pageCount = Math.ceil(total / pageSize);
+
+        return ctx.send({
+          results: rows,
+          pagination: {
+            page,
+            pageSize,
+            pageCount,
+            total
+          }
+        });
+      } catch (error) {
+        console.error('❌ Status filtering error:', error);
+        return ctx.internalServerError(`Status filtering failed: ${error}`);
+      }
     }
 
     // Fall back to entityService if no status filter
-    const data = await strapi.entityService.findMany(uid as unknown as never, baseQuery as unknown as never);
-    return ctx.send(data);
+    try {
+      const data = await strapi.entityService.findMany(uid as unknown as never, baseQuery as unknown as never);
+      return ctx.send(data);
+    } catch (error) {
+      console.error('❌ Entity service error:', error);
+      return ctx.internalServerError(`Query failed: ${error}`);
+    }
   },
 });
 

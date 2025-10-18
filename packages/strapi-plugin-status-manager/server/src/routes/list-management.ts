@@ -20,30 +20,6 @@ export default [
       actionType: "findMany",
     },
   },
-  {
-    method: "GET",
-    path: "/list/:uid",
-    handler: "list_controller.findManyWithStatus",
-    config: {
-      policies: [
-        {
-          name: "admin::hasPermissions",
-          config: {
-            actions: ["plugin::primer-status-manager.status.read"],
-          },
-        },
-      ],
-      middlewares: [
-        "plugin::primer-status-manager.status",
-      ],
-    },
-    description: "List entries for a CT with optional status filtering via query param",
-    tag: {
-      plugin: "primer-status-manager",
-      name: "List",
-      actionType: "findMany",
-    },
-  },
 ];
 
 
