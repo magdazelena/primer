@@ -1,7 +1,7 @@
 import { StatusCell } from "./status-cell";
 import { ListFieldLayout, ListLayout } from "@strapi/content-manager/strapi-admin";
-import { Handler } from "@strapi/utils/dist/hooks";
 import React from "react";
+import { AnyDocument } from "@strapi/types/dist/modules/documents";
 
 interface AddColumnToTableHookArgs {
   layout: ListLayout;
@@ -13,10 +13,10 @@ export const addStatusColumnHook = ({ displayedHeaders, layout }: AddColumnToTab
     attribute: { type: "custom" },
     name: "statusLabel",
     label: { id: "primer-status-manager.status", defaultMessage: "Status" },
-    searchable: true,
-    sortable: true,
-    cellFormatter: (row: any, header: any, { model }: { model: string }) => {
-      return React.createElement(StatusCell, { row, uid: model });
+    searchable: false,
+    sortable: false,
+    cellFormatter: (row: AnyDocument) => {
+      return React.createElement(StatusCell, { row });
     },
   };
 
