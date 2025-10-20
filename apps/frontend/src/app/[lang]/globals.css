@@ -1,7 +1,7 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
-@import 'yet-another-react-lightbox/styles.css';
-@import 'yet-another-react-lightbox/plugins/thumbnails.css';
+@import "yet-another-react-lightbox/styles.css";
+@import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 @theme {
   --color-dark: 24, 83, 66;
@@ -10,8 +10,8 @@
   --color-accentDark: 217, 102, 78;
   --menu-height: 6rem;
   --border-radius: 2px;
-  --font-body: 'Roboto', sans-serif;
-  --font-display: 'Playfair Display', serif;
+  --font-body: "Roboto", sans-serif;
+  --font-display: "Playfair Display", serif;
 }
 
 @layer base {
@@ -369,7 +369,8 @@ Dropdowns
 }
 
 .top-level {
-  justify-content: space-around;
+  justify-content: flex-end;
+  background-color: var(--color-light);
   flex-wrap: wrap;
   & > li {
     flex-basis: 20%;
