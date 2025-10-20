@@ -1,24 +1,35 @@
 ![health](https://github.com/magdazelena/primer/actions/workflows/ci.yaml/badge.svg)
+
 # PRIMER: shopping template with: Next 14, Tailwind, Typescript and Strapi
 
-[About Primer]('./docs/index.md)
------
+## [About Primer]('./docs/index.md)
+
 This is a monorepo supported by Turborepo, containing the following applications:
+
 - `apps/frontend`: Next.js 14 frontend application
 - `apps/backend`: Strapi backend application
 - `docs`: Documentation
 
 ## Getting Started
 
-1. Clone the repository locally.
+### Clone the repository locally.
 
-2. Run `setup` command to install dependencies:
+```bash
+git clone git@github.com:magdazelena/primer.git
+cd primer
+```
+
+### Install dependencies
 
 ```bash
 npm run setup
 ```
 
-3. Next, navigate to your `/apps/backend` directory and set up your `.env` file. You can use the `.env.example` file as reference:
+## Setting up Backend
+
+### Configure `backend` .env file
+
+Next, navigate to your `/apps/backend` directory and set up your `.env` file. You can use the `.env.example` file as reference:
 
 ```bash
 HOST=localhost
@@ -30,48 +41,42 @@ JWT_SECRET=tobemodified
 TRANSFER_TOKEN_SALT=tobemodified
 ```
 
-4. Start your project by running the following command:
+### Build the backend
+
+When building the backend for the first time, use:
 
 ```bash
-npm run dev
+cd apps/backend
+npm run build:all
 ```
 
-This will start both the frontend and backend applications concurrently.
-
-You will be prompted to create your first admin user.
-
-![admin-user](https://user-images.githubusercontent.com/6153188/231865420-5f03a90f-b893-4057-9634-9632920a7d97.gif)
-
-## Available Scripts
-
-- `npm run dev`: Start both frontend and backend applications
-- `npm run frontend`: Start only the frontend application
-- `npm run backend`: Start only the backend application
-- `npm run cleanup`: Clean frontend build artifacts
-- `npm run lint`: Run linting across all applications
-- `npm test`: Run tests across all applications
-- `npm run test:watch`: Run tests in watch mode
-- `npm run test:coverage`: Run tests with coverage reporting
-- `npm run e2e`: Run end-to-end tests
-- `npm run prune`: Clean all node_modules and reinstall dependencies
-
-## Seeding The Data
-
-We are going to use our DEITS feature which will allow to easily import data into your project.
-
-You can learn more about it in our documentation [here](https://docs.strapi.io/dev-docs/data-management).
+### [for development] Seed the data
 
 In the backend directory we have our `seed-data.tar.gz` file. We will use it to seed our data.
 
-1. Navigate to the `apps/backend` folder and run the following command to seed your data:
+Navigate to the `apps/backend` folder and run the following command to seed your data:
 
 ```bash
 npm run seed
 ```
 
-This will import your data locally. Log back into your admin panel to see the newly imported data.
+This will import your data locally.
+
+### Start your project by running the following command:
+
+```bash
+npm run dev
+```
+
+This will start your admin panel.
+
+You will be prompted to create your first admin user.
+
+![admin-user](https://user-images.githubusercontent.com/6153188/231865420-5f03a90f-b893-4057-9634-9632920a7d97.gif)
 
 ## Setting Up The Frontend
+
+### Adding authorisation tokens
 
 Next we need to switch to our `/apps/frontend` directory and create our `.env` file and paste in the following.
 
@@ -122,11 +127,20 @@ In Permissions lets give the following access.
 
 Add your token to your `NEXT_PUBLIC_STRAPI_FORM_SUBMISSION_TOKEN` variable name in the `.env` file.
 
-Once your environment variables are set you can start your frontend application by running `npm run frontend`.
+Once your environment variables are set you can start your frontend application by running from **root**:
+
+```bash
+npm run frontend
+```
+
+or
+
+```bash
+cd apps/frontend
+npm run dev
+```
 
 You should now see your Next JS frontend.
-
-![frontend](https://user-images.githubusercontent.com/6153188/231865662-d870051f-4503-4a01-bc6b-635c7c5ca40d.png)
 
 ## Installing Dependencies
 
@@ -150,9 +164,8 @@ If your dependency is being **shared** by the projects, make sure to install it 
 
 ---
 
-> note: This project was started with love by [Trecia](https://github.com/TreciaKS), [Daniel](https://github.com/malgamves) and [Paul](https://github.com/PaulBratslavsky). You can find the original [here](https://github.com/strapi/nextjs-corporate-starter/).
-
 ## Buy me coffee
+
 This is an open-source side project. It is progressing slowly, and I'm pretty tired ☕️.
 
 [Buy me a coffee here](https://buymeacoffee.com/magdazelena)
