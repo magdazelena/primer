@@ -1,0 +1,85 @@
+---
+globs: packages/strapi-plugin-*/**
+alwaysApply: false
+---
+# Strapi Plugin Development Guide
+
+## Plugin Structure
+
+Follow the pattern established in [packages/strapi-plugin-status-manager/](mdc:packages/strapi-plugin-status-manager/):
+
+```
+packages/strapi-plugin-[name]/
+├── admin/src/           # Frontend components
+├── server/src/          # Backend logic
+├── package.json         # Plugin configuration
+├── rollup.config.mjs    # Build configuration
+└── README.md           # Documentation
+```
+
+## Package Configuration
+
+Use proper exports for Strapi 5:
+
+```json
+{
+  "exports": {
+    "./strapi-admin": {
+      "source": "./admin/src/index.ts",
+      "import": "./dist/admin/index.mjs",
+      "require": "./dist/admin/index.js"
+    },
+    "./strapi-server": {
+      "source": "./server/src/index.ts", 
+      "import": "./dist/server/index.mjs",
+      "require": "./dist/server/index.js"
+    }
+  }
+}
+```
+
+## Server-Side Structure
+
+- **Index**: [packages/strapi-plugin-status-manager/server/src/index.ts](mdc:packages/strapi-plugin-status-manager/server/src/index.ts) - Main plugin export
+- **Controllers**: Handle API requests
+- **Services**: Business logic
+- **Routes**: API endpoint definitions
+- **Middlewares**: Request processing
+- **Bootstrap**: Initialization logic
+
+## Admin-Side Structure
+
+- **Index**: Main admin export
+- **Components**: React components for admin UI
+- **Plugin ID**: Unique identifier for the plugin
+
+## Development Workflow
+
+1. **Build**: `npm run build` (compiles TypeScript)
+2. **Dev Mode**: `npm run dev` (watch mode)
+3. **Test**: `npm run test:debug` (manual testing)
+4. **Restart**: Strapi server restart required for server changes
+
+## Plugin Registration
+
+Register in [apps/backend/config/plugins.ts](mdc:apps/backend/config/plugins.ts):
+
+```typescript
+'primer-status-manager': {
+  enabled: true,
+}
+```
+
+## Debugging
+
+- Use console.log with emoji prefixes for easy identification
+- Check Strapi logs for plugin loading
+- Test endpoints manually with debug scripts
+- Verify routes are properly registered
+
+## Build Process
+
+- TypeScript compilation to `dist/`
+- Rollup bundling for admin components
+- Separate builds for server and admin
+- Proper source maps for debugging

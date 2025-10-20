@@ -1,20 +1,28 @@
 export default [
   {
-    method: "PUT",
-    path: "/update-content",
-    handler: "content_controller.updateContentStatus",
+    method: "GET",
+    path: "/content-status",
+    handler: "content_controller.getStatusForTarget",
     config: {
-      policies: [],
-      auth: false,
+      policies: [
+        {
+          name: "admin::hasPermissions",
+          config: { actions: ["plugin::primer-status-manager.status.read"] },
+        },
+      ],
     },
   },
   {
-    method: "GET",
-    path: "/get-content-status",
-    handler: "content_controller.getContentStatus",
+    method: "PUT",
+    path: "/content-status",
+    handler: "content_controller.setStatusForTarget",
     config: {
-      policies: [],
-      auth: false,
+      policies: [
+        {
+          name: "admin::hasPermissions",
+          config: { actions: ["plugin::primer-status-manager.status.update"] },
+        },
+      ],
     },
   },
 ];

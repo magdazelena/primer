@@ -2,8 +2,10 @@ import { Initializer } from "./components/Initializer";
 import { PluginIcon } from "./components/PluginIcon";
 import { ProductStatusField } from "./components/ProductStatusField";
 import { PLUGIN_ID } from "./pluginId";
+import { addStatusColumnHook } from "./listView/add-status-column-hook";
 
 import type { StrapiApp } from "@strapi/admin/strapi-admin";
+import { StatusFilter } from "./listView/StatusFilter";
 
 const plugin = {
   register(app: StrapiApp) {
@@ -27,27 +29,6 @@ const plugin = {
           default: module.HomePage,
         })),
     });
-
-    app.customFields.register({
-      name: "statusName",
-      pluginId: PLUGIN_ID,
-      type: "string",
-      icon: PluginIcon,
-      intlLabel: {
-        id: `${PLUGIN_ID}.plugin.name`,
-        defaultMessage: "Status",
-      },
-      intlDescription: {
-        id: `${PLUGIN_ID}.plugin.description`,
-        defaultMessage: "Select any status",
-      },
-      components: {
-        Input: () =>
-          import("./components/ProductStatusField").then((module) => ({
-            default: module.ProductStatusField,
-          })),
-      },
-    });
   },
   bootstrap(app: StrapiApp) {
     app
@@ -56,6 +37,14 @@ const plugin = {
         name: "Status",
         Component: ProductStatusField,
       });
+
+    app.registerHook('Admin/CM/pages/ListView/inject-column-in-table', addStatusColumnHook);
+
+    const contentManager = app.getPlugin('content-manager');
+    contentManager.injectComponent('listView', 'actions', {
+      name: 'status-filter',
+      Component: StatusFilter,
+    });
   },
 };
 

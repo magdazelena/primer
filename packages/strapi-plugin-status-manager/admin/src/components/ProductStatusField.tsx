@@ -31,10 +31,10 @@ const ProductStatusField = () => {
         return;
       }
       try {
-        await put(`primer-status-manager/update-content`, {
-          contentTypeId: "api::product.product",
-          contentItemId: id,
-          statusName: newStatus,
+        await put(`primer-status-manager/content-status`, {
+          contentTypeUid: "api::product.product",
+          contentDocumentId: id,
+          statusId: statuses.find((status) => status.name === newStatus)?.documentId,
         });
         setMessage(
           `Status updated ${currentStatus ? `from ${currentStatus}` : ""} to ${newStatus}`,
@@ -52,9 +52,9 @@ const ProductStatusField = () => {
     async function fetchCurrentStatus() {
       try {
         const { data: productData } = await get(
-          `primer-status-manager/get-content-status?contentItemId=${id}&contentTypeId=api::product.product`,
+          `primer-status-manager/content-status?contentDocumentId=${id}&contentTypeUid=api::product.product`,
         );
-        const status = productData?.statusName;
+        const status = productData?.status;
         if (status && status.name) return setCurrentStatus(status.name);
         if (statuses.length) return handleStatusChange(statuses[0].name);
       } catch (error) {

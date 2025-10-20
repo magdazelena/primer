@@ -1023,13 +1023,6 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    statusName: Schema.Attribute.String &
-      Schema.Attribute.CustomField<'plugin::primer-status-manager.statusName'> &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     totalCost: Schema.Attribute.Integer &
       Schema.Attribute.Required &
       Schema.Attribute.Private &
@@ -1215,6 +1208,10 @@ export interface PluginPrimerStatusManagerStatus
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    links: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::primer-status-manager.status-link'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1230,6 +1227,49 @@ export interface PluginPrimerStatusManagerStatus
     order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     published: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface PluginPrimerStatusManagerStatusLink
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'status_links';
+  info: {
+    description: 'Association between any content type document and a single status';
+    displayName: 'Status Link';
+    pluralName: 'status-links';
+    singularName: 'status-link';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::primer-status-manager.status-link'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    status: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::primer-status-manager.status'
+    >;
+    targetDocumentId: Schema.Attribute.String & Schema.Attribute.Required;
+    targetUid: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1619,6 +1659,7 @@ declare module '@strapi/strapi' {
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::primer-status-manager.status': PluginPrimerStatusManagerStatus;
+      'plugin::primer-status-manager.status-link': PluginPrimerStatusManagerStatusLink;
       'plugin::review-workflows.workflow': PluginReviewWorkflowsWorkflow;
       'plugin::review-workflows.workflow-stage': PluginReviewWorkflowsWorkflowStage;
       'plugin::upload.file': PluginUploadFile;

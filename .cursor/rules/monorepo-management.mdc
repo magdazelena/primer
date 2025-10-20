@@ -1,0 +1,77 @@
+---
+alwaysApply: true
+---
+# Monorepo Management Guide
+
+## Workspace Structure
+
+Primer uses npm workspaces defined in [package.json](mdc:package.json):
+
+- **Apps**: `apps/*` - Main applications (backend, frontend)
+- **Packages**: `packages/*` - Shared packages and plugins
+- **CLI**: `cli` - Command-line tools
+
+## Build System
+
+**Turborepo** orchestrates builds across workspaces:
+
+- **Configuration**: [turbo.json](mdc:turbo.json)
+- **Caching**: Build cache for faster subsequent builds
+- **Parallel Execution**: Run tasks across workspaces simultaneously
+
+## Package Management
+
+### Shared Dependencies
+
+- **ESLint Config**: [packages/eslint-config-primer/](mdc:packages/eslint-config-primer/)
+  - Base config for all packages
+  - Client-specific config for frontend
+  - Server-specific config for backend
+
+### Plugin Packages
+
+- **Status Manager**: [packages/strapi-plugin-status-manager/](mdc:packages/strapi-plugin-status-manager/)
+- **Product Actions**: [packages/strapi-plugin-product-actions/](mdc:packages/strapi-plugin-product-actions/)
+
+## Development Commands
+
+### Root Level Commands
+
+- `yarn dev` - Start all services
+- `yarn backend` - Start only backend
+- `yarn frontend` - Start only frontend
+- `yarn test` - Run all tests
+- `yarn lint` - Lint all packages
+- `yarn clean` - Clean all build artifacts
+
+### Workspace-Specific Commands
+
+Each workspace has its own scripts defined in their `package.json`.
+
+## Dependency Management
+
+### Scripts
+
+- **Dependabot**: [scripts/dependabot-config.js](mdc:scripts/dependabot-config.js)
+- **Dependency Management**: [scripts/manage-deps.js](mdc:scripts/manage-deps.js)
+
+### Version Management
+
+- Use `template-version.json` for version tracking
+- Shared dependencies managed at root level
+- Workspace-specific dependencies in individual packages
+
+## Build Artifacts
+
+- **Backend**: `apps/backend/dist/` - Compiled Strapi code
+- **Frontend**: `apps/frontend/.next/` - Next.js build
+- **Plugins**: `packages/*/dist/` - Compiled plugin code
+- **Coverage**: `coverage/` - Test coverage reports
+
+## Best Practices
+
+- Keep shared dependencies at root level
+- Use workspace references for internal packages
+- Maintain consistent versioning across packages
+- Use Turborepo for efficient builds
+- Follow consistent naming conventions

@@ -146,15 +146,6 @@
       "relation": "manyToOne",
       "target": "api::creator.creator",
       "inversedBy": "products"
-    },
-    "statusName": {
-      "type": "customField",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "customField": "plugin::primer-status-manager.statusName"
     }
   }
 }

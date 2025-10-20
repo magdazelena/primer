@@ -1,0 +1,85 @@
+---
+globs: **/*.test.ts,**/*.test.tsx,**/*.spec.ts,**/*.spec.tsx,**/*.cy.ts
+---
+
+# Testing Conventions
+
+## Testing Stack
+
+- **Unit Tests**: Jest with React Testing Library
+- **E2E Tests**: Cypress
+- **Backend Tests**: Jest with Strapi testing utilities
+- **Coverage**: Istanbul for coverage reporting
+
+## Test File Organization
+
+- **Unit Tests**: `*.test.ts` or `*.test.tsx`
+- **E2E Tests**: `*.cy.ts` in [apps/frontend/cypress/e2e/](mdc:apps/frontend/cypress/e2e/)
+- **Fixtures**: Test data in [apps/frontend/cypress/fixtures/](mdc:apps/frontend/cypress/fixtures/)
+
+## Testing Patterns
+
+### Frontend Component Tests
+
+```typescript
+import { render, screen } from '@testing-library/react';
+import { Button } from './Button';
+
+describe('Button', () => {
+  it('renders with correct text', () => {
+    render(<Button>Click me</Button>);
+    expect(screen.getByText('Click me')).toBeInTheDocument();
+  });
+});
+```
+
+### Backend API Tests
+
+```typescript
+import { createStrapiInstance } from '@strapi/strapi';
+
+describe('Product API', () => {
+  let strapi: StrapiInstance;
+
+  beforeAll(async () => {
+    strapi = await createStrapiInstance();
+  });
+
+  afterAll(async () => {
+    await strapi.destroy();
+  });
+});
+```
+
+### E2E Tests
+
+```typescript
+describe('Product Series', () => {
+  it('should display product series page', () => {
+    cy.visit('/en/product-series');
+    cy.get('[data-testid="product-series"]').should('be.visible');
+  });
+});
+```
+
+## Test Configuration
+
+- **Jest Config**: [apps/frontend/jest.config.ts](mdc:apps/frontend/jest.config.ts)
+- **Cypress Config**: [apps/frontend/cypress.config.ts](mdc:apps/frontend/cypress.config.ts)
+- **Setup Files**: [apps/frontend/jest.setup.ts](mdc:apps/frontend/jest.setup.ts)
+
+## Running Tests
+
+- `yarn test` - Run all tests
+- `yarn test:watch` - Watch mode
+- `yarn test:coverage` - With coverage
+- `yarn e2e` - Run Cypress tests
+- `yarn e2e:dev` - Open Cypress UI
+
+## Best Practices
+
+- Use `data-testid` attributes for reliable element selection
+- Mock external dependencies
+- Test user interactions, not implementation details
+- Keep tests focused and independent
+- Use descriptive test names

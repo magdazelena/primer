@@ -69,7 +69,7 @@ const status = ({ strapi }: { strapi: Core.Strapi }): Core.Controller => ({
         statuses.map(({ documentId, order }) =>
           strapi.documents("plugin::primer-status-manager.status").update({
             documentId,
-            data: { order },
+            data: { order } as any,
           }),
         ),
       );
@@ -88,7 +88,7 @@ const status = ({ strapi }: { strapi: Core.Strapi }): Core.Controller => ({
 
       await strapi.documents("plugin::primer-status-manager.status").update({
         documentId: id,
-        data: { published },
+        data: { published } as any,
       });
 
       ctx.send({ message: "Status updated successfully" });

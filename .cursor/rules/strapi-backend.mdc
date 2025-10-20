@@ -1,0 +1,51 @@
+---
+globs: apps/backend/**/*.ts,packages/strapi-plugin-*/**/*.ts
+---
+
+# Strapi Backend Conventions
+
+## Project Structure
+
+Follow Strapi's recommended structure in [apps/backend/src/](mdc:apps/backend/src/):
+
+- **API**: [apps/backend/src/api/](mdc:apps/backend/src/api/) - Content types and controllers
+- **Components**: [apps/backend/src/components/](mdc:apps/backend/src/components/) - Reusable components
+- **Extensions**: [apps/backend/src/extensions/](mdc:apps/backend/src/extensions/) - Strapi extensions
+- **Admin**: [apps/backend/src/admin/](mdc:apps/backend/src/admin/) - Admin panel customizations
+
+## File Naming Conventions
+
+- **Controllers**: `*.controller.ts`
+- **Services**: `*.service.ts`
+- **Content Types**: `*.json` (schema files)
+- **Policies**: `*.policy.ts`
+- **Middlewares**: `*.middleware.ts`
+
+## Content Type Structure
+
+Each content type should have:
+- `content-types/[name]/schema.json` - Schema definition
+- `content-types/[name]/lifecycles.ts` - Lifecycle hooks
+- `api/[name]/controllers/[name].controller.ts` - Controller
+- `api/[name]/services/[name].service.ts` - Service
+
+## Plugin Development
+
+For custom plugins in [packages/strapi-plugin-*/](mdc:packages/strapi-plugin-status-manager/):
+
+- **Server**: `server/src/` - Backend logic
+- **Admin**: `admin/src/` - Frontend components
+- **Package**: Follow `@primer/strapi-plugin-*` naming
+- **Exports**: Use proper package.json exports for Strapi 5
+
+## Configuration
+
+- Use TypeScript configs in [apps/backend/config/](mdc:apps/backend/config/)
+- Environment-specific configs in `config/env/`
+- Plugin configuration in [apps/backend/config/plugins.ts](mdc:apps/backend/config/plugins.ts)
+
+## Database
+
+- Use SQLite for development (better-sqlite3)
+- Migrations in [apps/backend/database/migrations/](mdc:apps/backend/database/migrations/)
+- Seed data management with `yarn seed` and `yarn export`

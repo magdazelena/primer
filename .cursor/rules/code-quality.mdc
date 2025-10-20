@@ -1,0 +1,95 @@
+---
+globs: *.ts,*.tsx,*.js,*.jsx
+---
+
+# Code Quality Standards
+
+## ESLint Configuration
+
+Primer uses custom ESLint configs in [packages/eslint-config-primer/](mdc:packages/eslint-config-primer/):
+
+- **Base**: Common rules for all packages
+- **Client**: Frontend-specific rules with React/Next.js
+- **Server**: Backend-specific rules for Strapi
+
+## Code Style Rules
+
+### Import Organization
+
+```typescript
+// 1. React imports (first)
+import React from 'react';
+
+// 2. External libraries (alphabetical)
+import { NextPage } from 'next';
+import { Button } from '@strapi/design-system';
+
+// 3. Internal modules (alphabetical)
+import { apiClient } from '@/lib/api';
+import { ProductCard } from '@/components/common';
+
+// 4. Type imports (separate group)
+import type { Product } from '@/types/product';
+```
+
+### TypeScript Rules
+
+- Use `type` imports for type-only imports
+- Avoid `any` - use `unknown` or proper typing
+- Use strict type checking
+- Define interfaces for component props
+
+### React Rules
+
+- Use arrow functions for components
+- No default exports (except pages)
+- Proper prop types and interfaces
+- Use React hooks correctly
+
+## Linting Commands
+
+- `yarn lint` - Lint all packages
+- `yarn lint:fix` - Auto-fix linting issues
+- Individual package linting available
+
+## Code Formatting
+
+- **Prettier**: Integrated with ESLint
+- **Consistent**: Same formatting across all packages
+- **Auto-fix**: Available through ESLint
+
+## Error Handling
+
+### Frontend
+
+- Use proper error boundaries
+- Handle loading and error states
+- Type-safe error handling
+
+### Backend
+
+- Proper HTTP status codes
+- Structured error responses
+- Logging with appropriate levels
+
+## Performance
+
+### Frontend
+
+- Use Next.js Image component
+- Implement proper code splitting
+- Optimize bundle size
+- Use React.memo when appropriate
+
+### Backend
+
+- Efficient database queries
+- Proper caching strategies
+- Optimize API responses
+
+## Documentation
+
+- **README**: Each package should have a README
+- **Code Comments**: Document complex logic
+- **Type Definitions**: Well-documented interfaces
+- **API Documentation**: Clear endpoint documentation

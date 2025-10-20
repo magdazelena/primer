@@ -1,32 +1,26 @@
 import statusActions from "./permissions";
-import { defaultLogger, debugLog } from "./utils/debug";
+import type { Core } from "@strapi/strapi";
 
-interface StrapiInstance {
-  db?: unknown;
-  contentTypes?: Record<string, unknown>;
-  service: (name: string) => {
-    actionProvider: { registerMany: (actions: unknown) => Promise<void> };
-  };
-}
+export const bootstrap = async ({ strapi }: { strapi: Core.Strapi }) => {
+  await strapi
+    .service("admin::permission")
+    .actionProvider.registerMany(statusActions.actions);
 
-export const bootstrap = async ({ strapi }: { strapi: StrapiInstance }) => {
-  // Initialize debugging for the plugin
-  debugLog("Bootstrap", "Starting Status Manager Plugin bootstrap");
+  // Register lifecycle hooks for status filtering
+  strapi.db?.lifecycles?.subscribe?.({
+    // catch all models
+    models: ["*"],
 
-  // Register permissions for the plugin
-  try {
-    defaultLogger.log("Registering permissions", {
-      actions: statusActions.actions,
-    });
 
-    await strapi
-      .service("admin::permission")
-      .actionProvider.registerMany(statusActions.actions);
+    async afterDelete(event: { model?: { uid: string }; result?: { documentId: string } }) {
+      const modelUid = event?.model?.uid;
+      const deleted = event?.result;
+      const documentId = deleted?.documentId;
+      if (!modelUid || !documentId) return;
 
-    defaultLogger.log("Permissions registered successfully");
-    debugLog("Bootstrap", "Status Manager Plugin bootstrap completed");
-  } catch (error) {
-    defaultLogger.error("Failed to register permissions", error);
-    throw error; // Re-throw to let Strapi handle the error
-  }
+      await strapi.db
+        .query("plugin::primer-status-manager.status-link")
+        .deleteMany({ where: { targetUid: modelUid, targetDocumentId: documentId } });
+    }
+  });
 };
