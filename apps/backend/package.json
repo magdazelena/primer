@@ -5,13 +5,16 @@
   "scripts": {
     "dev": "strapi develop",
     "build": "strapi build",
+    "build:all": "npm run build:strapi-plugin-product-actions && npm run build:strapi-plugin-status-manager && npm run build",
+    "build:strapi-plugin-product-actions": "cd ../../packages/strapi-plugin-product-actions && npm run build:code",
+    "build:strapi-plugin-status-manager": "cd ../../packages/strapi-plugin-status-manager && npm run build:code",
     "start": "strapi start",
     "lint": "eslint .",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "clean": "rm -rf .strapi-updater.json build .turbo node_modules",
-    "seed": "strapi import -f ./seed-data.tar.gz",
+    "seed": "npm run build:all && strapi import -f ./seed-data.tar.gz",
     "export": "strapi export --no-encrypt --file seed-data",
     "strapi": "strapi",
     "generate-types": "strapi ts:generate-types"
