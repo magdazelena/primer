@@ -39,10 +39,10 @@ The backend is built with Strapi, a headless CMS that provides a powerful API an
 
 ```bash
 # Install dependencies
-yarn install
+npm install
 
 # Start development server
-yarn dev
+npm run dev
 ```
 
 ## Required Environment Variables
@@ -55,4 +55,4 @@ API_TOKEN_SALT=tobemodified
 ADMIN_JWT_SECRET=tobemodified
 JWT_SECRET=tobemodified
 TRANSFER_TOKEN_SALT=tobemodified
-``` 
+```
