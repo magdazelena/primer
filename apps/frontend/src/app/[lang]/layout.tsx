@@ -47,8 +47,8 @@ export async function generateMetadata(props: {
   const { metadata, favicon } = global.data;
 
   return {
-    title: metadata.metaTitle,
-    description: metadata.metaDescription,
+    title: metadata?.metaTitle,
+    description: metadata?.metaDescription,
     icons: {
       icon: [new URL(favicon?.url || "", getStrapiURL())],
     },
