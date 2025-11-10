@@ -60,7 +60,7 @@
     "@atlaskit/pragmatic-drag-and-drop-hitbox": "^1.0.3",
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.35.0",
-    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-dynamic-import-vars": "^2.1.5",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^16.0.1",
