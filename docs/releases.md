@@ -77,6 +77,7 @@ Include this checklist in the release PR description and mark items when complet
   - Check out the tagged commit.
   - Install dependencies and run tests for verification.
   - Build frontend/backend bundles and upload them as release assets using `actions/upload-release-asset`.
+  - Set `SKIP_BUILD_FETCH=true` for the frontend build to skip build-time API calls to Strapi.
   - Optionally publish built images/packages to GitHub Packages if future distribution requires it.
 - Configure GitHub Pages to build from the `gh-pages` branch (or `/docs` folder) generated from the latest stable release. Automate this via workflow so each release updates the public demo with sanitized content.
 

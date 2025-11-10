@@ -37,7 +37,9 @@ jobs:
       - name: Build backend
         run: npm run -w backend build:all
 
-      - name: Build frontend
+      - name: Build frontend (skip build-time fetch)
+        env:
+          SKIP_BUILD_FETCH: "true"
         run: npm run -w frontend build
 
       - name: Package backend bundle

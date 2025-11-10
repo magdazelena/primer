@@ -3,7 +3,7 @@ import { CreatorThumbnail } from "@/app/[lang]/creators/components/CreatorThumbn
 import { ProductDescription } from "./Product/ProductDescription";
 import { ProductMedia } from "./Product/ProductMedia";
 import { ProductSide } from "./Product/ProductSide";
-import List from "./product-list";
+import { ProductList } from "./product-list";
 
 import type { Product } from "@/types/product";
 
@@ -43,7 +43,7 @@ export const ProductSeriesView = (props: ProductSeriesViewProps) => {
           {props.products.length} product{props.products.length > 1 ? "s" : ""}{" "}
           available in this series:
         </h2>
-        <List products={props.products} />
+        <ProductList products={props.products} />
       </div>
     </article>
   );
