@@ -52,12 +52,13 @@ export async function fetchAPI(
     // Trigger API call
     const response = await fetch(requestUrl, mergedOptions);
     const data = await response.json();
+    if (!data.data) {
+      console.error("No data found in the response.", data);
+      return { data: [], meta: { pagination: { total: 0 } } };
+    }
     return data;
   } catch (error) {
-    console.error(
-      "Please check if your server is running and you set all the required tokens.",
-      error
-    );
+    console.error("Error fetching data from the API.", error);
     return { data: [], meta: { pagination: { total: 0 } } };
   }
 }
