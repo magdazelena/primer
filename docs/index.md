@@ -60,6 +60,7 @@ Checkout the docs for the current implementation:
 - [Frontend Documentation](./frontend/index.md)
 - [Backend Documentation](./backend/index.md)
 - [Release Management](./releases.md)
+- [Strapi Cloud Deployment](./strapi-cloud-deployment.md)
 - [Contributor Guide](./contributors.md)
 - [User Developer Guide](./user-developers.md)
 - [User Non-Developer Guide](./user-non-developers.md)
