@@ -1,0 +1,75 @@
+name: Deploy Frontend to Vercel
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag to deploy (leave empty for latest)"
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy-frontend:
+    name: Deploy Frontend to Vercel
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get release tag
+        id: get_tag
+        run: |
+          if [ -n "${{ github.event.inputs.tag }}" ]; then
+            TAG="${{ github.event.inputs.tag }}"
+          elif [ "${{ github.event_name }}" = "release" ]; then
+            TAG="${{ github.event.release.tag_name }}"
+          else
+            # Get the latest release tag
+            TAG=$(gh api repos/${{ github.repository }}/releases/latest --jq .tag_name)
+          fi
+          echo "tag=${TAG}" >> $GITHUB_OUTPUT
+          echo "Deploying tag: ${TAG}"
+
+      - name: Checkout release tag
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.get_tag.outputs.tag }}
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies (monorepo)
+        run: |
+          # Install dependencies at root level for monorepo
+          npm install
+
+      - name: Build frontend (for verification)
+        working-directory: apps/frontend
+        env:
+          SKIP_BUILD_FETCH: "true"
+          NEXT_PUBLIC_STRAPI_API_URL: ${{ secrets.NEXT_PUBLIC_STRAPI_API_URL }}
+          NEXT_PUBLIC_STRAPI_API_TOKEN: ${{ secrets.NEXT_PUBLIC_STRAPI_API_TOKEN }}
+          NEXT_PUBLIC_STRAPI_FORM_SUBMISSION_TOKEN: ${{ secrets.NEXT_PUBLIC_STRAPI_FORM_SUBMISSION_TOKEN }}
+        run: |
+          # Verify build works before deploying
+          npm run build
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: "--prod"
+          working-directory: apps/frontend
+          scope: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-env: |
+            NEXT_PUBLIC_STRAPI_API_URL=${{ secrets.NEXT_PUBLIC_STRAPI_API_URL }}
+            NEXT_PUBLIC_STRAPI_API_TOKEN=${{ secrets.NEXT_PUBLIC_STRAPI_API_TOKEN }}
+            NEXT_PUBLIC_STRAPI_FORM_SUBMISSION_TOKEN=${{ secrets.NEXT_PUBLIC_STRAPI_FORM_SUBMISSION_TOKEN }}
