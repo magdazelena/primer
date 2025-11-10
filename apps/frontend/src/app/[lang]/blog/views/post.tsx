@@ -8,8 +8,8 @@ import type { Article } from "@/types/article";
 export const Post = ({ data }: { data: Article }) => {
   const { title, description, publishedAt, coverImage, creator } = data;
 
-  const imageUrl = getStrapiMedia(coverImage.url);
-  const creatorImgUrl = getStrapiMedia(creator.avatar.url);
+  const imageUrl = getStrapiMedia(coverImage?.url);
+  const creatorImgUrl = getStrapiMedia(creator?.avatar?.url);
 
   return (
     <article className="space-y-8 text-dark">
@@ -47,7 +47,7 @@ export const Post = ({ data }: { data: Article }) => {
       <div className="text-dark max-w-[1000px] pb-5">
         {data.blocks &&
           data.blocks.map((section: unknown, index: number) =>
-            componentResolver(section, index),
+            componentResolver(section, index)
           )}
       </div>
       <div className="col-span-12">

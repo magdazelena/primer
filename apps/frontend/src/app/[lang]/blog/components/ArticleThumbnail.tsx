@@ -5,12 +5,12 @@ import Link from "next/link";
 import type { Article } from "@/types/article";
 
 const ArticleThumbnail = ({ article }: { article: Article }) => {
-  const imageUrl = getStrapiMedia(article.coverImage.url);
+  const imageUrl = getStrapiMedia(article.coverImage?.url);
 
   const category = article.category;
   const creator = article.creator;
 
-  const avatarUrl = getStrapiMedia(creator?.avatar.url);
+  const avatarUrl = getStrapiMedia(creator?.avatar?.url);
 
   return (
     <Link

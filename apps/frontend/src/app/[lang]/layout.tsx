@@ -45,13 +45,12 @@ export async function generateMetadata(props: {
 
   if (!global.data) return FALLBACK_SEO;
   const { metadata, favicon } = global.data;
-  const { url } = favicon;
 
   return {
     title: metadata.metaTitle,
     description: metadata.metaDescription,
     icons: {
-      icon: [new URL(url, getStrapiURL())],
+      icon: [new URL(favicon?.url || "", getStrapiURL())],
     },
   };
 }
