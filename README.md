@@ -2,7 +2,7 @@
 
 # PRIMER: shopping template with: Next 14, Tailwind, Typescript and Strapi
 
-## [About Primer]('./docs/index.md)
+## [About Primer](./docs/index.md)
 
 This is a monorepo supported by Turborepo, containing the following applications:
 
@@ -158,9 +158,14 @@ npm install react-router-dom --prefix apps/frontend
 
 If your dependency is being **shared** by the projects, make sure to install it into the `root` directly!
 
-## More docs:
+## Releases & Docs
 
+- [Release management](./docs/releases.md)
+- [Contributor guide](./docs/contributors.md)
+- [User developer guide](./docs/user-developers.md)
+- [User non-developer guide](./docs/user-non-developers.md)
 - Frontend [docs](./docs/frontend/index.md)
+- Backend [docs](./docs/backend/index.md)
 
 ---
 

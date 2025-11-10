@@ -13,7 +13,7 @@
     "dev": "turbo dev",
     "frontend": "turbo dev --filter=frontend",
     "lint": "turbo lint",
-    "setup": "yarn install",
+    "setup": "npm install",
     "prune": "rm -rf node_modules/ && rm -rf dist/ && rm -rf .turbo/ && rm -rf package-lock.json",
     "test": "turbo test -- --passWithNoTests",
     "test:watch": "turbo test --watch",
