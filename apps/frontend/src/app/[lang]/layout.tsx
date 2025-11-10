@@ -79,7 +79,7 @@ const RootLayout = async (props: {
   const categories = await getCategories(params.lang);
 
   const { navbar, footer } = global.data;
-
+  if (!navbar || !footer) return <NotFound />;
   const navbarLogoUrl = getStrapiMedia(navbar.navbarLogo?.logoImg?.url);
 
   const footerLogoUrl = getStrapiMedia(footer.footerLogo?.logoImg?.url || null);
