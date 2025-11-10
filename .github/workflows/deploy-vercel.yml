@@ -1,5 +1,7 @@
 name: Deploy Frontend to Vercel
-
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 on:
   release:
     types: [published]
@@ -40,38 +42,11 @@ jobs:
           ref: ${{ steps.get_tag.outputs.tag }}
           fetch-depth: 0
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v5
-        with:
-          node-version: "20"
-          cache: "npm"
-
-      - name: Install dependencies (monorepo)
-        run: |
-          # Install dependencies at root level for monorepo
-          npm install
-
-      - name: Build frontend (for verification)
-        working-directory: apps/frontend
-        env:
-          SKIP_BUILD_FETCH: "true"
-          NEXT_PUBLIC_STRAPI_API_URL: ${{ secrets.NEXT_PUBLIC_STRAPI_API_URL }}
-          NEXT_PUBLIC_STRAPI_API_TOKEN: ${{ secrets.NEXT_PUBLIC_STRAPI_API_TOKEN }}
-          NEXT_PUBLIC_STRAPI_FORM_SUBMISSION_TOKEN: ${{ secrets.NEXT_PUBLIC_STRAPI_FORM_SUBMISSION_TOKEN }}
-        run: |
-          # Verify build works before deploying
-          npm run build
-
-      - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args: "--prod"
-          working-directory: apps/frontend
-          scope: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-env: |
-            NEXT_PUBLIC_STRAPI_API_URL=${{ secrets.NEXT_PUBLIC_STRAPI_API_URL }}
-            NEXT_PUBLIC_STRAPI_API_TOKEN=${{ secrets.NEXT_PUBLIC_STRAPI_API_TOKEN }}
-            NEXT_PUBLIC_STRAPI_FORM_SUBMISSION_TOKEN=${{ secrets.NEXT_PUBLIC_STRAPI_FORM_SUBMISSION_TOKEN }}
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
