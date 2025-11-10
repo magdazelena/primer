@@ -17,6 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.release.tag_name || github.ref }}
           fetch-depth: 0
 
       - name: Set up Node.js
@@ -42,12 +43,23 @@ jobs:
           SKIP_BUILD_FETCH: "true"
         run: npm run -w frontend build
 
+      - name: Set release tag
+        id: set_tag
+        run: |
+          if [ "${{ github.event_name }}" = "release" ]; then
+            TAG="${{ github.event.release.tag_name }}"
+          else
+            TAG="${GITHUB_REF_NAME:-manual}"
+          fi
+          # Sanitize tag name (replace / with -)
+          SANITIZED_TAG="${TAG//\//-}"
+          echo "tag=${SANITIZED_TAG}" >> $GITHUB_OUTPUT
+          echo "Using tag: ${SANITIZED_TAG}"
+
       - name: Package backend bundle
         run: |
-          RAW_TAG="${GITHUB_REF_NAME:-manual}"
-          RELEASE_TAG="${RAW_TAG//\//-}"
           mkdir -p release
-          tar -czf "release/primer-backend-${RELEASE_TAG}.tar.gz" \
+          tar -czf "release/primer-backend-${{ steps.set_tag.outputs.tag }}.tar.gz" \
             --exclude='apps/backend/node_modules' \
             --exclude='apps/backend/.turbo' \
             --exclude='apps/backend/dist/.cache' \
@@ -57,10 +69,8 @@ jobs:
 
       - name: Package frontend bundle
         run: |
-          RAW_TAG="${GITHUB_REF_NAME:-manual}"
-          RELEASE_TAG="${RAW_TAG//\//-}"
           mkdir -p release
-          tar -czf "release/primer-frontend-${RELEASE_TAG}.tar.gz" \
+          tar -czf "release/primer-frontend-${{ steps.set_tag.outputs.tag }}.tar.gz" \
             --exclude='apps/frontend/node_modules' \
             --exclude='apps/frontend/.turbo' \
             --exclude='apps/frontend/.next/cache' \
