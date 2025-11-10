@@ -25,7 +25,7 @@ const LayoutRoute = async (props: {
     const parentCategory = findParentCategory(categories, productCategory);
     if (parentCategory) {
       const { products: otherProducts } = await fetchSideMenuData(
-        parentCategory.slug,
+        parentCategory.slug
       );
       return (
         <section className="container p-8 mx-auto space-y-6 sm:space-y-12">
@@ -57,6 +57,9 @@ const LayoutRoute = async (props: {
 };
 
 export async function generateStaticParams() {
+  if (process.env.SKIP_BUILD_FETCH === "true") {
+    return [];
+  }
   const params = await getProductSlugAndCategoryList();
   return params;
 }

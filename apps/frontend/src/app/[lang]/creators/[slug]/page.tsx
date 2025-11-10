@@ -27,6 +27,9 @@ const CreatorRoute = async (props: { params: Promise<{ slug: string }> }) => {
 };
 
 export async function generateStaticParams() {
+  if (process.env.SKIP_BUILD_FETCH === "true") {
+    return [];
+  }
   return getCreatorsSlugList();
 }
 

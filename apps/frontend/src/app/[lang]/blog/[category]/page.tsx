@@ -25,6 +25,9 @@ export const CategoryRoute = async (props: {
 };
 
 export async function generateStaticParams() {
+  if (process.env.SKIP_BUILD_FETCH === "true") {
+    return [];
+  }
   return [];
 }
 

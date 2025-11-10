@@ -11,7 +11,7 @@ const ProductCategoryRoute = async (props: {
   const data = await fetchPostsByCategory(
     "/products",
     "/product-categories",
-    filter,
+    filter
   );
 
   //TODO: CREATE A COMPONENT FOR THIS
@@ -28,6 +28,9 @@ const ProductCategoryRoute = async (props: {
 };
 
 export async function generateStaticParams() {
+  if (process.env.SKIP_BUILD_FETCH === "true") {
+    return [];
+  }
   return [];
 }
 
