@@ -18,7 +18,20 @@
 ## Release Workflow
 
 1. **Open a release issue** using the `Release planning` template (see `.github/ISSUE_TEMPLATE/release.md`). Capture scope, owners, and target date.
-2. **Cut a release branch** `release/vX.Y.Z` from `main`.
+2. **Create a release branch** `release/vX.Y.Z` from `main`.
+
+```bash
+# 1. Make sure you're on main and it's up to date
+git checkout main
+git pull origin main
+
+# 2. Create and switch to the new release branch
+git checkout -b release/v0.0.1
+
+# 3. Push the branch to GitHub
+git push -u origin release/v0.0.1
+```
+
 3. **Stabilise the branch**:
    - Run unit/integration tests and lint checks.
    - Update documentation (`docs/releases.md`, per-audience guides) and bump versions (`template-version.json`, package manifests if required).
