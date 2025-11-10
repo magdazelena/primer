@@ -1,4 +1,5 @@
 ![health](https://github.com/magdazelena/primer/actions/workflows/ci.yaml/badge.svg)
+![](https://img.shields.io/github/v/release/magdazelena/primer)
 
 # PRIMER: shopping template with: Next 14, Tailwind, Typescript and Strapi
 
