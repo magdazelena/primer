@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { HighlightedText } from "./HighlightedText";
+import { buffer } from "stream/consumers";
 
 interface Button {
   id: string;
@@ -34,7 +35,7 @@ interface HeroProps {
 
 export const Hero = ({ data }: HeroProps) => {
   const imgUrl = getStrapiMedia(data.picture.url) || "";
-
+  console.log(data.buttons);
   return (
     <section
       className={`${data.fullImage ? "text-light" : "text-dark"}`}
