@@ -9,21 +9,21 @@ const RootRoute = async (props: { params: Promise<{ lang: string }> }) => {
   const page = await getPageBySlug(
     "home",
     params.lang,
-    PAGE_CONTENT_SECTIONS_QUERY,
+    PAGE_CONTENT_SECTIONS_QUERY
   );
 
   if (page.error && page.error.status == 401)
     throw new Error(
-      "Missing or invalid credentials. Have you created an access token using the Strapi admin panel? http://localhost:1337/admin/",
+      "Missing or invalid credentials. Have you created an access token using the Strapi admin panel? http://localhost:1337/admin/"
     );
   if (!page.data) return null;
-  if (page.data.length == 0 && params.lang !== "en") return <LangRedirect />;
+  if (page.data.length === 0 && params.lang !== "en") return <LangRedirect />;
 
-  const contentSections = page.data[0].contentSections;
+  const contentSections = page.data[0]?.contentSections;
   if (!contentSections || contentSections.length === 0) return null;
 
   return contentSections.map((section: unknown, index: number) =>
-    componentResolver(section, index),
+    componentResolver(section, index)
   );
 };
 

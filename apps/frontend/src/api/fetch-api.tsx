@@ -23,7 +23,7 @@ export async function fetchAPI(
   urlParamsObject: URLParamsObject = {
     locale: i18n.defaultLocale,
   },
-  options = {},
+  options = {}
 ) {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 
@@ -46,17 +46,19 @@ export async function fetchAPI(
     )
       urlParamsObject.locale = i18n.defaultLocale;
     const requestUrl = `${getStrapiURL(
-      `/api${path}${queryString ? `?${queryString}` : ""}`,
+      `/api${path}${queryString ? `?${queryString}` : ""}`
     )}`;
 
     // Trigger API call
     const response = await fetch(requestUrl, mergedOptions);
     const data = await response.json();
+    if (!data.data) {
+      console.error("No data found in the response.", data);
+      return { data: [], meta: { pagination: { total: 0 } } };
+    }
     return data;
   } catch (error) {
-    console.error(error);
-    throw new Error(
-      `Please check if your server is running and you set all the required tokens.`,
-    );
+    console.error("Error fetching data from the API.", error);
+    return { data: [], meta: { pagination: { total: 0 } } };
   }
 }

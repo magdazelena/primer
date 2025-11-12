@@ -5,7 +5,7 @@ import type { APIResponse } from "../../types/api";
 
 export async function getArticlesList(
   start: number,
-  limit: number,
+  limit: number
 ): Promise<APIResponse> {
   const path = `/articles`;
   const urlParamsObject = {
@@ -19,6 +19,7 @@ export async function getArticlesList(
   const responseData = await fetchAPI(path, urlParamsObject);
   return { ...responseData };
 }
+
 export async function getArticlesSlugAndCategoryList(): Promise<
   Array<{ slug: string; category: string }>
 > {
@@ -33,6 +34,6 @@ export async function getArticlesSlugAndCategoryList(): Promise<
       category: {
         slug: string;
       };
-    }) => ({ slug: article.slug, category: article.slug }),
+    }) => ({ slug: article.slug, category: article.slug })
   );
 }

@@ -45,13 +45,12 @@ export async function generateMetadata(props: {
 
   if (!global.data) return FALLBACK_SEO;
   const { metadata, favicon } = global.data;
-  const { url } = favicon;
 
   return {
-    title: metadata.metaTitle,
-    description: metadata.metaDescription,
+    title: metadata?.metaTitle,
+    description: metadata?.metaDescription,
     icons: {
-      icon: [new URL(url, getStrapiURL())],
+      icon: [new URL(favicon?.url || "", getStrapiURL())],
     },
   };
 }
@@ -80,7 +79,7 @@ const RootLayout = async (props: {
   const categories = await getCategories(params.lang);
 
   const { navbar, footer } = global.data;
-
+  if (!navbar || !footer) return <NotFound />;
   const navbarLogoUrl = getStrapiMedia(navbar.navbarLogo?.logoImg?.url);
 
   const footerLogoUrl = getStrapiMedia(footer.footerLogo?.logoImg?.url || null);
