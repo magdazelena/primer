@@ -51,10 +51,13 @@ const SeriesProductActions = ({ document }: { document: Document }) => {
   const handleCreateProducts = async () => {
     try {
       setIsLoading(true);
-      const response = await post(`primer-product-actions/create-products`, {
-        count: productCount,
-        id: documentId,
-      });
+      const response = await post(
+        `primershop-product-actions/create-products`,
+        {
+          count: productCount,
+          id: documentId,
+        }
+      );
 
       if (!response.data) {
         throw new Error("Failed to create products");
@@ -71,10 +74,13 @@ const SeriesProductActions = ({ document }: { document: Document }) => {
   const handleUpdateProducts = async () => {
     try {
       setIsLoading(true);
-      const response = await put(`/primer-product-actions/update-products`, {
-        seriesId: documentId,
-        fieldsToUpdate,
-      });
+      const response = await put(
+        `/primershop-product-actions/update-products`,
+        {
+          seriesId: documentId,
+          fieldsToUpdate,
+        }
+      );
 
       if (!response.data) {
         throw new Error("Failed to update products");
