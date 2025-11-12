@@ -2,7 +2,6 @@ import "./globals.css";
 import { getStrapiMedia, getStrapiURL } from "@/api/api-helpers";
 import { fetchAPI } from "@/api/fetch-api";
 import { GLOBAL_LAYOUT_QUERY } from "@/api/shared-params";
-import { Banner } from "@/components/Banner";
 import { Body } from "@/components/Body";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
@@ -63,7 +62,7 @@ const RootLayout = async (props: {
   try {
     params = await props.params;
   } catch (error) {
-    console.error("Couldn't load params");
+    console.error("Couldn't load params", error);
   }
 
   const { children } = props;
@@ -110,9 +109,6 @@ const RootLayout = async (props: {
 };
 
 export async function generateStaticParams() {
-  if (process.env.SKIP_BUILD_FETCH === "true") {
-    return [];
-  }
   return i18n.locales.map((locale) => ({ lang: locale }));
 }
 

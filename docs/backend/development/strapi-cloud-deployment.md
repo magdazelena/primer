@@ -2,12 +2,7 @@
 
 ## Overview
 
-Strapi Cloud supports two deployment methods:
-
-1. **Local CLI deployment** - Manual deployment from your local machine
-2. **GitHub Integration** - Automatic deployment on every commit (recommended for releases)
-
-**Important**: Strapi Cloud does **not** support manual deployment from GitHub Actions. Use the GitHub integration for automatic deployments.
+The Primer backend is automatically deployed to Strapi Cloud when pull requests are merged to `main`. This guide explains the automatic deployment flow.
 
 ## Prerequisites
 
@@ -15,15 +10,35 @@ Strapi Cloud supports two deployment methods:
 2. **Linked Project**: Your local project should be linked to Strapi Cloud (`.strapi-cloud.json` file exists)
 3. **GitHub Repository**: Your code should be in a GitHub repository
 
-## Deployment Methods
+## Automatic Deployment Flow
 
-### Method 1: GitHub Integration (Recommended for Releases)
+### How It Works
 
-Strapi Cloud can automatically deploy on every commit to your repository. This is the recommended method for release-based deployments.
+When a pull request is merged to `main`:
 
-#### Setup Steps
+1. Strapi Cloud automatically detects the merge
+2. Builds the backend using `npm run build:all`
+3. Deploys to production
 
-1. **Link Your Project to Strapi Cloud** (if not already done):
+### Deployment Flow
+
+```
+Pull Request Merged to main
+    ↓
+Strapi Cloud detects commit
+    ↓
+Strapi Cloud builds backend
+    ↓
+Strapi Cloud deploys to production
+    ↓
+Backend is live at https://your-project.strapiapp.com
+```
+
+## Initial Setup
+
+If you need to set up Strapi Cloud integration:
+
+1. **Link Your Project to Strapi Cloud**:
 
    ```bash
    cd apps/backend
@@ -44,12 +59,12 @@ Strapi Cloud can automatically deploy on every commit to your repository. This i
 3. **Enable GitHub Integration in Strapi Cloud**:
    - Go to [Strapi Cloud Dashboard](https://cloud.strapi.io)
    - Select your project
-   - Go to **Settings** → **Git Integration** (or similar)
+   - Go to **Settings** → **Git Integration**
    - Click **Connect GitHub** or **Enable GitHub Integration**
    - Authorize Strapi Cloud to access your repository
    - Select the repository: `magdazelena/primer`
    - Configure deployment settings:
-     - **Branch**: `main` (or your release branch)
+     - **Branch**: `main`
      - **Root Directory**: `apps/backend`
      - **Build Command**: `npm run build:all`
      - **Start Command**: `npm start`
@@ -58,74 +73,17 @@ Strapi Cloud can automatically deploy on every commit to your repository. This i
    - In Strapi Cloud Dashboard → **Settings** → **Environment Variables**
    - Add all required environment variables for your backend
 
-#### How It Works
+## Manual Deployment
 
-- **Automatic Deployment**: Every commit to the configured branch triggers a deployment
-- **Release Workflow**: When you merge a release PR to `main`, Strapi Cloud automatically deploys
-- **No GitHub Actions Needed**: Strapi Cloud handles the deployment directly
+If needed, you can trigger a manual deployment from your local machine:
 
-#### Deployment Flow
-
+```bash
+cd apps/backend
+npx strapi login --cloud
+npx strapi deploy --cloud
 ```
-Release PR Merged to main
-    ↓
-Strapi Cloud detects commit
-    ↓
-Strapi Cloud builds backend
-    ↓
-Strapi Cloud deploys to production
-    ↓
-Backend is live at https://your-project.strapiapp.com
-```
-
-### Method 2: Local CLI Deployment
-
-For manual deployments from your local machine:
-
-1. **Authenticate**:
-
-   ```bash
-   cd apps/backend
-   npx strapi login --cloud
-   ```
-
-2. **Deploy**:
-   ```bash
-   npx strapi deploy --cloud
-   ```
 
 **Note**: This method requires interactive login and cannot be automated in CI/CD.
-
-## Release-Based Deployment Strategy
-
-Since Strapi Cloud deploys on every commit, here's how to align it with your release workflow:
-
-### Option 1: Deploy on Release Merge
-
-1. Create your `release/vX.Y.Z` branch
-2. Make your changes
-3. Merge PR to `main` → Strapi Cloud automatically deploys
-4. Tag the release: `git tag vX.Y.Z && git push origin vX.Y.Z`
-
-### Option 2: Deploy on Release Tag
-
-If you want deployments only on releases:
-
-1. Configure Strapi Cloud to deploy from a specific branch (e.g., `releases`)
-2. After merging release PR to `main`, create a release branch:
-   ```bash
-   git checkout -b releases/vX.Y.Z main
-   git push origin releases/vX.Y.Z
-   ```
-3. Strapi Cloud deploys from the `releases` branch
-
-### Option 3: Manual Trigger via Strapi Cloud Dashboard
-
-Some Strapi Cloud plans support manual deployment triggers:
-
-- Go to Strapi Cloud Dashboard
-- Click **Deploy** or **Redeploy** button
-- Select the branch/commit to deploy
 
 ## Configuration
 
@@ -161,13 +119,13 @@ Set environment variables in Strapi Cloud Dashboard:
 
 ### GitHub Integration Not Working
 
-**Issue**: Deployments not triggering on commits
+**Issue**: Deployments not triggering when PRs are merged to `main`
 
 **Solutions**:
 
 1. Verify GitHub integration is enabled in Strapi Cloud Dashboard
 2. Check that Strapi Cloud has access to your repository
-3. Verify the branch configuration matches your workflow
+3. Verify the branch configuration is set to `main`
 4. Check Strapi Cloud deployment logs for errors
 
 ### Build Fails
@@ -200,21 +158,11 @@ After deployment, your backend will be available at:
 
 ## Important Notes
 
-- ✅ **Automatic on Commit**: Strapi Cloud deploys automatically on every commit (if GitHub integration enabled)
+- ✅ **Automatic on PR Merge**: Strapi Cloud deploys automatically when PRs are merged to `main`
 - ✅ **No GitHub Actions Needed**: Strapi Cloud handles deployment directly
 - ✅ **Project Link Required**: The `.strapi-cloud.json` file must exist and be committed
 - ⚠️ **Database**: Strapi Cloud manages the database automatically
 - ⚠️ **Environment Variables**: Set in Strapi Cloud dashboard, not in code
-- ⚠️ **Manual CLI Only**: CLI deployment (`strapi deploy`) only works from local machine, not from CI/CD
-
-## Next Steps
-
-After backend deployment is working:
-
-1. **Deploy Frontend**: Set up frontend deployment to Vercel/Netlify
-2. **Configure CORS**: Ensure Strapi Cloud allows requests from your frontend domain
-3. **Set API Tokens**: Create and configure API tokens in Strapi Cloud admin panel
-4. **Test Integration**: Verify frontend can connect to deployed backend
 
 ## References
 

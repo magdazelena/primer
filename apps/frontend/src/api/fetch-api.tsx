@@ -52,8 +52,12 @@ export async function fetchAPI(
     // Trigger API call
     const response = await fetch(requestUrl, mergedOptions);
     const data = await response.json();
+
+    if (data.error) {
+      throw new Error(JSON.stringify(data.error));
+    }
     if (!data.data) {
-      console.error("No data found in the response.", data);
+      console.warn("No data found in the response.", data);
       return { data: [], meta: { pagination: { total: 0 } } };
     }
     return data;
