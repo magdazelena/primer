@@ -6,18 +6,18 @@ export default {
       displayName: "Create",
       uid: "status.create",
       subCategory: "status",
-      pluginName: "primer-status-manager",
+      pluginName: "primershop-status-manager",
     },
     {
       section: "plugins",
       displayName: "Read",
       uid: "status.read",
       subCategory: "status",
-      pluginName: "primer-status-manager",
+      pluginName: "primershop-status-manager",
       aliases: [
         {
           actionId: "plugin::content-manager.explorer.read",
-          subjects: ["plugin::primer-status-manager.status"],
+          subjects: ["plugin::primershop-status-manager.status"],
         },
       ],
     },
@@ -26,14 +26,14 @@ export default {
       displayName: "Update",
       uid: "status.update",
       subCategory: "status",
-      pluginName: "primer-status-manager",
+      pluginName: "primershop-status-manager",
     },
     {
       section: "plugins",
       displayName: "Delete",
       uid: "status.delete",
       subCategory: "status",
-      pluginName: "primer-status-manager",
+      pluginName: "primershop-status-manager",
     },
   ],
 };

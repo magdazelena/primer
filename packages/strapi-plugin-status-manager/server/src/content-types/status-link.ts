@@ -31,11 +31,9 @@ export default {
     status: {
       type: "relation",
       relation: "manyToOne",
-      target: "plugin::primer-status-manager.status",
+      target: "plugin::primershop-status-manager.status",
       required: false,
       configurable: false,
     },
   },
 } as const;
-
-

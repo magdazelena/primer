@@ -1185,7 +1185,7 @@ export interface PluginI18NLocale extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface PluginPrimerStatusManagerStatus
+export interface PluginPrimershopStatusManagerStatus
   extends Struct.CollectionTypeSchema {
   collectionName: 'status';
   info: {
@@ -1211,12 +1211,12 @@ export interface PluginPrimerStatusManagerStatus
       Schema.Attribute.Private;
     links: Schema.Attribute.Relation<
       'oneToMany',
-      'plugin::primer-status-manager.status-link'
+      'plugin::primershop-status-manager.status-link'
     >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'plugin::primer-status-manager.status'
+      'plugin::primershop-status-manager.status'
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String &
@@ -1234,7 +1234,7 @@ export interface PluginPrimerStatusManagerStatus
   };
 }
 
-export interface PluginPrimerStatusManagerStatusLink
+export interface PluginPrimershopStatusManagerStatusLink
   extends Struct.CollectionTypeSchema {
   collectionName: 'status_links';
   info: {
@@ -1261,13 +1261,13 @@ export interface PluginPrimerStatusManagerStatusLink
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'plugin::primer-status-manager.status-link'
+      'plugin::primershop-status-manager.status-link'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     status: Schema.Attribute.Relation<
       'manyToOne',
-      'plugin::primer-status-manager.status'
+      'plugin::primershop-status-manager.status'
     >;
     targetDocumentId: Schema.Attribute.String & Schema.Attribute.Required;
     targetUid: Schema.Attribute.String & Schema.Attribute.Required;
@@ -1659,8 +1659,8 @@ declare module '@strapi/strapi' {
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
-      'plugin::primer-status-manager.status': PluginPrimerStatusManagerStatus;
-      'plugin::primer-status-manager.status-link': PluginPrimerStatusManagerStatusLink;
+      'plugin::primershop-status-manager.status': PluginPrimershopStatusManagerStatus;
+      'plugin::primershop-status-manager.status-link': PluginPrimershopStatusManagerStatusLink;
       'plugin::review-workflows.workflow': PluginReviewWorkflowsWorkflow;
       'plugin::review-workflows.workflow-stage': PluginReviewWorkflowsWorkflowStage;
       'plugin::upload.file': PluginUploadFile;

@@ -1,5 +1,5 @@
 {
-  "name": "@primer/strapi-plugin-status-manager",
+  "name": "@primershop/strapi-plugin-status-manager",
   "version": "0.0.1",
   "description": "Enables more status variations for Strapi",
   "exports": {
@@ -88,7 +88,7 @@
   },
   "strapi": {
     "kind": "plugin",
-    "name": "primer-status-manager",
+    "name": "primershop-status-manager",
     "displayName": "Status Manager",
     "description": "Manages content statuses"
   },
