@@ -10,6 +10,9 @@ const nextConfig = {
     },
   },
   images: {
+    // Disable image optimization in development to allow localhost images
+    // Next.js blocks localhost images in production due to security (private IP resolution)
+    unoptimized: process.env.NODE_ENV === "development",
     remotePatterns: (() => {
       const patterns = [
         // Local development

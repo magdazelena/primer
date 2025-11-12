@@ -21,7 +21,7 @@
     --color-accentBright: 235, 182, 86;
     --color-accentDark: 217, 102, 78;
     --menu-height: 6rem;
-    --border-radius: 2px;
+    --border-radius: 4px;
   }
   @font-face {
     font-family: "Roboto";
@@ -54,6 +54,31 @@ a:visited {
 }
 a.link-active {
   color: rgb(var(--color-accentDark));
+}
+.button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  border-width: 2px;
+  text-decoration: none;
+}
+.button:hover {
+  text-decoration: none;
+}
+.button.primary {
+  background-color: rgb(var(--color-accentDark));
+  border-color: rgb(var(--color-accentDark));
+  color: rgb(var(--color-light));
+}
+.button.secondary {
+  background-color: rgb(var(--color-light));
+  color: rgb(var(--color-dark));
+}
+.button.primary:hover {
+  background-color: rgba(var(--color-accentDark), 0.7);
+}
+.button.secondary:hover {
+  background-color: rgba(var(--color-light), 0.7);
 }
 hr {
   margin: 2rem 0;
