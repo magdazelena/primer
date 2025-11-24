@@ -16,7 +16,7 @@ jobs:
       cache-hit: ${{ steps.cache-deps.outputs.cache-hit }}
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
@@ -46,7 +46,7 @@ jobs:
     if: ${{ github.event_name == 'push' }}
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
@@ -74,7 +74,7 @@ jobs:
     if: ${{ github.event_name == 'push' }}
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
@@ -102,7 +102,7 @@ jobs:
   #   if: ${{ github.event_name == 'push' }}
   #   steps:
   #     - name: Check out repository code
-  #       uses: actions/checkout@v5
+  #       uses: actions/checkout@v6
 
   #     - name: Setup Node.js
   #       uses: actions/setup-node@v6
@@ -133,7 +133,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Run action
         uses: ./.github/actions/dependabot-automerge
