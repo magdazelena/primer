@@ -42,7 +42,7 @@
     "autoprefixer": "^10.4.21",
     "classnames": "^2.5.1",
     "cypress": "^15.3.0",
-    "eslint": "9.39.1",
+    "eslint": "9.39.2",
     "eslint-config-next": "^16.0.0",
     "eslint-config-primer": "*",
     "husky": "^9.1.7",
