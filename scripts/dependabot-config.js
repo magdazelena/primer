@@ -3,20 +3,10 @@
 const fs = require('fs');
 const path = require('path');
 
-// Configuration: Dependencies that should NOT be updated by Dependabot
-const RESTRICTED_DEPENDENCIES = [
-  'react',
-  'react-dom',
-  'react-router-dom',
-  'styled-components',
-  '@types/react',
-  '@types/react-dom'
-];
-
-// Configuration: Workspaces that are EXEMPTED from the above restrictions
-// These workspaces CAN update the restricted dependencies
-const EXEMPTED_WORKSPACES = [
-  'apps/frontend' // Frontend can update React to latest versions
+// Configuration: Workspaces that should group React-related dependencies
+// This groups React updates together for easier review
+const REACT_GROUP_WORKSPACES = [
+  'apps/frontend' // Frontend groups React updates together
 ];
 
 // Automatically discover workspaces from root package.json
@@ -68,6 +58,7 @@ updates:
       day: "monday"
       time: "09:00"
     target-branch: "main"
+    versioning-strategy: increase-if-necessary
     labels:
       - "npm dependencies"
       - "root"
@@ -85,7 +76,7 @@ updates:
   // Generate config for each workspace
   workspaces.forEach(workspace => {
     const workspaceName = workspace.split('/').pop();
-    const isExempted = EXEMPTED_WORKSPACES.includes(workspace);
+    const shouldGroupReact = REACT_GROUP_WORKSPACES.includes(workspace);
     
     config += `
   # ${workspaceName} dependencies
@@ -96,6 +87,7 @@ updates:
       day: "monday"
       time: "09:00"
     target-branch: "main"
+    versioning-strategy: increase-if-necessary
     labels:
       - "npm dependencies"
       - "${workspaceName}"
@@ -109,10 +101,10 @@ updates:
       include: "scope"
     open-pull-requests-limit: 10`;
 
-    // Add React dependency grouping for exempted workspaces
-    if (isExempted) {
+    // Add React dependency grouping for workspaces that benefit from grouped updates
+    if (shouldGroupReact) {
       config += `
-    # Group React-related updates together (exempted from restrictions)
+    # Group React-related updates together for easier review
     groups:
       react-dependencies:
         patterns:
@@ -121,17 +113,6 @@ updates:
         update-types:
           - "minor"
           - "patch"`;
-    } else {
-      // Add ignore rules for restricted dependencies
-      config += `
-    # Ignore restricted dependencies to maintain version consistency
-    ignore:`;
-      
-      RESTRICTED_DEPENDENCIES.forEach(dep => {
-        config += `
-      - dependency-name: "${dep}"
-        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]`;
-      });
     }
     
     config += '\n';
@@ -169,9 +150,9 @@ function updateDependabotConfig() {
     fs.writeFileSync('.github/dependabot.yml', config);
     console.log('✅ Dependabot configuration updated successfully!');
     console.log('\n📋 Configuration summary:');
-    console.log(`   - Restricted dependencies: ${RESTRICTED_DEPENDENCIES.join(', ')}`);
-    console.log(`   - Exempted workspaces: ${EXEMPTED_WORKSPACES.join(', ')}`);
-    console.log(`   - Other workspaces will ignore restricted dependencies`);
+    console.log(`   - Versioning strategy: increase-if-necessary (respects semver ranges)`);
+    console.log(`   - React grouping enabled for: ${REACT_GROUP_WORKSPACES.join(', ')}`);
+    console.log(`   - All packages respect their own version constraints automatically`);
     
   } catch (error) {
     console.error('❌ Failed to update Dependabot configuration:', error.message);
@@ -180,13 +161,14 @@ function updateDependabotConfig() {
 
 function showCurrentConfig() {
   console.log('📋 Current Dependabot Configuration:\n');
-  console.log('🚫 Restricted Dependencies (will be ignored by Dependabot):');
-  RESTRICTED_DEPENDENCIES.forEach(dep => console.log(`   - ${dep}`));
+  console.log('📦 React Grouping Workspaces:');
+  REACT_GROUP_WORKSPACES.forEach(workspace => console.log(`   - ${workspace}`));
   
-  console.log('\n✅ Exempted Workspaces (can update restricted dependencies):');
-  EXEMPTED_WORKSPACES.forEach(workspace => console.log(`   - ${workspace}`));
-  
-  console.log('\n🔒 Other workspaces will automatically ignore restricted dependencies');
+  console.log('\n🔧 Versioning Strategy:');
+  console.log('   - increase-if-necessary (respects semver ranges in package.json)');
+  console.log('   - Packages with "react": "^18.0.0" will only update within 18.x');
+  console.log('   - Packages with "react": "^19.0.0" will only update within 19.x');
+  console.log('   - No manual restrictions needed - version constraints are automatically respected');
 }
 
 function showHelp() {
@@ -201,8 +183,11 @@ Commands:
   help        Show this help message
 
 Configuration:
-  Edit the RESTRICTED_DEPENDENCIES and EXEMPTED_WORKSPACES arrays
-  at the top of this script to customize what gets updated where.
+  Edit the REACT_GROUP_WORKSPACES array at the top of this script
+  to enable React dependency grouping for specific workspaces.
+  
+  Note: With versioning-strategy: increase-if-necessary, all packages
+  automatically respect their semver ranges - no manual restrictions needed.
 
 Examples:
   node scripts/dependabot-config.js generate
