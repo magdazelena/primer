@@ -72,7 +72,7 @@
     "@strapi/content-manager": "^5.29.0",
     "@strapi/types": "^5.29.0",
     "@types/react": "^18.3.1",
-    "@types/react-dom": "^18.3.1",
+    "@types/react-dom": "^19.2.3",
     "@types/node": "^25.0.2",
     "cross-env": "^10.0.0",
     "eslint": "9.39.2",
@@ -97,7 +97,7 @@
     "@strapi/icons": "^2.0.0-rc.27",
     "@strapi/utils": "^5.29.0",
     "react": "18.3.1",
-    "react-dom": "18.3.1",
+    "react-dom": "19.2.3",
     "react-router-dom": "6.22.3",
     "styled-components": "^6.1.19"
   }
