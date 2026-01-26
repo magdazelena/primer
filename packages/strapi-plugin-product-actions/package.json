@@ -1,6 +1,6 @@
 {
   "name": "@primershop/strapi-plugin-product-actions",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Enables product actions for Strapi",
   "exports": {
     "./strapi-admin": {
@@ -19,7 +19,7 @@
     "dist/"
   ],
   "scripts": {
-    "build": "npm-run-all clean --parallel build:code build:types",
+    "build": "npm-run-all clean --parallel build:code",
     "build:code": "rollup -c",
     "build:types": "run-p build:types:server build:types:admin",
     "build:types:server": "tsc -p server/tsconfig.build.json ",
@@ -35,6 +35,7 @@
   "keywords": [
     "strapi",
     "plugin",
+    "strapi-plugin",
     "product",
     "actions"
   ],

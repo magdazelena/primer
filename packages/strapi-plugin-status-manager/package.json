@@ -1,6 +1,6 @@
 {
   "name": "@primershop/strapi-plugin-status-manager",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Enables more status variations for Strapi",
   "exports": {
     "./strapi-admin": {
@@ -19,7 +19,7 @@
     "dist/"
   ],
   "scripts": {
-    "build": "npm-run-all clean --parallel build:code build:types",
+    "build": "npm-run-all clean --parallel build:code",
     "build:code": "rollup -c",
     "build:dev": "rollup -c rollup.config.dev.mjs",
     "build:types": "run-p build:types:server build:types:admin",
@@ -38,6 +38,7 @@
   "keywords": [
     "strapi",
     "plugin",
+    "strapi-plugin",
     "status",
     "manager"
   ],
