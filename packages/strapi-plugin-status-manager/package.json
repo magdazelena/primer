@@ -48,13 +48,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/primer.git",
+    "url": "https://github.com/magdazelena/primer.git",
     "directory": "packages/strapi-plugin-status-manager"
   },
   "bugs": {
-    "url": "https://github.com/your-username/primer/issues"
+    "url": "https://github.com/magdazelena/primer/issues"
   },
-  "homepage": "https://github.com/your-username/primer/tree/main/packages/strapi-plugin-status-manager#readme",
+  "homepage": "https://github.com/magdazelena/primer/tree/main/packages/strapi-plugin-status-manager#readme",
   "peerDependencies": {
     "@strapi/strapi": "^5.29.0"
   },
