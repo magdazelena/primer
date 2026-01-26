@@ -1,6 +1,6 @@
 {
   "name": "@primershop/strapi-plugin-status-manager",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "Enables more status variations for Strapi",
   "exports": {
     "./strapi-admin": {
