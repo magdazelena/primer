@@ -1,6 +1,6 @@
 {
   "name": "@primershop/strapi-plugin-product-actions",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Enables product actions for Strapi",
   "exports": {
     "./strapi-admin": {
