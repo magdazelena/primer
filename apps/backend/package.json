@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "strapi develop",
     "build": "strapi build",
-    "build:all": "npm run build:strapi-plugin-product-actions && npm run build:strapi-plugin-status-manager && npm run build",
+    "build:all": "npm run build",
+    "postinstall": "npm rebuild @swc/core || true",
+    "build:plugins": "npm run build:strapi-plugin-product-actions && npm run build:strapi-plugin-status-manager",
     "build:strapi-plugin-product-actions": "cd ../../packages/strapi-plugin-product-actions && npm run build:code",
     "build:strapi-plugin-status-manager": "cd ../../packages/strapi-plugin-status-manager && npm run build:code",
     "start": "strapi start",
@@ -22,8 +24,8 @@
   "dependencies": {
     "@atlaskit/pragmatic-drag-and-drop": "^1.7.7",
     "@atlaskit/pragmatic-drag-and-drop-hitbox": "^1.0.3",
-    "@primershop/strapi-plugin-product-actions": "*",
-    "@primershop/strapi-plugin-status-manager": "*",
+    "@primershop/strapi-plugin-product-actions": "^0.0.1",
+    "@primershop/strapi-plugin-status-manager": "^0.0.1",
     "@strapi/plugin-users-permissions": "^5.29.0",
     "@strapi/strapi": "^5.29.0",
     "@testing-library/jest-dom": "^6.6.3",
