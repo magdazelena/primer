@@ -80,8 +80,11 @@ const EXEMPTED_WORKSPACES = [
 ## How It Works
 
 1. **Dependabot Configuration**: The `.github/dependabot.yml` file is automatically generated with appropriate ignore rules for each workspace
-2. **Auto-merge Action**: The `.github/actions/dependabot-automerge/action.yml` automatically merges PRs but requires manual approval for Strapi dependencies
+2. **Auto-merge Action**: The `.github/actions/dependabot-automerge/action.yml` automatically merges PRs but requires manual approval for:
+   - Major version bumps (`version-update:semver-major`)
+   - Low compatibility scores (< 0.5)
 3. **Version Consistency**: Restricted dependencies maintain consistent versions across workspaces unless explicitly exempted
+4. **Version Strategy**: Uses `versioning-strategy: increase-if-necessary` to ensure Dependabot only updates within the current semver range (e.g., React 18.x packages won't be updated to React 19.x)
 
 ## Benefits
 
@@ -115,3 +118,29 @@ This system works alongside the existing dependency management scripts:
 - `npm run dependabot:config` - Manage Dependabot configuration
 
 The Dependabot restrictions ensure that the manual dependency management scripts remain the primary way to update React dependencies across the entire monorepo.
+
+## Auto-merge Behavior
+
+The automerge action automatically approves and merges Dependabot PRs for:
+- Minor version updates (`version-update:semver-minor`)
+- Patch version updates (`version-update:semver-patch`)
+- Updates with compatibility score ≥ 0.5
+
+Manual approval is required for:
+- Major version bumps (`version-update:semver-major`)
+- Updates with compatibility score < 0.5
+
+## Version Range Handling
+
+Dependabot respects semver ranges in `package.json`. With `versioning-strategy: increase-if-necessary`:
+- Packages with `"react": "^19.0.0"` will only receive updates within the 19.x range
+- Packages with `"react": "18.3.1"` (exact version) won't be updated to 19.x
+- This ensures different packages can maintain different major versions without conflicts
+
+## Best Practices
+
+1. **Use semantic versioning ranges**: Use `^` or `~` prefixes to allow appropriate updates
+2. **Review major updates**: Always review major version bumps for breaking changes
+3. **Monitor compatibility scores**: Low scores indicate potential compatibility issues
+4. **Group related updates**: Use Dependabot groups for related dependencies (e.g., React ecosystem)
+5. **Regular maintenance**: Review and merge minor/patch updates regularly to stay current
