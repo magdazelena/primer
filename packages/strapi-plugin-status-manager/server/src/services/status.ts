@@ -5,7 +5,7 @@ export const statusService = ({ strapi }: { strapi: Core.Strapi }) => ({
   async isValidStatus(code: string): Promise<boolean> {
     try {
       const row = await strapi.db
-        .query("plugin::primer-status-manager.status")
+        .query("plugin::primershop-status-manager.status")
         .findOne({ where: { name: code }, select: ["id"] } as unknown as never);
       return !!row;
     } catch {
@@ -15,7 +15,7 @@ export const statusService = ({ strapi }: { strapi: Core.Strapi }) => ({
 
   async getStatusByName(name: string) {
     return strapi.db
-      .query("plugin::primer-status-manager.status")
+      .query("plugin::primershop-status-manager.status")
       .findOne({ where: { name } });
   },
 
@@ -23,20 +23,18 @@ export const statusService = ({ strapi }: { strapi: Core.Strapi }) => ({
     return !!strapi.getModel(uid as unknown as never);
   },
   async find() {
-
     const result = await strapi.db
-      .query("plugin::primer-status-manager.status")
+      .query("plugin::primershop-status-manager.status")
       .findMany({
         orderBy: { order: "asc" },
       });
 
     return result;
-
   },
 
   async findOne(id: number) {
     const result = await strapi.db
-      .query("plugin::primer-status-manager.status")
+      .query("plugin::primershop-status-manager.status")
       .findOne({
         where: { id },
       });
@@ -44,18 +42,17 @@ export const statusService = ({ strapi }: { strapi: Core.Strapi }) => ({
   },
 
   async createStatus(data: PluginStatusManagerStatusInput) {
+    const result = await strapi.db
+      .query("plugin::primershop-status-manager.status")
+      .create({
+        data: {
+          name: data.name,
+          published: data.published ?? false,
+          order: data.order ?? 0,
+        },
+      });
 
-      const result = await strapi.db
-        .query("plugin::primer-status-manager.status")
-        .create({
-          data: {
-            name: data.name,
-            published: data.published ?? false,
-            order: data.order ?? 0,
-          },
-        });
-
-      return result;
+    return result;
   },
 
   async findProductsByStatus(statusId: number) {
@@ -72,7 +69,7 @@ export const statusService = ({ strapi }: { strapi: Core.Strapi }) => ({
   },
 
   async delete(id: number) {
-    return strapi.db.query("plugin::primer-status-manager.status").delete({
+    return strapi.db.query("plugin::primershop-status-manager.status").delete({
       where: { id },
     });
   },
@@ -80,7 +77,7 @@ export const statusService = ({ strapi }: { strapi: Core.Strapi }) => ({
   async deleteStatus(statusId: number, replacementId?: number) {
     // Find status by documentId
     const status = await strapi.db
-      .query("plugin::primer-status-manager.status")
+      .query("plugin::primershop-status-manager.status")
       .findOne({
         where: { documentId: statusId },
       });
@@ -91,7 +88,7 @@ export const statusService = ({ strapi }: { strapi: Core.Strapi }) => ({
 
     if (replacementId) {
       const replacementStatus = await strapi.db
-        .query("plugin::primer-status-manager.status")
+        .query("plugin::primershop-status-manager.status")
         .findOne({
           where: { documentId: replacementId },
         });
@@ -102,7 +99,7 @@ export const statusService = ({ strapi }: { strapi: Core.Strapi }) => ({
     }
 
     // Delete the status
-    await strapi.db.query("plugin::primer-status-manager.status").delete({
+    await strapi.db.query("plugin::primershop-status-manager.status").delete({
       where: { documentId: statusId },
     });
 

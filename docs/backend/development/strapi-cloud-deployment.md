@@ -66,12 +66,14 @@ If you need to set up Strapi Cloud integration:
    - Configure deployment settings:
      - **Branch**: `main`
      - **Root Directory**: `apps/backend`
-     - **Build Command**: `npm run build:all`
+     - **Build Command**: `npm run build` (or `npm run build:all` - both are equivalent now)
      - **Start Command**: `npm start`
+     - **Install Command**: `npm ci` (optional, but recommended for reproducible builds)
 
 4. **Configure Environment Variables**:
    - In Strapi Cloud Dashboard → **Settings** → **Environment Variables**
    - Add all required environment variables for your backend
+   - **Important**: If using private npm packages, add `NPM_TOKEN` environment variable with your npm access token
 
 ## Manual Deployment
 

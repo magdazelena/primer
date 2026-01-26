@@ -1,10 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 
-import {
-  SingleSelect,
-  SingleSelectOption,
-  Flex,
-} from "@strapi/design-system";
+import { SingleSelect, SingleSelectOption, Flex } from "@strapi/design-system";
 import {
   useFetchClient,
   unstable_useContentManagerContext as useContentManagerContext,
@@ -20,18 +16,22 @@ const StatusFilter = () => {
   const [statuses, setStatuses] = useState<Status[]>([]);
   const [selected, setSelected] = useState<string | undefined>("");
   const { get } = useFetchClient();
-  const [{ query }, setQuery] = useQueryParams<{page: number, plugins: { 'primer-status-manager': { statusName: string } } }>();
-
+  const [{ query }, setQuery] = useQueryParams<{
+    page: number;
+    plugins: { "primershop-status-manager": { statusName: string } };
+  }>();
 
   const handleStatusChange = useCallback(
     (name: string) => {
       setQuery(
         {
           page: 1,
-          plugins: { ...query.plugins, "primer-status-manager": { statusName: name.toLowerCase() } },
-
+          plugins: {
+            ...query.plugins,
+            "primershop-status-manager": { statusName: name.toLowerCase() },
+          },
         },
-        'push',
+        "push",
         true
       );
     },
@@ -40,9 +40,12 @@ const StatusFilter = () => {
   );
 
   useEffect(() => {
-    const selectedStatusName = query.plugins?.['primer-status-manager']?.statusName; 
-    if(!selectedStatusName) return;
-    const status = statuses.find((status) => status.name.toLowerCase() === selectedStatusName);
+    const selectedStatusName =
+      query.plugins?.["primershop-status-manager"]?.statusName;
+    if (!selectedStatusName) return;
+    const status = statuses.find(
+      (status) => status.name.toLowerCase() === selectedStatusName
+    );
     if (status) {
       setSelected(status.name);
     }
@@ -51,25 +54,27 @@ const StatusFilter = () => {
   useEffect(() => {
     async function fetchStatuses() {
       try {
-        const { data } = await get("primer-status-manager/statuses");
+        const { data } = await get("primershop-status-manager/statuses");
         const allStatusesObject = {
           documentId: "all",
           name: "All",
-        }
+        };
         setStatuses([allStatusesObject, ...data]);
       } catch (error) {
         console.error("Error fetching statuses:", error);
       }
     }
-   fetchStatuses();
+    fetchStatuses();
   }, [get]);
 
   return (
-    <Flex
-      direction="column"
-      justifyContent="center"
-    >
-      <SingleSelect size="S" placeholder={`${contentType?.info.displayName} status`} value={selected} onChange={handleStatusChange}>
+    <Flex direction="column" justifyContent="center">
+      <SingleSelect
+        size="S"
+        placeholder={`${contentType?.info.displayName} status`}
+        value={selected}
+        onChange={handleStatusChange}
+      >
         {statuses.map((status) => (
           <SingleSelectOption key={status.documentId} value={status.name}>
             {status.name}

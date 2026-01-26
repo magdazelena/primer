@@ -4,7 +4,7 @@ import { services } from "./services";
 import { register } from "./register";
 import { bootstrap } from "./bootstrap";
 
-export const plugin = () => {
+const plugin = () => {
   return {
     register,
 

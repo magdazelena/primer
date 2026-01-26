@@ -1,11 +1,11 @@
-# @primer/strapi-plugin-status-manager
+# @primershop/strapi-plugin-status-manager
 
 A Strapi plugin that enables more status variations for your content.
 
 ## Installation
 
 ```bash
-npm install @primer/strapi-plugin-status-manager
+npm install @primershop/strapi-plugin-status-manager
 ```
 
 ## Usage
@@ -49,4 +49,4 @@ npm publish
 
 ## License
 
-MIT 
+MIT

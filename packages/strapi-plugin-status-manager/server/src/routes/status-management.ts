@@ -8,14 +8,14 @@ export default [
         {
           name: "admin::hasPermissions",
           config: {
-            actions: ["plugin::primer-status-manager.status.read"],
+            actions: ["plugin::primershop-status-manager.status.read"],
           },
         },
       ],
     },
     description: "Get all statuses",
     tag: {
-      plugin: "primer-status-manager",
+      plugin: "primershop-status-manager",
       name: "statuses",
       actionType: "findMany",
     },
@@ -29,14 +29,14 @@ export default [
         {
           name: "admin::hasPermissions",
           config: {
-            actions: ["plugin::primer-status-manager.status.create"],
+            actions: ["plugin::primershop-status-manager.status.create"],
           },
         },
       ],
     },
     description: "Create a new status",
     tag: {
-      plugin: "primer-status-manager",
+      plugin: "primershop-status-manager",
       name: "Status",
       actionType: "create",
     },
@@ -50,13 +50,13 @@ export default [
         {
           name: "admin::hasPermissions",
           config: {
-            actions: ["plugin::primer-status-manager.status.update"],
+            actions: ["plugin::primershop-status-manager.status.update"],
           },
         },
       ],
       description: "Reorder statuses",
       tag: {
-        plugin: "primer-status-manager",
+        plugin: "primershop-status-manager",
         name: "Status",
         actionType: "update",
       },
@@ -71,13 +71,13 @@ export default [
         {
           name: "admin::hasPermissions",
           config: {
-            actions: ["plugin::primer-status-manager.status.delete"],
+            actions: ["plugin::primershop-status-manager.status.delete"],
           },
         },
       ],
       description: "Delete a status",
       tag: {
-        plugin: "primer-status-manager",
+        plugin: "primershop-status-manager",
         name: "Status",
         actionType: "delete",
       },
@@ -92,13 +92,13 @@ export default [
         {
           name: "admin::hasPermissions",
           config: {
-            actions: ["plugin::primer-status-manager.status.update"],
+            actions: ["plugin::primershop-status-manager.status.update"],
           },
         },
       ],
       description: "Update status publish state",
       tag: {
-        plugin: "primer-status-manager",
+        plugin: "primershop-status-manager",
         name: "Status",
         actionType: "update",
       },

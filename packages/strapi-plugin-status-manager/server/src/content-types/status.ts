@@ -37,7 +37,7 @@ export default {
     links: {
       type: "relation",
       relation: "oneToMany",
-      target: "plugin::primer-status-manager.status-link",
+      target: "plugin::primershop-status-manager.status-link",
       mappedBy: "status",
       configurable: false,
     },

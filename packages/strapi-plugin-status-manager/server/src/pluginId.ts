@@ -1,1 +1,1 @@
-export const PLUGIN_ID = "primer-status-manager";
+export const PLUGIN_ID = "primershop-status-manager";

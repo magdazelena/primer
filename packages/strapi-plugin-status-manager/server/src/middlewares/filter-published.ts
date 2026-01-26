@@ -21,7 +21,7 @@ export default async (
   if ((!params && !params["status"]) || params["statusName"]) return next();
 
   const unpublishedStatusLinks = await strapi.db
-    .query("plugin::primer-status-manager.status-link")
+    .query("plugin::primershop-status-manager.status-link")
     .findMany({
       populate: {
         status: true,

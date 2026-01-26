@@ -1,1 +1,1 @@
-export const PLUGIN_ID = "primer-product-actions";
+export const PLUGIN_ID = "primershop-product-actions";

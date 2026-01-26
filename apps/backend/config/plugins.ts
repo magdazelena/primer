@@ -1,8 +1,8 @@
 export default () => ({
-  "primer-status-manager": {
+  "primershop-status-manager": {
     enabled: true,
   },
-  "primer-product-actions": {
+  "primershop-product-actions": {
     enabled: true,
   },
 });

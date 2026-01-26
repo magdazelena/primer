@@ -49,7 +49,7 @@ const StatusManager = () => {
   // Fetch statuses
   useEffect(() => {
     const loadStatuses = async () => {
-      const { data } = await get("primer-status-manager/statuses");
+      const { data } = await get("primershop-status-manager/statuses");
       setStatuses(data);
     };
     loadStatuses();
@@ -63,7 +63,7 @@ const StatusManager = () => {
     if (!newStatus || !validateInput(newStatus))
       return alert("Only Latin characters allowed!");
     try {
-      const { data } = await post("primer-status-manager/status", {
+      const { data } = await post("primershop-status-manager/status", {
         name: newStatus,
         published: false,
       });
@@ -106,12 +106,12 @@ const StatusManager = () => {
         order: index,
       }));
 
-      await put("/primer-status-manager/statuses/reorder", {
+      await put("/primershop-status-manager/statuses/reorder", {
         statuses: orderedIds,
       });
       setStatuses(reordered);
     },
-    [statuses, put],
+    [statuses, put]
   );
 
   // Setup drag and drop
@@ -169,7 +169,7 @@ const StatusManager = () => {
               element,
               input,
               allowedEdges: ["top", "bottom"],
-            },
+            }
           );
         },
         onDrag({ source, self }) {
@@ -201,7 +201,7 @@ const StatusManager = () => {
           const sourceData = source.data;
           const targetData = self.data;
           const indexOfTarget = statuses.findIndex(
-            (s) => s.documentId === targetData.statusId,
+            (s) => s.documentId === targetData.statusId
           );
           if (indexOfTarget < 0) return;
 
@@ -231,7 +231,7 @@ const StatusManager = () => {
         const targetData = target.data;
 
         const indexOfTarget = statuses.findIndex(
-          (s) => s.documentId === targetData.statusId,
+          (s) => s.documentId === targetData.statusId
         );
         if (indexOfTarget < 0) return;
 
@@ -262,19 +262,19 @@ const StatusManager = () => {
     if (!replacementStatus) return alert("Select a replacement status!");
 
     const replacementStatusObj = statuses.find(
-      (s) => s.name === replacementStatus,
+      (s) => s.name === replacementStatus
     );
     if (!replacementStatusObj) return alert("Replacement status not found!");
 
     try {
-      await put("/primer-status-manager/statuses/delete", {
+      await put("/primershop-status-manager/statuses/delete", {
         statusId: statusToDelete?.documentId,
         replacementId: replacementStatusObj.documentId,
       });
 
       // Remove the deleted status from the list
       setStatuses(
-        statuses.filter((s) => s.documentId !== statusToDelete?.documentId),
+        statuses.filter((s) => s.documentId !== statusToDelete?.documentId)
       );
       setStatusToDelete(null);
       setReplacementStatus("");
@@ -286,13 +286,13 @@ const StatusManager = () => {
   // Toggle publish status
   const togglePublish = async (id: string, published: boolean) => {
     try {
-      await put(`/primer-status-manager/statuses/${id}`, {
+      await put(`/primershop-status-manager/statuses/${id}`, {
         published: !published,
       });
       setStatuses(
         statuses.map((s) =>
-          s.documentId === id ? { ...s, published: !published } : s,
-        ),
+          s.documentId === id ? { ...s, published: !published } : s
+        )
       );
     } catch (error) {
       console.error("Error toggling publish status:", error);
@@ -378,7 +378,7 @@ const StatusManager = () => {
                     >
                       {statuses
                         .filter(
-                          (s) => s.documentId !== statusToDelete.documentId,
+                          (s) => s.documentId !== statusToDelete.documentId
                         )
                         .map((s) => (
                           <SingleSelectOption

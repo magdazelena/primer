@@ -98,7 +98,7 @@ const baseOutput = ({ outDir, rootDir }) => {
       dir: outDir,
       entryFileNames: "[name].js",
       chunkFileNames: "[name]-[hash].js",
-      exports: "auto",
+      exports: "default",
       format: "cjs",
       sourcemap: true,
       preserveModules: true,
