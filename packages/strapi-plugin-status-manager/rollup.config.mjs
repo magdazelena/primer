@@ -50,14 +50,13 @@ const baseConfig = (opts = {}) => {
     rootDir,
     outDir = "./dist",
     input = "./src/index.ts",
-    isAdmin = false,
     ...rest
   } = opts;
 
   return defineConfig({
     input,
     external: isExernal,
-    output: baseOutput({ outDir, rootDir, isAdmin }),
+    output: baseOutput({ outDir, rootDir }),
     plugins: basePlugins(),
     onwarn(warning, warn) {
       if (warning.code === "MIXED_EXPORTS") {
@@ -85,9 +84,7 @@ const baseConfig = (opts = {}) => {
   });
 };
 
-const baseOutput = ({ outDir, rootDir, isAdmin = false }) => {
-  // For admin builds, don't preserve modules so we can use exports: "default"
-  const preserveModules = !isAdmin;
+const baseOutput = ({ outDir, rootDir }) => {
   
   return [
     {
@@ -97,18 +94,17 @@ const baseOutput = ({ outDir, rootDir, isAdmin = false }) => {
       exports: "auto",
       format: "cjs",
       sourcemap: true,
-      preserveModules,
-      ...(preserveModules && rootDir ? { preserveModulesRoot: rootDir } : {}),
+      preserveModules: true,
+      ...( rootDir ? { preserveModulesRoot: rootDir } : {}),
     },
     {
       dir: outDir,
       entryFileNames: "[name].mjs",
       chunkFileNames: "[name]-[hash].mjs",
-      exports: isAdmin ? "default" : "auto",
       format: "esm",
       sourcemap: true,
-      preserveModules,
-      ...(preserveModules && rootDir ? { preserveModulesRoot: rootDir } : {}),
+      preserveModules: true,
+      ...( rootDir ? { preserveModulesRoot: rootDir } : {}),
     },
   ];
 };
@@ -121,7 +117,6 @@ const basePluginConfig = () => {
       },
       rootDir: "./server/src",
       outDir: "./dist/server",
-      isAdmin: false,
     }),
     baseConfig({
       input: {
@@ -129,7 +124,6 @@ const basePluginConfig = () => {
       },
       rootDir: "./admin/src",
       outDir: "./dist/admin",
-      isAdmin: true,
     }),
   ]);
 };
