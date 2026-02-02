@@ -4,7 +4,6 @@
   "version": "0.0.2",
   "workspaces": [
     "apps/*",
-    "packages/*",
     "cli"
   ],
   "scripts": {
@@ -28,6 +27,7 @@
     "@eslint/js": "^9.39.2",
     "@types/jest": "^30.0.0",
     "eslint": "9.39.2",
+    "eslint-config-primer": "*",
     "jest": "^30.2.0",
     "npm-check-updates": "^19.3.1",
     "ts-jest": "^29.4.6",

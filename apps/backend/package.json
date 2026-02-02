@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "strapi develop",
-    "build": "strapi build",
+    "build": "npm install &&strapi build",
     "build:all": "npm run build",
     "build:plugins": "npm run build:strapi-plugin-product-actions && npm run build:strapi-plugin-status-manager",
     "build:strapi-plugin-product-actions": "cd ../../packages/strapi-plugin-product-actions && npm run build:code",
@@ -42,7 +42,6 @@
     "@strapi/types": "^5.29.0",
     "@types/node": "^25.0.2",
     "eslint": "9.39.2",
-    "eslint-config-primer": "*",
     "jest": "^30.2.0",
     "jest-environment-jsdom": "^30.2.0"
   }
