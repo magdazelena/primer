@@ -1,15 +1,17 @@
 {
   "name": "@primershop/strapi-plugin-status-manager",
-  "version": "0.0.16",
-  "description": "Enables more status variations for Strapi (v0.0.16)",
+  "version": "0.0.17",
+  "description": "Enables more status variations for Strapi (v0.0.17)",
   "exports": {
     "./strapi-admin": {
       "import": "./dist/admin/index.mjs",
       "require": "./dist/admin/index.js",
+      "source": "./admin/src/index.ts",
       "default": "./dist/admin/index.js"
     },
     "./strapi-server": {
       "import": "./dist/server/index.mjs",
+      "source": "./server/src/index.ts",
       "require": "./dist/server/index.js",
       "default": "./dist/server/index.js"
     },
@@ -19,7 +21,8 @@
     "dist/"
   ],
   "scripts": {
-    "build": "npm-run-all clean --parallel build:code",
+    "build": "pack-up build",
+    "check": "pack-up check",
     "build:code": "rollup -c",
     "build:dev": "rollup -c rollup.config.dev.mjs",
     "build:types": "run-p build:types:server build:types:admin",
@@ -73,9 +76,9 @@
     "@strapi/admin": "^5.29.0",
     "@strapi/content-manager": "^5.29.0",
     "@strapi/types": "^5.29.0",
+    "@types/node": "^25.0.2",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
-    "@types/node": "^25.0.2",
     "cross-env": "^10.0.0",
     "eslint": "9.39.2",
     "jest": "^30.2.0",
@@ -92,11 +95,12 @@
     "kind": "plugin",
     "name": "primershop-status-manager",
     "displayName": "Status Manager",
-    "description": "Manages content statuses (v0.0.16)"
+    "description": "Manages content statuses (v0.0.17)"
   },
   "dependencies": {
     "@strapi/design-system": "^2.0.0-rc.27",
     "@strapi/icons": "^2.0.0-rc.27",
+    "@strapi/pack-up": "^5.1.1",
     "@strapi/utils": "^5.29.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
