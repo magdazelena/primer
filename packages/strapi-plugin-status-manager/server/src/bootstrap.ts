@@ -2,11 +2,13 @@ import statusActions from "./permissions";
 import type { Core } from "@strapi/strapi";
 
 const bootstrap = async ({ strapi }: { strapi: Core.Strapi }) => {
-  strapi.admin.services.permission.actionProvider.registerMany(statusActions.actions);
   try {
-    await strapi
-      .service("admin::permission")
-      .actionProvider.registerMany(statusActions.actions);
+    strapi.admin.services.permission.actionProvider.registerMany(
+      statusActions.actions
+    );
+    strapi.log.info(
+      `[primershop-status-manager] Registered ${statusActions.actions.length} permission actions`
+    );
   } catch (error) {
     strapi.log.error(
       "[primershop-status-manager] Failed to register permissions:",

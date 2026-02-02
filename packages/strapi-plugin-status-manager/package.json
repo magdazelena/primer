@@ -1,7 +1,7 @@
 {
   "name": "@primershop/strapi-plugin-status-manager",
-  "version": "0.0.9",
-  "description": "Enables more status variations for Strapi (v0.0.9)",
+  "version": "0.0.13",
+  "description": "Enables more status variations for Strapi (v0.0.13)",
   "exports": {
     "./strapi-admin": {
       "import": "./dist/admin/index.mjs",
@@ -92,7 +92,7 @@
     "kind": "plugin",
     "name": "primershop-status-manager",
     "displayName": "Status Manager",
-    "description": "Manages content statuses (v0.0.9)"
+    "description": "Manages content statuses (v0.0.13)"
   },
   "dependencies": {
     "@strapi/design-system": "^2.0.0-rc.27",
