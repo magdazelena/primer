@@ -1,7 +1,7 @@
 {
   "name": "@primershop/strapi-plugin-product-actions",
-  "version": "0.0.8",
-  "description": "Enables product actions for Strapi (v0.0.8)",
+  "version": "0.0.9",
+  "description": "Enables product actions for Strapi (v0.0.9)",
   "exports": {
     "./strapi-admin": {
       "import": "./dist/admin/index.mjs",
@@ -89,7 +89,7 @@
     "kind": "plugin",
     "name": "primershop-product-actions",
     "displayName": "Product Actions",
-    "description": "Enables product actions (v0.0.8)"
+    "description": "Enables product actions (v0.0.9)"
   },
   "dependencies": {
     "@strapi/design-system": "^2.0.0-rc.27",
