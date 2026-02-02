@@ -6,7 +6,7 @@ import filterPublished from "./middlewares/filter-published";
 
 
 
-export const register = ({ strapi }: { strapi: Core.Strapi }): void => {
+const register = ({ strapi }: { strapi: Core.Strapi }): void => {
   strapi.customFields.register({
     name: "statusName",
     plugin: PLUGIN_ID,
@@ -17,3 +17,5 @@ export const register = ({ strapi }: { strapi: Core.Strapi }): void => {
   strapi.documents.use(addStatusField);
   strapi.documents.use(filterPublished);
 };
+
+export default register;

@@ -24,7 +24,7 @@ const plugin = {
         id: `${PLUGIN_ID}.plugin.name`,
         defaultMessage: "Status manager",
       },
-      permissions: pluginPermissions.accessStatusManager,
+      permissions: [pluginPermissions.accessStatusManager[0]],
       Component: () =>
         import("./pages/HomePage").then((module) => ({
           default: module.HomePage,

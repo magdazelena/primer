@@ -2,6 +2,7 @@ import statusActions from "./permissions";
 import type { Core } from "@strapi/strapi";
 
 const bootstrap = async ({ strapi }: { strapi: Core.Strapi }) => {
+  strapi.admin.services.permission.actionProvider.registerMany(statusActions.actions);
   try {
     await strapi
       .service("admin::permission")
