@@ -8,8 +8,9 @@ module.exports = defineConfig([
     files: ["**/*.ts", "**/*.tsx"],
     languageOptions: {
       parserOptions: {
-        // Resolve tsconfig with an absolute path to avoid cwd/monorepo issues
-        project: [path.join(__dirname, "tsconfig.json")],
+        // Override project path to resolve tsconfig relative to this config file
+        project: [path.resolve(__dirname, "tsconfig.json")],
+        tsconfigRootDir: __dirname,
       },
     },
     rules: {

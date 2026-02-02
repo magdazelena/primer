@@ -1,7 +1,7 @@
 import { PLUGIN_ID } from "./pluginId";
 import type { Core } from "@strapi/strapi";
 
-export const register = ({ strapi }: { strapi: Core.Strapi }): void => {
+const register = ({ strapi }: { strapi: Core.Strapi }): void => {
   // Register permissions
   strapi.admin.services.permission.actionProvider.register({
     section: "plugins",
@@ -10,3 +10,5 @@ export const register = ({ strapi }: { strapi: Core.Strapi }): void => {
     pluginName: PLUGIN_ID,
   });
 };
+
+export default register;
