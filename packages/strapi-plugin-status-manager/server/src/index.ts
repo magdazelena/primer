@@ -5,8 +5,7 @@ import register from "./register";
 import { routes } from "./routes";
 import { services } from "./services";
 
-const plugin = () => {
-  const pluginConfig = {
+export default {
     register,
     controllers,
     contentTypes,
@@ -14,8 +13,3 @@ const plugin = () => {
     services,
     bootstrap,
   };
-
-  return pluginConfig;
-};
-
-export default plugin;

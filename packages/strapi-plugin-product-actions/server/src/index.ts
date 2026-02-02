@@ -4,8 +4,7 @@ import { services } from "./services";
 import register from "./register";
 import bootstrap from "./bootstrap";
 
-const plugin = () => {
-  return {
+export default {
     register,
 
     controllers,
@@ -14,6 +13,3 @@ const plugin = () => {
     middlewares: {},
     bootstrap,
   };
-};
-
-export default plugin;
