@@ -12,13 +12,6 @@ export const register = ({ strapi }: { strapi: Core.Strapi }): void => {
     plugin: PLUGIN_ID,
     type: "string",
   });
-  // Register permissions
-  strapi.admin.services.permission.actionProvider.register({
-    section: "plugins",
-    displayName: "Status Manager",
-    uid: PLUGIN_ID,
-    pluginName: PLUGIN_ID,
-  });
 
   strapi.documents.use(filterByStatus);
   strapi.documents.use(addStatusField);

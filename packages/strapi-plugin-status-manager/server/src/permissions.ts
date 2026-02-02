@@ -1,7 +1,12 @@
 export default {
   actions: [
     {
-      // Roles
+      section: "plugins",
+      displayName: "Access Status Manager",
+      uid: "main",
+      pluginName: "primershop-status-manager",
+    },
+    {
       section: "plugins",
       displayName: "Create",
       uid: "status.create",

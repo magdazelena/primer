@@ -3,6 +3,7 @@ import { PluginIcon } from "./components/PluginIcon";
 import { ProductStatusField } from "./components/ProductStatusField";
 import { PLUGIN_ID } from "./pluginId";
 import { addStatusColumnHook } from "./listView/add-status-column-hook";
+import pluginPermissions from "./permissions";
 
 import type { StrapiApp } from "@strapi/admin/strapi-admin";
 import { StatusFilter } from "./listView/StatusFilter";
@@ -23,7 +24,7 @@ const plugin = {
         id: `${PLUGIN_ID}.plugin.name`,
         defaultMessage: "Status manager",
       },
-      permissions: [],
+      permissions: pluginPermissions.accessStatusManager,
       Component: () =>
         import("./pages/HomePage").then((module) => ({
           default: module.HomePage,

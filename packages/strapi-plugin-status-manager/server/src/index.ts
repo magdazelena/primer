@@ -1,4 +1,4 @@
-import { bootstrap } from "./bootstrap";
+import bootstrap from "./bootstrap";
 import contentTypes from "./content-types/index";
 import { controllers } from "./controllers";
 import { register } from "./register";

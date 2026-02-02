@@ -1,7 +1,12 @@
 export const permissions = {
   actions: [
     {
-      // Roles
+      section: "plugins",
+      displayName: "Use product actions",
+      uid: "use",
+      pluginName: "primershop-product-actions",
+    },
+    {
       section: "plugins",
       displayName: "Create",
       uid: "product-series.create",

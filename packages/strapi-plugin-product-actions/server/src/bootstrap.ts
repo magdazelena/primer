@@ -1,20 +1,18 @@
 import { permissions } from "./permissions";
+import type { Core } from "@strapi/strapi";
 
-interface StrapiInstance {
-  db?: unknown;
-  contentTypes?: Record<string, unknown>;
-  service: (name: string) => {
-    actionProvider: { registerMany: (actions: unknown) => Promise<void> };
-  };
-}
-
-export const bootstrap = async ({ strapi }: { strapi: StrapiInstance }) => {
-  // Register permissions for the plugin
+const bootstrap = async ({ strapi }: { strapi: Core.Strapi }) => {
   try {
     await strapi
       .service("admin::permission")
       .actionProvider.registerMany(permissions.actions);
   } catch (error) {
-    // Handle error silently or log to proper logging service
+    strapi.log.error(
+      "[primershop-product-actions] Failed to register permissions:",
+      error
+    );
+    throw error;
   }
 };
+
+export default bootstrap;

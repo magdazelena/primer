@@ -2,12 +2,14 @@ import { Flex, Typography, Box } from "@strapi/design-system";
 import { Layouts, Page } from "@strapi/strapi/admin";
 
 import { StatusManager } from "../components/StatusManager";
+import pluginPermissions from "../permissions";
 
 const HomePage = () => {
   return (
     <Layouts.Root>
       <Page.Title>Status Manager</Page.Title>
       <Page.Main>
+        <Page.Protect permissions={pluginPermissions.accessStatusManager}>
         <Layouts.Content>
           <Box>
             <Flex
@@ -33,6 +35,7 @@ const HomePage = () => {
             </Flex>
           </Box>
         </Layouts.Content>
+        </Page.Protect>
       </Page.Main>
     </Layouts.Root>
   );

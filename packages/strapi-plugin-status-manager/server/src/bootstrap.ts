@@ -1,10 +1,18 @@
 import statusActions from "./permissions";
 import type { Core } from "@strapi/strapi";
 
-export const bootstrap = async ({ strapi }: { strapi: Core.Strapi }) => {
-  await strapi
-    .service("admin::permission")
-    .actionProvider.registerMany(statusActions.actions);
+const bootstrap = async ({ strapi }: { strapi: Core.Strapi }) => {
+  try {
+    await strapi
+      .service("admin::permission")
+      .actionProvider.registerMany(statusActions.actions);
+  } catch (error) {
+    strapi.log.error(
+      "[primershop-status-manager] Failed to register permissions:",
+      error
+    );
+    throw error;
+  }
 
   // Register lifecycle hooks for status filtering
   strapi.db?.lifecycles?.subscribe?.({
@@ -28,3 +36,5 @@ export const bootstrap = async ({ strapi }: { strapi: Core.Strapi }) => {
     },
   });
 };
+
+export default bootstrap;
