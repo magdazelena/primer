@@ -1,7 +1,7 @@
 import { statusService } from "./status";
 import { statusLinkService } from "./status-link";
 
-export const services = {
+export default {
   status: statusService,
   statusLink: statusLinkService,
 };

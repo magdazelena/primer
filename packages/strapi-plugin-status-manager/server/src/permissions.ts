@@ -1,5 +1,4 @@
-export default {
-  actions: [
+export default [
     {
       section: "plugins",
       displayName: "Access Status Manager",
@@ -40,5 +39,4 @@ export default {
       subCategory: "status",
       pluginName: "primershop-status-manager",
     },
-  ],
-};
+  ]

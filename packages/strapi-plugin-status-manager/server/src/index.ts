@@ -1,9 +1,9 @@
 import bootstrap from "./bootstrap";
-import contentTypes from "./content-types/index";
-import { controllers } from "./controllers";
+import contentTypes from "./content-types";
+import controllers from "./controllers";
 import register from "./register";
-import { routes } from "./routes";
-import { services } from "./services";
+import routes from "./routes";
+import services from "./services";
 
 export default {
     register,
@@ -11,5 +11,5 @@ export default {
     contentTypes,
     routes,
     services,
-    bootstrap,
+    bootstrap
   };

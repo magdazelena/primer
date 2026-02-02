@@ -1,13 +1,13 @@
-import statusActions from "./permissions";
+import permissions from "./permissions";
 import type { Core } from "@strapi/strapi";
 
 const bootstrap = async ({ strapi }: { strapi: Core.Strapi }) => {
   try {
     strapi.admin.services.permission.actionProvider.registerMany(
-      statusActions.actions
+      permissions
     );
     strapi.log.info(
-      `[primershop-status-manager] Registered ${statusActions.actions.length} permission actions`
+      `[primershop-status-manager] Registered ${permissions.length} permission actions`
     );
   } catch (error) {
     strapi.log.error(

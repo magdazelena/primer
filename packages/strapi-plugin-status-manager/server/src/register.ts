@@ -4,8 +4,6 @@ import addStatusField from "./middlewares/add-status-field";
 import filterByStatus from "./middlewares/filter-by-status";
 import filterPublished from "./middlewares/filter-published";
 
-
-
 const register = ({ strapi }: { strapi: Core.Strapi }): void => {
   strapi.customFields.register({
     name: "statusName",
