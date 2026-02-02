@@ -1,7 +1,7 @@
 {
   "name": "@primershop/strapi-plugin-product-actions",
-  "version": "0.0.7",
-  "description": "Enables product actions for Strapi",
+  "version": "0.0.8",
+  "description": "Enables product actions for Strapi (v0.0.8)",
   "exports": {
     "./strapi-admin": {
       "import": "./dist/admin/index.mjs",
@@ -30,7 +30,11 @@
     "test:ts:front": "tsc -p admin/tsconfig.json",
     "test:unit": "jest",
     "test:unit:watch": "jest --watch",
-    "watch": "rollup -c -w"
+    "watch": "rollup -c -w",
+    "deploy": "node ../../scripts/plugin-deploy.js strapi-plugin-product-actions",
+    "deploy:patch": "node ../../scripts/plugin-deploy.js strapi-plugin-product-actions patch",
+    "deploy:minor": "node ../../scripts/plugin-deploy.js strapi-plugin-product-actions minor",
+    "deploy:major": "node ../../scripts/plugin-deploy.js strapi-plugin-product-actions major"
   },
   "keywords": [
     "strapi",
@@ -85,7 +89,7 @@
     "kind": "plugin",
     "name": "primershop-product-actions",
     "displayName": "Product Actions",
-    "description": "Enables product actions"
+    "description": "Enables product actions (v0.0.8)"
   },
   "dependencies": {
     "@strapi/design-system": "^2.0.0-rc.27",

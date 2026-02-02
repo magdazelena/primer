@@ -1,7 +1,7 @@
 {
   "name": "@primershop/strapi-plugin-status-manager",
-  "version": "0.0.7",
-  "description": "Enables more status variations for Strapi",
+  "version": "0.0.8",
+  "description": "Enables more status variations for Strapi (v0.0.8)",
   "exports": {
     "./strapi-admin": {
       "import": "./dist/admin/index.mjs",
@@ -33,7 +33,11 @@
     "test:unit:watch": "jest --watch",
     "watch": "rollup -c -w",
     "dev": "NODE_ENV=development DEBUG=true rollup -c rollup.config.dev.mjs -w",
-    "test:debug": "NODE_ENV=development DEBUG=true node test-debug.js"
+    "test:debug": "NODE_ENV=development DEBUG=true node test-debug.js",
+    "deploy": "node ../../scripts/plugin-deploy.js strapi-plugin-status-manager",
+    "deploy:patch": "node ../../scripts/plugin-deploy.js strapi-plugin-status-manager patch",
+    "deploy:minor": "node ../../scripts/plugin-deploy.js strapi-plugin-status-manager minor",
+    "deploy:major": "node ../../scripts/plugin-deploy.js strapi-plugin-status-manager major"
   },
   "keywords": [
     "strapi",
@@ -88,7 +92,7 @@
     "kind": "plugin",
     "name": "primershop-status-manager",
     "displayName": "Status Manager",
-    "description": "Manages content statuses"
+    "description": "Manages content statuses (v0.0.8)"
   },
   "dependencies": {
     "@strapi/design-system": "^2.0.0-rc.27",
