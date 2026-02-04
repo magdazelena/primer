@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "strapi develop",
     "build": "strapi build",
-    "build:all": "npm run build:strapi-plugin-product-actions && npm run build:strapi-plugin-status-manager && npm run build",
+    "deploy": "strapi deploy",
+    "build:all": "npm run build:plugins && strapi build",
+    "build:plugins": "npm run build:strapi-plugin-product-actions && npm run build:strapi-plugin-status-manager",
     "build:strapi-plugin-product-actions": "cd ../../packages/strapi-plugin-product-actions && npm run build:code",
     "build:strapi-plugin-status-manager": "cd ../../packages/strapi-plugin-status-manager && npm run build:code",
     "start": "strapi start",
@@ -22,10 +24,11 @@
   "dependencies": {
     "@atlaskit/pragmatic-drag-and-drop": "^1.7.7",
     "@atlaskit/pragmatic-drag-and-drop-hitbox": "^1.0.3",
-    "@primer/strapi-plugin-product-actions": "*",
-    "@primer/strapi-plugin-status-manager": "*",
-    "@strapi/plugin-users-permissions": "^5.29.0",
-    "@strapi/strapi": "^5.29.0",
+    "@primershop/strapi-plugin-product-actions": "^0.0.15",
+    "@primershop/strapi-plugin-status-manager": "^0.0.19",
+    "@strapi/plugin-cloud": "^5.34.0",
+    "@strapi/plugin-users-permissions": "^5.34.0",
+    "@strapi/strapi": "^5.34.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/user-event": "^14.4.3",
     "better-sqlite3": "^12.2.0",
@@ -38,11 +41,13 @@
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.35.0",
     "@jest/globals": "^30.0.5",
-    "@strapi/types": "^5.29.0",
+    "@strapi/types": "^5.34.0",
     "@types/node": "^25.0.2",
     "eslint": "9.39.2",
-    "eslint-config-primer": "*",
     "jest": "^30.2.0",
     "jest-environment-jsdom": "^30.2.0"
+  },
+  "strapi": {
+    "uuid": "0f95dc7c-202b-4ab2-a874-3799d23b1640"
   }
 }

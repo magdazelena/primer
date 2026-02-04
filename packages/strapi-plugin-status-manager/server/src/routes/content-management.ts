@@ -7,7 +7,9 @@ export default [
       policies: [
         {
           name: "admin::hasPermissions",
-          config: { actions: ["plugin::primer-status-manager.status.read"] },
+          config: {
+            actions: ["plugin::primershop-status-manager.status.read"],
+          },
         },
       ],
     },
@@ -20,7 +22,9 @@ export default [
       policies: [
         {
           name: "admin::hasPermissions",
-          config: { actions: ["plugin::primer-status-manager.status.update"] },
+          config: {
+            actions: ["plugin::primershop-status-manager.status.update"],
+          },
         },
       ],
     },

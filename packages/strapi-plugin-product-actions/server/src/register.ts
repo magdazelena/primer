@@ -1,12 +1,8 @@
-import { PLUGIN_ID } from "./pluginId";
 import type { Core } from "@strapi/strapi";
 
-export const register = ({ strapi }: { strapi: Core.Strapi }): void => {
-  // Register permissions
-  strapi.admin.services.permission.actionProvider.register({
-    section: "plugins",
-    displayName: "Product Actions",
-    uid: PLUGIN_ID,
-    pluginName: PLUGIN_ID,
-  });
+const register = ({ strapi: _strapi }: { strapi: Core.Strapi }): void => {
+  // Plugin registration (permissions registered in bootstrap only)
+  void _strapi;
 };
+
+export default register;

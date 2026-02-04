@@ -1,7 +1,7 @@
 import { content } from "./content";
 import { status } from "./status";
 
-export const controllers = {
+export default {
   status_controller: status,
   content_controller: content
 };

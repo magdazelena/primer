@@ -10,7 +10,9 @@ export default {
           {
             name: "admin::hasPermissions",
             config: {
-              actions: ["plugin::primer-product-actions.product-series.create"],
+              actions: [
+                "plugin::primershop-product-actions.product-series.create",
+              ],
             },
           },
         ],
@@ -25,7 +27,9 @@ export default {
           {
             name: "admin::hasPermissions",
             config: {
-              actions: ["plugin::primer-product-actions.product-series.update"],
+              actions: [
+                "plugin::primershop-product-actions.product-series.update",
+              ],
             },
           },
         ],

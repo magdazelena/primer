@@ -1,5 +1,8 @@
 import { StatusCell } from "./status-cell";
-import { ListFieldLayout, ListLayout } from "@strapi/content-manager/strapi-admin";
+import {
+  ListFieldLayout,
+  ListLayout,
+} from "@strapi/content-manager/strapi-admin";
 import React from "react";
 import { AnyDocument } from "@strapi/types/dist/modules/documents";
 
@@ -7,12 +10,14 @@ interface AddColumnToTableHookArgs {
   layout: ListLayout;
   displayedHeaders: ListFieldLayout[];
 }
-export const addStatusColumnHook = ({ displayedHeaders, layout }: AddColumnToTableHookArgs) => {
-
+export const addStatusColumnHook = ({
+  displayedHeaders,
+  layout,
+}: AddColumnToTableHookArgs) => {
   const statusHeader = {
     attribute: { type: "custom" },
     name: "statusLabel",
-    label: { id: "primer-status-manager.status", defaultMessage: "Status" },
+    label: { id: "primershop-status-manager.status", defaultMessage: "Status" },
     searchable: false,
     sortable: false,
     cellFormatter: (row: AnyDocument) => {
@@ -21,11 +26,7 @@ export const addStatusColumnHook = ({ displayedHeaders, layout }: AddColumnToTab
   };
 
   return {
-    displayedHeaders: [
-      ...displayedHeaders,
-      statusHeader,
-    ],
+    displayedHeaders: [...displayedHeaders, statusHeader],
     layout,
   };
 };
-

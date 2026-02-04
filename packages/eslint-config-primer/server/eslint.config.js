@@ -28,8 +28,10 @@ module.exports = defineConfig([
       ecmaVersion: 2020,
       sourceType: "module",
       parserOptions: {
+        // Note: Consuming configs should override project and tsconfigRootDir
+        // to point to their specific tsconfig.json location
+        // Example: project: [path.resolve(__dirname, "tsconfig.json")], tsconfigRootDir: __dirname
         project: "./tsconfig.json",
-        tsconfigRootDir: process.cwd(),
       },
     },
     plugins: {

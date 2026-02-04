@@ -1,5 +1,5 @@
 {
-  "name": "primer",
+  "name": "primershop",
   "private": true,
   "version": "0.0.2",
   "workspaces": [
@@ -28,6 +28,7 @@
     "@eslint/js": "^9.39.2",
     "@types/jest": "^30.0.0",
     "eslint": "9.39.2",
+    "eslint-config-primer": "*",
     "jest": "^30.2.0",
     "npm-check-updates": "^19.3.1",
     "ts-jest": "^29.4.6",
@@ -38,8 +39,5 @@
   "engines": {
     "node": ">=20.0.0",
     "npm": ">=6.0.0"
-  },
-  "strapi": {
-    "uuid": "0f95dc7c-202b-4ab2-a874-3799d23b1640"
   }
 }

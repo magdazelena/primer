@@ -1,0 +1,655 @@
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __commonJS = (cb, mod) => function __require() {
+  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+};
+
+// dist/admin/pluginId.js
+var require_pluginId = __commonJS({
+  "dist/admin/pluginId.js"(exports2) {
+    "use strict";
+    var PLUGIN_ID = "primershop-product-actions";
+    exports2.PLUGIN_ID = PLUGIN_ID;
+  }
+});
+
+// dist/admin/components/Initializer/index.js
+var require_Initializer = __commonJS({
+  "dist/admin/components/Initializer/index.js"(exports2) {
+    "use strict";
+    var react = require("react");
+    var pluginId = require_pluginId();
+    var Initializer = ({ setPlugin }) => {
+      const ref = react.useRef(setPlugin);
+      react.useEffect(() => {
+        ref.current(pluginId.PLUGIN_ID);
+      }, []);
+      return null;
+    };
+    exports2.Initializer = Initializer;
+  }
+});
+
+// dist/admin/translations/en.js
+var require_en = __commonJS({
+  "dist/admin/translations/en.js"(exports2) {
+    "use strict";
+    var en = {
+      "plugin.name": "Product Series",
+      "plugin.description": "Manage product series and their products",
+      "product-series.actions.label": "Product Actions",
+      "product-series.actions.createProducts": "Create Products",
+      "product-series.actions.updateProducts": "Update Products",
+      "product-series.actions.createDialogTitle": "Create Products from Series",
+      "product-series.actions.updateDialogTitle": "Update All Products in Series",
+      "product-series.actions.updateDialogDescription": "This will update all products in the series with the selected fields. Make sure to save the series first before updating the products.",
+      "product-series.actions.productCount": "Number of Products",
+      "product-series.actions.create": "Create",
+      "product-series.actions.update": "Update",
+      "product-series.actions.cancel": "Cancel",
+      "product-series.actions.createSuccess": "Products created successfully",
+      "product-series.actions.createError": "Failed to create products",
+      "product-series.actions.updateSuccess": "Products updated successfully",
+      "product-series.actions.updateError": "Failed to update products",
+      "product-series.actions.selectFields": "Select fields to update",
+      "product-series.actions.noDocumentId": "Save the series first before creating products"
+    };
+    exports2.en = en;
+  }
+});
+
+// dist/admin/components/SeriesProductActions/index.js
+var require_SeriesProductActions = __commonJS({
+  "dist/admin/components/SeriesProductActions/index.js"(exports2) {
+    "use strict";
+    var jsxRuntime = require("react/jsx-runtime");
+    var react = require("react");
+    var designSystem = require("@strapi/design-system");
+    var admin = require("@strapi/strapi/admin");
+    var en = require_en();
+    var formatMessage = (arg) => {
+      return en.en[arg.id];
+    };
+    var valuesToUpdate = [
+      "description",
+      "shortDescription",
+      "media",
+      "coverImage",
+      "seo",
+      "totalCost",
+      "wholesalePrice",
+      "retailPrice",
+      "category",
+      "creator"
+    ];
+    var SeriesProductActions = ({ document }) => {
+      const { model } = admin.unstable_useContentManagerContext();
+      const documentId = document?.documentId;
+      const [productCount, setProductCount] = react.useState(1);
+      const [isLoading, setIsLoading] = react.useState(false);
+      const [fieldsToUpdate, setFieldsToUpdate] = react.useState([]);
+      const { post, put } = admin.useFetchClient();
+      if (model !== "api::product-series.product-series")
+        return null;
+      const handleCreateProducts = async () => {
+        try {
+          setIsLoading(true);
+          const response = await post(`primershop-product-actions/create-products`, {
+            count: productCount,
+            id: documentId
+          });
+          if (!response.data) {
+            throw new Error("Failed to create products");
+          }
+          setProductCount(1);
+        } catch (error) {
+          console.error("Error creating products:", error);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      const handleUpdateProducts = async () => {
+        try {
+          setIsLoading(true);
+          const response = await put(`/primershop-product-actions/update-products`, {
+            seriesId: documentId,
+            fieldsToUpdate
+          });
+          if (!response.data) {
+            throw new Error("Failed to update products");
+          }
+        } catch (error) {
+          console.error("Error updating products:", error);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      return {
+        title: "Series Product Actions",
+        content: /* @__PURE__ */ jsxRuntime.jsx(designSystem.Box, {
+          children: /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Box, {
+            children: [
+              /* @__PURE__ */ jsxRuntime.jsx(designSystem.Typography, {
+                variant: "delta",
+                fontWeight: "bold",
+                children: formatMessage({
+                  id: "product-series.actions.label"
+                })
+              }),
+              /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Flex, {
+                wrap: "wrap",
+                children: [
+                  !documentId && /* @__PURE__ */ jsxRuntime.jsx(designSystem.Typography, {
+                    display: "block",
+                    marginTop: 2,
+                    marginBottom: 2,
+                    width: "100%",
+                    color: "red",
+                    children: formatMessage({
+                      id: "product-series.actions.noDocumentId"
+                    })
+                  }),
+                  /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Dialog.Root, {
+                    children: [
+                      /* @__PURE__ */ jsxRuntime.jsx(designSystem.Dialog.Trigger, {
+                        children: /* @__PURE__ */ jsxRuntime.jsx(designSystem.Button, {
+                          variant: "secondary",
+                          disabled: isLoading || !documentId,
+                          children: formatMessage({
+                            id: "product-series.actions.createProducts"
+                          })
+                        })
+                      }),
+                      /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Dialog.Content, {
+                        children: [
+                          /* @__PURE__ */ jsxRuntime.jsx(designSystem.Dialog.Body, {
+                            children: /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Box, {
+                              children: [
+                                /* @__PURE__ */ jsxRuntime.jsx(designSystem.Typography, {
+                                  children: formatMessage({
+                                    id: "product-series.actions.createDialogTitle"
+                                  })
+                                }),
+                                /* @__PURE__ */ jsxRuntime.jsx(designSystem.NumberInput, {
+                                  value: productCount,
+                                  onValueChange: (value) => setProductCount(value || 1),
+                                  min: 1,
+                                  max: 100
+                                })
+                              ]
+                            })
+                          }),
+                          /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Dialog.Footer, {
+                            children: [
+                              /* @__PURE__ */ jsxRuntime.jsx(designSystem.Dialog.Cancel, {
+                                children: /* @__PURE__ */ jsxRuntime.jsx(designSystem.Button, {
+                                  fullWidth: true,
+                                  variant: "tertiary",
+                                  children: "Cancel"
+                                })
+                              }),
+                              /* @__PURE__ */ jsxRuntime.jsx(designSystem.Dialog.Action, {
+                                children: /* @__PURE__ */ jsxRuntime.jsx(designSystem.Button, {
+                                  onClick: handleCreateProducts,
+                                  variant: "default",
+                                  loading: isLoading,
+                                  children: formatMessage({
+                                    id: "product-series.actions.create"
+                                  })
+                                })
+                              })
+                            ]
+                          })
+                        ]
+                      })
+                    ]
+                  }),
+                  /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Dialog.Root, {
+                    children: [
+                      /* @__PURE__ */ jsxRuntime.jsx(designSystem.Dialog.Trigger, {
+                        children: /* @__PURE__ */ jsxRuntime.jsx(designSystem.Button, {
+                          marginLeft: 2,
+                          variant: "secondary",
+                          disabled: isLoading || !documentId,
+                          children: formatMessage({
+                            id: "product-series.actions.updateProducts"
+                          })
+                        })
+                      }),
+                      /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Dialog.Content, {
+                        children: [
+                          /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Dialog.Body, {
+                            display: "flex",
+                            direction: "column",
+                            gap: 2,
+                            justifyContent: "center",
+                            alignItems: "center",
+                            width: "100%",
+                            children: [
+                              /* @__PURE__ */ jsxRuntime.jsx(designSystem.Typography, {
+                                variant: "delta",
+                                fontWeight: "bold",
+                                children: formatMessage({
+                                  id: "product-series.actions.updateDialogTitle"
+                                })
+                              }),
+                              /* @__PURE__ */ jsxRuntime.jsx(designSystem.Typography, {
+                                children: formatMessage({
+                                  id: "product-series.actions.updateDialogDescription"
+                                })
+                              }),
+                              /* @__PURE__ */ jsxRuntime.jsx(designSystem.MultiSelect, {
+                                withTags: true,
+                                value: fieldsToUpdate,
+                                onClear: () => setFieldsToUpdate([]),
+                                onChange: (value) => setFieldsToUpdate(value),
+                                required: true,
+                                placeholder: formatMessage({
+                                  id: "product-series.actions.selectFields"
+                                }),
+                                children: valuesToUpdate.map((field) => /* @__PURE__ */ jsxRuntime.jsx(designSystem.MultiSelectOption, {
+                                  value: field,
+                                  children: field
+                                }, field))
+                              })
+                            ]
+                          }),
+                          /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Dialog.Footer, {
+                            children: [
+                              /* @__PURE__ */ jsxRuntime.jsx(designSystem.Dialog.Cancel, {
+                                children: /* @__PURE__ */ jsxRuntime.jsx(designSystem.Button, {
+                                  fullWidth: true,
+                                  variant: "tertiary",
+                                  children: "Cancel"
+                                })
+                              }),
+                              /* @__PURE__ */ jsxRuntime.jsx(designSystem.Dialog.Action, {
+                                children: /* @__PURE__ */ jsxRuntime.jsx(designSystem.Button, {
+                                  onClick: handleUpdateProducts,
+                                  variant: "default",
+                                  loading: isLoading,
+                                  children: formatMessage({
+                                    id: "product-series.actions.update"
+                                  })
+                                })
+                              })
+                            ]
+                          })
+                        ]
+                      })
+                    ]
+                  })
+                ]
+              })
+            ]
+          })
+        })
+      };
+    };
+    exports2.SeriesProductActions = SeriesProductActions;
+  }
+});
+
+// dist/admin/index.js
+var require_admin = __commonJS({
+  "dist/admin/index.js"(exports2, module2) {
+    "use strict";
+    var index$1 = require_Initializer();
+    var index = require_SeriesProductActions();
+    var pluginId = require_pluginId();
+    var plugin = {
+      register(app) {
+        app.registerPlugin({
+          id: pluginId.PLUGIN_ID,
+          initializer: index$1.Initializer,
+          isReady: false,
+          name: pluginId.PLUGIN_ID
+        });
+      },
+      bootstrap(app) {
+        app.getPlugin("content-manager").apis.addEditViewSidePanel((panels) => {
+          return [
+            ...panels,
+            index.SeriesProductActions
+          ];
+        });
+      }
+    };
+    module2.exports = plugin;
+  }
+});
+
+// dist/server/controllers/product-series.js
+var require_product_series = __commonJS({
+  "dist/server/controllers/product-series.js"(exports2, module2) {
+    "use strict";
+    var productSeries = ({ strapi }) => ({
+      async createProducts(ctx) {
+        try {
+          const { id, count = 1 } = ctx.request.body;
+          const products = await strapi.plugin("primershop-product-actions").service("productSeries").createProductsFromSeries(id, count);
+          return {
+            data: products
+          };
+        } catch (error) {
+          ctx.throw(500, error);
+        }
+      },
+      async updateProducts(ctx) {
+        try {
+          const { seriesId, fieldsToUpdate } = ctx.request.body;
+          await strapi.plugin("primershop-product-actions").service("productSeries").updateSeriesProducts(seriesId, fieldsToUpdate);
+          return {
+            success: true
+          };
+        } catch (error) {
+          ctx.throw(500, error);
+        }
+      }
+    });
+    module2.exports = productSeries;
+  }
+});
+
+// dist/server/controllers/index.js
+var require_controllers = __commonJS({
+  "dist/server/controllers/index.js"(exports2, module2) {
+    "use strict";
+    var productSeries = require_product_series();
+    var controllers = {
+      productSeries
+    };
+    module2.exports = controllers;
+  }
+});
+
+// dist/server/routes/admin.js
+var require_admin2 = __commonJS({
+  "dist/server/routes/admin.js"(exports2, module2) {
+    "use strict";
+    var admin = {
+      type: "admin",
+      routes: [
+        {
+          method: "POST",
+          path: "/create-products",
+          handler: "productSeries.createProducts",
+          config: {
+            policies: [
+              {
+                name: "admin::hasPermissions",
+                config: {
+                  actions: [
+                    "plugin::primershop-product-actions.product-series.create"
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          method: "PUT",
+          path: "/update-products",
+          handler: "productSeries.updateProducts",
+          config: {
+            policies: [
+              {
+                name: "admin::hasPermissions",
+                config: {
+                  actions: [
+                    "plugin::primershop-product-actions.product-series.update"
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    };
+    module2.exports = admin;
+  }
+});
+
+// dist/server/routes/index.js
+var require_routes = __commonJS({
+  "dist/server/routes/index.js"(exports2, module2) {
+    "use strict";
+    var admin = require_admin2();
+    var routes = {
+      admin
+    };
+    module2.exports = routes;
+  }
+});
+
+// dist/server/services/product-series.js
+var require_product_series2 = __commonJS({
+  "dist/server/services/product-series.js"(exports2) {
+    "use strict";
+    var productSeriesService = ({ strapi }) => ({
+      async createProductsFromSeries(seriesId, count = 1) {
+        const series = await getSeries(strapi, seriesId);
+        const products = [];
+        const startIndex = series.products?.length || 0;
+        for (let i = 0; i < count; i++) {
+          const index = startIndex + i;
+          const product = await strapi.documents("api::product.product").create({
+            data: {
+              name: `${series.name} #${index + 1}`,
+              slug: `${series.slug}-${index + 1}`,
+              series: {
+                set: seriesId
+              },
+              seriesIndex: index,
+              category: series.category ? {
+                set: series.category.documentId
+              } : null,
+              creator: series.creator ? {
+                set: series.creator?.documentId
+              } : null,
+              publishedAt: void 0,
+              // Copy all required fields from series
+              description: series.description,
+              shortDescription: series.shortDescription,
+              media: series.media,
+              coverImage: series.coverImage,
+              seo: series.seo,
+              totalCost: series.totalCost,
+              wholesalePrice: series.wholesalePrice,
+              retailPrice: series.retailPrice
+            }
+          });
+          products.push(product);
+        }
+        return products;
+      },
+      async updateSeriesProducts(seriesId, fieldsToUpdate) {
+        const series = await getSeries(strapi, seriesId);
+        const dataToUpdate = {};
+        if (fieldsToUpdate.includes("description")) {
+          dataToUpdate.description = series.description;
+        }
+        if (fieldsToUpdate.includes("shortDescription")) {
+          dataToUpdate.shortDescription = series.shortDescription;
+        }
+        if (fieldsToUpdate.includes("media")) {
+          dataToUpdate.media = series.media;
+        }
+        if (fieldsToUpdate.includes("coverImage")) {
+          dataToUpdate.coverImage = series.coverImage;
+        }
+        if (fieldsToUpdate.includes("seo")) {
+          dataToUpdate.seo = series.seo;
+        }
+        if (fieldsToUpdate.includes("totalCost")) {
+          dataToUpdate.totalCost = series.totalCost;
+        }
+        if (fieldsToUpdate.includes("wholesalePrice")) {
+          dataToUpdate.wholesalePrice = series.wholesalePrice;
+        }
+        if (fieldsToUpdate.includes("retailPrice")) {
+          dataToUpdate.retailPrice = series.retailPrice;
+        }
+        if (fieldsToUpdate.includes("category")) {
+          dataToUpdate.category = {
+            set: [
+              series.category?.documentId
+            ]
+          };
+        }
+        if (fieldsToUpdate.includes("creator")) {
+          dataToUpdate.creator = {
+            set: [
+              series.creator?.documentId
+            ]
+          };
+        }
+        const updatePromises = series.products?.map((product) => strapi.documents("api::product.product").update({
+          documentId: product.documentId,
+          data: {
+            ...dataToUpdate
+          }
+        }));
+        if (updatePromises) {
+          await Promise.all(updatePromises);
+        }
+        return true;
+      }
+    });
+    async function getSeries(strapi, seriesId) {
+      const series = await strapi.documents("api::product-series.product-series").findOne({
+        documentId: seriesId,
+        populate: [
+          "products",
+          "category",
+          "creator",
+          "media",
+          "coverImage",
+          "seo"
+        ]
+      });
+      if (!series) {
+        throw new Error("Series not found");
+      }
+      return series;
+    }
+    exports2.productSeriesService = productSeriesService;
+  }
+});
+
+// dist/server/services/index.js
+var require_services = __commonJS({
+  "dist/server/services/index.js"(exports2, module2) {
+    "use strict";
+    var productSeries = require_product_series2();
+    var services = {
+      productSeries: productSeries.productSeriesService
+    };
+    module2.exports = services;
+  }
+});
+
+// dist/server/register.js
+var require_register = __commonJS({
+  "dist/server/register.js"(exports2, module2) {
+    "use strict";
+    var register = ({ strapi: _strapi }) => {
+    };
+    module2.exports = register;
+  }
+});
+
+// dist/server/permissions.js
+var require_permissions = __commonJS({
+  "dist/server/permissions.js"(exports2) {
+    "use strict";
+    var permissions = {
+      actions: [
+        {
+          section: "plugins",
+          displayName: "Use product actions",
+          uid: "use",
+          pluginName: "primershop-product-actions"
+        },
+        {
+          section: "plugins",
+          displayName: "Create",
+          uid: "product-series.create",
+          subCategory: "product-series",
+          pluginName: "primershop-product-actions"
+        },
+        {
+          section: "plugins",
+          displayName: "Read",
+          uid: "product-series.read",
+          subCategory: "product-series",
+          pluginName: "primershop-product-actions",
+          aliases: [
+            {
+              actionId: "plugin::content-manager.explorer.read",
+              subjects: [
+                "api::product-series.product-series"
+              ]
+            }
+          ]
+        },
+        {
+          section: "plugins",
+          displayName: "Update",
+          uid: "product-series.update",
+          subCategory: "product-series",
+          pluginName: "primershop-product-actions"
+        },
+        {
+          section: "plugins",
+          displayName: "Delete",
+          uid: "product-series.delete",
+          subCategory: "product-series",
+          pluginName: "primershop-product-actions"
+        }
+      ]
+    };
+    exports2.permissions = permissions;
+  }
+});
+
+// dist/server/bootstrap.js
+var require_bootstrap = __commonJS({
+  "dist/server/bootstrap.js"(exports2, module2) {
+    "use strict";
+    var permissions = require_permissions();
+    var bootstrap = async ({ strapi }) => {
+      try {
+        strapi.admin.services.permission.actionProvider.registerMany(permissions.permissions.actions);
+        strapi.log.info(`[primershop-product-actions] Registered ${permissions.permissions.actions.length} permission actions`);
+      } catch (error) {
+        strapi.log.error("[primershop-product-actions] Failed to register permissions:", error);
+        throw error;
+      }
+    };
+    module2.exports = bootstrap;
+  }
+});
+
+// dist/server/index.js
+var require_server = __commonJS({
+  "dist/server/index.js"(exports2, module2) {
+    "use strict";
+    var index$3 = require_controllers();
+    var index$2 = require_routes();
+    var index$1 = require_services();
+    var register = require_register();
+    var bootstrap = require_bootstrap();
+    var index = {
+      register,
+      controllers: index$3,
+      routes: index$2,
+      services: index$1,
+      bootstrap
+    };
+    module2.exports = index;
+  }
+});
+
+// <stdin>
+require_admin();
+require_server();

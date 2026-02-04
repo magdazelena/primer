@@ -1,0 +1,32 @@
+# Source files
+admin/src/
+server/src/
+*.ts
+*.tsx
+
+# Configuration files
+tsconfig*.json
+rollup.config*.mjs
+eslint.config.js
+jest.config*.js
+
+# Development files
+node_modules/
+*.log
+.DS_Store
+.vscode/
+.idea/
+
+# Test files
+**/__tests__/
+**/*.test.js
+**/*.test.ts
+**/*.spec.js
+**/*.spec.ts
+
+# Build artifacts (keep dist/)
+*.map
+
+# Documentation (optional - remove if you want to include README)
+# README.md
+

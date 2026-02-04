@@ -15,7 +15,6 @@ const plugin = {
   },
 
   bootstrap(app: any) {
-    console.log("🚀 ~ bootstrap ~ app:", app);
     app
       .getPlugin("content-manager")
       .apis.addEditViewSidePanel((panels: any): PanelComponent[] => {

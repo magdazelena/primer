@@ -1,19 +1,13 @@
-import { controllers } from "./controllers";
-import { routes } from "./routes";
-import { services } from "./services";
-import { register } from "./register";
-import { bootstrap } from "./bootstrap";
+import controllers from "./controllers";
+import routes from "./routes";
+import services from "./services";
+import register from "./register";
+import bootstrap from "./bootstrap";
 
-export const plugin = () => {
-  return {
+export default {
     register,
-
     controllers,
     routes,
     services,
-    middlewares: {},
-    bootstrap,
+    bootstrap
   };
-};
-
-export default plugin;

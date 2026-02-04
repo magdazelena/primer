@@ -11,7 +11,7 @@ const productSeries = ({
       const { id, count = 1 } = ctx.request.body;
 
       const products = await strapi
-        .plugin("primer-product-actions")
+        .plugin("primershop-product-actions")
         .service("productSeries")
         .createProductsFromSeries(id, count);
 
@@ -26,7 +26,7 @@ const productSeries = ({
       const { seriesId, fieldsToUpdate } = ctx.request.body;
 
       await strapi
-        .plugin("primer-product-actions")
+        .plugin("primershop-product-actions")
         .service("productSeries")
         .updateSeriesProducts(seriesId, fieldsToUpdate);
 

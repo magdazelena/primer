@@ -5,7 +5,7 @@ const status = ({ strapi }: { strapi: Core.Strapi }): Core.Controller => ({
   async listStatuses(ctx: Context) {
     try {
       const statuses = await strapi
-        .documents("plugin::primer-status-manager.status")
+        .documents("plugin::primershop-status-manager.status")
         .findMany({
           sort: { order: "asc" },
         });
@@ -23,13 +23,13 @@ const status = ({ strapi }: { strapi: Core.Strapi }): Core.Controller => ({
       // Validate name (only Latin characters)
       if (!/^[a-zA-Z\s]+$/.test(name)) {
         return ctx.badRequest(
-          "Status name must contain only Latin characters.",
+          "Status name must contain only Latin characters."
         );
       }
 
       // Get the highest order value
       const existingStatuses = await strapi
-        .documents("plugin::primer-status-manager.status")
+        .documents("plugin::primershop-status-manager.status")
         .findMany({
           orderBy: { order: "desc" },
           limit: 1,
@@ -40,7 +40,7 @@ const status = ({ strapi }: { strapi: Core.Strapi }): Core.Controller => ({
 
       // Create status
       const newStatus = await strapi
-        .documents("plugin::primer-status-manager.status")
+        .documents("plugin::primershop-status-manager.status")
         .create({
           data: {
             name,
@@ -67,11 +67,11 @@ const status = ({ strapi }: { strapi: Core.Strapi }): Core.Controller => ({
       // Update each status with new order
       await Promise.all(
         statuses.map(({ documentId, order }) =>
-          strapi.documents("plugin::primer-status-manager.status").update({
+          strapi.documents("plugin::primershop-status-manager.status").update({
             documentId,
             data: { order } as any,
-          }),
-        ),
+          })
+        )
       );
 
       ctx.send({ message: "Order updated successfully" });
@@ -86,10 +86,12 @@ const status = ({ strapi }: { strapi: Core.Strapi }): Core.Controller => ({
       const { id } = ctx.params;
       const { published } = ctx.request.body;
 
-      await strapi.documents("plugin::primer-status-manager.status").update({
-        documentId: id,
-        data: { published } as any,
-      });
+      await strapi
+        .documents("plugin::primershop-status-manager.status")
+        .update({
+          documentId: id,
+          data: { published } as any,
+        });
 
       ctx.send({ message: "Status updated successfully" });
     } catch (error) {
@@ -107,9 +109,11 @@ const status = ({ strapi }: { strapi: Core.Strapi }): Core.Controller => ({
       }
 
       // Delete the status
-      await strapi.documents("plugin::primer-status-manager.status").delete({
-        documentId: statusId,
-      });
+      await strapi
+        .documents("plugin::primershop-status-manager.status")
+        .delete({
+          documentId: statusId,
+        });
 
       return ctx.send({ message: "Status deleted successfully" });
     } catch (error) {

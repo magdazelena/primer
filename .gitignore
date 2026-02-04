@@ -17,3 +17,6 @@ tsconfig.admin.tsbuildinfo
 
 .tmp
 .strapi-updater.json
+
+# npm configuration (may contain tokens)
+.npmrc

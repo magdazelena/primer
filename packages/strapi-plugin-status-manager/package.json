@@ -1,46 +1,46 @@
 {
-  "name": "@primer/strapi-plugin-status-manager",
-  "version": "0.0.1",
-  "description": "Enables more status variations for Strapi",
+  "name": "@primershop/strapi-plugin-status-manager",
+  "version": "0.0.19",
+  "description": "Enables more status variations for Strapi (v0.0.19)",
+  "type": "commonjs",
   "exports": {
     "./strapi-admin": {
-      "source": "./admin/src/index.ts",
       "import": "./dist/admin/index.mjs",
       "require": "./dist/admin/index.js",
+      "source": "./admin/src/index.ts",
       "default": "./dist/admin/index.js"
     },
     "./strapi-server": {
-      "source": "./server/src/index.ts",
       "import": "./dist/server/index.mjs",
+      "source": "./server/src/index.ts",
       "require": "./dist/server/index.js",
       "default": "./dist/server/index.js"
     },
     "./package.json": "./package.json"
   },
   "files": [
-    "dist/",
-    "strapi-server.js"
+    "dist"
   ],
   "scripts": {
-    "build": "npm-run-all clean --parallel build:code build:types",
-    "build:code": "rollup -c",
-    "build:dev": "rollup -c rollup.config.dev.mjs",
-    "build:types": "run-p build:types:server build:types:admin",
-    "build:types:server": "tsc -p server/tsconfig.build.json ",
-    "build:types:admin": "tsc -p admin/tsconfig.build.json ",
+    "build": "strapi-plugin build",
+    "watch": "strapi-plugin watch",
+    "watch:link": "strapi-plugin watch:link",
+    "verify": "strapi-plugin verify",
     "clean": "rimraf ./dist",
     "lint": "eslint .",
     "test:front": "cross-env IS_EE=true jest --config ./jest.config.front.js",
     "test:ts:front": "tsc -p admin/tsconfig.json",
     "test:unit": "jest",
     "test:unit:watch": "jest --watch",
-    "watch": "rollup -c -w",
-    "dev": "NODE_ENV=development DEBUG=true rollup -c rollup.config.dev.mjs -w",
-    "test:debug": "NODE_ENV=development DEBUG=true node test-debug.js"
+    "deploy": "node ../../scripts/plugin-deploy.js strapi-plugin-status-manager",
+    "deploy:patch": "node ../../scripts/plugin-deploy.js strapi-plugin-status-manager patch",
+    "deploy:minor": "node ../../scripts/plugin-deploy.js strapi-plugin-status-manager minor",
+    "deploy:major": "node ../../scripts/plugin-deploy.js strapi-plugin-status-manager major"
   },
   "keywords": [
     "strapi",
     "plugin",
+    "strapi-plugin",
     "status",
     "manager"
   ],
@@ -48,13 +48,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/primer.git",
+    "url": "https://github.com/magdazelena/primer.git",
     "directory": "packages/strapi-plugin-status-manager"
   },
   "bugs": {
-    "url": "https://github.com/your-username/primer/issues"
+    "url": "https://github.com/magdazelena/primer/issues"
   },
-  "homepage": "https://github.com/your-username/primer/tree/main/packages/strapi-plugin-status-manager#readme",
+  "homepage": "https://github.com/magdazelena/primer/tree/main/packages/strapi-plugin-status-manager#readme",
   "peerDependencies": {
     "@strapi/strapi": "^5.29.0"
   },
@@ -70,10 +70,11 @@
     "@rollup/plugin-swc": "^0.4.0",
     "@strapi/admin": "^5.29.0",
     "@strapi/content-manager": "^5.29.0",
+    "@strapi/sdk-plugin": "^5.4.0",
     "@strapi/types": "^5.29.0",
+    "@types/node": "^25.0.2",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
-    "@types/node": "^25.0.2",
     "cross-env": "^10.0.0",
     "eslint": "9.39.2",
     "jest": "^30.2.0",
@@ -88,9 +89,9 @@
   },
   "strapi": {
     "kind": "plugin",
-    "name": "primer-status-manager",
+    "name": "primershop-status-manager",
     "displayName": "Status Manager",
-    "description": "Manages content statuses"
+    "description": "Manages content statuses (v0.0.19)"
   },
   "dependencies": {
     "@strapi/design-system": "^2.0.0-rc.27",

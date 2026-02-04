@@ -1,21 +1,17 @@
-import { bootstrap } from "./bootstrap";
-import contentTypes from "./content-types/index";
-import { controllers } from "./controllers";
-import { register } from "./register";
-import { routes } from "./routes";
-import { services } from "./services";
+import bootstrap from "./bootstrap";
+import contentTypes from "./content-types";
+import controllers from "./controllers";
+import register from "./register";
+import routes from "./routes";
+import services from "./services";
+import destroy from "./destroy";
 
-const plugin = () => {
-  const pluginConfig = {
-    register,
-    controllers,
-    contentTypes,
-    routes,
-    services,
-    bootstrap,
-  };
-
-  return pluginConfig;
+export default {
+  register,
+  bootstrap,
+  destroy,
+  controllers,
+  contentTypes,
+  routes,
+  services,
 };
-
-export default plugin;
