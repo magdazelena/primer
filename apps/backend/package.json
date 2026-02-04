@@ -25,7 +25,7 @@
     "@atlaskit/pragmatic-drag-and-drop": "^1.7.7",
     "@atlaskit/pragmatic-drag-and-drop-hitbox": "^1.0.3",
     "@primershop/strapi-plugin-product-actions": "^0.0.15",
-    "@primershop/strapi-plugin-status-manager": "^0.0.22",
+    "@primershop/strapi-plugin-status-manager": "^0.0.23",
     "@strapi/plugin-cloud": "^5.34.0",
     "@strapi/plugin-users-permissions": "^5.34.0",
     "@strapi/strapi": "^5.34.0",
