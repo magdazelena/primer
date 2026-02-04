@@ -14,6 +14,10 @@ export const addStatusColumnHook = ({
   displayedHeaders,
   layout,
 }: AddColumnToTableHookArgs) => {
+  if (layout.options.draftAndPublish) return {
+    displayedHeaders: displayedHeaders,
+    layout,
+  };
   const statusHeader = {
     attribute: { type: "custom" },
     name: "statusLabel",

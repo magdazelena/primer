@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "@primershop/strapi-plugin-status-manager": {
+      "signature": "91a7dcf1fbbcae43fe3ad863b6e998b6",
+      "replaced": "^0.0.19"
+    }
+  }
+}

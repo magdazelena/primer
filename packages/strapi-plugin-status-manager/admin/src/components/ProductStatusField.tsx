@@ -24,15 +24,19 @@ const ProductStatusField = () => {
   const [message, setMessage] = useState("");
   const { get, put } = useFetchClient();
 
+  if(contentType && contentType.options.draftAndPublish) {
+    return null;
+  }
+
   const handleStatusChange = useCallback(
     async (newStatus: string) => {
       if (!id) {
-        setMessage("Save the product first and then change the status");
+        setMessage(`Save the ${contentType?.info.displayName} first and then change the status`);
         return;
       }
       try {
         await put(`primershop-status-manager/content-status`, {
-          contentTypeUid: "api::product.product",
+          contentTypeUid: contentType?.uid,
           contentDocumentId: id,
           statusId: statuses.find((status) => status.name === newStatus)
             ?.documentId,
@@ -46,25 +50,25 @@ const ProductStatusField = () => {
         console.error("Error updating status:", error);
       }
     },
-    [id, statuses, currentStatus, put]
+    [id, statuses, currentStatus, put, contentType]
   );
 
   useEffect(() => {
     async function fetchCurrentStatus() {
       try {
         const { data: productData } = await get(
-          `primershop-status-manager/content-status?contentDocumentId=${id}&contentTypeUid=api::product.product`
+          `primershop-status-manager/content-status?contentDocumentId=${id}&contentTypeUid=${contentType?.uid}`
         );
         const status = productData?.status;
         if (status && status.name) return setCurrentStatus(status.name);
         if (statuses.length) return handleStatusChange(statuses[0].name);
       } catch (error) {
-        console.error("Error fetching product status:", error);
+        console.error(`Error fetching ${contentType?.info.displayName} status:`, error);
       }
     }
     if (id && !currentStatus.length) fetchCurrentStatus();
     if (!id && statuses.length) setCurrentStatus(statuses[0].name);
-  }, [id, statuses, get]);
+  }, [id, statuses, get, contentType]);
 
   useEffect(() => {
     async function fetchStatuses() {
