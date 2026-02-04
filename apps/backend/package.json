@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "strapi develop",
-    "build": "npm install && strapi build",
+    "build": "strapi build",
     "build:all": "npm run build:plugins && strapi build",
     "build:plugins": "npm run build:strapi-plugin-product-actions && npm run build:strapi-plugin-status-manager",
     "build:strapi-plugin-product-actions": "cd ../../packages/strapi-plugin-product-actions && npm run build:code",
@@ -30,7 +30,6 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/user-event": "^14.4.3",
     "better-sqlite3": "^12.2.0",
-    "lodash": "4.17.23",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-router-dom": "6.22.3",
