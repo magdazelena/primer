@@ -15,8 +15,6 @@ npm install @primershop/strapi-plugin-status-manager
 3. Configure the plugin through the Strapi admin panel
 
 ## How it works
-First of all, custom statuses will work only if you disable `draft&Publish` default option from your content type in the content builder. Otherwise it's default strapi behavior.
-
 ### Add custom statuses for your content
 Just type in status in the input field and press "Add status" button
 
@@ -49,11 +47,6 @@ All the content with deleted status will then be updated to have the replacement
 Status dropdown is available on the right side banner of your content page.
 
 ![](./docs/screenshots/on_content_page.PNG)
-
-### On the list view
-On the list view you will be able to filter content by statuses. The little badge with your status name will also be displayed.
-
-![](./docs/screenshots/list_view.PNG)
 
 ## License
 

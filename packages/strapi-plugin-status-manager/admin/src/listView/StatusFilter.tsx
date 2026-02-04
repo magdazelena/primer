@@ -14,12 +14,18 @@ interface Status {
 const StatusFilter = () => {
   const { contentType } = useContentManagerContext();
   const [statuses, setStatuses] = useState<Status[]>([]);
-  const [selected, setSelected] = useState<string | undefined>("");
+  const [selected, setSelected] = useState<string | undefined>("All");
   const { get } = useFetchClient();
   const [{ query }, setQuery] = useQueryParams<{
     page: number;
     plugins: { "primershop-status-manager": { statusName: string } };
   }>();
+
+  useEffect(() => {
+    if (contentType) {
+      handleStatusChange("All");
+    };
+  }, [contentType]);
 
   const handleStatusChange = useCallback(
     (name: string) => {
@@ -68,7 +74,7 @@ const StatusFilter = () => {
   }, [get]);
 
   return (
-    <Flex direction="column" justifyContent="center">
+   (contentType && contentType.options.draftAndPublish) ? <></> : <Flex direction="column" justifyContent="center">
       <SingleSelect
         size="S"
         placeholder={`${contentType?.info.displayName} status`}

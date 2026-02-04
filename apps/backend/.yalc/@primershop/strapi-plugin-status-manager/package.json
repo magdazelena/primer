@@ -1,0 +1,81 @@
+{
+  "name": "@primershop/strapi-plugin-status-manager",
+  "version": "0.0.19",
+  "description": "Enables more status variations for Strapi (v0.0.19)",
+  "type": "commonjs",
+  "exports": {
+    "./strapi-admin": {
+      "import": "./dist/admin/index.mjs",
+      "require": "./dist/admin/index.js",
+      "source": "./admin/src/index.ts",
+      "default": "./dist/admin/index.js"
+    },
+    "./strapi-server": {
+      "import": "./dist/server/index.mjs",
+      "source": "./server/src/index.ts",
+      "require": "./dist/server/index.js",
+      "default": "./dist/server/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "strapi-plugin build",
+    "watch": "strapi-plugin watch",
+    "watch:link": "strapi-plugin watch:link",
+    "verify": "strapi-plugin verify",
+    "clean": "rimraf ./dist",
+    "lint": "eslint .",
+    "test:front": "cross-env IS_EE=true jest --config ./jest.config.front.js",
+    "test:ts:front": "tsc -p admin/tsconfig.json",
+    "test:unit": "jest",
+    "test:unit:watch": "jest --watch",
+    "deploy": "node ../../scripts/plugin-deploy.js strapi-plugin-status-manager",
+    "deploy:patch": "node ../../scripts/plugin-deploy.js strapi-plugin-status-manager patch",
+    "deploy:minor": "node ../../scripts/plugin-deploy.js strapi-plugin-status-manager minor",
+    "deploy:major": "node ../../scripts/plugin-deploy.js strapi-plugin-status-manager major"
+  },
+  "keywords": [
+    "strapi",
+    "plugin",
+    "strapi-plugin",
+    "status",
+    "manager"
+  ],
+  "author": "Magda Odrowaz-Zelezik <magda.zelezik@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magdazelena/primer.git",
+    "directory": "packages/strapi-plugin-status-manager"
+  },
+  "bugs": {
+    "url": "https://github.com/magdazelena/primer/issues"
+  },
+  "homepage": "https://github.com/magdazelena/primer/tree/main/packages/strapi-plugin-status-manager#readme",
+  "peerDependencies": {
+    "@strapi/strapi": "^5.29.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "kind": "plugin",
+    "name": "primershop-status-manager",
+    "displayName": "Status Manager",
+    "description": "Manages content statuses (v0.0.19)"
+  },
+  "dependencies": {
+    "@strapi/design-system": "^2.0.0-rc.27",
+    "@strapi/icons": "^2.0.0-rc.27",
+    "@strapi/utils": "^5.29.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "6.22.3",
+    "styled-components": "^6.1.19"
+  },
+  "yalcSig": "91a7dcf1fbbcae43fe3ad863b6e998b6"
+}
