@@ -4,6 +4,7 @@
  */
 import primershopProductActions from "@primershop/strapi-plugin-product-actions/strapi-admin";
 import primershopStatusManager from "@primershop/strapi-plugin-status-manager/strapi-admin";
+import strapiCloud from "@strapi/plugin-cloud/strapi-admin";
 import usersPermissions from "@strapi/plugin-users-permissions/strapi-admin";
 import { renderAdmin } from "@strapi/strapi/admin";
 
@@ -11,6 +12,7 @@ renderAdmin(document.getElementById("strapi"), {
   plugins: {
     "primershop-product-actions": primershopProductActions,
     "primershop-status-manager": primershopStatusManager,
+    "strapi-cloud": strapiCloud,
     "users-permissions": usersPermissions,
   },
 });
