@@ -20,13 +20,13 @@ First of all, custom statuses will work only if you disable `draft&Publish` defa
 ### Add custom statuses for your content
 Just type in status in the input field and press "Add status" button
 
-![](https://github.com/magdazelena/primer/tree/main/packages/strapi-plugin-status-manager/docs/screenshots/add.PNG)
+![](./docs/screenshots/add.PNG)
 
 ### Toggle visibility of your status
 Press "Published" or "Unpublished" button to change the visibility of the content with assigned status.
 Only "published" will be accessible on your frontend.
 
-![](https://github.com/magdazelena/primer/tree/main/packages/strapi-plugin-status-manager/docs/screenshots/visibility.PNG)
+![](./docs/screenshots/visibility.PNG)
 
 ### Reorder statuses
 
@@ -35,25 +35,25 @@ You can use drag and drop tool and change order of the statuses. It will be refl
 
 | Before | After |
 | ------ | ----- |
-| ![](https://github.com/magdazelena/primer/tree/main/packages/strapi-plugin-status-manager/docs/screenshots/reorder1.png) | ![](https://github.com/magdazelena/primer/tree/main/packages/strapi-plugin-status-manager/docs/screenshots/reorder2.PNG) |
+| ![](./docs/screenshots/reorder1.png) | ![](./docs/screenshots/reorder2.PNG) |
 
 ### Delete status
 
 Upon deleting you will be prompted to choose replacement status.
 All the content with deleted status will then be updated to have the replacement status.
 
-![](https://github.com/magdazelena/primer/tree/main/packages/strapi-plugin-status-manager/docs/screenshots/delete.PNG)
+![](./docs/screenshots/delete.PNG)
 
 ### On your content edit page
 
 Status dropdown is available on the right side banner of your content page.
 
-![](https://github.com/magdazelena/primer/tree/main/packages/strapi-plugin-status-manager/docs/screenshots/on_content_page.PNG)
+![](./docs/screenshots/on_content_page.PNG)
 
 ### On the list view
 On the list view you will be able to filter content by statuses. The little badge with your status name will also be displayed.
 
-![](https://github.com/magdazelena/primer/tree/main/packages/strapi-plugin-status-manager/docs/screenshots/list_view.PNG)
+![](./docs/screenshots/list_view.PNG)
 
 ## License
 
