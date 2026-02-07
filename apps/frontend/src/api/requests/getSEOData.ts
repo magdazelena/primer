@@ -23,5 +23,5 @@ export async function getSEOData(path: string, slug: string): Promise<SEOdata> {
   const data = response.data;
   if (!data || data.length === 0)
     throw new Error("Error fetching SEO data, double check the syntax");
-  return data[0];
+  return data[0]?.seo;
 }
