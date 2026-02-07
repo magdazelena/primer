@@ -63,9 +63,9 @@ const ImageSlider = ({ images }: { images: Image[] }) => {
         thumbnails={{
           position: "bottom",
           height: 50,
-          padding: 2,
-          gap: 2,
-          border: 0,
+          padding: 0,
+          gap: 4,
+          imageFit: "cover",
         }}
       />
 
@@ -79,6 +79,11 @@ const ImageSlider = ({ images }: { images: Image[] }) => {
           iconPrev: () => <Icons.Prev />,
           iconClose: () => <Icons.Close />,
           iconNext: () => <Icons.Next />,
+        }}
+        styles={{
+          container: {
+            backgroundColor: "rgba(255,255,255,0.8)",
+          },
         }}
       />
     </div>

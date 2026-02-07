@@ -416,6 +416,11 @@ Dropdowns
 .yarl__thumbnails_bottom .yarl__thumbnails_vignette {
   display: none;
 }
+.yarl__thumbnails_thumbnail {
+  background: var(--color-light);
+  border: 1px solid rgb(var(--color-dark));
+  border-radius: var(--border-radius);
+}
 .yarl__button {
   filter: none;
   &:hover {

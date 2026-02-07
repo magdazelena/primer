@@ -25,6 +25,7 @@ const ProductRoute = async (props: { params: Promise<{ slug: string }> }) => {
   const params = await props.params;
   const { slug } = params;
   const products = await getProductBySlug(slug);
+
   if (products.length === 0) return <h2>no post found</h2>;
   const product = products[0];
   if (!product.series) {
