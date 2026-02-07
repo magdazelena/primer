@@ -20,7 +20,7 @@ const CreatorThumbnailListItem = ({ creator }: { creator: Creator }) => {
           alt="presentation"
           width="240"
           height="240"
-          className="object-cover w-full h-44 "
+          className="object-cover w-full h-100 "
           src={imageUrl}
         />
       )}
@@ -28,6 +28,7 @@ const CreatorThumbnailListItem = ({ creator }: { creator: Creator }) => {
         <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">
           {name}
         </h3>
+        <p>{creator.lead}</p>
       </div>
     </Link>
   );

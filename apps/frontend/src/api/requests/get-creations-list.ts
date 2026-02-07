@@ -34,6 +34,7 @@ export async function fetchCreationsData(filter: string): Promise<{
   const productsResponse = await fetchAPI("/products", {
     populate: {
       coverImage: { fields: ["url"] },
+      creator: CREATOR_QUERY,
     },
     pagination: {
       start: 0,
@@ -43,6 +44,7 @@ export async function fetchCreationsData(filter: string): Promise<{
     sort: { publishedAt: "desc" },
     ...filters,
   });
+  
   return {
     articles: articlesResponse.data,
     products: productsResponse.data,

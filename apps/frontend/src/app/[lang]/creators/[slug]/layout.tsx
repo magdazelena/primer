@@ -17,8 +17,8 @@ const LayoutRoute = async (props: {
   return (
     <section className="container p-8 mx-auto space-y-6 sm:space-y-12">
       <div>{children}</div>
-      {articles.length > 0 && <ArticleCarousel articles={articles} />}
-      {products.length > 0 && <ProductCarousel products={products} />}
+      {articles.length > 0 && <ArticleCarousel articles={articles} title="Posts by this creator" />}
+      {products.length > 0 && <ProductCarousel products={products} title="Products by this creator" />}
     </section>
   );
 };

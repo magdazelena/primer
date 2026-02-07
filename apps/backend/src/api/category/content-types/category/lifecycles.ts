@@ -72,32 +72,42 @@ export default {
   },
 };
 
-async function updateParentWithChild(category: Category) {
-  if (category.parent) {
+async function updateParentWithChild(category: Category): Promise<void> {
+  if (
+    category.parent &&
+    typeof category.parent.count === "number" &&
+    category.parent.count > 0
+  ) {
     const categoryService = strapi.documents(
       "api::category.category",
     ) as unknown as ServiceInstance<"api::category.category">;
-    const parent = await categoryService.findOne({
-      documentId: category.parent.id.toString() as ID,
+    // Fetch the parent category
+    const categoryInfo = await categoryService.findOne({
+      documentId: category.id.toString() as ID,
+      populate: ["parent"],
+    });
+    let parent = categoryInfo?.parent;
+    if (!parent) return;
+    parent = await categoryService.findOne({
+      documentId: parent.id.toString() as ID,
       populate: ["children"],
     });
-    if (parent) {
-      const existingChildren =
-        parent.children?.map((child) => ({ id: child.id.toString() })) || [];
-      if (
-        !existingChildren.some(
-          (child: { id: string }) => child.id === category.id.toString(),
-        )
-      ) {
-        await categoryService.update({
-          documentId: parent.id.toString() as ID,
-          data: {
-            children: {
-              set: [...existingChildren, { id: category.id.toString() }],
-            },
-          } as any,
-        });
+    const addChildIfNone = (
+      p: any,
+      newChild: number,
+    ): { set: { id: string }[] } => {
+      const children =
+        p.children?.map((child) => ({ id: child.id.toString() })) || [];
+      if (p.children?.some((child) => child.id === category.id)) {
+        return { set: children };
       }
-    }
+      return { set: [...children, { id: newChild.toString() }] };
+    };
+    await categoryService.update({
+      documentId: parent.id.toString() as ID,
+      data: {
+        children: addChildIfNone(parent, category.id),
+      } as any,
+    });
   }
 }
