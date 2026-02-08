@@ -14,16 +14,21 @@ async function fetchAllChildCategories(path: string, slug: string) {
     };
 
     const responseData = await fetchAPI(path, params);
-    const category = responseData.data[0];
+    const category = responseData.data?.[0];
     const childrenCategories = collectAllSlugs(category);
     return {
       parent: category,
       childrenCategories,
     };
   } catch (error) {
-    console.error(error);
+    if (process.env.DEBUG === "true") {
+      console.error(`Error fetching all child categories for path ${path} and slug ${slug}: ${error}`);
+    } else {
+      console.error(error);
+    }
   }
 }
+
 const collectAllSlugs = (category: ProductCategory) => {
   const slugs = [category.slug];
 
@@ -62,6 +67,10 @@ export async function fetchPostsByCategory(
     const responseData = await fetchAPI(path, urlParamsObject);
     return { category: parentCategory?.parent, posts: responseData };
   } catch (error) {
-    console.error(error);
+    if (process.env.DEBUG === "true") {
+      console.error(`Error fetching posts by category for path ${path} and filter ${filter}: ${error}`);
+    } else {
+      console.error(error);
+    }
   }
 }
