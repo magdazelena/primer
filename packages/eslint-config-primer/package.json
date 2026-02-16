@@ -17,7 +17,7 @@
     "@babel/eslint-parser": "^7.28.4",
     "@eslint/compat": "^2.0.0",
     "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.35.0",
+    "@eslint/js": "^10.0.1",
     "@typescript-eslint/eslint-plugin": "^8.45.0",
     "@typescript-eslint/parser": "^8.0.0",
     "eslint": "9.39.2",
