@@ -180,6 +180,7 @@ Usage: node scripts/dependabot-config.js [command]
 Commands:
   generate    Generate and update .github/dependabot.yml
   show        Show current configuration settings
+  disable     Remove .github/dependabot.yml to fully disable Dependabot
   help        Show this help message
 
 Configuration:
@@ -192,6 +193,7 @@ Configuration:
 Examples:
   node scripts/dependabot-config.js generate
   node scripts/dependabot-config.js show
+  node scripts/dependabot-config.js disable
 `);
 }
 
@@ -203,6 +205,19 @@ switch (command) {
     break;
   case 'show':
     showCurrentConfig();
+    break;
+  case 'disable':
+    try {
+      const dependabotPath = path.join('.github', 'dependabot.yml');
+      if (fs.existsSync(dependabotPath)) {
+        fs.unlinkSync(dependabotPath);
+        console.log('✅ .github/dependabot.yml removed. Dependabot is now disabled for this repo.');
+      } else {
+        console.log('ℹ️  No .github/dependabot.yml file found. Dependabot is already disabled.');
+      }
+    } catch (error) {
+      console.error('❌ Failed to remove .github/dependabot.yml:', error.message);
+    }
     break;
   case 'help':
   default:

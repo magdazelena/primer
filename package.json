@@ -21,7 +21,13 @@
     "e2e": "turbo e2e",
     "deps:check": "turbo run deps:check",
     "deps:update": "turbo run deps:update",
-    "dependabot:config": "node scripts/dependabot-config.js"
+    "dependabot:config": "node scripts/dependabot-config.js",
+    "deps:check-updates": "node scripts/upgrade-deps.js check",
+    "deps:upgrade": "node scripts/upgrade-deps.js upgrade",
+    "deps:upgrade:strapi": "node scripts/upgrade-deps.js upgrade --group=strapi",
+    "deps:upgrade:frontend": "node scripts/upgrade-deps.js upgrade --group=frontend",
+    "deps:upgrade:root": "node scripts/upgrade-deps.js upgrade --group=root",
+    "release": "node scripts/release.js"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.3",
