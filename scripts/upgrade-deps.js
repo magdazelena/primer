@@ -106,13 +106,6 @@ function runNcu(cwd, args, dryRun) {
   }
 }
 
-function backupPackageJson(cwd) {
-  const pkgPath = path.join(cwd, "package.json");
-  if (!fs.existsSync(pkgPath)) return;
-  const backupPath = pkgPath + ".backup";
-  fs.copyFileSync(pkgPath, backupPath);
-}
-
 function getPackageJson(workspace) {
   const pkgPath =
     workspace === "."
@@ -124,13 +117,6 @@ function getPackageJson(workspace) {
   return readJson(pkgPath);
 }
 
-function getDependencyVersion(pkg, depName) {
-  return (
-    pkg.dependencies?.[depName] ||
-    pkg.devDependencies?.[depName] ||
-    pkg.peerDependencies?.[depName]
-  );
-}
 
 function normalizeVersion(version) {
   // Remove semver range prefixes (^, ~, >=, etc.) for comparison
@@ -421,10 +407,6 @@ function upgradeCommand(options) {
       return;
     }
 
-    if (!dryRun) {
-      backupPackageJson(cwd);
-    }
-
     const args = [];
     if (!dryRun) {
       args.push("-u");
@@ -440,7 +422,7 @@ function upgradeCommand(options) {
     `\n✅ Done. ${
       dryRun
         ? "No files were changed (dry run)."
-        : "Backups saved as package.json.backup next to each file."
+        : "Changes applied."
     }`
   );
 }
