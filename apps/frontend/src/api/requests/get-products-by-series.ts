@@ -1,5 +1,5 @@
 import { fetchAPI } from "../fetch-api";
-import { CREATOR_QUERY } from "../shared-params/creator";
+import { PRODUCT_MEDIA_QUERY, CREATOR_QUERY } from "../shared-params";
 
 const fetchSeries = async (series: string) => {
   const path = `/product-seria`;
@@ -22,15 +22,7 @@ const fetchProductsBySeries = async (series: string) => {
   const path = `/products`;
   const urlParamsObject = {
     filters: { series: { slug: series } },
-    populate: {
-      coverImage: { fields: ["url"] },
-      media: {
-        populate: "*",
-      },
-      category: { fields: ["name", "slug"] },
-      series: { fields: ["name", "slug"] },
-      creator: CREATOR_QUERY,
-    },
+    ...PRODUCT_MEDIA_QUERY,
   };
   const response = await fetchAPI(path, urlParamsObject);
   return response.data;

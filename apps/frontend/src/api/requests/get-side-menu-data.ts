@@ -1,18 +1,19 @@
 import { fetchAPI } from "../fetch-api";
-import { lookupCategoryTree, CATEGORY_THREE_QUERY } from "../shared-params";
+import {
+  lookupCategoryTree,
+  PRODUCT_WITH_CATEGORY_TREE_QUERY,
+  POPULATE_GENERIC,
+} from "../shared-params";
 
 import type { Product, ProductCategory } from "../../types/product";
 
 export async function fetchSideMenuData(filter: string): Promise<Data> {
   const categoriesResponse = await fetchAPI("/product-categories", {
-    populate: "*",
+    ...POPULATE_GENERIC,
   });
   const filters = filter ? lookupCategoryTree(filter) : {};
   const productsResponse = await fetchAPI("/products", {
-    populate: {
-      coverImage: { fields: ["url"] },
-      ...CATEGORY_THREE_QUERY,
-    },
+    ...PRODUCT_WITH_CATEGORY_TREE_QUERY,
     filters: { ...filters },
   });
   return {

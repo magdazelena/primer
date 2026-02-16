@@ -25,6 +25,5 @@ export async function getCategories(lang: string): Promise<AllCategories> {
 
   const blogCategoriesRes = await fetchAPI(`/categories`, params);
   const blogCategories = blogCategoriesRes.data;
-
   return { productCategories, blogCategories };
 }

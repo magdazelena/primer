@@ -77,6 +77,7 @@ const RootLayout = async (props: {
   if (!global.data) return <NotFound />;
   const categories = await getCategories(params.lang);
 
+
   const { navbar, footer } = global.data;
   if (!navbar || !footer) return <NotFound />;
   const navbarLogoUrl = getStrapiMedia(navbar.navbarLogo?.logoImg?.url);

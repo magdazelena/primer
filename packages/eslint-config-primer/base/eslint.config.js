@@ -25,7 +25,6 @@ module.exports = defineConfig([
       ],
       "default-param-last": "warn",
       "no-template-curly-in-string": "warn",
-      "no-console": "warn",
       "@typescript-eslint/no-explicit-any": "off",
     },
   },

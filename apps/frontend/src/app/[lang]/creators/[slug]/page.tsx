@@ -7,10 +7,17 @@ import { CreatorView } from "../views/creator";
 import type { Metadata } from "next";
 
 export async function generateMetadata(props: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ lang: string; slug: string }>;
 }): Promise<Metadata> {
   const params = await props.params;
-  const seoData = await getSEOData("/creators", params.slug);
+  const seoData = await getSEOData("/creators", params.slug, params.lang);
+
+  if (!seoData) {
+    return {
+      title: "Creator",
+      description: "",
+    };
+  }
 
   return {
     title: seoData.metaTitle,
@@ -18,10 +25,12 @@ export async function generateMetadata(props: {
   };
 }
 
-const CreatorRoute = async (props: { params: Promise<{ slug: string }> }) => {
+const CreatorRoute = async (props: {
+  params: Promise<{ lang: string; slug: string }>;
+}) => {
   const params = await props.params;
-  const { slug } = params;
-  const data = await getCreatorBySlug(slug);
+  const { slug, lang } = params;
+  const data = await getCreatorBySlug(slug, lang);
   if (data.length === 0) return <h2>no creators found</h2>;
   return <CreatorView creator={data[0]} />;
 };

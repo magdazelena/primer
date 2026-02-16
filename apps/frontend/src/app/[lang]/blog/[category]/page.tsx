@@ -4,11 +4,16 @@ import { PageHeader } from "@/components/PageHeader";
 import { PostList } from "../views/article-list";
 
 export const CategoryRoute = async (props: {
-  params: Promise<{ category: string }>;
+  params: Promise<{ lang: string; category: string }>;
 }) => {
   const params = await props.params;
   const filter = params.category;
-  const data = await fetchPostsByCategory("/articles", "/categories", filter);
+  const data = await fetchPostsByCategory(
+    "/articles",
+    "/categories",
+    filter,
+    params.lang
+  );
 
   //TODO: CREATE A COMPONENT FOR THIS
   if (!data || data.posts.data.length === 0)
@@ -28,7 +33,10 @@ export async function generateStaticParams() {
   if (process.env.SKIP_BUILD_FETCH === "true") {
     return [];
   }
-  return [];
+  const { getBlogCategorySlugs } = await import(
+    "@/api/requests/get-category-slugs"
+  );
+  return getBlogCategorySlugs();
 }
 
 export default CategoryRoute;

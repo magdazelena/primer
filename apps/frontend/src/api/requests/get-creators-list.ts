@@ -25,8 +25,33 @@ export const getCreatorsList = async (
 
 export async function getCreatorsSlugList() {
   const path = `/creators`;
-  const creatorResponse = await fetchAPI(path, POPULATE_GENERIC);
-  return creatorResponse.data.map((creator: { slug: string }) => ({
-    slug: creator.slug,
+  const allSlugs = new Set<string>();
+
+  // Fetch creators for all locales to get all possible slugs
+  // Handle 404s gracefully - if a locale doesn't have data, skip it
+  const { i18n } = await import("../../../i18n-config");
+  for (const locale of i18n.locales) {
+    try {
+      const creatorResponse = await fetchAPI(path, {
+        locale,
+        ...POPULATE_GENERIC,
+      });
+      
+      // fetchAPI returns empty array on error, so check if we have data
+      if (creatorResponse.data && creatorResponse.data.length > 0) {
+        creatorResponse.data.forEach((creator: { slug: string }) => {
+          if (creator.slug) {
+            allSlugs.add(creator.slug);
+          }
+        });
+      }
+    } catch (error) {
+      // Silently skip locales that don't have data
+      continue;
+    }
+  }
+
+  return Array.from(allSlugs).map((slug) => ({
+    slug,
   }));
 }

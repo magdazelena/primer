@@ -29,7 +29,10 @@ export async function generateStaticParams() {
   if (process.env.SKIP_BUILD_FETCH === "true") {
     return [];
   }
-  return [];
+  const { getProductSeriesSlugs } = await import(
+    "@/api/requests/get-product-series-slugs"
+  );
+  return getProductSeriesSlugs();
 }
 
 export default ProductSeriesRoute;
