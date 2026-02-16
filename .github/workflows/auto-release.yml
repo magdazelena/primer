@@ -30,24 +30,6 @@ jobs:
           echo "tag=v${VERSION}" >> $GITHUB_OUTPUT
           echo "Extracted version: ${VERSION}, tag: v${VERSION}"
 
-      - name: Prepare release body from PR description
-        id: pr_description
-        run: |
-          PR_BODY="${{ github.event.pull_request.body }}"
-          if [ -z "$PR_BODY" ] || [ "$PR_BODY" = "null" ]; then
-            echo "body<<EOF" >> "$GITHUB_OUTPUT"
-            echo "## Release ${{ steps.extract_version.outputs.tag }}" >> "$GITHUB_OUTPUT"
-            echo "" >> "$GITHUB_OUTPUT"
-            echo "This is an automatically created draft release. Please review and update the release notes before publishing." >> "$GITHUB_OUTPUT"
-            echo "" >> "$GITHUB_OUTPUT"
-            echo "See \`.github/release-template.md\` for the release notes template." >> "$GITHUB_OUTPUT"
-            echo "EOF" >> "$GITHUB_OUTPUT"
-          else
-            echo "body<<EOF" >> "$GITHUB_OUTPUT"
-            echo "$PR_BODY" >> "$GITHUB_OUTPUT"
-            echo "EOF" >> "$GITHUB_OUTPUT"
-          fi
-
       - name: Create and push tag
         run: |
           git config user.name "github-actions[bot]"
@@ -60,7 +42,8 @@ jobs:
         with:
           tag_name: ${{ steps.extract_version.outputs.tag }}
           name: Release ${{ steps.extract_version.outputs.tag }}
-          body: ${{ steps.pr_description.outputs.body }}
+          body: |
+            ${{ github.event.pull_request.body }}
           draft: true
           prerelease: false
         env:
