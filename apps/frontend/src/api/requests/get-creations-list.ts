@@ -10,10 +10,8 @@ export async function fetchCreationsData(filter: string): Promise<{
 }> {
   const filters = filter
     ? {
-        filters: {
-          creator: {
-            slug: filter,
-          },
+        creator: {
+          slug: filter,
         },
       }
     : {};
@@ -27,9 +25,8 @@ export async function fetchCreationsData(filter: string): Promise<{
       start: 0,
       limit: 4,
     },
-
     sort: { publishedAt: "desc" },
-    ...filters,
+    filters,
   });
   const productsResponse = await fetchAPI("/products", {
     populate: {
@@ -40,9 +37,8 @@ export async function fetchCreationsData(filter: string): Promise<{
       start: 0,
       limit: 4,
     },
-
     sort: { publishedAt: "desc" },
-    ...filters,
+    filters,
   });
   
   return {

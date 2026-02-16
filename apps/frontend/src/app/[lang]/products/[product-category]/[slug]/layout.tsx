@@ -1,4 +1,3 @@
-import { getProductSlugAndCategoryList } from "@/api/requests/get-product-list";
 import { fetchSideMenuData } from "@/api/requests/get-side-menu-data";
 import { findParentCategory } from "@/utils/find-parent-category";
 
@@ -58,20 +57,5 @@ const LayoutRoute = async (props: {
   );
 };
 
-export async function generateStaticParams() {
-  if (process.env.SKIP_BUILD_FETCH === "true") {
-    return [];
-  }
-  const params = await getProductSlugAndCategoryList();
-  return params;
-}
-
-export async function getStaticPaths() {
-  const paths = await generateStaticParams();
-  return {
-    paths,
-    fallback: false,
-  };
-}
 
 export default LayoutRoute;

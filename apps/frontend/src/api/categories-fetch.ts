@@ -1,11 +1,17 @@
 import { fetchAPI } from "./fetch-api";
+import { i18n } from "../../i18n-config";
 
 import type { ProductCategory } from "@/types/product";
 
-async function fetchAllChildCategories(path: string, slug: string) {
+async function fetchAllChildCategories(
+  path: string,
+  slug: string,
+  locale?: string
+) {
   try {
     const params = {
       filters: { slug },
+      locale: locale || i18n.defaultLocale,
       populate: {
         children: {
           populate: "children", // Recursively populate children categories
@@ -15,8 +21,6 @@ async function fetchAllChildCategories(path: string, slug: string) {
 
     const responseData = await fetchAPI(path, params);
     const category = responseData.data?.[0];
-    console.log("responseData", responseData);
-    console.log("category", category);
     if (!category) return { parent: null, childrenCategories: [] };
     const childrenCategories = collectAllSlugs(category);
     return {
@@ -48,11 +52,17 @@ export async function fetchPostsByCategory(
   path: string,
   categoryPath: string,
   filter: string,
+  locale?: string
 ) {
-  const parentCategory = await fetchAllChildCategories(categoryPath, filter);
+  const parentCategory = await fetchAllChildCategories(
+    categoryPath,
+    filter,
+    locale
+  );
   try {
     const urlParamsObject = {
       sort: { createdAt: "desc" },
+      locale: locale || i18n.defaultLocale,
       filters: {
         category: {
           slug: { $in: parentCategory?.childrenCategories },

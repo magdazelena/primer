@@ -10,10 +10,17 @@ import type { Product } from "@/types/product";
 import type { Metadata } from "next";
 
 export async function generateMetadata(props: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ lang: string; slug: string; "product-category": string }>;
 }): Promise<Metadata> {
   const params = await props.params;
-  const seoData = await getSEOData("/products", params.slug);
+  const seoData = await getSEOData("/products", params.slug, params.lang);
+
+  if (!seoData) {
+    return {
+      title: "Product",
+      description: "",
+    };
+  }
 
   return {
     title: seoData.metaTitle,
@@ -21,10 +28,12 @@ export async function generateMetadata(props: {
   };
 }
 
-const ProductRoute = async (props: { params: Promise<{ slug: string }> }) => {
+const ProductRoute = async (props: {
+  params: Promise<{ lang: string; slug: string; "product-category": string }>;
+}) => {
   const params = await props.params;
-  const { slug } = params;
-  const products = await getProductBySlug(slug);
+  const { slug, lang } = params;
+  const products = await getProductBySlug(slug, lang);
 
   if (products.length === 0 || products[0] === undefined) return <h2>no post found</h2>;
   const product = products[0];

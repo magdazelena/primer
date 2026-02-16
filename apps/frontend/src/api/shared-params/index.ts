@@ -2,6 +2,12 @@ import { ARTICLE_BASE_QUERY, ARTICLE_RICH_QUERY } from "./article";
 import { lookupCategoryTree, CATEGORY_THREE_QUERY } from "./category";
 import { CREATOR_QUERY } from "./creator";
 import { PAGE_CONTENT_SECTIONS_QUERY, GLOBAL_LAYOUT_QUERY } from "./page";
+import {
+  PRODUCT_BASE_QUERY,
+  PRODUCT_MEDIA_QUERY,
+  PRODUCT_WITH_CATEGORY_TREE_QUERY,
+  PRODUCT_CATEGORY_LIST_QUERY,
+} from "./product";
 
 const POPULATE_SLUG = {
   populate: { fields: ["slug"] },
@@ -17,6 +23,10 @@ export {
   lookupCategoryTree,
   PAGE_CONTENT_SECTIONS_QUERY,
   GLOBAL_LAYOUT_QUERY,
+  PRODUCT_BASE_QUERY,
+  PRODUCT_MEDIA_QUERY,
+  PRODUCT_WITH_CATEGORY_TREE_QUERY,
+  PRODUCT_CATEGORY_LIST_QUERY,
   POPULATE_GENERIC,
   POPULATE_SLUG,
 };

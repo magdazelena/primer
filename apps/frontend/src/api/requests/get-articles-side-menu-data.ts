@@ -12,7 +12,7 @@ export async function fetchArticlesSideMenuData(filter: string): Promise<{
   categories: Category[];
 }> {
   const categoriesResponse = await fetchAPI("/categories", POPULATE_GENERIC);
-  const selectedFilter = filter
+  const filters = filter
     ? {
         category: {
           slug: filter,
@@ -24,7 +24,7 @@ export async function fetchArticlesSideMenuData(filter: string): Promise<{
       ...ARTICLE_BASE_QUERY.populate,
       creator: CREATOR_QUERY,
     },
-    ...selectedFilter,
+    filters,
   });
 
   return {
