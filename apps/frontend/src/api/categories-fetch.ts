@@ -30,7 +30,7 @@ async function fetchAllChildCategories(path: string, slug: string) {
 }
 
 const collectAllSlugs = (category: ProductCategory) => {
-  const slugs = [category.slug];
+  const slugs = [category?.slug];
 
   if (category.children && category.children.length > 0) {
     category.children.forEach((child) => {
@@ -40,6 +40,7 @@ const collectAllSlugs = (category: ProductCategory) => {
 
   return slugs;
 };
+
 export async function fetchPostsByCategory(
   path: string,
   categoryPath: string,

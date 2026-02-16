@@ -12,17 +12,20 @@ const LayoutRoute = async (props: {
   }>;
 }) => {
   const params = await props.params;
-
+  console.log("params", params);
   const { children } = props;
 
   const productCategory = params["product-category"];
 
   const { categories, products } = await fetchSideMenuData(productCategory);
+
   const filteredProducts = products.filter((product) => {
     return product.slug.trim() !== params.slug.trim();
   });
+
   if (filteredProducts.length === 0) {
     const parentCategory = findParentCategory(categories, productCategory);
+
     if (parentCategory) {
       const { products: otherProducts } = await fetchSideMenuData(
         parentCategory.slug
