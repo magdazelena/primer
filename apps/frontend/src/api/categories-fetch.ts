@@ -15,6 +15,9 @@ async function fetchAllChildCategories(path: string, slug: string) {
 
     const responseData = await fetchAPI(path, params);
     const category = responseData.data?.[0];
+    console.log("responseData", responseData);
+    console.log("category", category);
+    if (!category) return { parent: null, childrenCategories: [] };
     const childrenCategories = collectAllSlugs(category);
     return {
       parent: category,
@@ -30,7 +33,7 @@ async function fetchAllChildCategories(path: string, slug: string) {
 }
 
 const collectAllSlugs = (category: ProductCategory) => {
-  const slugs = [category?.slug];
+  const slugs = [category.slug];
 
   if (category.children && category.children.length > 0) {
     category.children.forEach((child) => {

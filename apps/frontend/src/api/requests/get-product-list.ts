@@ -29,7 +29,6 @@ export async function getProductSlugAndCategoryList(): Promise<
   const productResponse = await fetchAPI(path, {
     populate: { category: { fields: ["slug"] } },
   });
-console.log("productResponse", productResponse.data);
   return productResponse.data.map(
     (product: {
       slug: string;

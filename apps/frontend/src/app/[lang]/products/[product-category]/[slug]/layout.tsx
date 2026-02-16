@@ -12,7 +12,6 @@ const LayoutRoute = async (props: {
   }>;
 }) => {
   const params = await props.params;
-  console.log("params", params);
   const { children } = props;
 
   const productCategory = params["product-category"];
