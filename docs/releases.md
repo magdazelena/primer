@@ -17,7 +17,7 @@
 
 ## Release Workflow
 
-1. **Open a release issue** using the `Release planning` template (see `.github/ISSUE_TEMPLATE/release.md`). Capture scope, owners, and target date.
+1. **(Optional but recommended) Open a release issue** using the `Release planning` template (see `.github/ISSUE_TEMPLATE/release.md`). Capture scope, owners, and target date.
 2. **Create a release branch** `release/vX.Y.Z` from `main`.
 
 ```bash
@@ -34,35 +34,54 @@ git push -u origin release/v0.0.1
 
 3. **Stabilise the branch**:
    - Run unit/integration tests and lint checks.
-   - Update documentation (`docs/releases.md`, per-audience guides) and bump versions (`template-version.json`, package manifests if required).
+   - Update documentation (`docs/releases.md`, per-audience guides) as needed.
    - Verify GitHub Pages content will align with the release data snapshot.
-4. **Create a release pull request** targeting `main`:
-   - Reference the release issue.
-   - Include the checklist below in the PR description.
+4. **Bump versions and prepare PR description** using the release helper:
+
+```bash
+# On your release branch, from the repo root:
+
+# Option A: bump to an explicit version
+npm run release -- 0.0.X --pr
+
+# Option B: bump by type (patch/minor/major)
+npm run release -- patch --pr
+```
+
+This will:
+
+- Update `template-version.json`
+- Update root `package.json` and app manifests (`apps/backend/package.json`, `apps/frontend/package.json`)
+- Create a commit `chore: bump version to v0.0.X`
+- Generate `release-notes-v0.0.X.md` containing a pre-filled description based on `.github/release-template.md` and recent commits
+
+5. **Create a release pull request** targeting `main`:
+   - Reference the release issue if one exists.
+   - Paste the contents of `release-notes-v0.0.X.md` into the PR description.
    - Ensure CI passes on the branch.
-5. **Finish release**:
+6. **Finish release**:
    - Merge the PR once approvals and checks succeed.
    - **Automated**: When a PR from a `release/vX.Y.Z` branch is merged to `main`, the `auto-release.yml` workflow will:
      - Extract the version from the branch name
      - Create and push the tag `vX.Y.Z` to the repository
      - Create a draft GitHub Release with the tag
-   - **Manual**: Review the draft release in GitHub, fill in release notes using `.github/release-template.md`, and publish it.
+   - **Manual**: Review the draft release in GitHub. The draft body is pre-filled from the merged PR description; update if needed and publish it.
 6. **Publish and communicate**:
    - Publishing the draft release triggers the `release.yml` workflow, which builds and uploads release assets automatically.
    - After verifying assets and notes, close the release issue, linking to the GitHub Release entry and any follow-up tasks.
 
 ## Release Checklist
 
-Include this checklist in the release PR description and mark items when complete:
+Include this checklist in the release PR description (you can append it to `release-notes-vX.Y.Z.md`) and mark items when complete:
 
-- [ ] Issue `#NNN` created with scope and timeline.
+- [ ] (Optional) Issue `#NNN` created with scope and timeline.
 - [ ] Release branch `release/vX.Y.Z` created from `main`.
 - [ ] Tests and linting pass (`npm test`, `npm run lint`).
 - [ ] Documentation updated (`docs/index.md`, audience guides, this file).
-- [ ] Version metadata updated (`template-version.json`, package manifests if applicable).
+- [ ] Version metadata updated via `npm run release` (`template-version.json`, app manifests).
 - [ ] Build artifacts generated (frontend static export, backend build, seed archive if required).
 - [ ] GitHub Pages preview validated against sanitized demo data.
-- [ ] Release notes drafted using `.github/release-template.md`.
+- [ ] PR description filled from `release-notes-vX.Y.Z.md`.
 - [ ] PR merged to `main` (triggers automatic tag creation and draft release).
 - [ ] Draft release reviewed and notes updated in GitHub.
 - [ ] Release published (triggers automatic asset building and upload).
