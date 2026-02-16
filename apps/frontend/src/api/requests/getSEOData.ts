@@ -1,8 +1,6 @@
 import { fetchAPI } from "../fetch-api";
 import { i18n } from "../../../i18n-config";
 
-import type { Locale } from "../../../i18n-config";
-
 interface SEOdata {
   shareImage: object;
   metaTitle: string;

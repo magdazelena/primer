@@ -56,7 +56,9 @@ export async function getProductSlugAndCategoryList(): Promise<
         );
       }
     } catch (error) {
-      // Silently skip locales that don't have data
+      if (process.env.DEBUG === "true") {
+        console.error("Error fetching product slug and category list", error);
+      }
       continue;
     }
   }

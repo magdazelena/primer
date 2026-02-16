@@ -12,7 +12,6 @@ export async function getProductCategorySlugs(): Promise<
   const allSlugs = new Set<string>();
 
   // Fetch categories for all locales to get all possible slugs
-  // Handle 404s gracefully - if a locale doesn't have data, skip it
   for (const locale of i18n.locales) {
     try {
       const response = await fetchAPI("/product-categories", {
@@ -28,7 +27,9 @@ export async function getProductCategorySlugs(): Promise<
         });
       }
     } catch (error) {
-      // Silently skip locales that don't have data
+      if (process.env.DEBUG === "true") {
+        console.error("Error fetching product category slugs", error);
+      }
       continue;
     }
   }
@@ -49,7 +50,6 @@ export async function getBlogCategorySlugs(): Promise<
   const allSlugs = new Set<string>();
 
   // Fetch categories for all locales to get all possible slugs
-  // Handle 404s gracefully - if a locale doesn't have data, skip it
   for (const locale of i18n.locales) {
     try {
       const response = await fetchAPI("/categories", {
@@ -65,7 +65,9 @@ export async function getBlogCategorySlugs(): Promise<
         });
       }
     } catch (error) {
-      // Silently skip locales that don't have data
+      if (process.env.DEBUG === "true") {
+        console.error("Error fetching blog category slugs", error);
+      }
       continue;
     }
   }

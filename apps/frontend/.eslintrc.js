@@ -9,5 +9,6 @@ module.exports = {
       },
       rules: {
         '@typescript-eslint/no-explicit-any': 'off',
+        'no-console': ["warn", { allow: ["warn", "error"] }]
       }
 }
