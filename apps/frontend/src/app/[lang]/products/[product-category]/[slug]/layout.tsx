@@ -66,6 +66,7 @@ export async function generateStaticParams() {
   const params = await getProductSlugAndCategoryList();
   return params;
 }
+
 export async function getStaticPaths() {
   const paths = await generateStaticParams();
   return {

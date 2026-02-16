@@ -13,15 +13,14 @@ const ProductCategoryRoute = async (props: {
     "/product-categories",
     filter
   );
-
   //TODO: CREATE A COMPONENT FOR THIS
-  if (!data || data.posts.length === 0)
+  if (!data || data.posts?.data?.length === 0)
     return <div>Not Posts In this category</div>;
 
   const { category, posts } = data;
   return (
     <div>
-      <PageHeader heading={category.name} text={category.description} />
+      <PageHeader heading={category?.name} text={category?.description} />
       <ProductList products={posts.data} />
     </div>
   );
