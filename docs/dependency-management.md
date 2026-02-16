@@ -1,6 +1,4 @@
-# Dependabot Management
-
-This document explains how Dependabot was previously used in the Primer monorepo and how to manage dependencies **manually** now that Dependabot is disabled.
+# Dependency Management
 
 ## Overview
 
@@ -10,7 +8,7 @@ Dependabot is currently **disabled** for this repository. Instead of automated d
 - `npm run deps:check-updates` – See which dependencies can be upgraded per workspace (no changes)
 - `npm run deps:upgrade` – Apply upgrades in controlled groups
 
-You can still re-enable Dependabot in the future using `scripts/dependabot-config.js`, but the default workflow is now manual and script-driven.
+
 
 ## Manual Dependency Management
 
@@ -94,23 +92,6 @@ Recommended approach:
 - Use `--group=strapi` to keep `apps/backend` and the Strapi plugins moving together.
 - Use `--group=frontend` when you want to adopt newer React/Next features in the frontend without touching the backend.
 - Use `--group=root` to periodically refresh ESLint/TypeScript/Jest tooling in a controlled way.
-
-## (Optional) Re-enabling Dependabot
-
-If you decide to bring Dependabot back later:
-
-1. Run:
-
-```bash
-npm run dependabot:config generate
-```
-
-2. This recreates `.github/dependabot.yml` for all workspaces.
-3. To disable Dependabot again, run:
-
-```bash
-npm run dependabot:config disable
-```
 
 ## Best Practices
 

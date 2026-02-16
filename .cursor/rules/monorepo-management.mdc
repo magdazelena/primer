@@ -52,8 +52,7 @@ Each workspace has its own scripts defined in their `package.json`.
 
 ### Scripts
 
-- **Dependabot**: [scripts/dependabot-config.js](mdc:scripts/dependabot-config.js)
-- **Dependency Management**: [scripts/manage-deps.js](mdc:scripts/manage-deps.js)
+- **Dependency Management**: [scripts/upgrade-deps.js](mdc:scripts/upgrade-deps.js)
 
 ### Version Management
 
