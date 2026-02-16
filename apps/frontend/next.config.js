@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  productionBrowserSourceMaps: process.env.NEXT_DEBUG_BUILD === "true",
   typescript: {
     ignoreBuildErrors: true,
   },

@@ -29,8 +29,10 @@ export async function fetchAPI(
 
   try {
     // Merge default and user options
+    const revalidate =
+      process.env.NEXT_DEBUG_BUILD === "true" ? 0 : 60;
     const mergedOptions = {
-      next: { revalidate: 60 },
+      next: { revalidate },
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
