@@ -3,12 +3,12 @@ import { Logo } from "../Logo";
 import { DesktopNav } from "./DesktopNav";
 import { MobileNav } from "./MobileNav";
 
-import type { NavLink } from "../NavLink";
+import type { NavLinkType } from "../NavLink";
 import type { Category } from "@/types/article";
 import type { ProductCategory } from "@/types/product";
 
 interface NavbarProps {
-  links: Array<NavLink>;
+  links: NavLinkType[];
   logoUrl: string | null;
   logoText: string | null;
   categories: {
