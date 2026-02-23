@@ -2,6 +2,9 @@ import { getProductBySlug } from "@/api/requests/get-product-by-slug";
 import { getProductSlugAndCategoryList } from "@/api/requests/get-product-list";
 import { fetchProductsAndSeries } from "@/api/requests/get-products-by-series";
 import { getSEOData } from "@/api/requests/getSEOData";
+import { fetchSideMenuData } from "@/api/requests/get-side-menu-data";
+
+import { getCategoryBreadcrumbTrail } from "@/utils/get-category-breadcrumb-trail";
 
 import { ProductView } from "../../views/product";
 import { ProductList } from "../../views/product-list";
@@ -38,14 +41,27 @@ const ProductRoute = async (props: {
   if (products.length === 0 || products[0] === undefined) return <h2>no post found</h2>;
   const product = products[0];
 
+  const { categories } = await fetchSideMenuData(params["product-category"]);
+  const categoryTrail = getCategoryBreadcrumbTrail(
+    categories,
+    params["product-category"],
+    product.category?.name,
+  );
+  const breadcrumbTrail = [
+    { name: "Products", slug: "" },
+    ...categoryTrail,
+  ];
+
   if (!product.series) {
-    return <ProductView data={product} />;
+    return <ProductView data={product} breadcrumbTrail={breadcrumbTrail} />;
   }
   const productsOfSeries = await getOtherProductsOfSeries(product);
-  if (productsOfSeries.length === 0) return <ProductView data={product} />;
+  if (productsOfSeries.length === 0) {
+    return <ProductView data={product} breadcrumbTrail={breadcrumbTrail} />;
+  }
   return (
     <>
-      <ProductView data={product} />
+      <ProductView data={product} breadcrumbTrail={breadcrumbTrail} />
       <div className="container p-8 mx-auto space-y-6 sm:space-y-12">
         <h2 className="text-2xl font-bold">
           {productsOfSeries.length} more product

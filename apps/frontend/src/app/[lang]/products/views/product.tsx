@@ -5,8 +5,15 @@ import { ProductMedia } from "./Product/ProductMedia";
 import { ProductSide } from "./Product/ProductSide";
 
 import type { Product } from "@/types/product";
+import type { BreadcrumbItem } from "@/utils/get-category-breadcrumb-trail";
 
-export const ProductView = ({ data }: { data: Product }) => {
+export const ProductView = ({
+  data,
+  breadcrumbTrail,
+}: {
+  data: Product;
+  breadcrumbTrail?: BreadcrumbItem[];
+}) => {
   const { name, description, media, retailPrice, shortDescription, creator } =
     data;
   return (
@@ -17,6 +24,7 @@ export const ProductView = ({ data }: { data: Product }) => {
           name={name}
           retailPrice={retailPrice}
           shortDescription={shortDescription}
+          breadcrumbTrail={breadcrumbTrail}
         />
         {creator && <CreatorThumbnail creator={creator} />}
       </div>
