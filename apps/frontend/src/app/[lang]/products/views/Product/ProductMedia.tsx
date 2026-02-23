@@ -46,7 +46,10 @@ export const ProductMedia = ({ media }: { media: StrapiImage[] }) => {
         )}
 
         {restImages.map((image) => (
-          <div key={image.url} className="relative w-full overflow-hidden rounded-xl">
+          <div
+            key={image.url}
+            className="relative w-full overflow-hidden rounded-xl"
+          >
             <Image
               src={getStrapiURL(image.url)}
               alt={image.alternativeText || "Product image"}

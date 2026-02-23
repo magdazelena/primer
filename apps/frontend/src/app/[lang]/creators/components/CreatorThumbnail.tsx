@@ -8,22 +8,26 @@ const CreatorThumbnail = ({ creator }: { creator: Creator }) => {
   const { avatar, name, slug, lead } = creator;
   const authorImgUrl = getStrapiMedia(avatar.url);
   return (
-    <div className="flex flex-wrap justify-end lg:justify-start items-center bg-accentDarkDark/30 p-10">
-      {authorImgUrl && (
-        <Image
-          src={authorImgUrl}
-          alt="article cover image"
-          width={200}
-          height={200}
-          className="w-24 h-24 border rounded-full bg-accentDarkDark/50 border-accentDarkDark"
-        />
-      )}
-      <div className="pt-5 lg:pt-0 lg:pl-5 lg:border-l-[2px] lg:border-l-dark lg:ml-5">
-        <h5 className="text-lg font-bold text-dark pb-5">{name}</h5>
-        <p>{lead}</p>
-        <Link href={`/creators/${slug}`}>Find out more about {name} here.</Link>
+    <Link href={`/creators/${slug}`} className="block thumbnail-link p-2">
+      <div className="grid grid-cols-4 gap-2">
+        {authorImgUrl && (
+          <div className="relative w-28 h-28 overflow-hidden rounded-xl col-span-1">
+            <Image
+              src={authorImgUrl}
+              alt="article cover image"
+              width={200}
+              height={200}
+              className="w-32 h-32 bg-accentDarkDark/50 object-cover "
+            />
+          </div>
+        )}
+        <div className="pt-5 lg:pt-0 col-span-3">
+          <span className="label primary text-xs">Creator</span>
+          <h5 className="text-lg font-bold text-dark pb-2">{name}</h5>
+          <p>{lead}</p>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

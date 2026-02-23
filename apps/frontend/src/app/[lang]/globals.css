@@ -55,12 +55,24 @@ a:visited {
 a.link-active {
   color: rgb(var(--color-accentDark));
 }
-.button {
+a.thumbnail-link {
+  color: inherit;
+  border-radius: var(--border-radius);
+}
+a.thumbnail-link:hover {
+  text-decoration: none;
+  background: rgba(var(--color-accentDark), 0.3);
+}
+
+.button,
+.label {
   display: inline-block;
-  padding: 0.5rem 1rem;
   border-radius: var(--border-radius);
   border-width: 2px;
   text-decoration: none;
+}
+.button {
+  padding: 0.5rem 1rem;
   cursor: pointer;
 }
 .button:hover {
@@ -80,6 +92,19 @@ a.link-active {
 }
 .button.secondary:hover {
   background-color: rgba(var(--color-light), 0.7);
+}
+.label {
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  font-weight: bold;
+}
+.label.primary {
+  background-color: rgba(var(--color-accentDark), 0.3);
+  color: rgb(var(--color-accentDark));
+}
+.label.secondary {
+  background-color: rgba(var(--color-dark), 0.3);
+  color: rgb(var(--color-dark));
 }
 hr {
   margin: 2rem 0;
