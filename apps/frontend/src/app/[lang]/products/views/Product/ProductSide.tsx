@@ -7,17 +7,18 @@ export const ProductSide = ({
   retailPrice,
   shortDescription,
   breadcrumbTrail,
+  creatorName,
 }: {
   name: string;
   retailPrice: number | string;
   shortDescription: string;
   breadcrumbTrail?: BreadcrumbItem[];
+  creatorName?: string;
 }) => {
   const effectiveTrail =
     breadcrumbTrail && breadcrumbTrail.length > 0
       ? breadcrumbTrail
       : [{ name: "Products", slug: "" }];
-
   return (
     <div>
       <nav aria-label="Breadcrumb">
@@ -27,22 +28,28 @@ export const ProductSide = ({
             const isLastCategory = index === effectiveTrail.length - 1;
 
             return (
-              <li key={`${item.slug || "root"}-${index}`} className="flex items-center">
+              <li
+                key={`${item.slug || "root"}-${index}`}
+                className="flex items-center"
+              >
                 <Link href={href}>{item.name}</Link>
-                <span className="px-1">/</span>
+                {!isLastCategory && <span className="px-1">/</span>}
                 {isLastCategory && (
                   <span className="sr-only">Current category</span>
                 )}
               </li>
             );
           })}
-          <li aria-current="page" className="flex items-center">
-            <span>{name}</span>
-          </li>
         </ol>
       </nav>
-      <h1 className="leading-20 text-5xl font-bold font-display">{name}</h1>
-      <div className="text-dark px-2">
+      <h1 className="leading-tight text-5xl font-bold font-display">{name}</h1>
+
+      <div className="text-dark">
+        {creatorName && (
+          <h2 className="text-xl font-display text-accentDark">
+            {creatorName}
+          </h2>
+        )}
         <h2 className="text-2xl font-bold py-2">
           {typeof retailPrice === "number"
             ? retailPrice.toFixed(2)

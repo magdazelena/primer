@@ -61,6 +61,7 @@ a.link-active {
   border-radius: var(--border-radius);
   border-width: 2px;
   text-decoration: none;
+  cursor: pointer;
 }
 .button:hover {
   text-decoration: none;

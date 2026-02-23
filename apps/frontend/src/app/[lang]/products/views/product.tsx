@@ -25,6 +25,7 @@ export const ProductView = ({
           retailPrice={retailPrice}
           shortDescription={shortDescription}
           breadcrumbTrail={breadcrumbTrail}
+          creatorName={creator?.name}
         />
         {creator && <CreatorThumbnail creator={creator} />}
       </div>
