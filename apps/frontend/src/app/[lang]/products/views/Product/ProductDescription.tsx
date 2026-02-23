@@ -8,7 +8,7 @@ export const ProductDescription = ({
   description: BlocksContent;
 }) => {
   return (
-    <div className="text-dark col-span-12 lg:col-span-3 rich-text">
+    <div className="text-dark col-span-full lg:col-span-3 rich-text">
       <hr />
       <BlocksRenderer content={description} />
     </div>

@@ -9,7 +9,7 @@ const CreatorThumbnail = ({ creator }: { creator: Creator }) => {
   const authorImgUrl = getStrapiMedia(avatar.url);
   return (
     <Link href={`/creators/${slug}`} className="block thumbnail-link p-2">
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
         {authorImgUrl && (
           <div className="relative aspect-box aspect-1-1 overflow-hidden rounded-xl col-span-1">
             <Image

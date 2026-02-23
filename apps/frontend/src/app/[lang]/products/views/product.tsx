@@ -19,7 +19,7 @@ export const ProductView = ({
   return (
     <article className="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-4 text-dark pb-10">
       <ProductMedia media={media} />
-      <div className="space-y-6 col-span-1 lg:col-span-1">
+      <div className="space-y-6 col-span-full lg:col-span-1">
         <ProductSide
           name={name}
           retailPrice={retailPrice}
