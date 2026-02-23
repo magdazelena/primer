@@ -12,15 +12,15 @@ export const ProductView = ({ data }: { data: Product }) => {
   return (
     <article className="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-4 text-dark pb-10">
       <ProductMedia media={media} />
-      <ProductSide
-        name={name}
-        retailPrice={retailPrice}
-        shortDescription={shortDescription}
-      />
-      <ProductDescription description={description} />
-      <div className="col-span-12">
+      <div className="space-y-6 col-span-12 lg:col-span-1">
+        <ProductSide
+          name={name}
+          retailPrice={retailPrice}
+          shortDescription={shortDescription}
+        />
         {creator && <CreatorThumbnail creator={creator} />}
       </div>
+      <ProductDescription description={description} />
     </article>
   );
 };

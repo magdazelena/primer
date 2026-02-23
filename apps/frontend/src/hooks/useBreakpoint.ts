@@ -4,12 +4,9 @@ import { useEffect, useState } from "react";
 export const MD_BREAKPOINT = 768;
 
 export const useIsMdUp = () => {
-  const [isMdUp, setIsMdUp] = useState<boolean>(() => {
-    if (typeof window === "undefined") {
-      return false;
-    }
-    return window.innerWidth >= MD_BREAKPOINT;
-  });
+  // Always start false so server and first client render match (avoids hydration mismatch).
+  // useEffect then sets the real value after mount.
+  const [isMdUp, setIsMdUp] = useState<boolean>(false);
 
   useEffect(() => {
     if (typeof window === "undefined" || typeof window.matchMedia === "undefined") {

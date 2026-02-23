@@ -8,14 +8,18 @@ export const ProductSide = ({
   shortDescription: string;
 }) => {
   return (
-    <div className="space-y-6 col-span-12 lg:col-span-2">
-      <h1 className="leading-tight text-5xl font-bold ">{name}</h1>
-      <div className="text-dark">
-        <h4>
+    <div>
+      <h1 className="leading-20 text-5xl font-bold font-display">{name}</h1>
+      <div className="text-dark px-2">
+        <h2 className="text-2xl font-bold py-2">
           {typeof retailPrice === "number"
             ? retailPrice.toFixed(2)
             : retailPrice}
-        </h4>
+        </h2>
+        <div className="flex gap-2 py-5">
+          <button className="button primary">Add to basket</button>
+          <button className="button secondary">Save to wishlist</button>
+        </div>
         <div>{shortDescription}</div>
       </div>
     </div>
