@@ -1,0 +1,1048 @@
+{
+  "version": "2.8",
+  "children": [
+    {
+      "type": "frame",
+      "id": "bi8Au",
+      "x": 0,
+      "y": 0,
+      "name": "Product page",
+      "width": 1440,
+      "fill": "#FFFFFF",
+      "layout": "vertical",
+      "gap": 48,
+      "padding": [
+        32,
+        48
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "JEjIZ",
+          "name": "breadcrumbRow",
+          "width": "fill_container",
+          "gap": 8,
+          "padding": [
+            0,
+            0,
+            24,
+            0
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "iRJjJ",
+              "name": "crumbHome",
+              "fill": "#185342",
+              "content": "Home",
+              "fontFamily": "Roboto, sans-serif",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "ozOmQ",
+              "name": "crumbSep1",
+              "fill": "#185342",
+              "content": "›",
+              "fontFamily": "Roboto, sans-serif",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "XzwA5",
+              "name": "crumbProducts",
+              "fill": "#185342",
+              "content": "Products",
+              "fontFamily": "Roboto, sans-serif",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "GzqlB",
+              "name": "crumbSep2",
+              "fill": "#185342",
+              "content": "›",
+              "fontFamily": "Roboto, sans-serif",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "fIFyh",
+              "name": "crumbCategory",
+              "fill": "#185342",
+              "content": "Category",
+              "fontFamily": "Roboto, sans-serif",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "RX3Ck",
+              "name": "crumbSep3",
+              "fill": "#185342",
+              "content": "›",
+              "fontFamily": "Roboto, sans-serif",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "WLBB2",
+              "name": "crumbProduct",
+              "fill": "#185342",
+              "content": "Product name",
+              "fontFamily": "Roboto, sans-serif",
+              "fontSize": 14,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "T2ppv",
+          "name": "mainRow",
+          "width": "fill_container",
+          "gap": 32,
+          "children": [
+            {
+              "type": "frame",
+              "id": "z1I6r",
+              "name": "mediaCol",
+              "width": 784,
+              "layout": "vertical",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": [
+                    4,
+                    0,
+                    0,
+                    0
+                  ],
+                  "id": "ciycx",
+                  "name": "galleryPlaceholder",
+                  "fill": "#F5F5F5",
+                  "width": "fill_container",
+                  "height": 400
+                },
+                {
+                  "type": "frame",
+                  "id": "Z62Pr",
+                  "name": "thumbRow",
+                  "width": "fill_container",
+                  "height": 72,
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": [
+                        4,
+                        0,
+                        0,
+                        0
+                      ],
+                      "id": "QBKdQ",
+                      "name": "thumb1",
+                      "fill": "#EEEEEE",
+                      "width": 72,
+                      "height": 72
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": [
+                        4,
+                        0,
+                        0,
+                        0
+                      ],
+                      "id": "Z4CWG",
+                      "name": "thumb2",
+                      "fill": "#E0E0E0",
+                      "width": 72,
+                      "height": 72
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": [
+                        4,
+                        0,
+                        0,
+                        0
+                      ],
+                      "id": "1UfqD",
+                      "name": "thumb3",
+                      "fill": "#E8E8E8",
+                      "width": 72,
+                      "height": 72
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "3sbDQ",
+              "name": "sideCol",
+              "width": 528,
+              "layout": "vertical",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "gep2Y",
+                  "name": "productTitle",
+                  "fill": "#185342",
+                  "content": "Product name",
+                  "fontFamily": "Playfair Display, serif",
+                  "fontSize": 48,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "MWgLl",
+                  "name": "priceText",
+                  "fill": "#185342",
+                  "content": "0.00",
+                  "fontFamily": "Roboto, sans-serif",
+                  "fontSize": 24,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "FX5PB",
+                  "name": "shortDesc",
+                  "fill": "#185342",
+                  "content": "Short description of the product in a few lines.",
+                  "fontFamily": "Roboto, sans-serif",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "FHYU5",
+                  "name": "ctaRow",
+                  "width": "fill_container",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "4C4Yv",
+                      "name": "addBtn",
+                      "height": 48,
+                      "fill": "#D9664E",
+                      "cornerRadius": [
+                        4,
+                        0,
+                        0,
+                        0
+                      ],
+                      "padding": [
+                        12,
+                        24
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "iyeMM",
+                          "name": "addBtnLabel",
+                          "fill": "#FFFFFF",
+                          "content": "Add to basket",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "nq8X9",
+                  "name": "trustLine",
+                  "fill": "#185342",
+                  "content": "Shipping & returns",
+                  "fontFamily": "Roboto, sans-serif",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "EZjU6",
+          "name": "descSection",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            0,
+            40
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "uzgfa",
+              "name": "descTitle",
+              "fill": "#185342",
+              "content": "Product details",
+              "fontFamily": "Playfair Display, serif",
+              "fontSize": 20,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "s2Sy7",
+              "name": "descBody",
+              "fill": "#185342",
+              "content": "Rich text description block. Paragraphs, lists, and formatting from BlocksRenderer.",
+              "fontFamily": "Roboto, sans-serif",
+              "fontSize": 16,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "Uh5pv",
+          "name": "divider",
+          "fill": "#185342",
+          "width": "fill_container",
+          "height": 2
+        },
+        {
+          "type": "frame",
+          "id": "Zk9fS",
+          "name": "specsSection",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 12,
+          "padding": [
+            0,
+            40
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "o9LKw",
+              "name": "specsTitle",
+              "fill": "#185342",
+              "content": "Details",
+              "fontFamily": "Playfair Display, serif",
+              "fontSize": 20,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "kMPvN",
+              "name": "specsBody",
+              "fill": "#185342",
+              "content": "Approx. 9.75 × 1 cm · Microwave & dishwasher safe",
+              "fontFamily": "Roboto, sans-serif",
+              "fontSize": 16,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "uLH8e",
+          "name": "creatorSection",
+          "width": "fill_container",
+          "fill": "rgba(217,102,78,0.3)",
+          "gap": 20,
+          "padding": 40,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "ellipse",
+              "id": "Dwzv8",
+              "name": "creatorAvatar",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "../apps/backend/public/uploads/Kaare_Klint_a3cfd1c987.jpg",
+                "mode": "fill"
+              },
+              "width": 96,
+              "height": 96
+            },
+            {
+              "type": "frame",
+              "id": "qJvWI",
+              "name": "creatorInfo",
+              "width": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "left": 2
+                },
+                "fill": "#185342"
+              },
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                0,
+                0,
+                0,
+                20
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "GUGpZ",
+                  "name": "creatorName",
+                  "fill": "#185342",
+                  "content": "Creator name",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "XcQP0",
+                  "name": "creatorLead",
+                  "fill": "#185342",
+                  "content": "Short bio or lead text about the creator.",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "00yQ4",
+                  "name": "creatorLink",
+                  "fill": "#D9664E",
+                  "content": "Find out more about Creator name here.",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "MuqoD",
+          "name": "seriesSection",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            48,
+            0,
+            0,
+            0
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "fyo6w",
+              "name": "seriesHeading",
+              "fill": "#185342",
+              "content": "You may also like",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "j3ZHW",
+              "name": "seriesGrid",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "x8Kwe",
+                  "name": "card1",
+                  "width": 360,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": [
+                    8,
+                    0,
+                    0,
+                    0
+                  ],
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": [
+                        8,
+                        8,
+                        0,
+                        0
+                      ],
+                      "id": "ISysg",
+                      "name": "card1Img",
+                      "fill": "#F0F0F0",
+                      "width": "fill_container",
+                      "height": 176
+                    },
+                    {
+                      "type": "frame",
+                      "id": "abYMq",
+                      "name": "card1Body",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": 24,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "pimxQ",
+                          "name": "card1Name",
+                          "fill": "#185342",
+                          "content": "Product name",
+                          "fontFamily": "Inter",
+                          "fontSize": 24,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "tN2Oe",
+                          "name": "card1Price",
+                          "fill": "#185342",
+                          "content": "0.00",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "eTDLE",
+                          "name": "card1Desc",
+                          "fill": "#185342",
+                          "content": "Short description.",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "wBtes",
+                  "name": "card2",
+                  "width": 360,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": [
+                    8,
+                    0,
+                    0,
+                    0
+                  ],
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": [
+                        8,
+                        8,
+                        0,
+                        0
+                      ],
+                      "id": "CM3Yi",
+                      "name": "card2Img",
+                      "fill": "#F0F0F0",
+                      "width": "fill_container",
+                      "height": 176
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tPD0g",
+                      "name": "card2Body",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": 24,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "yuGmp",
+                          "name": "card2Name",
+                          "fill": "#185342",
+                          "content": "Another product",
+                          "fontFamily": "Inter",
+                          "fontSize": 24,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "OTZXl",
+                          "name": "card2Price",
+                          "fill": "#185342",
+                          "content": "0.00",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "NCfVS",
+                          "name": "card2Desc",
+                          "fill": "#185342",
+                          "content": "Short description.",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "B2jNY",
+                  "name": "card3",
+                  "width": 360,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": [
+                    8,
+                    0,
+                    0,
+                    0
+                  ],
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": [
+                        8,
+                        8,
+                        0,
+                        0
+                      ],
+                      "id": "uhGEg",
+                      "name": "card3Img",
+                      "fill": "#F0F0F0",
+                      "width": "fill_container",
+                      "height": 176
+                    },
+                    {
+                      "type": "frame",
+                      "id": "6f0w1",
+                      "name": "card3Body",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": 24,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "eMI5e",
+                          "name": "card3Name",
+                          "fill": "#185342",
+                          "content": "Third product",
+                          "fontFamily": "Inter",
+                          "fontSize": 24,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "cRjV2",
+                          "name": "card3Price",
+                          "fill": "#185342",
+                          "content": "0.00",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "IEzVC",
+                          "name": "card3Desc",
+                          "fill": "#185342",
+                          "content": "Short description.",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "RB7LQ",
+          "name": "otherSection",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            48,
+            0,
+            0,
+            0
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "LolSh",
+              "name": "otherHeading",
+              "fill": "#185342",
+              "content": "See products in other categories",
+              "fontFamily": "Inter",
+              "fontSize": 20,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "SQHA0",
+              "name": "chipsRow",
+              "width": "fill_container",
+              "gap": 8,
+              "padding": [
+                24,
+                0
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "tQ9vq",
+                  "name": "chip1",
+                  "height": 36,
+                  "fill": "#D9664E",
+                  "cornerRadius": [
+                    4,
+                    0,
+                    0,
+                    0
+                  ],
+                  "padding": [
+                    8,
+                    16
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "ZuPMv",
+                      "name": "chip1Text",
+                      "fill": "#FFFFFF",
+                      "content": "Category A",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "MBalo",
+                  "name": "chip2",
+                  "height": 36,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": [
+                    4,
+                    0,
+                    0,
+                    0
+                  ],
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 0,
+                    "fill": "#D9664E"
+                  },
+                  "padding": [
+                    8,
+                    16
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "AAmws",
+                      "name": "chip2Text",
+                      "fill": "#185342",
+                      "content": "Category B",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "sdsYL",
+                  "name": "chip3",
+                  "height": 36,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": [
+                    4,
+                    0,
+                    0,
+                    0
+                  ],
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 0,
+                    "fill": "#D9664E"
+                  },
+                  "padding": [
+                    8,
+                    16
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "pjRw9",
+                      "name": "chip3Text",
+                      "fill": "#185342",
+                      "content": "All products",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "YQvAb",
+              "name": "carouselRow",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "m5FqY",
+                  "name": "carCard1",
+                  "width": 300,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": [
+                    8,
+                    0,
+                    0,
+                    0
+                  ],
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": [
+                        8,
+                        8,
+                        0,
+                        0
+                      ],
+                      "id": "TDn3R",
+                      "name": "carCard1Img",
+                      "fill": "#F0F0F0",
+                      "width": "fill_container",
+                      "height": 176
+                    },
+                    {
+                      "type": "frame",
+                      "id": "23TOC",
+                      "name": "carCard1Body",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": 24,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "dgycC",
+                          "name": "carCard1Name",
+                          "fill": "#185342",
+                          "content": "Related product",
+                          "fontFamily": "Inter",
+                          "fontSize": 24,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "aA3hw",
+                          "name": "carCard1Price",
+                          "fill": "#185342",
+                          "content": "0.00",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "ZC7uD",
+                          "name": "carCard1Desc",
+                          "fill": "#185342",
+                          "content": "Short description.",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "lSQaJ",
+                  "name": "carCard2",
+                  "width": 300,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": [
+                    8,
+                    0,
+                    0,
+                    0
+                  ],
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": [
+                        8,
+                        8,
+                        0,
+                        0
+                      ],
+                      "id": "SRG3M",
+                      "name": "carCard2Img",
+                      "fill": "#F0F0F0",
+                      "width": "fill_container",
+                      "height": 176
+                    },
+                    {
+                      "type": "frame",
+                      "id": "U9Bzo",
+                      "name": "carCard2Body",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": 24,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "N8eoz",
+                          "name": "carCard2Name",
+                          "fill": "#185342",
+                          "content": "Related product 2",
+                          "fontFamily": "Inter",
+                          "fontSize": 24,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "qmQ1H",
+                          "name": "carCard2Price",
+                          "fill": "#185342",
+                          "content": "0.00",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "SvVjL",
+                          "name": "carCard2Desc",
+                          "fill": "#185342",
+                          "content": "Short description.",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "X2Cbv",
+                  "name": "carCard3",
+                  "width": 300,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": [
+                    8,
+                    0,
+                    0,
+                    0
+                  ],
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": [
+                        8,
+                        8,
+                        0,
+                        0
+                      ],
+                      "id": "14xIU",
+                      "name": "carCard3Img",
+                      "fill": "#F0F0F0",
+                      "width": "fill_container",
+                      "height": 176
+                    },
+                    {
+                      "type": "frame",
+                      "id": "gnB1L",
+                      "name": "carCard3Body",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": 24,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Si4E0",
+                          "name": "carCard3Name",
+                          "fill": "#185342",
+                          "content": "Related product 3",
+                          "fontFamily": "Inter",
+                          "fontSize": 24,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "VAcR8",
+                          "name": "carCard3Price",
+                          "fill": "#185342",
+                          "content": "0.00",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "zf0E7",
+                          "name": "carCard3Desc",
+                          "fill": "#185342",
+                          "content": "Short description.",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

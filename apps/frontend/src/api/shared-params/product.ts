@@ -30,7 +30,7 @@ export const PRODUCT_MEDIA_QUERY = {
  */
 export const PRODUCT_WITH_CATEGORY_TREE_QUERY = {
   populate: {
-    coverImage: { fields: ["url"] },
+    ...PRODUCT_BASE_QUERY.populate,
     ...CATEGORY_THREE_QUERY,
   },
 };
