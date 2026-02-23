@@ -22,8 +22,9 @@ export const ProductSelect = ({
     params["product-category"],
   );
   return (
-    <div className="p-4 rounded-lg  min-h-[365px] relative">
-      <h4 className="text-xl font-semibold">
+    <div className="relative">
+      <hr />
+      <h4 className="text-lg font-semibold">
         See products in other categories
       </h4>
 
