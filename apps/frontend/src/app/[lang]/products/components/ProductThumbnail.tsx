@@ -13,15 +13,14 @@ const ProductThumbnail = ({ product }: { product: Product }) => {
     <Link
       href={`/products/${category?.slug}/${product.slug}`}
       key={product.id}
-      className="group hover:no-underline focus:no-underline rounded-lg overflow-hidden thumbnail-link p-2"
+      className="group hover:no-underline focus:no-underline rounded-lg overflow-hidden thumbnail-link p-2 aspect-box aspect-1-1"
       data-testid="product-card"
     >
       {imageUrl && (
         <Image
           alt="presentation"
-          width="240"
-          height="240"
-          className="object-cover w-full h-100"
+          fill
+          className="object-cover"
           src={imageUrl}
         />
       )}
