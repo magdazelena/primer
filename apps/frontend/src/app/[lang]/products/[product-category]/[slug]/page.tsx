@@ -38,7 +38,8 @@ const ProductRoute = async (props: {
   const { slug, lang } = params;
   const products = await getProductBySlug(slug, lang);
 
-  if (products.length === 0 || products[0] === undefined) return <h2>no post found</h2>;
+  if (products.length === 0 || products[0] === undefined)
+    return <h2>no post found</h2>;
   const product = products[0];
 
   const { categories } = await fetchSideMenuData(params["product-category"]);
@@ -47,10 +48,7 @@ const ProductRoute = async (props: {
     params["product-category"],
     product.category?.name,
   );
-  const breadcrumbTrail = [
-    { name: "Products", slug: "" },
-    ...categoryTrail,
-  ];
+  const breadcrumbTrail = [{ name: "Products", slug: "" }, ...categoryTrail];
 
   if (!product.series) {
     return <ProductView data={product} breadcrumbTrail={breadcrumbTrail} />;
@@ -62,7 +60,7 @@ const ProductRoute = async (props: {
   return (
     <>
       <ProductView data={product} breadcrumbTrail={breadcrumbTrail} />
-      <div className="container p-8 mx-auto space-y-6 sm:space-y-12">
+      <div className="container mx-auto space-y-6 sm:space-y-12">
         <h2 className="text-2xl font-bold">
           {productsOfSeries.length} more product
           {productsOfSeries.length > 1 ? "s" : ""} available in series{" "}

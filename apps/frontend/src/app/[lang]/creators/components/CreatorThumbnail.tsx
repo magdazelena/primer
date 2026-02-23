@@ -11,13 +11,12 @@ const CreatorThumbnail = ({ creator }: { creator: Creator }) => {
     <Link href={`/creators/${slug}`} className="block thumbnail-link p-2">
       <div className="grid grid-cols-4 gap-2">
         {authorImgUrl && (
-          <div className="relative w-28 h-28 overflow-hidden rounded-xl col-span-1">
+          <div className="relative aspect-box aspect-1-1 overflow-hidden rounded-xl col-span-1">
             <Image
               src={authorImgUrl}
               alt="article cover image"
-              width={200}
-              height={200}
-              className="w-32 h-32 bg-accentDarkDark/50 object-cover "
+              fill
+              className="object-cover"
             />
           </div>
         )}

@@ -39,6 +39,6 @@ export const CATEGORY_THREE_QUERY = {
       },
       children: { fields: ["slug"] },
     },
-    fields: ["slug"],
+    fields: ["slug", "name"],
   },
 };
